@@ -1,0 +1,40 @@
+.header {
+  @include main-container;
+  margin: 0 auto;
+  width: 100%;
+  height: 96px;
+  padding: 16px calc((100vw - 1312px) / 2);
+  display: flex;
+  justify-content: space-between;
+  box-shadow: $header-box-shadow;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.input {
+  border: $border-white;
+  border-radius: $border-radius-s;
+  padding: 6px 24px;
+  width: 315px;
+  height: 32px;
+  box-shadow: $items-shadow;
+  // &:focus {
+  //   border-color: #40a9ff;
+  //   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  // }
+}
+
+.headerIcon {
+  border-radius: $border-radius;
+  box-shadow: $items-shadow;
+  display: flex;
+  justify-content: center;
+  background: $button;
+  width: 32px;
+  height: 32px;
+}

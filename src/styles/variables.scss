@@ -75,5 +75,5 @@
 @mixin flex-column-container {
   display: flex;
   flex-direction: column;
-  row-gap: $row-gap-l;
+  // row-gap: $row-gap-l;
 }
