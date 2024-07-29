@@ -1,6 +1,7 @@
 import {
   ClusterOutlined,
   DatabaseOutlined,
+  DownOutlined,
   FileOutlined,
   HomeOutlined,
   LeftOutlined,
@@ -20,7 +21,6 @@ const cx = cn.bind(styles);
 export default function SideBar() {
   const [shortWindow, setShortWindow] = useState(false);
   const [showMore, setShorMore] = useState(false);
-  console.log('showMore: ', showMore);
   return (
     <div
       className={cx(styles.sideBar, { [styles.sideBar_short]: shortWindow })}
@@ -31,12 +31,12 @@ export default function SideBar() {
           { icon: <HomeOutlined />, text: 'Главная', link: '/' },
           {
             icon: (
-              <span onClick={() => setShorMore(!showMore)} style={{ cursor: 'pointer' }}>
+              <span onClick={() => setShorMore(!showMore)} >
                 <DatabaseOutlined />
+                <DownOutlined />
               </span>
             ),
             text: 'Справочник',
-            link: '/directory',
             onClick: () => setShorMore(!showMore),
             },
         ].map((item, index) => (
@@ -52,16 +52,17 @@ export default function SideBar() {
                 opacity: shortWindow ? 0 : 1,
                 x: shortWindow ? -90 : 0,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.4 }}
               onClick={item.onClick}
             >
+                {item.link ? (
               <Link to={item.link} className={styles.link}>
                 {item.text}
-              </Link>
+              </Link>) : item.text}
             </motion.p>
           </li>
-        ))}
-
+        ))} 
+       
         {showMore && (
           <>
             {[
@@ -89,7 +90,7 @@ export default function SideBar() {
                     opacity: shortWindow ? 0 : 1,
                     x: shortWindow ? -90 : 0,
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.4 }}
                 >
                   <Link to={item.link} className={styles.link}>
                     {item.text}
