@@ -1,13 +1,71 @@
 .sideBar {
-  // border: 1px solid $main-white&black-300
-  border-radius: 28px;
+  border: $border-white;
+  border-radius: $border-radius-xl;
   padding: 24px;
   width: 316px;
   height: 388px;
+  @include flex-column-container;
+  gap: 40px;
+  transition: width 0.3s ease;
+
+  &_short {
+    width: 128px;
+    transition: width 0.3s ease;
+  }
 }
 
-.container {
- 
+.list {
+  @include mp-null-list;
+  @include flex-column-container;
+  gap: 4px;
 }
 
+.item {
+  display: flex;
+  gap: 10px;
+  padding: 11px 24px;
+  height: 40px;
 
+  &_short {
+    justify-content: center
+  }
+}
+
+.text {
+  @include mp-null;
+  @include use-font;
+
+  &_short {
+    display: none;
+  }
+}
+
+.sideBarButton {
+  @include use-font(14px, 16.8, 400);
+  background: $button;
+  box-shadow: $items-shadow;
+  text-shadow: $items-shadow;
+  gap: 8px;
+  border-radius: $border-radius;
+  padding: 0px 16px;
+  width: 106px;
+  height: 32px;
+  color: $main-white !important;
+  border: none;
+  outline: none;
+  transition: width 0.3s ease;
+
+  &_short {
+    width: 32px;
+    span:first-of-type {
+      display: none;
+      transition: width 0.3s ease;
+    }
+  }
+  &:hover {
+    background: $button-hover !important;
+  }
+  &:focus {
+    background: $button-focus;
+  }
+}
