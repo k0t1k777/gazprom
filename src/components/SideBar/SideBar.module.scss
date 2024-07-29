@@ -34,6 +34,8 @@
 .text {
   @include mp-null;
   @include use-font;
+  word-break: normal;
+  overflow: hidden;
 
   &_short {
     display: none;
@@ -41,7 +43,7 @@
 }
 
 .sideBarButton {
-  @include use-font(14px, 16.8, 400);
+  @include use-font(14px, 16.8px, 400);
   background: $button;
   box-shadow: $items-shadow;
   text-shadow: $items-shadow;
@@ -68,4 +70,9 @@
   &:focus {
     background: $button-focus;
   }
+}
+
+.link {
+  @include link-null;
+  color: $main-text-black;
 }

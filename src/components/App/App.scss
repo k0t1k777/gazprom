@@ -19,8 +19,14 @@ body {
   min-width: 320px;
   max-width: 1440px;
   min-height: 100vh;
+  
 }
 
 * {
   box-sizing: border-box;
+}
+
+.conteiner {
+  display: flex;
+  padding: 56px 64px;
 }
