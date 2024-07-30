@@ -18,6 +18,8 @@
   @include mp-null-list;
   @include flex-column-container;
   gap: 4px;
+  width: 268px;
+
 }
 
 .item {
@@ -25,7 +27,17 @@
   gap: 10px;
   padding: 11px 24px;
   height: 40px;
+  border-radius: $border-radius-s;
   cursor: pointer;
+  width: 100%;
+
+  &_grey {
+    background: $main-grey;
+  }
+
+  &_active {
+    background: $button-active;
+  }
 
   &_short {
     justify-content: center
@@ -37,6 +49,8 @@
   @include use-font;
   word-break: normal;
   overflow: hidden;
+  display: flex;
+  gap: 76px;
 
   &_short {
     display: none;
@@ -73,7 +87,14 @@
   }
 }
 
+.arrow {
+  &_short {
+    display: none;
+  }
+}
+
 .link {
   @include link-null;
   color: $main-text-black;
+  display: flex;
 }
