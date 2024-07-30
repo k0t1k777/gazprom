@@ -1,9 +1,9 @@
-import 'src/pages/Profile/Profile.module.scss'
+import styles from 'src/pages/Profile/Profile.module.scss'
 
 export default function Profile() {
 
   return (
-    <div>
+    <div className={styles.profile}>
      Profile
     </div>    
   )

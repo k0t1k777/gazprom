@@ -1,9 +1,9 @@
-import 'src/pages/Employees/Employees.module.scss'
+import styles from 'src/pages/Employees/Employees.module.scss'
 
 export default function Employees() {
 
   return (
-    <div>
+    <div className={styles.employees}>
      Employees
     </div>    
   )

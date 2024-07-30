@@ -18,7 +18,7 @@
   @include mp-null-list;
   @include flex-column-container;
   gap: 4px;
-  width: 268px;
+  max-width: 268px;
 
 }
 
@@ -40,7 +40,8 @@
   }
 
   &_short {
-    justify-content: center
+    justify-content: center;
+    width: inherit;
   }
 }
 

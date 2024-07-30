@@ -50,15 +50,35 @@ export default function SideBar() {
             text: 'Справочник',
             onClick: () => setShorMore(!showMore),
           },
-        ].map((item, index) => (
-          <Link to={item.link} key={index} className={styles.link}>
-            <li
-              key={index}
-              className={cx(styles.item, {
-                [styles.item_short]: shortWindow,
-                [styles.item_active]: location.pathname === item.link,
-              })}
-            >
+        ].map((item, index) =>
+          item.link ? (
+            <Link to={item.link} key={index} className={styles.link}>
+              <li
+                className={cx(styles.item, {
+                  [styles.item_short]: shortWindow,
+                  [styles.item_active]: location.pathname === item.link,
+                })}
+              >
+                {item.icon}
+                <motion.p
+                  className={cx(styles.text, {
+                    [styles.text_short]: shortWindow,
+                  })}
+                  initial={{ opacity: 0, y: 0 }}
+                  animate={{
+                    opacity: shortWindow ? 0 : 1,
+                    x: shortWindow ? -90 : 0,
+                  }}
+                  transition={{ duration: 0.4 }}
+                  onClick={item.onClick}
+                >
+                  {item.text}
+                  <span>{item.arrow}</span>
+                </motion.p>
+              </li>
+            </Link>
+          ) : (
+            <li key={index} className={cx(styles.item)}>
               {item.icon}
               <motion.p
                 className={cx(styles.text, {
@@ -76,8 +96,8 @@ export default function SideBar() {
                 <span>{item.arrow}</span>
               </motion.p>
             </li>
-          </Link>
-        ))}
+          )
+        )}
 
         {showMore && (
           <>

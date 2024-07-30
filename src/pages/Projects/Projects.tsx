@@ -1,9 +1,9 @@
-import 'src/pages/Projects/Projects.module.scss'
+import styles from 'src/pages/Projects/Projects.module.scss'
 
 export default function Projects() {
 
   return (
-    <div>
+    <div className={styles.projects}>
      Projects
     </div>    
   )
