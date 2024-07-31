@@ -32,17 +32,12 @@ export default function SideBar() {
           { icon: <HomeOutlined />, text: 'Главная', link: '/' },
           { icon: <UserOutlined />, text: 'Личный кабинет', link: '/profile' },
           {
-            icon: (
-              <span onClick={() => setShorMore(!showMore)}>
-                <DatabaseOutlined />
-              </span>
-            ),
+            icon: <DatabaseOutlined />,
             arrow: (
               <span
                 className={cx(styles.arrow, {
                   [styles.arrow_short]: shortWindow,
                 })}
-                onClick={() => setShorMore(!showMore)}
               >
                 <DownOutlined />
               </span>
@@ -78,7 +73,11 @@ export default function SideBar() {
               </li>
             </Link>
           ) : (
-            <li key={index} className={cx(styles.item)}>
+            <li
+              key={index}
+              className={cx(styles.item)}
+              onClick={() => setShorMore(!showMore)}
+            >
               {item.icon}
               <motion.p
                 className={cx(styles.text, {
