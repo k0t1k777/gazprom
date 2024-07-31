@@ -4,7 +4,7 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/gazprom/',
   plugins: [react(), svgr({ svgrOptions: {} })],
   css: {
     preprocessorOptions: {
