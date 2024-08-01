@@ -20,6 +20,7 @@
 .containerItem {
   display: flex;
   gap: 4px;
+  cursor: pointer;
 }
 
 .input {
@@ -33,6 +34,7 @@
 
 .img {
   color: $button;
+  cursor: pointer;
 }
 
 .text {

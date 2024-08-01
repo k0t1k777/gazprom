@@ -10,6 +10,7 @@ const cx = cn.bind(styles);
 
 export default function Header() {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  console.log('isFilterOpen: ', isFilterOpen);
 
   return (
     <>
@@ -21,13 +22,13 @@ export default function Header() {
           <Input
             placeholder='Поиск'
             className={cx(styles.input, {
-              [styles.input_dissabled]: isFilterOpen,
+              [styles.input_disabled]: isFilterOpen,
             })}
           />
           <FilterOutlined
             onClick={() => setIsFilterOpen(!isFilterOpen)}
             className={cx(styles.headerIcon, {
-              [styles.headerIcon_dissabled]: isFilterOpen,
+              [styles.headerIcon_disabled]: isFilterOpen,
             })}
           />
         </div>

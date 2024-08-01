@@ -3,14 +3,14 @@ import { useRef } from 'react';
 import useOutsideClick from 'src/hooks/useOutsideClick';
 import { Input } from 'antd';
 import { CloseOutlined, DownOutlined } from '@ant-design/icons';
-import Card from '../Card/Card';
+import Card from 'src/ui/Card/Card';
 
 interface FilterProps {
   isFilterOpen: boolean;
   setIsFilterOpen: (type: boolean) => void;
 }
 
-export default function Filter({ setIsFilterOpen }: FilterProps) {
+export default function Filter({ isFilterOpen, setIsFilterOpen }: FilterProps) {
   const ref = useRef(null);
 
   useOutsideClick(ref, () => {
@@ -40,7 +40,7 @@ export default function Filter({ setIsFilterOpen }: FilterProps) {
         </li>
       </ul>
       <div>
-        <Card />
+        <Card isFilterOpen={isFilterOpen} />
       </div>
     </div>
   );

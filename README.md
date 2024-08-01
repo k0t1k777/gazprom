@@ -29,6 +29,7 @@
 ![Static Badge](https://img.shields.io/badge/vite-646cff?style=for-the-badge&logo=vite&logoColor=white)
 
 framer-motion
+classnames
 
 ## Установка и запуск
 

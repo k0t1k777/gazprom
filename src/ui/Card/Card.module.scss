@@ -25,9 +25,18 @@
   gap: 8px;
 }
 
+.mainContainer {
+  @include flex-column-container;
+}
+
 .edit {
   cursor: pointer;
   color: $button-focus;
+  &disabled {
+    display: none !important;
+    color: red;
+    width: 100px;
+  }
 }
 
 .title {
@@ -66,4 +75,26 @@
   cursor: pointer;
   color: $main-text-grey;
   display: flex;
+}
+
+.mini {
+  height: 82px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.miniContainer {
+  gap: 4px;
+}
+
+.disabled {
+  display: none;
+}
+
+.miniName {
+  @include use-font(16px, 19px);
+}
+
+.miniPosition {
+  color: $main-text-black;
 }
