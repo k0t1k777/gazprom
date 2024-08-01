@@ -28,8 +28,10 @@
 ![Static Badge](https://img.shields.io/badge/git-f14e32?style=for-the-badge&logo=git&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/vite-646cff?style=for-the-badge&logo=vite&logoColor=white)
 
+react-beautiful-dnd
 framer-motion
 classnames
+
 
 ## Установка и запуск
 

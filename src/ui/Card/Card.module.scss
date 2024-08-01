@@ -27,6 +27,7 @@
 
 .mainContainer {
   @include flex-column-container;
+  width: 100%;
 }
 
 .edit {

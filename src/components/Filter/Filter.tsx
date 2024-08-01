@@ -4,6 +4,7 @@ import useOutsideClick from 'src/hooks/useOutsideClick';
 import { Input } from 'antd';
 import { CloseOutlined, DownOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
+import { cards } from 'src/utills/mock';
 
 interface FilterProps {
   isFilterOpen: boolean;
@@ -40,14 +41,16 @@ export default function Filter({ isFilterOpen, setIsFilterOpen }: FilterProps) {
         </li>
       </ul>
       <div className={styles.containerResult}>
-        <Card isFilterOpen={isFilterOpen} />
-        <Card isFilterOpen={isFilterOpen} />
-        <Card isFilterOpen={isFilterOpen} />
-        <Card isFilterOpen={isFilterOpen} />
-        <Card isFilterOpen={isFilterOpen} />
-        <Card isFilterOpen={isFilterOpen} />
-        <Card isFilterOpen={isFilterOpen} />
-        <Card isFilterOpen={isFilterOpen} />
+
+      {cards.map((card, index) => (
+              <Card
+                key={card.id}
+                name={card.name}
+                position={card.position}
+                index={index}
+                isFilterOpen={isFilterOpen}
+              />
+            ))}
       </div>
     </div>
   );

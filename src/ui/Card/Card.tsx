@@ -5,18 +5,24 @@ import { useState } from 'react';
 import cn from 'classnames/bind';
 
 const cx = cn.bind(styles);
+
 interface CardProps {
   isFilterOpen?: boolean;
+  position?: string;
+  title?: string;
+  count?: number;
+  name?: string;
+  index?: number;
 }
 
-export default function Card({ isFilterOpen }: CardProps) {
+export default function Card({ isFilterOpen, name, position, title, count }: CardProps) {
   const [isOpen, setIsopen] = useState(true);
 
   return (
     <div className={cx(styles.card, { [styles.mini]: isFilterOpen })}>
       <div className={styles.titleContainer}>
         <p className={cx(styles.title, { [styles.disabled]: isFilterOpen })}>
-          Генеральный директор
+          {title}
         </p>
         <div className={cx(styles.edit, { [styles.disabled]: isFilterOpen })}>
           <EditOutlined />
@@ -28,19 +34,19 @@ export default function Card({ isFilterOpen }: CardProps) {
         </div>
         <div className={cx(styles.mainContainer, { [styles.miniContainer]: isFilterOpen })}>
           <p className={cx(styles.name, { [styles.miniName]: isFilterOpen })}>
-            Евграфов Евграф Семёнович
+            {name}
           </p>
           <p
             className={cx(styles.position, { [styles.miniPosition]: isFilterOpen })}
           >
-            Газовый сектор
+           {position}
           </p>
           <div
             className={cx(styles.countContainer, {
               [styles.disabled]: isFilterOpen,
             })}
           >
-            <p className={styles.count}>3</p>
+            <p className={styles.count}>{count}</p>
             <div className={styles.countImg} onClick={() => setIsopen(!isOpen)}>
               {isOpen ? <UpOutlined /> : <DownOutlined />}
             </div>
