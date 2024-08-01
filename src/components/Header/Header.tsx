@@ -10,7 +10,6 @@ const cx = cn.bind(styles);
 
 export default function Header() {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
-  console.log('isFilterOpen: ', isFilterOpen);
 
   return (
     <>

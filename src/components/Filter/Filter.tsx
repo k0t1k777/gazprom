@@ -39,7 +39,14 @@ export default function Filter({ isFilterOpen, setIsFilterOpen }: FilterProps) {
           <DownOutlined className={styles.arrow} />
         </li>
       </ul>
-      <div>
+      <div className={styles.containerResult}>
+        <Card isFilterOpen={isFilterOpen} />
+        <Card isFilterOpen={isFilterOpen} />
+        <Card isFilterOpen={isFilterOpen} />
+        <Card isFilterOpen={isFilterOpen} />
+        <Card isFilterOpen={isFilterOpen} />
+        <Card isFilterOpen={isFilterOpen} />
+        <Card isFilterOpen={isFilterOpen} />
         <Card isFilterOpen={isFilterOpen} />
       </div>
     </div>
