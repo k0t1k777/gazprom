@@ -1,7 +1,7 @@
 .header {
   @include main-container;
   height: 96px;
-  padding: 16px calc((100vw - 1312px) / 2);
+  padding: 16px 64px;
   display: flex;
   justify-content: space-between;
   box-shadow: $header-box-shadow;
