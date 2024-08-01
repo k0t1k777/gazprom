@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   box-shadow: $header-box-shadow;
+  position: relative;
 }
 
 .container {
@@ -21,10 +22,10 @@
   width: 315px;
   height: 32px;
   box-shadow: $items-shadow;
-  // &:focus {
-  //   border-color: #40a9ff;
-  //   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
-  // }
+  
+  &_dissabled {
+    display: none;
+  }
 }
 
 .headerIcon {
@@ -35,4 +36,8 @@
   background: $button;
   width: 32px;
   height: 32px;
+
+  &_dissabled {
+    display: none;
+  }
 }
