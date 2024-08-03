@@ -7,6 +7,18 @@ export const cards = [
     photo: "https://example.com/photo1.jpg",
     count: 10
   },
+ ];
+
+
+export const cardsList = [
+  {
+    id: 1,
+    name: "Иван Иванов",
+    position: "Разработчик",
+    title: "Frontend Developer",
+    photo: "https://example.com/photo1.jpg",
+    count: 10
+  },
   {
     id: 2,
     name: "Мария Петрова",

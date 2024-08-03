@@ -8,7 +8,11 @@ import Filter from 'src/components/Filter/Filter';
 import cn from 'classnames/bind';
 const cx = cn.bind(styles);
 
-export default function Header() {
+interface HeaderProps {
+  onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
+}
+
+export default function Header({ onDragStart }: HeaderProps) {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
   return (
@@ -33,7 +37,11 @@ export default function Header() {
         </div>
       </header>
       {isFilterOpen && (
-        <Filter setIsFilterOpen={setIsFilterOpen} isFilterOpen={isFilterOpen} />
+        <Filter
+          setIsFilterOpen={setIsFilterOpen}
+          isFilterOpen={isFilterOpen}
+          onDragStart={onDragStart}
+        />
       )}
     </>
   );

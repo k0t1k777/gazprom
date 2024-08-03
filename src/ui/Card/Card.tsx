@@ -7,19 +7,33 @@ import cn from 'classnames/bind';
 const cx = cn.bind(styles);
 
 interface CardProps {
+  id?: number;
   isFilterOpen?: boolean;
   position?: string;
   title?: string;
   count?: number;
   name?: string;
   index?: number;
+  onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
-export default function Card({ isFilterOpen, name, position, title, count }: CardProps) {
+export default function Card({
+  isFilterOpen,
+  name,
+  position,
+  title,
+  count,
+  onDragStart,
+}: CardProps) {
   const [isOpen, setIsopen] = useState(true);
 
   return (
-    <div className={cx(styles.card, { [styles.mini]: isFilterOpen })}>
+    <div
+      className={cx(styles.card, { [styles.mini]: isFilterOpen })}
+      onDragStart={onDragStart}
+      id='moveCard'
+      draggable={true}
+    >
       <div className={styles.titleContainer}>
         <p className={cx(styles.title, { [styles.disabled]: isFilterOpen })}>
           {title}
@@ -32,14 +46,20 @@ export default function Card({ isFilterOpen, name, position, title, count }: Car
         <div className={cx(styles.img, { [styles.disabled]: isFilterOpen })}>
           <img src={Avatar} alt='Фото профиля' />
         </div>
-        <div className={cx(styles.mainContainer, { [styles.miniContainer]: isFilterOpen })}>
+        <div
+          className={cx(styles.mainContainer, {
+            [styles.miniContainer]: isFilterOpen,
+          })}
+        >
           <p className={cx(styles.name, { [styles.miniName]: isFilterOpen })}>
             {name}
           </p>
           <p
-            className={cx(styles.position, { [styles.miniPosition]: isFilterOpen })}
+            className={cx(styles.position, {
+              [styles.miniPosition]: isFilterOpen,
+            })}
           >
-           {position}
+            {position}
           </p>
           <div
             className={cx(styles.countContainer, {

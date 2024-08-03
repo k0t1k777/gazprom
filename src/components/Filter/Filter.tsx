@@ -4,14 +4,19 @@ import useOutsideClick from 'src/hooks/useOutsideClick';
 import { Input } from 'antd';
 import { CloseOutlined, DownOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
-import { cards } from 'src/utills/mock';
+import { cardsList } from 'src/utills/mock';
 
 interface FilterProps {
   isFilterOpen: boolean;
   setIsFilterOpen: (type: boolean) => void;
+  onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
-export default function Filter({ isFilterOpen, setIsFilterOpen }: FilterProps) {
+export default function Filter({
+  isFilterOpen,
+  setIsFilterOpen,
+  onDragStart,
+}: FilterProps) {
   const ref = useRef(null);
 
   useOutsideClick(ref, () => {
@@ -41,16 +46,17 @@ export default function Filter({ isFilterOpen, setIsFilterOpen }: FilterProps) {
         </li>
       </ul>
       <div className={styles.containerResult}>
-
-      {cards.map((card, index) => (
-              <Card
-                key={card.id}
-                name={card.name}
-                position={card.position}
-                index={index}
-                isFilterOpen={isFilterOpen}
-              />
-            ))}
+        {cardsList.map((card, index) => (
+          <Card
+            id={card.id}
+            key={card.id}
+            name={card.name}
+            position={card.position}
+            index={index}
+            isFilterOpen={isFilterOpen}
+            onDragStart={onDragStart}
+          />
+        ))}
       </div>
     </div>
   );

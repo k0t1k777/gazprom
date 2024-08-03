@@ -2,4 +2,6 @@
   @include main-container;
   @include flex-column-center;
   margin: 56px 64px 0 0;
+  position: relative;
+  height: 100vh;
 }
