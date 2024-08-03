@@ -10,9 +10,10 @@ const cx = cn.bind(styles);
 
 interface HeaderProps {
   onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
+  droppedCards: string[];
 }
 
-export default function Header({ onDragStart }: HeaderProps) {
+export default function Header({ onDragStart, droppedCards }: HeaderProps) {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
   return (
@@ -41,6 +42,7 @@ export default function Header({ onDragStart }: HeaderProps) {
           setIsFilterOpen={setIsFilterOpen}
           isFilterOpen={isFilterOpen}
           onDragStart={onDragStart}
+          droppedCards={droppedCards}
         />
       )}
     </>

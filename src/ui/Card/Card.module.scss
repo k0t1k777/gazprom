@@ -7,6 +7,9 @@
   height: 127px;
   max-height: 600px;
   gap: 8px;
+  &.noMove {
+    cursor: not-allowed;
+  }
 }
 
 .titleContainer {

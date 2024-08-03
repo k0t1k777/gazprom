@@ -10,12 +10,14 @@ interface FilterProps {
   isFilterOpen: boolean;
   setIsFilterOpen: (type: boolean) => void;
   onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
+  droppedCards: string[];
 }
 
 export default function Filter({
   isFilterOpen,
   setIsFilterOpen,
   onDragStart,
+  droppedCards,
 }: FilterProps) {
   const ref = useRef(null);
 
@@ -55,7 +57,8 @@ export default function Filter({
             index={index}
             isFilterOpen={isFilterOpen}
             onDragStart={onDragStart}
-          />
+            draggable={!droppedCards.includes(card.id)}
+            />
         ))}
       </div>
     </div>

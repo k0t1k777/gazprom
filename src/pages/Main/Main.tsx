@@ -10,11 +10,7 @@ export default function Main() {
   }>();
 
   return (
-    <div
-      className={styles.main}
-      onDragOver={allowDrop}
-      onDrop={handleDrop}
-    >
+    <div className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
       {cards.map((card, index) => (
         <Card
           id={card.id}

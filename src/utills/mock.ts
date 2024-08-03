@@ -1,6 +1,6 @@
 export const cards = [
   {
-    id: '1',
+    id: '0',
     name: "Иван Иванов",
     position: "Разработчик",
     title: "Frontend Developer",

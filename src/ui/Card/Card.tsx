@@ -15,6 +15,7 @@ interface CardProps {
   name?: string;
   index?: number;
   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
+  draggable?: boolean;
 }
 
 export default function Card({
@@ -25,16 +26,20 @@ export default function Card({
   count,
   id,
   onDragStart,
+  draggable = true,
 }: CardProps) {
   const [isOpen, setIsopen] = useState(true);
 
   return (
     <div
-      className={cx(styles.card, { [styles.mini]: isFilterOpen })}
+      className={cx(styles.card, {
+        [styles.mini]: isFilterOpen,
+        [styles.noMove]: !draggable,
+      })}
       onDragStart={onDragStart}
       id={id}
-      draggable={true}
-    >
+      draggable={draggable} 
+      >
       <div className={styles.titleContainer}>
         <p className={cx(styles.title, { [styles.disabled]: isFilterOpen })}>
           {title}
