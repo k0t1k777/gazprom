@@ -60,7 +60,7 @@ export default function App() {
       <Header onDragStart={handleDragStart} droppedCards={droppedCards} />
       <div className='conteiner'>
         <SideBar />
-        <Outlet context={{ allowDrop, handleDrop }} />
+        <Outlet context={{ allowDrop, handleDrop, droppedCards }} />
       </div>
     </div>
   );
