@@ -14,7 +14,6 @@ export default function Main() {
       className={styles.main}
       onDragOver={allowDrop}
       onDrop={handleDrop}
-      // id='drop-area'
     >
       {cards.map((card, index) => (
         <Card

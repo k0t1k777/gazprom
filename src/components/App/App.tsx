@@ -12,19 +12,57 @@ export default function App() {
     e.preventDefault();
   };
 
+  // const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  //   e.preventDefault();
+  //   const itemId = e.dataTransfer.getData('id');
+  //   const draggedElement = document.getElementById(itemId) as HTMLElement;
+  
+  //   if (draggedElement) {
+  //     const clonedElement = draggedElement.cloneNode(true) as HTMLElement;
+  //     clonedElement.id = itemId + '-' + Date.now();
+  
+  //     const dropTarget = e.currentTarget;
+  
+  //     const dropTargetRect = dropTarget.getBoundingClientRect();
+  //     const offsetX = e.clientX - dropTargetRect.left;
+  //     const offsetY = e.clientY - dropTargetRect.top;
+  
+  //     clonedElement.style.position = 'absolute';
+  //     clonedElement.style.left = `${offsetX}px`;
+  //     clonedElement.style.top = `${offsetY}px`;
+  
+  //     dropTarget.appendChild(clonedElement);
+  //   }
+  // };
+
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    
     const itemId = e.dataTransfer.getData('id');
-    console.log('itemId: ', itemId);
     const draggedElement = document.getElementById(itemId) as HTMLElement;
-    console.log('draggedElement: ', draggedElement);
-
+  
     if (draggedElement) {
       const clonedElement = draggedElement.cloneNode(true) as HTMLElement;
       clonedElement.id = itemId + '-' + Date.now();
-      e.currentTarget.appendChild(clonedElement);
+      
+      const dropTarget = e.currentTarget;
+  
+      const dropTargetRect = dropTarget.getBoundingClientRect();
+      
+      const cellWidth = 330;
+      const cellHeight = 157;
+      
+      const columnIndex = Math.floor((e.clientX - dropTargetRect.left) / cellWidth);
+      const rowIndex = Math.floor((e.clientY - dropTargetRect.top) / cellHeight);
+  
+      clonedElement.style.position = 'absolute';
+      clonedElement.style.left = `${columnIndex * cellWidth}px`;
+      clonedElement.style.top = `${rowIndex * cellHeight}px`;
+  
+      dropTarget.appendChild(clonedElement);
     }
   };
+  
 
   return (
     <div>

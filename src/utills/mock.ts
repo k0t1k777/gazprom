@@ -1,6 +1,6 @@
 export const cards = [
   {
-    id: 1,
+    id: '1',
     name: "Иван Иванов",
     position: "Разработчик",
     title: "Frontend Developer",
@@ -12,7 +12,7 @@ export const cards = [
 
 export const cardsList = [
   {
-    id: 1,
+    id: '1',
     name: "Иван Иванов",
     position: "Разработчик",
     title: "Frontend Developer",
@@ -20,7 +20,7 @@ export const cardsList = [
     count: 10
   },
   {
-    id: 2,
+    id: '2',
     name: "Мария Петрова",
     position: "Дизайнер",
     title: "UI/UX Designer",
@@ -28,7 +28,7 @@ export const cardsList = [
     count: 15
   },
   {
-    id: 3,
+    id: '3',
     name: "Сергей Смирнов",
     position: "Менеджер",
     title: "Project Manager",
@@ -36,7 +36,7 @@ export const cardsList = [
     count: 5
   },
   {
-    id: 4,
+    id: '4',
     name: "Ольга Кузнецова",
     position: "Аналитик",
     title: "Data Analyst",
@@ -44,7 +44,7 @@ export const cardsList = [
     count: 8
   },
   {
-    id: 5,
+    id: '5',
     name: "Алексей Сидоров",
     position: "Тестировщик",
     title: "QA Engineer",

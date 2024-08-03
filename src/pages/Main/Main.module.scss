@@ -1,6 +1,11 @@
 .main {
   @include main-container;
-  @include flex-column-center;
+  display: grid;
+  // grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fill, 127px);
+  justify-items: center;
+  justify-content: center;
+  gap: 8px;
   margin: 56px 64px 0 0;
   position: relative;
   height: 100vh;

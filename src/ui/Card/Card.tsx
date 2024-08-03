@@ -7,7 +7,7 @@ import cn from 'classnames/bind';
 const cx = cn.bind(styles);
 
 interface CardProps {
-  id?: number;
+  id: string;
   isFilterOpen?: boolean;
   position?: string;
   title?: string;
@@ -23,6 +23,7 @@ export default function Card({
   position,
   title,
   count,
+  id,
   onDragStart,
 }: CardProps) {
   const [isOpen, setIsopen] = useState(true);
@@ -31,7 +32,7 @@ export default function Card({
     <div
       className={cx(styles.card, { [styles.mini]: isFilterOpen })}
       onDragStart={onDragStart}
-      id='moveCard'
+      id={id}
       draggable={true}
     >
       <div className={styles.titleContainer}>
