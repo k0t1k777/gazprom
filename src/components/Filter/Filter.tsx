@@ -5,12 +5,13 @@ import { Input } from 'antd';
 import { CloseOutlined, DownOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
 import { cardsList } from 'src/utills/mock';
+import { DroppedCard } from '../App/App';
 
 interface FilterProps {
   isFilterOpen: boolean;
   setIsFilterOpen: (type: boolean) => void;
   onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
-  droppedCards: string[];
+  droppedCards: DroppedCard[];
 }
 
 export default function Filter({
@@ -57,8 +58,10 @@ export default function Filter({
             index={index}
             isFilterOpen={isFilterOpen}
             onDragStart={onDragStart}
-            draggable={!droppedCards.includes(card.id)}
-            />
+            draggable={
+              !droppedCards.some((droppedCard) => droppedCard.id === card.id)
+            }
+          />
         ))}
       </div>
     </div>

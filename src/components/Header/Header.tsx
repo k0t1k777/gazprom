@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Filter from 'src/components/Filter/Filter';
 import cn from 'classnames/bind';
+import { DroppedCard } from '../App/App';
 const cx = cn.bind(styles);
 
 interface HeaderProps {
   onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
-  droppedCards: string[];
+  droppedCards: DroppedCard[];
 }
 
 export default function Header({ onDragStart, droppedCards }: HeaderProps) {
