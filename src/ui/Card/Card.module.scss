@@ -9,6 +9,7 @@
   gap: 8px;
   &.noMove {
     cursor: not-allowed;
+    user-select: none;
   }
 }
 

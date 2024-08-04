@@ -3,12 +3,13 @@ import styles from 'src/pages/Main/Main.module.scss';
 import { cards } from 'src/utills/mock';
 import { useOutletContext } from 'react-router-dom';
 import Arrow from 'src/ui/Arrow/Arrow';
+import { DroppedCard } from 'src/components/App/App';
 
 export default function Main() {
   const { allowDrop, handleDrop, droppedCards } = useOutletContext<{
     allowDrop: (e: React.DragEvent<HTMLImageElement>) => void;
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
-    droppedCards: string[];
+    droppedCards: DroppedCard[];
   }>();
 
   const getCardPosition = (cellId: string) => {
@@ -35,6 +36,7 @@ export default function Main() {
         {droppedCards.map((droppedCard, index) => {
       const { cellId } = droppedCard;
       const upperCardPosition = getCardPosition(cellId);
+      console.log('upperCardPosition: ', upperCardPosition);
 
       if (index < droppedCards.length - 1) {
         const lowerCard = droppedCards[index + 1];
@@ -48,14 +50,10 @@ export default function Main() {
         return (
           <Arrow
             key={`${cellId}-${lowerCard.cellId}`} 
-            // startX={startX}
-            // startY={startY}
-            // endX={endX}
-            // endY={endY}
-            startX={1}
-            startY={222}
-            endX={1551}
-            endY={1255}
+            startX={startX}
+            startY={startY}
+            endX={endX}
+            endY={endY}
           />
         );
       }
