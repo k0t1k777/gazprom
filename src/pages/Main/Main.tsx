@@ -13,6 +13,7 @@ export default function Main() {
   }>();
 
   const getCardPosition = (cellId: string) => {
+    console.log('cellId: ', cellId);
     const [columnIndex, rowIndex] = cellId.split('-').map(Number);
     return {
       left: columnIndex * 330,
@@ -36,7 +37,6 @@ export default function Main() {
         {droppedCards.map((droppedCard, index) => {
       const { cellId } = droppedCard;
       const upperCardPosition = getCardPosition(cellId);
-      console.log('upperCardPosition: ', upperCardPosition);
 
       if (index < droppedCards.length - 1) {
         const lowerCard = droppedCards[index + 1];

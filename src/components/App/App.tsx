@@ -12,6 +12,7 @@ export interface DroppedCard {
 export default function App() {
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);
+  console.log('droppedCards: ', droppedCards);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     const itemId = e.currentTarget.id;
@@ -62,7 +63,6 @@ export default function App() {
       }
     }
   };
-
 
 
   return (

@@ -19,7 +19,7 @@ interface CardProps {
 }
 
 export default function Card({
-  isFilterOpen,
+  isFilterOpen = false,
   name,
   position,
   title,
