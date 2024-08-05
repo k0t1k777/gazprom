@@ -1,52 +1,16 @@
-// export interface Employee {
-//   id: number;
-//   name: string;
-//   position?: string;
-//   title?: string;
-//   photo?: string;
-//   count?: number;
-//   subordinates?: Employee[];
-// }
-
-// export const employees: Employee[] = [
-//   {
-//     id: 0,
-//     name: 'Иван Иванов',
-//     position: 'Разработчик',
-//     title: 'Frontend Developer',
-//     photo: 'https://example.com/photo1.jpg',
-//     count: 10,
-//     subordinates: [
-//       {
-//         id: 1,
-//         name: 'Иван Иванов',
-//         subordinates: [],
-//       },
-//       {
-//         id: 2,
-//         name: 'Иван Иванов',
-//         subordinates: [
-//           {
-//             id: 3,
-//             name: 'Иван Иванов',
-//             subordinates: [
-//               {
-//                 id: 4,
-//                 name: 'Иван Иванов',
-//                 count: 10,
-//                 subordinates: [],
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// ];
+export interface cards {
+  id: string;
+  name: string;
+  position?: string;
+  title?: string;
+  photo?: string;
+  count?: number;
+  subordinates?: cards[];
+}
 
 export const cards = [
   {
-    id: 0,
+    id: '0',
     name: 'Иван Иванов',
     position: 'Разработчик',
     title: 'Frontend Developer',
@@ -54,7 +18,7 @@ export const cards = [
     count: 1,
     subordinates: [
       {
-        id: 1,
+        id: '1',
         name: 'Иван Мария Петрова',
         position: 'Разработчик',
         title: 'Frontend Developer',
@@ -63,7 +27,7 @@ export const cards = [
         subordinates: [],
       },
       {
-        id: 2,
+        id: '2',
         name: 'Мария Петрова Иванов',
         position: 'Разработчик',
         title: 'Frontend Developer',
@@ -71,25 +35,29 @@ export const cards = [
         count: 1,
         subordinates: [
           {
-            id: 3,
+            id: '3',
             name: 'Иван Петрова',
+            position: 'Разработчик',
+            title: 'Frontend Developer',
+            photo: 'https://example.com/photo1.jpg',
+            count: 1,
             subordinates: [
               {
-                id: 4,
+                id: '4',
                 name: 'Мария Аны',
                 count: 10,
+                position: 'Разработчик',
+                title: 'Frontend Developer',
+                photo: 'https://example.com/photo1.jpg',
                 subordinates: [],
               },
               {
-                id: 4,
+                id: '5',
                 name: 'Мария Аны',
-                count: 10,
-                subordinates: [],
-              },
-              {
-                id: 4,
-                name: 'Мария Аны',
-                count: 10,
+                position: 'Разработчик',
+                title: 'Frontend Developer',
+                photo: 'https://example.com/photo1.jpg',
+                count: 1,
                 subordinates: [],
               },
             ],

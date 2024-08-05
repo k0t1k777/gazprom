@@ -21,7 +21,7 @@ export default function Main() {
     };
   };
 
-  const renderCards = (card: any) => {
+  const renderCards = (card: cards) => {
     return (
       <div key={card.id} className={styles.cardContainer}>
         <Card
@@ -33,7 +33,7 @@ export default function Main() {
         />
         {card.subordinates && card.subordinates.length > 0 && (
           <div className={styles.subordinates}>
-            {card.subordinates.map(subordinate => renderCards(subordinate))}
+            {card.subordinates.map((subordinate) => renderCards(subordinate))}
           </div>
         )}
       </div>
@@ -42,32 +42,34 @@ export default function Main() {
 
   return (
     <div className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
- {cards.map(card => renderCards(card))}
-        {droppedCards.map((droppedCard, index) => {
-      const { cellId } = droppedCard;
-      const upperCardPosition = getCardPosition(cellId);
+      {cards.map((card) => renderCards(card))}
+      {droppedCards.map((droppedCard, index) => {
+        const { cellId } = droppedCard;
+        const upperCardPosition = getCardPosition(cellId);
 
-      if (index < droppedCards.length - 1) {
-        const lowerCard = droppedCards[index + 1];
-        const lowerCardPosition = getCardPosition(lowerCard.cellId);
+        if (index < droppedCards.length - 1) {
+          const lowerCard = droppedCards[index + 1];
+          const lowerCardPosition = getCardPosition(lowerCard.cellId);
 
-        const startX = upperCardPosition.left + 165; // center of upper card
-        const startY = upperCardPosition.top + 157; // bottom of upper card
-        const endX = lowerCardPosition.left + 165; // center of lower card
-        const endY = lowerCardPosition.top; // top of lower card
-        console.log(`Arrow from (${startX}, ${startY}) to (${endX}, ${endY})`);
-        return (
-          <Arrow
-            key={`${cellId}-${lowerCard.cellId}`} 
-            startX={startX}
-            startY={startY}
-            endX={endX}
-            endY={endY}
-          />
-        );
-      }
-      return null;
-    })}
+          const startX = upperCardPosition.left + 165; // center of upper card
+          const startY = upperCardPosition.top + 157; // bottom of upper card
+          const endX = lowerCardPosition.left + 165; // center of lower card
+          const endY = lowerCardPosition.top; // top of lower card
+          console.log(
+            `Arrow from (${startX}, ${startY}) to (${endX}, ${endY})`
+          );
+          return (
+            <Arrow
+              key={`${cellId}-${lowerCard.cellId}`}
+              startX={startX}
+              startY={startY}
+              endX={endX}
+              endY={endY}
+            />
+          );
+        }
+        return null;
+      })}
     </div>
   );
 }

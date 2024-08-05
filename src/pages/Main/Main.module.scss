@@ -12,22 +12,27 @@
 // }
 
 .main {
+  @include main-container;
+  @include flex-column-container;
   display: flex;
   flex-direction: column;
   align-items: center; 
   position: relative;
+  gap: 8px;
+  height: 100vh;
+  margin: 56px 64px 0 0;
 }
 
 .cardContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Центрирование карточки */
+  @include flex-column-container;
+  align-items: center;
+  gap: 24px;
 }
 
 .subordinates {
   display: flex;
-  justify-content: center; /* Центрирование подчиненных */
-  margin-top: 20px; /* Отступ между родительской и подчиненными карточками */
+  justify-content: center;
+  gap: 24px;
 }
 
 .subordinates > div {
