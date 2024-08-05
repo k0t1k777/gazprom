@@ -1,12 +1,35 @@
+// .main {
+//   @include main-container;
+//   display: grid;
+//   // grid-template-columns: repeat(3, minmax(300px, 1fr));
+//   grid-template-rows: repeat(auto-fill, 127px);
+//   justify-items: center;
+//   justify-content: center;
+//   gap: 8px;
+//   margin: 56px 64px 0 0;
+//   position: relative;
+//   height: 100vh;
+// }
+
 .main {
-  @include main-container;
-  display: grid;
-  // grid-template-columns: repeat(3, minmax(300px, 1fr));
-  grid-template-rows: repeat(auto-fill, 127px);
-  justify-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 56px 64px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
   position: relative;
-  height: 100vh;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирование карточки */
+}
+
+.subordinates {
+  display: flex;
+  justify-content: center; /* Центрирование подчиненных */
+  margin-top: 20px; /* Отступ между родительской и подчиненными карточками */
+}
+
+.subordinates > div {
+  margin: 0 10px; /* Отступы между подчиненными карточками */
 }

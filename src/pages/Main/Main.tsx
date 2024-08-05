@@ -21,19 +21,28 @@ export default function Main() {
     };
   };
 
-  return (
-    <div className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
-      {cards.map((card, index) => (
+  const renderCards = (card: any) => {
+    return (
+      <div key={card.id} className={styles.cardContainer}>
         <Card
           id={card.id}
-          key={card.id}
           name={card.name}
           position={card.position}
           title={card.title}
           count={card.count}
-          index={index}
         />
-      ))}
+        {card.subordinates && card.subordinates.length > 0 && (
+          <div className={styles.subordinates}>
+            {card.subordinates.map(subordinate => renderCards(subordinate))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
+ {cards.map(card => renderCards(card))}
         {droppedCards.map((droppedCard, index) => {
       const { cellId } = droppedCard;
       const upperCardPosition = getCardPosition(cellId);
