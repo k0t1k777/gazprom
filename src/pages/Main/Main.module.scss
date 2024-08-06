@@ -1,19 +1,31 @@
 .main {
   @include main-container;
-  @include flex-column-container;
   position: relative;
   gap: 8px;
   height: 100vh;
   margin: 56px 64px 0 0;
+
+
+
+  
+  // display: grid;
+  // grid-template-columns: repeat(3, minmax(300px, 1fr));
+  // grid-auto-rows: 127px;
+  // grid-template-rows: repeat(auto-fill, 127px);
+  // justify-content: center
 }
 
 .cardContainer {
   @include flex-column-container;
   gap: 24px;
+  position: relative;
+
 }
 
 .subordinates {
   display: flex;
-  // justify-content: center;  
+  justify-content: center;  
   gap: 24px;
+  position: relative;
+
 }

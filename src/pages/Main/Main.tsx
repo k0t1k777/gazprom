@@ -4,9 +4,10 @@ import { useOutletContext } from 'react-router-dom';
 import { initialCardsProps } from 'src/utills/types';
 
 export default function Main() {
-  const { allowDrop, handleDrop, cards } = useOutletContext<{
+  const { allowDrop, handleDrop, handleDragStart, cards } = useOutletContext<{
     allowDrop: (e: React.DragEvent<HTMLImageElement>) => void;
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
+    handleDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
     cards: initialCardsProps[];
   }>();
   console.log('cards: ', cards);
@@ -21,7 +22,10 @@ export default function Main() {
           title={card.title}
           cellId={card.cellId}
           count={card.subordinates.length}
+          onDragStart={handleDragStart}
+          draggable={true}
         />
+       
         {card.subordinates && card.subordinates.length > 0 && (
           <div className={styles.subordinates}>
             {card.subordinates.map((subordinate) => renderCards(subordinate))}

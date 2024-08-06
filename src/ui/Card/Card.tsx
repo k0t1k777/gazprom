@@ -26,6 +26,7 @@ export default function Card({
   title,
   count,
   id,
+  // удалить
   cellId,
   onDragStart,
   draggable = true,
@@ -68,6 +69,7 @@ export default function Card({
               [styles.noMoveColor]: !draggable,
             })}
           >
+            {/* удалить */}
             {cellId}
             {/* {position} */}
           </p>

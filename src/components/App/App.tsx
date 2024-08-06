@@ -37,7 +37,6 @@ export default function App() {
 
     const dropTarget = e.currentTarget;
     const dropTargetRect = dropTarget.getBoundingClientRect();
-    console.log('dropTargetRect: ', dropTargetRect);
 
     const cellWidth = 330;
     const cellHeight = 157;
@@ -46,6 +45,8 @@ export default function App() {
       (e.clientX - dropTargetRect.left) / cellWidth
     );
     const rowIndex = Math.floor((e.clientY - dropTargetRect.top) / cellHeight);
+    console.log('rowIndex: ', rowIndex);
+    console.log('columnIndex: ', columnIndex);
 
     const cellId = `${columnIndex}-${rowIndex}`;
     console.log('cellId: ', cellId); // Логируем ID ячейки
@@ -111,7 +112,7 @@ export default function App() {
       parentCellId = '1-0';
     } else {
       parentCellId = `${columnIndex}-${rowIndex - 1}`; // Формируем cellId для родителя
-    }
+     }
 
     for (const card of cards) {
       // Проверяем, соответствует ли текущая карточка родительскому cellId
@@ -158,7 +159,7 @@ export default function App() {
       <Header onDragStart={handleDragStart} droppedCards={droppedCards} />
       <div className='conteiner'>
         <SideBar />
-        <Outlet context={{ allowDrop, handleDrop, cards }} />
+        <Outlet context={{ allowDrop, handleDrop, handleDragStart, cards }} />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@
   max-height: 600px;
   gap: 8px;
   margin: 0 auto;
-  // position: ;
+  cursor: pointer;
 }
 
 .titleContainer {
@@ -83,7 +83,7 @@
 .mini {
   height: 82px;
   width: 100%;
-  cursor: pointer;
+  cursor: move;
 }
 
 .miniContainer {
