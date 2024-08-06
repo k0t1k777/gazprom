@@ -15,7 +15,7 @@ interface HeaderProps {
 }
 
 export default function Header({ onDragStart, droppedCards }: HeaderProps) {
-  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(true);
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
   return (
     <>

@@ -1,3 +1,14 @@
+export interface initialCardsProps {
+  id: string;
+  name: string;
+  position?: string;
+  title?: string;
+  photo?: string;
+  count?: number;
+  cellId?: string;
+  subordinates?: initialCardsProps[];
+}
+
 export const initialCards = [
   {
     id: '0',
@@ -5,58 +16,72 @@ export const initialCards = [
     position: 'Разработчик',
     title: 'Frontend Developer',
     photo: 'https://example.com/photo1.jpg',
+    count: 1,
     cellId: '1-0',
     subordinates: [
       // {
-      //   id: '1',
-      //   name: 'Иван Мария Петрова',
+      //   id: '1211',
+      //   name: 'Иван',
       //   position: 'Разработчик',
       //   title: 'Frontend Developer',
       //   photo: 'https://example.com/photo1.jpg',
       //   count: 1,
+      //   cellId: '3-3',
       //   subordinates: [],
-      // },
-      // {
-      //   id: '2',
-      //   name: 'Мария Петрова Иванов',
-      //   position: 'Разработчик',
-      //   title: 'Frontend Developer',
-      //   photo: 'https://example.com/photo1.jpg',
-      //   count: 1,
-      //   subordinates: [
-      //     {
-      //       id: '3',
-      //       name: 'Иван Петрова',
-      //       position: 'Разработчик',
-      //       title: 'Frontend Developer',
-      //       photo: 'https://example.com/photo1.jpg',
-      //       count: 1,
-      //       subordinates: [
-      //         {
-      //           id: '4',
-      //           name: 'Мария Аны',
-      //           count: 10,
-      //           position: 'Разработчик',
-      //           title: 'Frontend Developer',
-      //           photo: 'https://example.com/photo1.jpg',
-      //           subordinates: [],
-      //         },
-      //         {
-      //           id: '5',
-      //           name: 'Мария Аны',
-      //           position: 'Разработчик',
-      //           title: 'Frontend Developer',
-      //           photo: 'https://example.com/photo1.jpg',
-      //           count: 1,
-      //           subordinates: [],
-      //         },
-      //       ],
-      //     },
-      //   ],
       // },
     ],
   },
 ];
+// {
+//   id: '1',
+//   name: 'Иван Мария Петрова',
+//   position: 'Разработчик',
+//   title: 'Frontend Developer',
+//   photo: 'https://example.com/photo1.jpg',
+//   count: 1,
+//   subordinates: [],
+// },
+// {
+//   id: '2',
+//   name: 'Мария Петрова Иванов',
+//   position: 'Разработчик',
+//   title: 'Frontend Developer',
+//   photo: 'https://example.com/photo1.jpg',
+//   count: 1,
+//   subordinates: [
+//     {
+//       id: '3',
+//       name: 'Иван Петрова',
+//       position: 'Разработчик',
+//       title: 'Frontend Developer',
+//       photo: 'https://example.com/photo1.jpg',
+//       count: 1,
+//       subordinates: [
+//         {
+//           id: '4',
+//           name: 'Мария Аны',
+//           count: 10,
+//           position: 'Разработчик',
+//           title: 'Frontend Developer',
+//           photo: 'https://example.com/photo1.jpg',
+//           subordinates: [],
+//         },
+//         {
+//           id: '5',
+//           name: 'Мария Аны',
+//           position: 'Разработчик',
+//           title: 'Frontend Developer',
+//           photo: 'https://example.com/photo1.jpg',
+//           count: 1,
+//           subordinates: [],
+//         },
+//       ],
+//     },
+//   ],
+// },
+//     ],
+//   },
+// ];
 
 export const cardsList = [
   {
@@ -132,4 +157,3 @@ export const cardsList = [
     subordinates: [],
   },
 ];
-

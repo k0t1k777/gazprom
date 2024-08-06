@@ -12,9 +12,14 @@ export default function Main() {
   }>();
   console.log('cards: ', cards);
 
- const renderCards = (card: initialCardsProps) => {
+  const renderCards = (card: initialCardsProps) => {
+    //  const [col, row ] = card.cellId.split('-').map(Number);
     return (
-      <div key={card.id} className={styles.cardContainer}>
+      <div
+        key={card.id}
+        className={styles.cardContainer}
+        // style={{  gridColumn: col + 1, gridRow: row + 1,  }}
+      >
         <Card
           id={card.id}
           name={card.name}
@@ -25,9 +30,9 @@ export default function Main() {
           onDragStart={handleDragStart}
           draggable={true}
         />
-       
+
         {card.subordinates && card.subordinates.length > 0 && (
-          <div className={styles.subordinates}>
+          <div className={styles.subordinates} >
             {card.subordinates.map((subordinate) => renderCards(subordinate))}
           </div>
         )}
@@ -37,8 +42,9 @@ export default function Main() {
 
   return (
     <section className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
-      {cards.map((card) => renderCards(card))}
-
+      {/* <div className={styles.grid}> */}
+        {cards.map((card) => renderCards(card))}
+      {/* </div> */}
     </section>
   );
 }

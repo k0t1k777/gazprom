@@ -9,6 +9,7 @@ const cx = cn.bind(styles);
 interface CardProps {
   id: string;
   isFilterOpen?: boolean;
+  employesRout?: boolean;
   position?: string;
   title?: string;
   count?: number;
@@ -20,6 +21,7 @@ interface CardProps {
 }
 
 export default function Card({
+  employesRout = false,
   isFilterOpen = false,
   name,
   position,
@@ -38,6 +40,7 @@ export default function Card({
       className={cx(styles.card, {
         [styles.mini]: isFilterOpen,
         [`${styles.noMove} ${styles.noMoveColor}`]: !draggable,
+        [`${styles.noMove} ${styles.card_employesRout}`]: employesRout,
       })}
       onDragStart={onDragStart}
       id={id}

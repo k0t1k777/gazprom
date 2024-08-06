@@ -1,5 +1,25 @@
 .employees {
   @include main-container;
-  @include flex-column-center;
+  @include flex-column-container;
   margin: 56px 64px 0 0;
+}
+
+.title {
+@include mp-null;
+@include use-font(24px, 28.8px, 500)
+}
+
+.filterContainer {
+ margin-top: 32px;
+ max-width: 624px;
+ border: $border-white;
+ border-radius: $border-radius-s;
+ padding: 0 8px;
+}
+
+.cardContainer {
+  @include flex-column-container;
+  justify-content: flex-start;
+  gap: 24px;
+  padding-top: 32px;
 }

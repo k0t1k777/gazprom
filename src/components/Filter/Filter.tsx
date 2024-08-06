@@ -2,10 +2,11 @@ import styles from 'src/components/Filter/Filter.module.scss';
 import { useRef } from 'react';
 import useOutsideClick from 'src/hooks/useOutsideClick';
 import { Input } from 'antd';
-import { CloseOutlined, DownOutlined } from '@ant-design/icons';
+import { CloseOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
 import { cardsList } from 'src/utills/mock';
 import { DroppedCard } from '../App/App';
+import FilterList from 'src/ui/FilterList/FilterList';
 
 interface FilterProps {
   isFilterOpen: boolean;
@@ -33,21 +34,7 @@ export default function Filter({
         <CloseOutlined className={styles.img} />
         <p className={styles.text}>Фильтры</p>
       </div>
-      <ul className={styles.list}>
-        <li className={styles.containerItem}>
-          <p className={styles.item}>Подразделение</p>
-          <DownOutlined className={styles.arrow} />
-        </li>
-
-        <li className={styles.containerItem}>
-          <p className={styles.item}>Должность</p>
-          <DownOutlined className={styles.arrow} />
-        </li>
-        <li className={styles.containerItem}>
-          <p className={styles.item}>Город</p>
-          <DownOutlined className={styles.arrow} />
-        </li>
-      </ul>
+      <FilterList teams='Подразделение' positions='Должность' city='Город'/>
       <div className={styles.containerResult}>
         {cardsList.map((card, index) => (
           <Card

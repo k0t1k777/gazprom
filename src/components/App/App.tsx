@@ -45,24 +45,19 @@ export default function App() {
       (e.clientX - dropTargetRect.left) / cellWidth
     );
     const rowIndex = Math.floor((e.clientY - dropTargetRect.top) / cellHeight);
-    console.log('rowIndex: ', rowIndex);
-    console.log('columnIndex: ', columnIndex);
 
     const cellId = `${columnIndex}-${rowIndex}`;
     console.log('cellId: ', cellId); // Логируем ID ячейки
 
     // Проверяем, что в этой ячейке еще нет карточки
-    if (!droppedCards.some((card) => card.cellId === cellId)) {
-      console.log('Current cards: ', cards); // Логируем текущие карточки
+    if (!droppedCards.some((card) => card.cellId === cellId)) { // Логируем текущие карточки
 
       // Находим родителя, к которому мы будем добавлять новую карточку
       const parentCard = findParentCard(cards, columnIndex, rowIndex);
-      console.log('parentCard: ', parentCard); // Логируем найденную родительскую карточку
 
       if (parentCard) {
         // Находим оригинальную карточку по itemId
         const originalCard = cardsList.find((card) => card.id === itemId);
-        console.log('originalCard: ', originalCard);
 
         if (originalCard) {
           // Создаем новую подчиненную карточку на основе оригинальной
