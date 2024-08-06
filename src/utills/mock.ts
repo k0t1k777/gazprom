@@ -1,13 +1,3 @@
-export interface initialCardsProps {
-  id: string;
-  name: string;
-  position?: string;
-  title?: string;
-  photo?: string;
-  count?: number;
-  subordinates?: initialCardsProps[];
-}
-
 export const initialCards = [
   {
     id: '0',
@@ -110,6 +100,33 @@ export const cardsList = [
     id: '10',
     name: 'Алексей Сидоров',
     position: 'Тестировщик',
+    title: 'QA Engineer',
+    photo: 'https://example.com/photo5.jpg',
+    count: 12,
+    subordinates: [],
+  },
+  {
+    id: '11',
+    name: 'Петя',
+    position: 'Скорее бы на море',
+    title: 'QA Engineer',
+    photo: 'https://example.com/photo5.jpg',
+    count: 12,
+    subordinates: [],
+  },
+  {
+    id: '12',
+    name: 'Алха',
+    position: 'КТо',
+    title: 'QA Engineer',
+    photo: 'https://example.com/photo5.jpg',
+    count: 12,
+    subordinates: [],
+  },
+  {
+    id: '13',
+    name: 'Трампампам',
+    position: 'Никто',
     title: 'QA Engineer',
     photo: 'https://example.com/photo5.jpg',
     count: 12,

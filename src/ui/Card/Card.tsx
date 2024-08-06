@@ -31,10 +31,10 @@ export default function Card({
   const [isOpen, setIsopen] = useState(true);
 
   return (
-    <div
+    <section
       className={cx(styles.card, {
         [styles.mini]: isFilterOpen,
-        [styles.noMove]: !draggable,
+        [`${styles.noMove} ${styles.noMoveColor}`]: !draggable,
       })}
       onDragStart={onDragStart}
       id={id}
@@ -63,6 +63,7 @@ export default function Card({
           <p
             className={cx(styles.position, {
               [styles.miniPosition]: isFilterOpen,
+              [styles.noMoveColor]: !draggable,
             })}
           >
             {position}
@@ -79,6 +80,6 @@ export default function Card({
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

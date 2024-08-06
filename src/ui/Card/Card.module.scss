@@ -7,11 +7,6 @@
   height: 127px;
   max-height: 600px;
   gap: 8px;
-  &.noMove {
-    cursor: not-allowed;
-    user-select: none;
-    background: grey;
-  }
 }
 
 .titleContainer {
@@ -85,7 +80,7 @@
 
 .mini {
   height: 82px;
-  width: 242px;
+  width: 100%;
   cursor: pointer;
 }
 
@@ -103,4 +98,14 @@
 
 .miniPosition {
   color: $main-text-black;
+}
+
+.noMove {
+  cursor: not-allowed;
+  user-select: none;
+  background: $dissabled;
+}
+
+.noMoveColor {
+  color: $dissabled-color;
 }

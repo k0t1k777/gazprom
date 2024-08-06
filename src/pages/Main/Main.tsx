@@ -1,7 +1,7 @@
 import Card from 'src/ui/Card/Card';
 import styles from 'src/pages/Main/Main.module.scss';
-import { initialCardsProps } from 'src/utills/mock';
 import { useOutletContext } from 'react-router-dom';
+import { initialCardsProps } from 'src/utills/types';
 
 export default function Main() {
   const { allowDrop, handleDrop, cards } = useOutletContext<{

@@ -3,7 +3,8 @@ import { Outlet } from 'react-router-dom';
 import SideBar from 'src/components/SideBar/SideBar';
 import 'src/components/App/App.scss';
 import { useState } from 'react';
-import { initialCardsProps, initialCards } from 'src/utills/mock';
+import { initialCards, cardsList } from 'src/utills/mock';
+import { initialCardsProps } from 'src/utills/types';
 
 export interface DroppedCard {
   id: string;
@@ -17,7 +18,6 @@ export default function App() {
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     const itemId = e.currentTarget.id;
-    console.log('itemId: ', itemId);
 
     if (droppedCards.some((card) => card.id === itemId)) {
       e.preventDefault();
@@ -58,33 +58,42 @@ export default function App() {
       console.log('parentCard: ', parentCard); // Логируем найденную родительскую карточку
 
       if (parentCard) {
-        // Создаем новую подчиненную карточку
-        const newSubordinateCard: initialCardsProps = {
-          id: itemId + '-' + Date.now(), // Уникальный ID для клона
-          // Заполняем остальные свойства новой карточки по вашему усмотрению
-          subordinates: [], // Изначально пустой массив подчиненных
-        };
+        // Находим оригинальную карточку по itemId
+        const originalCard = cardsList.find(card => card.id === itemId);
+        console.log('originalCard: ', originalCard);
+        
+        if (originalCard) {
+          // Создаем новую подчиненную карточку на основе оригинальной
+          const newSubordinateCard: initialCardsProps = {
+            ...originalCard, // Копируем все поля оригинальной карточки
+            id: itemId,
+            subordinates: [], // Изначально пустой массив подчиненных
+            cellId, // Добавляем новое поле cellId
+          };
 
-        // Обновляем карточки, добавляя новую подчиненную карточку
-        const updatedCards = addSubordinate(
-          cards,
-          parentCard.id,
-          newSubordinateCard
-        );
+          // Обновляем карточки, добавляя новую подчиненную карточку
+          const updatedCards = addSubordinate(
+            cards,
+            parentCard.id,
+            newSubordinateCard
+          );
 
-        // Обновляем состояние карточек
-        setCards(updatedCards);
+          // Обновляем состояние карточек
+          setCards(updatedCards);
 
-        // Добавление новой карточки в droppedCards
-        setDroppedCards((prev) => [
-          ...prev,
-          { id: newSubordinateCard.id, cellId },
-        ]);
+          // Добавление новой карточки в droppedCards
+          setDroppedCards((prev) => [
+            ...prev,
+            { id: newSubordinateCard.id, cellId },
+          ]);
+        } else {
+          console.error`(Original card not found for itemId ${itemId}.)`;
+        }
       } else {
-        console.error(`Parent card not found for cellId ${cellId}.`);
+        console.error`(Parent card not found for cellId ${cellId}.)`;
       }
     }
-  };
+};
 
   const findParentCard = (
     cards: initialCardsProps[],
