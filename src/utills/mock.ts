@@ -1,69 +1,70 @@
-export interface cards {
+export interface initialCardsProps {
   id: string;
   name: string;
   position?: string;
   title?: string;
   photo?: string;
   count?: number;
-  subordinates?: cards[];
+  subordinates?: initialCardsProps[];
 }
 
-export const cards = [
+export const initialCards = [
   {
     id: '0',
-    name: 'Иван Иванов',
+    name: 'Директор',
     position: 'Разработчик',
     title: 'Frontend Developer',
     photo: 'https://example.com/photo1.jpg',
     count: 1,
+    cellId: '1-0',
     subordinates: [
-      {
-        id: '1',
-        name: 'Иван Мария Петрова',
-        position: 'Разработчик',
-        title: 'Frontend Developer',
-        photo: 'https://example.com/photo1.jpg',
-        count: 1,
-        subordinates: [],
-      },
-      {
-        id: '2',
-        name: 'Мария Петрова Иванов',
-        position: 'Разработчик',
-        title: 'Frontend Developer',
-        photo: 'https://example.com/photo1.jpg',
-        count: 1,
-        subordinates: [
-          {
-            id: '3',
-            name: 'Иван Петрова',
-            position: 'Разработчик',
-            title: 'Frontend Developer',
-            photo: 'https://example.com/photo1.jpg',
-            count: 1,
-            subordinates: [
-              {
-                id: '4',
-                name: 'Мария Аны',
-                count: 10,
-                position: 'Разработчик',
-                title: 'Frontend Developer',
-                photo: 'https://example.com/photo1.jpg',
-                subordinates: [],
-              },
-              {
-                id: '5',
-                name: 'Мария Аны',
-                position: 'Разработчик',
-                title: 'Frontend Developer',
-                photo: 'https://example.com/photo1.jpg',
-                count: 1,
-                subordinates: [],
-              },
-            ],
-          },
-        ],
-      },
+      // {
+      //   id: '1',
+      //   name: 'Иван Мария Петрова',
+      //   position: 'Разработчик',
+      //   title: 'Frontend Developer',
+      //   photo: 'https://example.com/photo1.jpg',
+      //   count: 1,
+      //   subordinates: [],
+      // },
+      // {
+      //   id: '2',
+      //   name: 'Мария Петрова Иванов',
+      //   position: 'Разработчик',
+      //   title: 'Frontend Developer',
+      //   photo: 'https://example.com/photo1.jpg',
+      //   count: 1,
+      //   subordinates: [
+      //     {
+      //       id: '3',
+      //       name: 'Иван Петрова',
+      //       position: 'Разработчик',
+      //       title: 'Frontend Developer',
+      //       photo: 'https://example.com/photo1.jpg',
+      //       count: 1,
+      //       subordinates: [
+      //         {
+      //           id: '4',
+      //           name: 'Мария Аны',
+      //           count: 10,
+      //           position: 'Разработчик',
+      //           title: 'Frontend Developer',
+      //           photo: 'https://example.com/photo1.jpg',
+      //           subordinates: [],
+      //         },
+      //         {
+      //           id: '5',
+      //           name: 'Мария Аны',
+      //           position: 'Разработчик',
+      //           title: 'Frontend Developer',
+      //           photo: 'https://example.com/photo1.jpg',
+      //           count: 1,
+      //           subordinates: [],
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
     ],
   },
 ];
@@ -71,7 +72,7 @@ export const cards = [
 export const cardsList = [
   {
     id: '6',
-    name: 'Иван Иванов',
+    name: 'Иван',
     position: 'Разработчик',
     title: 'Frontend Developer',
     photo: 'https://example.com/photo1.jpg',
@@ -80,7 +81,7 @@ export const cardsList = [
   },
   {
     id: '7',
-    name: 'Мария Петрова',
+    name: 'Мария',
     position: 'Дизайнер',
     title: 'UI/UX Designer',
     photo: 'https://example.com/photo2.jpg',
@@ -89,7 +90,7 @@ export const cardsList = [
   },
   {
     id: '8',
-    name: 'Сергей Смирнов',
+    name: 'Сергей',
     position: 'Менеджер',
     title: 'Project Manager',
     photo: 'https://example.com/photo3.jpg',
@@ -98,7 +99,7 @@ export const cardsList = [
   },
   {
     id: '9',
-    name: 'Ольга Кузнецова',
+    name: 'Ольга',
     position: 'Аналитик',
     title: 'Data Analyst',
     photo: 'https://example.com/photo4.jpg',

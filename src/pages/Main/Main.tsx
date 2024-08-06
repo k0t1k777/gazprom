@@ -1,17 +1,17 @@
 import Card from 'src/ui/Card/Card';
 import styles from 'src/pages/Main/Main.module.scss';
-import { cards } from 'src/utills/mock';
+import { initialCardsProps } from 'src/utills/mock';
 import { useOutletContext } from 'react-router-dom';
-import { DroppedCard } from 'src/components/App/App';
 
 export default function Main() {
-  const { allowDrop, handleDrop } = useOutletContext<{
+  const { allowDrop, handleDrop, cards } = useOutletContext<{
     allowDrop: (e: React.DragEvent<HTMLImageElement>) => void;
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
-    droppedCards: DroppedCard[];
+    cards: initialCardsProps[];
   }>();
+  console.log('cards: ', cards);
 
- const renderCards = (card: cards) => {
+ const renderCards = (card: initialCardsProps) => {
     return (
       <div key={card.id} className={styles.cardContainer}>
         <Card

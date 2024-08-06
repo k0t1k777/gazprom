@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import SideBar from 'src/components/SideBar/SideBar';
 import 'src/components/App/App.scss';
 import { useState } from 'react';
+import { initialCardsProps, initialCards } from 'src/utills/mock';
 
 export interface DroppedCard {
   id: string;
@@ -12,10 +13,11 @@ export interface DroppedCard {
 export default function App() {
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);
-  console.log('droppedCards: ', droppedCards);
+  const [cards, setCards] = useState<initialCardsProps[]>(initialCards);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     const itemId = e.currentTarget.id;
+    console.log('itemId: ', itemId);
 
     if (droppedCards.some((card) => card.id === itemId)) {
       e.preventDefault();
@@ -45,35 +47,105 @@ export default function App() {
     const rowIndex = Math.floor((e.clientY - dropTargetRect.top) / cellHeight);
 
     const cellId = `${columnIndex}-${rowIndex}`;
+    console.log('cellId: ', cellId); // Логируем ID ячейки
 
+    // Проверяем, что в этой ячейке еще нет карточки
     if (!droppedCards.some((card) => card.cellId === cellId)) {
-      setDroppedCards((prev) => [...prev, { id: itemId, cellId }]);
+      console.log('Current cards: ', cards); // Логируем текущие карточки
 
-      const draggedElement = document.getElementById(itemId) as HTMLElement;
+      // Находим родителя, к которому мы будем добавлять новую карточку
+      const parentCard = findParentCard(cards, columnIndex, rowIndex);
+      console.log('parentCard: ', parentCard); // Логируем найденную родительскую карточку
 
-      if (draggedElement) {
-        const clonedElement = draggedElement.cloneNode(true) as HTMLElement;
-        clonedElement.id = itemId + '-' + Date.now();
+      if (parentCard) {
+        // Создаем новую подчиненную карточку
+        const newSubordinateCard: initialCardsProps = {
+          id: itemId + '-' + Date.now(), // Уникальный ID для клона
+          // Заполняем остальные свойства новой карточки по вашему усмотрению
+          subordinates: [], // Изначально пустой массив подчиненных
+        };
 
-        clonedElement.style.position = 'absolute';
-        clonedElement.style.left = `${columnIndex * cellWidth}px`;
-        clonedElement.style.top = `${rowIndex * cellHeight}px`;
+        // Обновляем карточки, добавляя новую подчиненную карточку
+        const updatedCards = addSubordinate(
+          cards,
+          parentCard.id,
+          newSubordinateCard
+        );
 
-        dropTarget.appendChild(clonedElement);
+        // Обновляем состояние карточек
+        setCards(updatedCards);
+
+        // Добавление новой карточки в droppedCards
+        setDroppedCards((prev) => [
+          ...prev,
+          { id: newSubordinateCard.id, cellId },
+        ]);
+      } else {
+        console.error(`Parent card not found for cellId ${cellId}.`);
       }
     }
   };
 
+  const findParentCard = (
+    cards: initialCardsProps[],
+    columnIndex: number,
+    rowIndex: number
+  ): initialCardsProps | undefined => {
+    let parentCellId;
+  
+    // Условие для определения родительской ячейки
+    if (rowIndex === 1 && (columnIndex === 0 || columnIndex === 2)) {
+      parentCellId = '1-0';
+    } else {
+      parentCellId = `${columnIndex}-${rowIndex - 1}`; // Формируем cellId для родителя
+    }
+  
+    for (const card of cards) {
+      // Проверяем, соответствует ли текущая карточка родительскому cellId
+      if (card.cellId === parentCellId) {
+        return card; // Возвращаем родительскую карточку
+      }
+      if (card.subordinates) {
+        const found = findParentCard(card.subordinates, columnIndex, rowIndex);
+        if (found) return found; // Рекурсивный поиск среди подчиненных
+      }
+    }
+    return undefined; // Если не нашли, возвращаем undefined
+  };
+
+  // Функция для добавления подчиненной карточки
+  const addSubordinate = (
+    cards: initialCardsProps[],
+    parentId: string,
+    subordinate: initialCardsProps
+  ): initialCardsProps[] => {
+    return cards.map((card) => {
+      if (card.id === parentId) {
+        return {
+          ...card,
+          subordinates: [...(card.subordinates || []), subordinate],
+        };
+      }
+      if (card.subordinates) {
+        return {
+          ...card,
+          subordinates: addSubordinate(
+            card.subordinates,
+            parentId,
+            subordinate
+          ),
+        };
+      }
+      return card;
+    });
+  };
 
   return (
     <div>
-      <Header
-        onDragStart={handleDragStart}
-        droppedCards={droppedCards}
-      />
+      <Header onDragStart={handleDragStart} droppedCards={droppedCards} />
       <div className='conteiner'>
         <SideBar />
-        <Outlet context={{ allowDrop, handleDrop, droppedCards }} />
+        <Outlet context={{ allowDrop, handleDrop, cards }} />
       </div>
     </div>
   );
