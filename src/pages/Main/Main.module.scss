@@ -1,22 +1,6 @@
-// .main {
-//   @include main-container;
-//   display: grid;
-//   // grid-template-columns: repeat(3, minmax(300px, 1fr));
-//   grid-template-rows: repeat(auto-fill, 127px);
-//   justify-items: center;
-//   justify-content: center;
-//   gap: 8px;
-//   margin: 56px 64px 0 0;
-//   position: relative;
-//   height: 100vh;
-// }
-
 .main {
   @include main-container;
   @include flex-column-container;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center; 
   position: relative;
   gap: 8px;
   height: 100vh;
@@ -25,18 +9,11 @@
 
 .cardContainer {
   @include flex-column-container;
-  // align-items: center;
   gap: 24px;
-
-  
-  & div:first-of-type {
-    align-items: center;
-  }
-
 }
 
 .subordinates {
   display: flex;
-  // justify-content: center;
+  // justify-content: center;  
   gap: 24px;
 }

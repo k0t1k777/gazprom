@@ -25,7 +25,6 @@ export default function Filter({
   useOutsideClick(ref, () => {
     setIsFilterOpen(false);
   });
-  console.log('droppedCards: ', droppedCards);
 
   return (
     <div ref={ref} className={styles.filter}>

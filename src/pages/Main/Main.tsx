@@ -19,7 +19,8 @@ export default function Main() {
           name={card.name}
           position={card.position}
           title={card.title}
-          count={card.count}
+          cellId={card.cellId}
+          count={card.subordinates.length}
         />
         {card.subordinates && card.subordinates.length > 0 && (
           <div className={styles.subordinates}>
@@ -31,9 +32,9 @@ export default function Main() {
   };
 
   return (
-    <div className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
+    <section className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
       {cards.map((card) => renderCards(card))}
 
-    </div>
+    </section>
   );
 }

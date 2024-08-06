@@ -5,7 +5,6 @@ export const initialCards = [
     position: 'Разработчик',
     title: 'Frontend Developer',
     photo: 'https://example.com/photo1.jpg',
-    count: 1,
     cellId: '1-0',
     subordinates: [
       // {

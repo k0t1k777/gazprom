@@ -37,6 +37,7 @@ export default function App() {
 
     const dropTarget = e.currentTarget;
     const dropTargetRect = dropTarget.getBoundingClientRect();
+    console.log('dropTargetRect: ', dropTargetRect);
 
     const cellWidth = 330;
     const cellHeight = 157;
@@ -59,16 +60,16 @@ export default function App() {
 
       if (parentCard) {
         // Находим оригинальную карточку по itemId
-        const originalCard = cardsList.find(card => card.id === itemId);
+        const originalCard = cardsList.find((card) => card.id === itemId);
         console.log('originalCard: ', originalCard);
-        
+
         if (originalCard) {
           // Создаем новую подчиненную карточку на основе оригинальной
           const newSubordinateCard: initialCardsProps = {
             ...originalCard, // Копируем все поля оригинальной карточки
             id: itemId,
-            subordinates: [], // Изначально пустой массив подчиненных
-            cellId, // Добавляем новое поле cellId
+            subordinates: [],
+            cellId,
           };
 
           // Обновляем карточки, добавляя новую подчиненную карточку
@@ -93,7 +94,7 @@ export default function App() {
         console.error`(Parent card not found for cellId ${cellId}.)`;
       }
     }
-};
+  };
 
   const findParentCard = (
     cards: initialCardsProps[],
@@ -101,14 +102,17 @@ export default function App() {
     rowIndex: number
   ): initialCardsProps | undefined => {
     let parentCellId;
-  
+
     // Условие для определения родительской ячейки
-    if (rowIndex === 1 && (columnIndex === 0 || columnIndex === 2)) {
+    if (
+      (rowIndex === 0 && (columnIndex === 0 || columnIndex === 2)) ||
+      (rowIndex === 1 && (columnIndex === 0 || columnIndex === 2))
+    ) {
       parentCellId = '1-0';
     } else {
       parentCellId = `${columnIndex}-${rowIndex - 1}`; // Формируем cellId для родителя
     }
-  
+
     for (const card of cards) {
       // Проверяем, соответствует ли текущая карточка родительскому cellId
       if (card.cellId === parentCellId) {

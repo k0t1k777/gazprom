@@ -16,6 +16,7 @@ interface CardProps {
   index?: number;
   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
   draggable?: boolean;
+  cellId?: any;
 }
 
 export default function Card({
@@ -25,13 +26,14 @@ export default function Card({
   title,
   count,
   id,
+  cellId,
   onDragStart,
   draggable = true,
 }: CardProps) {
   const [isOpen, setIsopen] = useState(true);
 
   return (
-    <section
+    <div
       className={cx(styles.card, {
         [styles.mini]: isFilterOpen,
         [`${styles.noMove} ${styles.noMoveColor}`]: !draggable,
@@ -66,7 +68,8 @@ export default function Card({
               [styles.noMoveColor]: !draggable,
             })}
           >
-            {position}
+            {cellId}
+            {/* {position} */}
           </p>
           <div
             className={cx(styles.countContainer, {
@@ -80,6 +83,6 @@ export default function Card({
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
