@@ -44,4 +44,4 @@ jobs:
 
           script: |
             cd backend
-            docker compose up frontend
+            sudo docker compose up frontend
