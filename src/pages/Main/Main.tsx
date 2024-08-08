@@ -1,7 +1,7 @@
 import Card from 'src/ui/Card/Card';
 import styles from 'src/pages/Main/Main.module.scss';
 import { useOutletContext } from 'react-router-dom';
-import { initialCardsProps } from 'src/utills/types';
+import { initialCardsProps } from 'src/services/types';
 
 export default function Main() {
   const { allowDrop, handleDrop, handleDragStart, cards } = useOutletContext<{
@@ -32,7 +32,7 @@ export default function Main() {
         />
 
         {card.subordinates && card.subordinates.length > 0 && (
-          <div className={styles.subordinates} >
+          <div className={styles.subordinates}>
             {card.subordinates.map((subordinate) => renderCards(subordinate))}
           </div>
         )}
@@ -43,7 +43,7 @@ export default function Main() {
   return (
     <section className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
       {/* <div className={styles.grid}> */}
-        {cards.map((card) => renderCards(card))}
+      {cards.map((card) => renderCards(card))}
       {/* </div> */}
     </section>
   );

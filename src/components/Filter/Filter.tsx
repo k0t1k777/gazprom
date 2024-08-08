@@ -4,7 +4,7 @@ import useOutsideClick from 'src/hooks/useOutsideClick';
 import { Input } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
-import { cardsList } from 'src/utills/mock';
+import { cardsList } from 'src/services/mock';
 import { DroppedCard } from '../App/App';
 import FilterList from 'src/ui/FilterList/FilterList';
 
@@ -34,7 +34,7 @@ export default function Filter({
         <CloseOutlined className={styles.img} />
         <p className={styles.text}>Фильтры</p>
       </div>
-      <FilterList teams='Подразделение' positions='Должность' city='Город'/>
+      <FilterList teams='Подразделение' positions='Должность' city='Город' />
       <div className={styles.containerResult}>
         {cardsList.map((card, index) => (
           <Card

@@ -2,9 +2,10 @@ import Header from 'src/components/Header/Header';
 import { Outlet } from 'react-router-dom';
 import SideBar from 'src/components/SideBar/SideBar';
 import 'src/components/App/App.scss';
-import { useState } from 'react';
-import { initialCards, cardsList } from 'src/utills/mock';
-import { initialCardsProps } from 'src/utills/types';
+import { useEffect, useState } from 'react';
+import { initialCards, cardsList } from 'src/services/mock';
+import { initialCardsProps } from 'src/services/types';
+import * as Api from 'src/services/utils'
 
 export interface DroppedCard {
   id: string;
@@ -12,6 +13,20 @@ export interface DroppedCard {
 }
 
 export default function App() {
+const [members, setMembers] = useState('')
+console.log('members: ', members);
+
+useEffect(() => {
+Api.getMembers()
+  .then((data) => {
+    setMembers(data)
+    console.log('data: ', data);
+  } )
+  .catch((error) => {
+    console.error(error)
+  })
+}, [])
+  
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);
   const [cards, setCards] = useState<initialCardsProps[]>(initialCards);
@@ -50,7 +65,8 @@ export default function App() {
     console.log('cellId: ', cellId); // Логируем ID ячейки
 
     // Проверяем, что в этой ячейке еще нет карточки
-    if (!droppedCards.some((card) => card.cellId === cellId)) { // Логируем текущие карточки
+    if (!droppedCards.some((card) => card.cellId === cellId)) {
+      // Логируем текущие карточки
 
       // Находим родителя, к которому мы будем добавлять новую карточку
       const parentCard = findParentCard(cards, columnIndex, rowIndex);
@@ -107,7 +123,7 @@ export default function App() {
       parentCellId = '1-0';
     } else {
       parentCellId = `${columnIndex}-${rowIndex - 1}`; // Формируем cellId для родителя
-     }
+    }
 
     for (const card of cards) {
       // Проверяем, соответствует ли текущая карточка родительскому cellId

@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import styles from 'src/pages/Employees/Employees.module.scss';
 import Card from 'src/ui/Card/Card';
 import FilterList from 'src/ui/FilterList/FilterList';
-import { cardsList } from 'src/utills/mock';
+import { cardsList } from 'src/services/mock';
 
 export default function Employees() {
   const location = useLocation();
