@@ -1,4 +1,4 @@
-import { createBrowserRouter, createHashRouter } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 import App from 'src/components/App/App'
 import Directory from 'src/pages/Directory/Directory'
 import Employees from 'src/pages/Employees/Employees'
