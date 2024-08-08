@@ -1,0 +1,10 @@
+.notFound {
+  width: 100%;
+  @include flex-column-center;
+}
+
+.title {
+  @include mp-null;
+  @include use-font(38px, 46px, 500);
+  margin: 164px auto 56px;
+}

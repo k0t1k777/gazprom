@@ -1,5 +1,5 @@
 import Header from 'src/components/Header/Header';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import SideBar from 'src/components/SideBar/SideBar';
 import 'src/components/App/App.scss';
 import { useEffect, useState } from 'react';
@@ -13,6 +13,8 @@ export interface DroppedCard {
 }
 
 export default function App() {
+  const navigate = useNavigate();
+
 // const [members, setMembers] = useState('')
 // console.log('members: ', members);
 
@@ -28,22 +30,22 @@ export default function App() {
 // }, [])
 
 function handleRegister({ email, password }) {
-  console.log(email, password);
-  setLoading(true);
-  Api.registration({ name, email, password, phone_number })
+  // setLoading(true);
+  Api.registration({ email, password })
     .then((data) => {
-      if (data) {
-        sendSms({ phone_number });
-      } else {
-        console.log('Ошибка при регистрации');
+      if (data.token) {
+        console.log('токен получил: ', data.access);
+        localStorage.setItem('token', data.access);
+        navigate('/');
+        // setLoggedIn(true);
       }
-    })
+      })
     .catch((error) => {
       console.error(error);
     })
-    .finally(() => {
-      setLoading(false);
-    });
+    // .finally(() => {
+    //   setLoading(false);
+    // });
 }
   
   // ДНД
@@ -189,7 +191,7 @@ function handleRegister({ email, password }) {
       <Header onDragStart={handleDragStart} droppedCards={droppedCards} />
       <div className='conteiner'>
         <SideBar />
-        <Outlet context={{ allowDrop, handleDrop, handleDragStart, cards }} />
+        <Outlet context={{ handleRegister, allowDrop, handleDrop, handleDragStart, cards }} />
       </div>
     </div>
   );

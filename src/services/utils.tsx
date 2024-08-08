@@ -14,8 +14,10 @@ const headers = {
   'Content-Type': 'application/json',
 }
 
-export const registration = ({ email, password }) => {
-  return fetch(`${BASE_URL}/api/users/register/`, {
+export const registration = ({email, password} : any) => {
+  console.log('password: ', password);
+  console.log('email: ', email);
+  return fetch(`${BASE_URL}/token/`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
