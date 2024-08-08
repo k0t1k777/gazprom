@@ -11,9 +11,7 @@ export default function Registration() {
   const { handleRegister } = useOutletContext<RegistrationProps>();
 
   const [email, setEmail] = useState<string>('');
-  console.log('email: ', email);
   const [password, setPassword] = useState<string>('');
-  console.log('password: ', password);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,7 +38,7 @@ export default function Registration() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder='Введите пароль'
         ></Input>
-        <Button type='primary' htmlType='submit' className={styles.button}>Войти</Button>
+        <Button htmlType='submit' className={styles.button}>Войти</Button>
       </form>
     </div>
   );

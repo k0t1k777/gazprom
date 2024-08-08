@@ -17,7 +17,6 @@ export default function FilterList({
   positions,
   city,
 }: FilterListProps) {
-  console.log('employesRout: ', employesRout);
 
   return (
     <ul

@@ -2,10 +2,12 @@ import Header from 'src/components/Header/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
 import SideBar from 'src/components/SideBar/SideBar';
 import 'src/components/App/App.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { initialCards, cardsList } from 'src/services/mock';
 import { initialCardsProps, RegisterDataProps } from 'src/services/types';
 import * as Api from 'src/services/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoggedIn, SliceProps } from 'src/store/features/slice/slice';
 
 export interface DroppedCard {
   id: string;
@@ -13,9 +15,12 @@ export interface DroppedCard {
 }
 
 export default function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  console.log('loggedIn: ', loggedIn);
   const navigate = useNavigate();
+  const loggedIn = useSelector((state: SliceProps) => state.loggedIn)
+  const dispatch = useDispatch();
+
+
+  console.log('loggedIn: ', loggedIn);
 
   // const [members, setMembers] = useState('')
   // console.log('members: ', members);
@@ -35,10 +40,9 @@ export default function App() {
     // setLoading(true);
     Api.registration({ email, password })
       .then((data) => {
-        if (data.token) {
-          console.log('токен получил: ', data.access);
+        if (data.access) {
           localStorage.setItem('token', data.access);
-          setLoggedIn(true);
+          dispatch(setLoggedIn(true));
           navigate('/');
         }
       })
@@ -188,21 +192,32 @@ export default function App() {
     });
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(setLoggedIn(true));
+    }
+  }, [dispatch]);
+
   return (
     <div>
       <Header onDragStart={handleDragStart} droppedCards={droppedCards} />
-      <div className='conteiner'>
-        <SideBar />
-        <Outlet
-          context={{
-            handleRegister,
-            allowDrop,
-            handleDrop,
-            handleDragStart,
-            cards,
-          }}
-        />
-      </div>
+      {loggedIn ? (
+        <div className='container'>
+          <SideBar />
+          <Outlet
+            context={{
+              handleRegister,
+              allowDrop,
+              handleDrop,
+              handleDragStart,
+              cards,
+            }}
+          />
+        </div>
+      ) : (
+        <Outlet context={{ handleRegister }} /> 
+         )}
     </div>
   );
 }

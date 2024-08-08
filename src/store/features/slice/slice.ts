@@ -1,27 +1,26 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface SliceProps {
-  currentPage: number;
-
+  loggedIn: boolean;
 }
 
 const initialState: SliceProps = {
-  currentPage: 1,
+  loggedIn: false,
 };
 
 export const slice = createSlice({
-  name: 'picture',
+  name: 'gazprom',
   initialState,
   reducers: {
-    setCurrentPage: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
+    setLoggedIn: (state, action: PayloadAction<boolean>) => {
+      state.loggedIn = action.payload;
     },
    
   }
 });
 
 export const {
-  setCurrentPage,
+  setLoggedIn,
   
 } = slice.actions;
 
