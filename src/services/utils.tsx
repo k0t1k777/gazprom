@@ -1,5 +1,7 @@
-export const BASE_URL = '127.0.0.1:8000/api/v1'
-// const TOKEN = localStorage.getItem('token');
+import { RegisterDataProps } from './types';
+export const BASE_URL = '127.0.0.1:8000/api'
+const TOKEN = localStorage.getItem('token');
+console.log('TOKEN: ', TOKEN);
 
 const getResponseData = (res: Response) => {
   if (!res.ok) {
@@ -14,9 +16,7 @@ const headers = {
   'Content-Type': 'application/json',
 }
 
-export const registration = ({email, password} : any) => {
-  console.log('password: ', password);
-  console.log('email: ', email);
+export const registration = ({email, password}: RegisterDataProps) => {
   return fetch(`${BASE_URL}/token/`, {
     method: 'POST',
     headers: {

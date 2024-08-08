@@ -2,10 +2,10 @@ import Header from 'src/components/Header/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
 import SideBar from 'src/components/SideBar/SideBar';
 import 'src/components/App/App.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { initialCards, cardsList } from 'src/services/mock';
-import { initialCardsProps } from 'src/services/types';
-import * as Api from 'src/services/utils'
+import { initialCardsProps, RegisterDataProps } from 'src/services/types';
+import * as Api from 'src/services/utils';
 
 export interface DroppedCard {
   id: string;
@@ -13,41 +13,43 @@ export interface DroppedCard {
 }
 
 export default function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  console.log('loggedIn: ', loggedIn);
   const navigate = useNavigate();
 
-// const [members, setMembers] = useState('')
-// console.log('members: ', members);
+  // const [members, setMembers] = useState('')
+  // console.log('members: ', members);
 
-// useEffect(() => {
-// Api.getMembers()
-//   .then((data) => {
-//     setMembers(data)
-//     console.log('data: ', data);
-//   } )
-//   .catch((error) => {
-//     console.error(error)
-//   })
-// }, [])
+  // useEffect(() => {
+  // Api.getMembers()
+  //   .then((data) => {
+  //     setMembers(data)
+  //     console.log('data: ', data);
+  //   } )
+  //   .catch((error) => {
+  //     console.error(error)
+  //   })
+  // }, [])
 
-function handleRegister({ email, password }) {
-  // setLoading(true);
-  Api.registration({ email, password })
-    .then((data) => {
-      if (data.token) {
-        console.log('токен получил: ', data.access);
-        localStorage.setItem('token', data.access);
-        navigate('/');
-        // setLoggedIn(true);
-      }
+  function handleRegister({ email, password }: RegisterDataProps) {
+    // setLoading(true);
+    Api.registration({ email, password })
+      .then((data) => {
+        if (data.token) {
+          console.log('токен получил: ', data.access);
+          localStorage.setItem('token', data.access);
+          setLoggedIn(true);
+          navigate('/');
+        }
       })
-    .catch((error) => {
-      console.error(error);
-    })
+      .catch((error) => {
+        console.error(error);
+      });
     // .finally(() => {
     //   setLoading(false);
     // });
-}
-  
+  }
+
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);
   const [cards, setCards] = useState<initialCardsProps[]>(initialCards);
@@ -191,7 +193,15 @@ function handleRegister({ email, password }) {
       <Header onDragStart={handleDragStart} droppedCards={droppedCards} />
       <div className='conteiner'>
         <SideBar />
-        <Outlet context={{ handleRegister, allowDrop, handleDrop, handleDragStart, cards }} />
+        <Outlet
+          context={{
+            handleRegister,
+            allowDrop,
+            handleDrop,
+            handleDragStart,
+            cards,
+          }}
+        />
       </div>
     </div>
   );

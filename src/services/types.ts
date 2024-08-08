@@ -8,3 +8,8 @@ export interface initialCardsProps {
   subordinates: initialCardsProps[];
   // coordinates?: { top: number; left: number };
 }
+
+export interface RegisterDataProps {
+  email: string;
+  password: string;
+}

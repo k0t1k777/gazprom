@@ -35,6 +35,7 @@ export default function Registration() {
         ></Input>
         <Input
           className={styles.input}
+          type={password}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder='Введите пароль'

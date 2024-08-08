@@ -74,7 +74,7 @@ export default function Card({
           >
             {/* удалить */}
             {cellId}
-            {/* {position} */}
+            {position}
           </p>
           <div
             className={cx(styles.countContainer, {
