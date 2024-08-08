@@ -7,7 +7,9 @@ import { initialCards, cardsList } from 'src/services/mock';
 import { initialCardsProps, RegisterDataProps } from 'src/services/types';
 import * as Api from 'src/services/utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoggedIn, SliceProps } from 'src/store/features/slice/slice';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { selectUsers } from 'src/store/features/slice/userSlice';
+// import { setLoggedIn, SliceProps } from 'src/store/features/slice/userSlice';
 
 export interface DroppedCard {
   id: string;
@@ -15,12 +17,30 @@ export interface DroppedCard {
 }
 
 export default function App() {
-  const navigate = useNavigate();
-  const loggedIn = useSelector((state: SliceProps) => state.loggedIn)
-  const dispatch = useDispatch();
+  let { access } = useAppSelector(selectUsers);
+  const dispatch = useAppDispatch()
 
+  console.log('access: ', access);
 
+  // const navigate = useNavigate();
+  // const loggedIn = useSelector((state: SliceProps) => state.loggedIn);
+  // const dispatch = useDispatch();
+  const [loggedIn, setLoggedIn] = useState(true);
   console.log('loggedIn: ', loggedIn);
+
+  // function handleRegister({ email, password }: RegisterDataProps) {
+  //   Api.registration({ email, password })
+  //     .then((data) => {
+  //       if (data.access) {
+  //         localStorage.setItem('token', data.access);
+  //         dispatch(setLoggedIn(true));
+  //         navigate('/');
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }
 
   // const [members, setMembers] = useState('')
   // console.log('members: ', members);
@@ -36,23 +56,7 @@ export default function App() {
   //   })
   // }, [])
 
-  function handleRegister({ email, password }: RegisterDataProps) {
-    // setLoading(true);
-    Api.registration({ email, password })
-      .then((data) => {
-        if (data.access) {
-          localStorage.setItem('token', data.access);
-          dispatch(setLoggedIn(true));
-          navigate('/');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    // .finally(() => {
-    //   setLoading(false);
-    // });
-  }
+
 
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);
@@ -192,12 +196,12 @@ export default function App() {
     });
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      dispatch(setLoggedIn(true));
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     dispatch(setLoggedIn(true));
+  //   }
+  // }, [dispatch]);
 
   return (
     <div>
@@ -207,7 +211,7 @@ export default function App() {
           <SideBar />
           <Outlet
             context={{
-              handleRegister,
+              // handleRegister,
               allowDrop,
               handleDrop,
               handleDragStart,
@@ -216,8 +220,10 @@ export default function App() {
           />
         </div>
       ) : (
-        <Outlet context={{ handleRegister }} /> 
-         )}
+        <Outlet
+        // context={{ handleRegister }}
+        />
+      )}
     </div>
   );
 }

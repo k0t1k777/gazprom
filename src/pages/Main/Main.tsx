@@ -10,7 +10,7 @@ export default function Main() {
     handleDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
     cards: initialCardsProps[];
   }>();
-  console.log('cards: ', cards);
+  // console.log('cards: ', cards);
 
   const renderCards = (card: initialCardsProps) => {
     //  const [col, row ] = card.cellId.split('-').map(Number);

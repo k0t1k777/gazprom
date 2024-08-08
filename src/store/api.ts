@@ -2,7 +2,7 @@ type RequestOptionsType = RequestInit & {
   headers: Record<string, string>
 }
 
-export const BASE_URL = 'https://sagaart5.hopto.org/api/v1'
+export const BASE_URL = 'https://gazprom.hopto.org/api'
 
 export const checkResponse = (response: Response) => {
   if (response.ok) {
@@ -16,11 +16,5 @@ export const checkResponse = (response: Response) => {
 const request = (endpoint: string, options?: RequestOptionsType) =>
   fetch(`${BASE_URL}${endpoint}`, options).then(checkResponse)
 
-export const getEventsData = async () => await request('/events')
-export const getArtsData = async (limit?: number) =>
-  await request(`/arts${limit ? `/?limit=${limit}` : ''}`)
-export const getPopularArts = async () => await request('/arts/most_popular')
-export const getArtById = async (id: number) => await request(`/arts/${id}`)
-export const getSearchFields = async () =>
-  await request('/arts/art_search_fields')
+export const registration = async () => await request('/token')
 
