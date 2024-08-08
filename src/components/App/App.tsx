@@ -13,19 +13,38 @@ export interface DroppedCard {
 }
 
 export default function App() {
-const [members, setMembers] = useState('')
-console.log('members: ', members);
+// const [members, setMembers] = useState('')
+// console.log('members: ', members);
 
-useEffect(() => {
-Api.getMembers()
-  .then((data) => {
-    setMembers(data)
-    console.log('data: ', data);
-  } )
-  .catch((error) => {
-    console.error(error)
-  })
-}, [])
+// useEffect(() => {
+// Api.getMembers()
+//   .then((data) => {
+//     setMembers(data)
+//     console.log('data: ', data);
+//   } )
+//   .catch((error) => {
+//     console.error(error)
+//   })
+// }, [])
+
+function handleRegister({ email, password }) {
+  console.log(email, password);
+  setLoading(true);
+  Api.registration({ name, email, password, phone_number })
+    .then((data) => {
+      if (data) {
+        sendSms({ phone_number });
+      } else {
+        console.log('Ошибка при регистрации');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+}
   
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);

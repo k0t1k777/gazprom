@@ -1,4 +1,4 @@
-export const BASE_URL = '127.0.0.1:8000/api'
+export const BASE_URL = '127.0.0.1:8000/api/v1'
 // const TOKEN = localStorage.getItem('token');
 
 const getResponseData = (res: Response) => {
@@ -12,6 +12,20 @@ const headers = {
   // authorization: `Bearer ${TOKEN}`,
   Accept: 'application/json',
   'Content-Type': 'application/json',
+}
+
+export const registration = ({ email, password }) => {
+  return fetch(`${BASE_URL}/api/users/register/`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  }).then(getResponseData)
 }
 
 export const getMembers = () => {
@@ -35,21 +49,7 @@ export const getMembers = () => {
 // };
 
 
-// export const registration = ({ name, email, password, phone_number }) => {
-//   return fetch(`${BASE_URL}/api/users/register/`, {
-//     method: 'POST',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       name,
-//       email,
-//       password,
-//       phone_number,
-//     }),
-//   }).then(getResponseData)
-// }
+
 
 // export const sendSmsPhone = ({ phone_number }) => {
 //   return fetch(`${BASE_URL}/api/users/send_sms/`, {
