@@ -1,12 +1,14 @@
 import styles from 'src/components/Filter/Filter.module.scss';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useOutsideClick from 'src/hooks/useOutsideClick';
 import { Input } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
-import { cardsList } from 'src/services/mock';
+// import { cardsList } from 'src/services/mock';
 import { DroppedCard } from '../App/App';
 import FilterList from 'src/ui/FilterList/FilterList';
+import { fetchGetMembers, selectMembers } from 'src/store/features/slice/membersSlice';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
 interface FilterProps {
   isFilterOpen: boolean;
@@ -21,12 +23,19 @@ export default function Filter({
   onDragStart,
   droppedCards,
 }: FilterProps) {
+  const dispatch = useAppDispatch();
+  const { members } = useAppSelector(selectMembers);
+  console.log('members: ', members);
+ 
+  useEffect(() => {
+    dispatch(fetchGetMembers());
+  }, [dispatch]);
+
   const ref = useRef(null);
 
   useOutsideClick(ref, () => {
     setIsFilterOpen(false);
   });
-  console.log('droppedCards: ', droppedCards);
 
   return (
     <div ref={ref} className={styles.filter}>
@@ -37,11 +46,11 @@ export default function Filter({
       </div>
       <FilterList teams='Подразделение' positions='Должность' city='Город' />
       <div className={styles.containerResult}>
-        {cardsList.map((card, index) => (
+        {members.map((card, index) => (
           <Card
             id={card.id}
             key={card.id}
-            name={card.name}
+            name={card.full_name}
             position={card.position}
             index={index}
             isFilterOpen={isFilterOpen}

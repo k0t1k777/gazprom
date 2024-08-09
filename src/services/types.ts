@@ -9,6 +9,13 @@ export interface initialCardsProps {
   subordinates: initialCardsProps[];
 }
 
+export interface membersProps {
+  id: string;
+  full_name: string;
+  position: string;
+  subordinates: initialCardsProps[];
+}
+
 export interface RegisterDataProps {
   email: string;
   password: string;

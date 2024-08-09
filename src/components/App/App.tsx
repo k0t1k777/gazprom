@@ -12,7 +12,7 @@ import {
   selectUsers,
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
-
+// import * as Api from 'src/services/utils'
 export interface DroppedCard {
   id: string;
   cellId: string;
@@ -20,6 +20,8 @@ export interface DroppedCard {
 
 export default function App() {
   let { loggedIn } = useAppSelector(selectUsers);
+ 
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -38,19 +40,20 @@ export default function App() {
       });
   }
 
-  const [members, setMembers] = useState('')
-  console.log('members: ', members);
+  // const [members, setMembers] = useState('')
 
-  useEffect(() => {
-  Api.getMembers()
-    .then((data) => {
-      setMembers(data)
-      console.log('data: ', data);
-    } )
-    .catch((error) => {
-      console.error(error)
-    })
-  }, [])
+  // useEffect(() => {
+  //   dispatch(fetchGetMembers())
+  //   .then((data) => {
+  //     setMembers(data)
+  //     console.log('data: ', data);
+  //   } )
+  //   .catch((error) => {
+  //     console.error(error)
+  //   })
+  // }, [])
+
+
 
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);

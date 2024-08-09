@@ -1,4 +1,3 @@
-import { RegisterDataProps } from './types';
 export const BASE_URL = 'https://gazprom.hopto.org/api'
 
 const getResponseData = (res: Response) => {
@@ -8,28 +7,34 @@ const getResponseData = (res: Response) => {
   return res.json()
 }
 
-const headers = {
-  // authorization: `Bearer ${TOKEN}`,
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-}
+// const headers = {
+//   // authorization: `Bearer ${TOKEN}`,
+//   Accept: 'application/json',
+//   'Content-Type': 'application/json',
+// }
 
-export const registration = ({email, password}: RegisterDataProps) => {
-  return fetch(`${BASE_URL}/token/`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-  }).then(getResponseData)
-}
+// export const registration = ({email, password}: RegisterDataProps) => {
+//   return fetch(`${BASE_URL}/token/`, {
+//     method: 'POST',
+//     headers: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       email,
+//       password,
+//     }),
+//   }).then(getResponseData)
+// }
 
 export const getMembers = () => {
-  return fetch(`${BASE_URL}/members/`, {
+  const TOKEN = localStorage.getItem('token');
+  const headers = {
+    authorization: `Bearer ${TOKEN}`,
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  return fetch(`${BASE_URL}/v1/members/`, {
     method: 'GET',
     headers,
   }).then(getResponseData);

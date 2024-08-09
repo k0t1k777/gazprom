@@ -16,7 +16,7 @@ const initialState: StateType = {
   error: null,
   loggedIn: false,
 };
-
+// фетч добавить
 export const registerUser = createAsyncThunk(
   'fetch/user', 
   async ({ email, password }: RegisterDataProps) => {
