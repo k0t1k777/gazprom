@@ -2,6 +2,7 @@ import Card from 'src/ui/Card/Card';
 import styles from 'src/pages/Main/Main.module.scss';
 import { useOutletContext } from 'react-router-dom';
 import { initialCardsProps } from 'src/services/types';
+import Arrow from 'src/ui/Arrow/Arrow';
 
 export default function Main() {
   const { allowDrop, handleDrop, handleDragStart, cards } = useOutletContext<{
@@ -10,16 +11,23 @@ export default function Main() {
     handleDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
     cards: initialCardsProps[];
   }>();
-  // console.log('cards: ', cards);
+  console.log('cards: ', cards);
+
+  const allCards: initialCardsProps[] = [];
+
+  const collectCards = (card: any) => {
+    allCards.push(card);
+    if (card.subordinates) {
+      card.subordinates.forEach(collectCards);
+    }
+  };
+
+  cards.forEach(collectCards);
 
   const renderCards = (card: initialCardsProps) => {
-    //  const [col, row ] = card.cellId.split('-').map(Number);
+    const [col, row] = card.cellId.split('-').map(Number);
     return (
-      <div
-        key={card.id}
-        className={styles.cardContainer}
-        // style={{  gridColumn: col + 1, gridRow: row + 1,  }}
-      >
+      <div key={card.id} style={{ gridColumn: col + 1, gridRow: row + 1 }}>
         <Card
           id={card.id}
           name={card.name}
@@ -30,21 +38,16 @@ export default function Main() {
           onDragStart={handleDragStart}
           draggable={true}
         />
-
-        {card.subordinates && card.subordinates.length > 0 && (
-          <div className={styles.subordinates}>
-            {card.subordinates.map((subordinate) => renderCards(subordinate))}
-          </div>
-        )}
       </div>
     );
   };
 
   return (
     <section className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
-      {/* <div className={styles.grid}> */}
-      {cards.map((card) => renderCards(card))}
-      {/* </div> */}
+      <div className={styles.cardContainer}>
+        {allCards.map((card) => renderCards(card))}
+      </div>
+      {/* <Arrow /> */}
     </section>
   );
 }

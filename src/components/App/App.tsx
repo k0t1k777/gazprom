@@ -21,16 +21,13 @@ export interface DroppedCard {
 export default function App() {
   let { loggedIn } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
 
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(registerUser({ email, password }))
       .unwrap()
       .then((data) => {
-        console.log('data: ', data);
         if (data.access) {
-          console.log('data.access: ', data.access);
           localStorage.setItem('token', data.access);
           dispatch(setLoggedIn(true));
           navigate('/');
@@ -81,7 +78,7 @@ export default function App() {
     const dropTarget = e.currentTarget;
     const dropTargetRect = dropTarget.getBoundingClientRect();
 
-    const cellWidth = 330;
+    const cellWidth = 300;
     const cellHeight = 157;
 
     const columnIndex = Math.floor(

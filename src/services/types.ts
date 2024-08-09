@@ -6,7 +6,6 @@ export interface initialCardsProps {
   photo: string;
   cellId: string;
   subordinates: initialCardsProps[];
-  // coordinates?: { top: number; left: number };
 }
 
 export interface RegisterDataProps {
