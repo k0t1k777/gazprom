@@ -20,7 +20,7 @@ export default function Header({
   droppedCards,
   loggedIn,
 }: HeaderProps) {
-  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(true);
 
   return (
     <>

@@ -6,6 +6,11 @@ interface ArrowProps {
 }
 
 const Arrow = ({ startX, startY, endX, endY }: ArrowProps) => {
+  // console.log('startY: ', startY);
+  // console.log('startX: ', startX);
+  // console.log('endX: ', endX);
+  // console.log('endY: ', endY);
+
   const arrowHeadSize = 11;
   const angle = Math.atan2(endY - startY, endX - startX);
   const arrowX1 = endX - arrowHeadSize * Math.cos(angle - Math.PI / 6);
@@ -49,5 +54,5 @@ const Arrow = ({ startX, startY, endX, endY }: ArrowProps) => {
     </svg>
   );
 };
-
 export default Arrow;
+

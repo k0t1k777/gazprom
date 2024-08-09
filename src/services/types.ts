@@ -5,6 +5,7 @@ export interface initialCardsProps {
   title: string;
   photo: string;
   cellId: string;
+  parentId?: string;
   subordinates: initialCardsProps[];
 }
 

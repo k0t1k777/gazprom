@@ -38,19 +38,19 @@ export default function App() {
       });
   }
 
-  // const [members, setMembers] = useState('')
-  // console.log('members: ', members);
+  const [members, setMembers] = useState('')
+  console.log('members: ', members);
 
-  // useEffect(() => {
-  // Api.getMembers()
-  //   .then((data) => {
-  //     setMembers(data)
-  //     console.log('data: ', data);
-  //   } )
-  //   .catch((error) => {
-  //     console.error(error)
-  //   })
-  // }, [])
+  useEffect(() => {
+  Api.getMembers()
+    .then((data) => {
+      setMembers(data)
+      console.log('data: ', data);
+    } )
+    .catch((error) => {
+      console.error(error)
+    })
+  }, [])
 
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);
@@ -87,11 +87,8 @@ export default function App() {
     const rowIndex = Math.floor((e.clientY - dropTargetRect.top) / cellHeight);
 
     const cellId = `${columnIndex}-${rowIndex}`;
-    console.log('cellId: ', cellId); // Логируем ID ячейки
-
     // Проверяем, что в этой ячейке еще нет карточки
     if (!droppedCards.some((card) => card.cellId === cellId)) {
-      // Логируем текущие карточки
 
       // Находим родителя, к которому мы будем добавлять новую карточку
       const parentCard = findParentCard(cards, columnIndex, rowIndex);
@@ -107,6 +104,7 @@ export default function App() {
             id: itemId,
             subordinates: [],
             cellId,
+            parentId: parentCard.id,
           };
 
           // Обновляем карточки, добавляя новую подчиненную карточку
