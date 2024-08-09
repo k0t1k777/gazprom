@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RegisterDataProps } from 'src/services/types';
-import { registration } from 'src/services/utils';
-// import { registration } from 'src/store/api';
+import { registration } from 'src/store/api';
 import { RootStore } from 'src/store/store';
 
 export interface StateType {

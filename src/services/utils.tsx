@@ -1,7 +1,5 @@
 import { RegisterDataProps } from './types';
 export const BASE_URL = 'https://gazprom.hopto.org/api'
-const TOKEN = localStorage.getItem('token');
-console.log('TOKEN: ', TOKEN);
 
 const getResponseData = (res: Response) => {
   if (!res.ok) {

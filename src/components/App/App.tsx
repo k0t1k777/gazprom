@@ -1,18 +1,17 @@
-import Header from 'src/components/Header/Header';
-import { Outlet, useNavigate } from 'react-router-dom';
-import SideBar from 'src/components/SideBar/SideBar';
 import 'src/components/App/App.scss';
+import Header from 'src/components/Header/Header';
+import SideBar from 'src/components/SideBar/SideBar';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { initialCards, cardsList } from 'src/services/mock';
 import { initialCardsProps, RegisterDataProps } from 'src/services/types';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import Registration from 'src/pages/Registration/Registration';
 import {
   registerUser,
   selectUsers,
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
-import { Link } from 'react-router-dom';
-import Registration from 'src/pages/Registration/Registration';
 
 export interface DroppedCard {
   id: string;
@@ -21,12 +20,9 @@ export interface DroppedCard {
 
 export default function App() {
   let { loggedIn } = useAppSelector(selectUsers);
-  console.log('loggedIn: ', loggedIn);
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
-  // const [loggedIn, setLoggedIn] = useState(true);
-  // console.log('loggedIn: ', loggedIn);
 
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(registerUser({ email, password }))
