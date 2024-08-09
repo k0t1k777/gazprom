@@ -1,16 +1,15 @@
-import { createBrowserRouter } from 'react-router-dom'
-import App from 'src/components/App/App'
-import Directory from 'src/pages/Directory/Directory'
-import Employees from 'src/pages/Employees/Employees'
-import Main from 'src/pages/Main/Main'
-import NotFound from 'src/pages/NotFound/NotFound'
-import Profile from 'src/pages/Profile/Profile'
-import Projects from 'src/pages/Projects/Projects'
-import Registration from 'src/pages/Registration/Registration'
-import Teams from 'src/pages/Teams/Teams'
+import { createBrowserRouter } from 'react-router-dom';
+import App from 'src/components/App/App';
+import Directory from 'src/pages/Directory/Directory';
+import Employees from 'src/pages/Employees/Employees';
+import Main from 'src/pages/Main/Main';
+import NotFound from 'src/pages/NotFound/NotFound';
+import Profile from 'src/pages/Profile/Profile';
+import Projects from 'src/pages/Projects/Projects';
+import Teams from 'src/pages/Teams/Teams';
 
 // export const router = createHashRouter([
-  export const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
@@ -18,10 +17,6 @@ import Teams from 'src/pages/Teams/Teams'
       {
         path: '*',
         element: <NotFound />,
-      },
-      {
-        path: 'registration',
-        element: <Registration />,
       },
       {
         path: '/',
@@ -49,4 +44,4 @@ import Teams from 'src/pages/Teams/Teams'
       },
     ],
   },
-])
+]);

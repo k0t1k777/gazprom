@@ -12,31 +12,40 @@ const cx = cn.bind(styles);
 interface HeaderProps {
   onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
   droppedCards: DroppedCard[];
+  loggedIn: boolean;
 }
 
-export default function Header({ onDragStart, droppedCards }: HeaderProps) {
+export default function Header({
+  onDragStart,
+  droppedCards,
+  loggedIn,
+}: HeaderProps) {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
   return (
     <>
-      <header className={styles.header}>
+      <header
+        className={cx(styles.header, { [styles.header_loggedIn]: !loggedIn })}
+      >
         <Link to='/'>
           <Logo />
         </Link>
-        <div className={styles.container}>
-          <Input
-            placeholder='Поиск'
-            className={cx(styles.input, {
-              [styles.input_disabled]: isFilterOpen,
-            })}
-          />
-          <FilterOutlined
-            onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className={cx(styles.headerIcon, {
-              [styles.headerIcon_disabled]: isFilterOpen,
-            })}
-          />
-        </div>
+        {loggedIn && (
+          <div className={styles.container}>
+            <Input
+              placeholder='Поиск'
+              className={cx(styles.input, {
+                [styles.input_disabled]: isFilterOpen,
+              })}
+            />
+            <FilterOutlined
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+              className={cx(styles.headerIcon, {
+                [styles.headerIcon_disabled]: isFilterOpen,
+              })}
+            />
+          </div>
+        )}
       </header>
       {isFilterOpen && (
         <Filter

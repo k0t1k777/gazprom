@@ -1,14 +1,12 @@
 import { Button, Input } from 'antd';
 import { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
 import styles from 'src/pages/Registration/Registration.module.scss';
 
 interface RegistrationProps {
-  handleRegister?: (data: { email: string; password: string }) => void;
+  handleRegister: (data: { email: string; password: string }) => void;
 }
 
-export default function Registration() {
-  const { handleRegister } = useOutletContext<RegistrationProps>();
+export default function Registration({ handleRegister }: RegistrationProps) {
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -33,12 +31,14 @@ export default function Registration() {
         ></Input>
         <Input
           className={styles.input}
-          type={password}
+          type='current-password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder='Введите пароль'
         ></Input>
-        <Button htmlType='submit' className={styles.button}>Войти</Button>
+        <Button htmlType='submit' className={styles.button}>
+          Войти
+        </Button>
       </form>
     </div>
   );

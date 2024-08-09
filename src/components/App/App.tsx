@@ -12,6 +12,7 @@ import {
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
 import { Link } from 'react-router-dom';
+import Registration from 'src/pages/Registration/Registration';
 
 export interface DroppedCard {
   id: string;
@@ -41,7 +42,7 @@ export default function App() {
       })
       .catch((error) => {
         console.error('Ошибка регистрации:', error);
-            });
+      });
   }
 
   // const [members, setMembers] = useState('')
@@ -205,40 +206,26 @@ export default function App() {
 
   return (
     <div>
-      <Header onDragStart={handleDragStart} droppedCards={droppedCards} />
+      <Header
+        onDragStart={handleDragStart}
+        droppedCards={droppedCards}
+        loggedIn={loggedIn}
+      />
       {loggedIn ? (
-  <div className='container'>
-    <SideBar />
-    <Outlet
-      context={{
-        handleRegister,
-        allowDrop,
-        handleDrop,
-        handleDragStart,
-        cards,
-      }}
-    />
-  </div>
-) : (
-  <Link to='/registration' />
-)}
+        <div className='container'>
+          <SideBar />
+          <Outlet
+            context={{
+              allowDrop,
+              handleDrop,
+              handleDragStart,
+              cards,
+            }}
+          />
+        </div>
+      ) : (
+        <Registration handleRegister={handleRegister} />
+      )}
     </div>
   );
 }
-
-// {loggedIn ? (
-//   <div className='container'>
-//     <SideBar />
-//     <Outlet
-//       context={{
-//         handleRegister,
-//         allowDrop,
-//         handleDrop,
-//         handleDragStart,
-//         cards,
-//       }}
-//     />
-//   </div>
-// ) : (
-//   <Outlet context={{ handleRegister }} />
-// )}
