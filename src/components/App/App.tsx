@@ -5,11 +5,13 @@ import 'src/components/App/App.scss';
 import { useEffect, useState } from 'react';
 import { initialCards, cardsList } from 'src/services/mock';
 import { initialCardsProps, RegisterDataProps } from 'src/services/types';
-import * as Api from 'src/services/utils';
-import { useDispatch, useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { selectUsers } from 'src/store/features/slice/userSlice';
-// import { setLoggedIn, SliceProps } from 'src/store/features/slice/userSlice';
+import {
+  registerUser,
+  selectUsers,
+  setLoggedIn,
+} from 'src/store/features/slice/userSlice';
+import { Link } from 'react-router-dom';
 
 export interface DroppedCard {
   id: string;
@@ -17,30 +19,30 @@ export interface DroppedCard {
 }
 
 export default function App() {
-  let { access } = useAppSelector(selectUsers);
-  const dispatch = useAppDispatch()
-
-  console.log('access: ', access);
-
-  // const navigate = useNavigate();
-  // const loggedIn = useSelector((state: SliceProps) => state.loggedIn);
-  // const dispatch = useDispatch();
-  const [loggedIn, setLoggedIn] = useState(true);
+  let { loggedIn } = useAppSelector(selectUsers);
   console.log('loggedIn: ', loggedIn);
+  const dispatch = useAppDispatch();
 
-  // function handleRegister({ email, password }: RegisterDataProps) {
-  //   Api.registration({ email, password })
-  //     .then((data) => {
-  //       if (data.access) {
-  //         localStorage.setItem('token', data.access);
-  //         dispatch(setLoggedIn(true));
-  //         navigate('/');
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }
+  const navigate = useNavigate();
+  // const [loggedIn, setLoggedIn] = useState(true);
+  // console.log('loggedIn: ', loggedIn);
+
+  function handleRegister({ email, password }: RegisterDataProps) {
+    dispatch(registerUser({ email, password }))
+      .unwrap()
+      .then((data) => {
+        console.log('data: ', data);
+        if (data.access) {
+          console.log('data.access: ', data.access);
+          localStorage.setItem('token', data.access);
+          dispatch(setLoggedIn(true));
+          navigate('/');
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка регистрации:', error);
+            });
+  }
 
   // const [members, setMembers] = useState('')
   // console.log('members: ', members);
@@ -55,8 +57,6 @@ export default function App() {
   //     console.error(error)
   //   })
   // }, [])
-
-
 
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);
@@ -196,34 +196,49 @@ export default function App() {
     });
   };
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     dispatch(setLoggedIn(true));
-  //   }
-  // }, [dispatch]);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(setLoggedIn(true));
+    }
+  }, [dispatch]);
 
   return (
     <div>
       <Header onDragStart={handleDragStart} droppedCards={droppedCards} />
       {loggedIn ? (
-        <div className='container'>
-          <SideBar />
-          <Outlet
-            context={{
-              // handleRegister,
-              allowDrop,
-              handleDrop,
-              handleDragStart,
-              cards,
-            }}
-          />
-        </div>
-      ) : (
-        <Outlet
-        // context={{ handleRegister }}
-        />
-      )}
+  <div className='container'>
+    <SideBar />
+    <Outlet
+      context={{
+        handleRegister,
+        allowDrop,
+        handleDrop,
+        handleDragStart,
+        cards,
+      }}
+    />
+  </div>
+) : (
+  <Link to='/registration' />
+)}
     </div>
   );
 }
+
+// {loggedIn ? (
+//   <div className='container'>
+//     <SideBar />
+//     <Outlet
+//       context={{
+//         handleRegister,
+//         allowDrop,
+//         handleDrop,
+//         handleDragStart,
+//         cards,
+//       }}
+//     />
+//   </div>
+// ) : (
+//   <Outlet context={{ handleRegister }} />
+// )}

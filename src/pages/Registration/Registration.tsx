@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 import styles from 'src/pages/Registration/Registration.module.scss';
 
 interface RegistrationProps {
-  handleRegister: (data: { email: string; password: string }) => void;
+  handleRegister?: (data: { email: string; password: string }) => void;
 }
 
 export default function Registration() {
