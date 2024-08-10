@@ -12,6 +12,7 @@ import {
   selectUsers,
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
+import { cellHeight, cellWidth } from 'src/services/const';
 // import * as Api from 'src/services/utils'
 export interface DroppedCard {
   id: string;
@@ -55,20 +56,20 @@ export default function App() {
     }
   };
 
+
   const allowDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-  };
+};
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-
+    e.currentTarget.style.cursor = 'default';
     const itemId = e.dataTransfer.getData('id');
 
     const dropTarget = e.currentTarget;
     const dropTargetRect = dropTarget.getBoundingClientRect();
 
-    const cellWidth = 355;
-    const cellHeight = 157;
+ 
 
     const columnIndex = Math.floor(
       (e.clientX - dropTargetRect.left) / cellWidth
@@ -76,6 +77,9 @@ export default function App() {
     const rowIndex = Math.floor((e.clientY - dropTargetRect.top) / cellHeight);
 
     const cellId = `${columnIndex}-${rowIndex}`;
+    if (cellId === '0-0' || cellId === '2-0') {
+      return;
+  }
     // Проверяем, что в этой ячейке еще нет карточки
     if (!droppedCards.some((card) => card.cellId === cellId)) {
 

@@ -87,6 +87,7 @@ export default function Main() {
           data-cell-id={cellId}
           className={styles.cell}
           style={{
+            // cursor: 'not-allowed',
             gridColumn: col + 1,
             gridRow: row + 1,
             backgroundColor: backgroundColor,
