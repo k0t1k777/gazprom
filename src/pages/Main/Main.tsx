@@ -1,8 +1,8 @@
 import Card from 'src/ui/Card/Card';
 import styles from 'src/pages/Main/Main.module.scss';
+import Arrow from 'src/ui/Arrow/Arrow';
 import { useOutletContext } from 'react-router-dom';
 import { initialCardsProps } from 'src/services/types';
-import Arrow from 'src/ui/Arrow/Arrow';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { numCols, numRows } from 'src/services/const';
 import { useAppSelector } from 'src/store/hooks';
@@ -32,7 +32,6 @@ export default function Main() {
       <div
         key={card.id}
         data-cell-id={card.id}
-        className={styles.cell}
         style={{ gridColumn: col + 1, gridRow: row + 1 }}
       >
         <Card
@@ -98,7 +97,6 @@ export default function Main() {
   const renderArrows = () => {
     const newArrows = allCards.map((card) => {
       const parentCard = allCards.find((item) => item.id === card.parentId);
-
       if (parentCard) {
         const parentElement = document.querySelector(
           `[data-cell-id="${parentCard.id}"]`

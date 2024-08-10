@@ -184,7 +184,6 @@ export default function App() {
       <Header
         onDragStart={handleDragStart}
         droppedCards={droppedCards}
-        loggedIn={loggedIn}
       />
       {loggedIn ? (
         <div className='container'>

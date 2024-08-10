@@ -6,23 +6,23 @@ import { Link } from 'react-router-dom';
 import Filter from 'src/components/Filter/Filter';
 import cn from 'classnames/bind';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { selectMembers, setIsFilterOpen } from 'src/store/features/slice/membersSlice';
+import {
+  selectMembers,
+  setIsFilterOpen,
+} from 'src/store/features/slice/membersSlice';
 import { DroppedCard } from 'src/services/types';
+import { selectUsers } from 'src/store/features/slice/userSlice';
 const cx = cn.bind(styles);
 
 interface HeaderProps {
   onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
   droppedCards: DroppedCard[];
-  loggedIn: boolean;
 }
 
-export default function Header({
-  onDragStart,
-  droppedCards,
-  loggedIn,
-}: HeaderProps) {
+export default function Header({ onDragStart, droppedCards }: HeaderProps) {
   let { isFilterOpen } = useAppSelector(selectMembers);
-   const dispatch = useAppDispatch();
+  let { loggedIn } = useAppSelector(selectUsers);
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -37,7 +37,7 @@ export default function Header({
             <Input
               placeholder='Поиск'
               className={cx(styles.input, {
-                [styles.input_disabled]: setIsFilterOpen,
+                [styles.input_disabled]: isFilterOpen,
               })}
             />
             <FilterOutlined
@@ -50,10 +50,7 @@ export default function Header({
         )}
       </header>
       {isFilterOpen && (
-        <Filter
-          onDragStart={onDragStart}
-          droppedCards={droppedCards}
-        />
+        <Filter onDragStart={onDragStart} droppedCards={droppedCards} />
       )}
     </>
   );
