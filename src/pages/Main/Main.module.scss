@@ -10,3 +10,9 @@
   gap: 24px;
   position: relative;
 }
+
+.cell {
+  // background-color: lightgray; 
+  width: 100%;
+  border-radius: $border-radius-s;
+}

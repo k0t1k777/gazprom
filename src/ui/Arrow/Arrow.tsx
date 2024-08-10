@@ -6,10 +6,6 @@ interface ArrowProps {
 }
 
 const Arrow = ({ startX, startY, endX, endY }: ArrowProps) => {
-  // console.log('startY: ', startY);
-  // console.log('startX: ', startX);
-  // console.log('endX: ', endX);
-  // console.log('endY: ', endY);
 
   const arrowHeadSize = 11;
   const angle = Math.atan2(endY - startY, endX - startX);
@@ -25,14 +21,14 @@ const Arrow = ({ startX, startY, endX, endY }: ArrowProps) => {
     <svg
     width={svgWidth}
     height={svgHeight}
-      style={{ position: 'absolute', pointerEvents: 'none', zIndex: '10' }}
+      style={{ position: 'absolute', pointerEvents: 'none' }}
     >
       <line
         x1={startX}
         y1={startY}
         x2={endX}
         y2={endY}
-        stroke='gray'
+        stroke='#8c8c8c'
         strokeWidth='2'
       />
       <line
@@ -40,7 +36,7 @@ const Arrow = ({ startX, startY, endX, endY }: ArrowProps) => {
         y1={endY}
         x2={arrowX1}
         y2={arrowY1}
-        stroke='gray'
+        stroke='#8c8c8c'
         strokeWidth='2'
       />
       <line
@@ -48,7 +44,7 @@ const Arrow = ({ startX, startY, endX, endY }: ArrowProps) => {
         y1={endY}
         x2={arrowX2}
         y2={arrowY2}
-        stroke='gray'
+        stroke='#8c8c8c'
         strokeWidth='2'
       />
     </svg>

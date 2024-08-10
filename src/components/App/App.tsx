@@ -81,7 +81,7 @@ export default function App() {
     const dropTarget = e.currentTarget;
     const dropTargetRect = dropTarget.getBoundingClientRect();
 
-    const cellWidth = 300;
+    const cellWidth = 355;
     const cellHeight = 157;
 
     const columnIndex = Math.floor(
