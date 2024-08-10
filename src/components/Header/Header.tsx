@@ -3,10 +3,11 @@ import Logo from 'src/assets/Logo.svg?react';
 import { Input } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import Filter from 'src/components/Filter/Filter';
 import cn from 'classnames/bind';
-import { DroppedCard } from '../App/App';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { selectMembers, setIsFilterOpen } from 'src/store/features/slice/membersSlice';
+import { DroppedCard } from 'src/services/types';
 const cx = cn.bind(styles);
 
 interface HeaderProps {
@@ -20,7 +21,8 @@ export default function Header({
   droppedCards,
   loggedIn,
 }: HeaderProps) {
-  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(true);
+  let { isFilterOpen } = useAppSelector(selectMembers);
+   const dispatch = useAppDispatch();
 
   return (
     <>
@@ -35,11 +37,11 @@ export default function Header({
             <Input
               placeholder='Поиск'
               className={cx(styles.input, {
-                [styles.input_disabled]: isFilterOpen,
+                [styles.input_disabled]: setIsFilterOpen,
               })}
             />
             <FilterOutlined
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
+              onClick={() => dispatch(setIsFilterOpen(!isFilterOpen))}
               className={cx(styles.headerIcon, {
                 [styles.headerIcon_disabled]: isFilterOpen,
               })}
@@ -49,8 +51,6 @@ export default function Header({
       </header>
       {isFilterOpen && (
         <Filter
-          setIsFilterOpen={setIsFilterOpen}
-          isFilterOpen={isFilterOpen}
           onDragStart={onDragStart}
           droppedCards={droppedCards}
         />

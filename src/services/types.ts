@@ -21,3 +21,8 @@ export interface RegisterDataProps {
   email: string;
   password: string;
 }
+
+export interface DroppedCard {
+  id: string;
+  cellId: string;
+}

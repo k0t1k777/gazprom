@@ -7,12 +7,14 @@ export interface StateType {
   members: membersProps[];
   isLoading: boolean;
   error: string | null | unknown;
+  isFilterOpen: boolean;
 }
 
 const initialState: StateType = {
   members: [],
   isLoading: false,
   error: null,
+  isFilterOpen: false,
 };
 
 export const fetchGetMembers = createAsyncThunk('fetch/members', async () => {
@@ -23,7 +25,11 @@ export const fetchGetMembers = createAsyncThunk('fetch/members', async () => {
 const membersSlice = createSlice({
   name: 'members',
   initialState,
-  reducers: {},
+  reducers: {
+    setIsFilterOpen(state, action) {
+      state.isFilterOpen = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchGetMembers.pending, (state) => {
@@ -41,5 +47,6 @@ const membersSlice = createSlice({
   },
 });
 
+export const { setIsFilterOpen } = membersSlice.actions;
 export const membersReducer = membersSlice.reducer;
 export const selectMembers = (state: RootStore) => state.members;

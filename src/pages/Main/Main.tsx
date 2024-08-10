@@ -4,6 +4,9 @@ import { useOutletContext } from 'react-router-dom';
 import { initialCardsProps } from 'src/services/types';
 import Arrow from 'src/ui/Arrow/Arrow';
 import { useEffect, useLayoutEffect, useState } from 'react';
+import { numCols, numRows } from 'src/services/const';
+import { useAppSelector } from 'src/store/hooks';
+import { selectMembers } from 'src/store/features/slice/membersSlice';
 
 export default function Main() {
   const { allowDrop, handleDrop, cards } = useOutletContext<{
@@ -11,12 +14,9 @@ export default function Main() {
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
     cards: initialCardsProps[];
   }>();
-
+  let { isFilterOpen } = useAppSelector(selectMembers);
   const [allCards, setAllCards] = useState<initialCardsProps[]>([]);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
-  const numCols = 3;
-  const numRows = 10;
-
   const [busyCells, setBusyCells] = useState<string[]>([]);
 
   const collectCellIds = (card: initialCardsProps, collected: string[]) => {
@@ -63,19 +63,18 @@ export default function Main() {
     return emptyCells.map((cellId) => {
       const [col, row] = cellId.split('-').map(Number);
       let backgroundColor = 'transparent';
-      if (busyCellIds.has('1-0')) {
-        // Подсвечиваем ячейки 0-1, 1-1, 2-1
+      const shouldShowHighlight = isFilterOpen === true;
+
+      if (busyCellIds.has('1-0') && shouldShowHighlight) {
         if (row === 1 && col >= 0 && col <= 2) {
           backgroundColor = '#EBF7FF';
         } else if (row > 1 && col >= 0 && col <= 2) {
-          // Подсвечиваем ячейку ниже занятых
           const aboveCellId = `${col}-${row - 1}`;
           if (busyCellIds.has(aboveCellId)) {
             backgroundColor = '#EBF7FF';
           }
         }
-      } else {
-        // Проверяем, если текущая ячейка под занятыми
+      } else if (shouldShowHighlight) {
         const belowCellId = `${col}-${row + 1}`;
         if (busyCellIds.has(belowCellId)) {
           backgroundColor = '#EBF7FF';
@@ -87,7 +86,6 @@ export default function Main() {
           data-cell-id={cellId}
           className={styles.cell}
           style={{
-            // cursor: 'not-allowed',
             gridColumn: col + 1,
             gridRow: row + 1,
             backgroundColor: backgroundColor,

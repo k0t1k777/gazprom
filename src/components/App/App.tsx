@@ -4,7 +4,7 @@ import SideBar from 'src/components/SideBar/SideBar';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { initialCards, cardsList } from 'src/services/mock';
-import { initialCardsProps, RegisterDataProps } from 'src/services/types';
+import { DroppedCard, initialCardsProps, RegisterDataProps } from 'src/services/types';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Registration from 'src/pages/Registration/Registration';
 import {
@@ -14,16 +14,11 @@ import {
 } from 'src/store/features/slice/userSlice';
 import { cellHeight, cellWidth } from 'src/services/const';
 // import * as Api from 'src/services/utils'
-export interface DroppedCard {
-  id: string;
-  cellId: string;
-}
+
 
 export default function App() {
   let { loggedIn } = useAppSelector(selectUsers);
- 
-
-  const dispatch = useAppDispatch();
+   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   function handleRegister({ email, password }: RegisterDataProps) {
