@@ -40,20 +40,6 @@ export default function App() {
       });
   }
 
-  // const [members, setMembers] = useState('')
-
-  // useEffect(() => {
-  //   dispatch(fetchGetMembers())
-  //   .then((data) => {
-  //     setMembers(data)
-  //     console.log('data: ', data);
-  //   } )
-  //   .catch((error) => {
-  //     console.error(error)
-  //   })
-  // }, [])
-
-
 
   // ДНД
   const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);

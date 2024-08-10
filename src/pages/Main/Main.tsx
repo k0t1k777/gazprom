@@ -14,22 +14,26 @@ export default function Main() {
 
   const [allCards, setAllCards] = useState<initialCardsProps[]>([]);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
-  const occupiedCells = allCards.map(card => card.cellId);
-  const freeCells = ['0-1', '1-1', '2-1'];
+  const numCols = 3;
+  const numRows = 100;
+
+  const [busyCells, setBusyCells] = useState<string[]>([]);
+
+  const collectCellIds = (card: initialCardsProps, collected: string[]) => {
+    collected.push(card.cellId);
+    card.subordinates.forEach((subordinate) =>
+      collectCellIds(subordinate, collected)
+    );
+  };
 
   const renderCards = (card: initialCardsProps) => {
-    console.log('allCards: ', allCards);
     const [col, row] = card.cellId.split('-').map(Number);
-    const isOccupied = occupiedCells.includes(card.cellId); // Проверяем, занята ли ячейка
-    const isFreeCell = freeCells.includes(card.cellId); // Проверяем, свободная ли ячейка
     return (
       <div
         key={card.id}
         data-cell-id={card.id}
         className={styles.cell}
-        style={{ gridColumn: col + 1, gridRow: row + 1,
-          backgroundColor: isOccupied ? 'lightgray' : (isFreeCell ? 'green' : 'yelow'),
-         }}
+        style={{ gridColumn: col + 1, gridRow: row + 1 }}
       >
         <Card
           id={card.id}
@@ -41,6 +45,37 @@ export default function Main() {
         />
       </div>
     );
+  };
+
+  const renderEmptyCells = (numCols: number, numRows: number) => {
+    const busyCellIds = new Set(busyCells);
+    const emptyCells = [];
+
+    for (let row = 0; row < numRows; row++) {
+      for (let col = 0; col < numCols; col++) {
+        const cellId = `${col}-${row}`;
+        if (!busyCellIds.has(cellId)) {
+          emptyCells.push(cellId);
+        }
+      }
+    }
+
+    return emptyCells.map((cellId) => {
+      const [col, row] = cellId.split('-').map(Number);
+
+      return (
+        <div
+          key={cellId}
+          data-cell-id={cellId}
+          className={styles.cell}
+          style={{
+            gridColumn: col + 1,
+            gridRow: row + 1,
+            backgroundColor: '#EBF7FF',
+          }}
+        />
+      );
+    });
   };
 
   const renderArrows = () => {
@@ -94,8 +129,15 @@ export default function Main() {
       );
     };
     const newAllCards: initialCardsProps[] = [];
-    cards.forEach((card) => collectCards(card, newAllCards));
+    const newBusyCells: string[] = [];
+
+    cards.forEach((card) => {
+      collectCards(card, newAllCards);
+      collectCellIds(card, newBusyCells);
+    });
+
     setAllCards(newAllCards);
+    setBusyCells(newBusyCells);
   }, [cards]);
 
   useLayoutEffect(() => {
@@ -107,7 +149,8 @@ export default function Main() {
   return (
     <section className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
       <div className={styles.cardContainer}>
-        {allCards.map((card) => renderCards(card))}
+        {allCards.map(renderCards)}
+        {renderEmptyCells(numCols, numRows)}
         {arrows}
       </div>
     </section>
