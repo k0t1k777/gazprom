@@ -25,7 +25,6 @@ export default function Filter({
 }: FilterProps) {
   // const dispatch = useAppDispatch();
   // const { members } = useAppSelector(selectMembers);
-  console.log('droppedCards: ', droppedCards);
 
   // useEffect(() => {
   //   dispatch(fetchGetMembers());

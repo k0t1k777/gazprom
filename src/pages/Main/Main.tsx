@@ -3,6 +3,7 @@ import styles from 'src/pages/Main/Main.module.scss';
 import { useOutletContext } from 'react-router-dom';
 import { initialCardsProps } from 'src/services/types';
 import Arrow from 'src/ui/Arrow/Arrow';
+import { useEffect, useState } from 'react';
 
 export default function Main() {
   const { allowDrop, handleDrop, cards } = useOutletContext<{
@@ -10,6 +11,20 @@ export default function Main() {
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
     cards: initialCardsProps[];
   }>();
+
+  // const [allCards, setAllCards] = useState<initialCardsProps[]>([]);
+
+  // useEffect(() => {
+  //   const collectCards = (card: initialCardsProps, collected: initialCardsProps[]) => {
+  //     collected.push(card);
+  //     card.subordinates.forEach((subordinate) => collectCards(subordinate, collected));
+  //   };
+
+  //   const newAllCards: initialCardsProps[] = [];
+  //   cards.forEach((card) => collectCards(card, newAllCards));
+
+  //   setAllCards(newAllCards);
+  // }, [cards]);
 
   const allCards: initialCardsProps[] = [];
 
@@ -45,19 +60,13 @@ export default function Main() {
   const renderArrows = () => {
     return allCards.map((card) => {
       const parentCard = cards.find((item) => item.id === card.parentId);
+      console.log('parentCard: ', parentCard);
 
       if (parentCard) {
-        const parentElement = document.getElementById(parentCard.id);
+        const parentElement = document.querySelector(`[data-cell-id="${parentCard.id}"]`);
+        const childElement = document.querySelector(`[data-cell-id="${card.id}"]`);
 
-        const childCard = parentCard.subordinates.find(
-          (subordinate) => subordinate.id === card.id
-        );
-
-        const childElement = childCard
-          ? document.querySelector(`[data-cell-id="${childCard.id}"]`)
-          : null;
-
-        if (parentElement && childElement) {
+             if (parentElement && childElement) {
           console.log('parentElement: ', parentElement);
           const from = {
             x: parentElement.offsetLeft + parentElement.offsetWidth / 2,
@@ -92,3 +101,11 @@ export default function Main() {
     </section>
   );
 }
+
+
+// const parentElement = document.getElementById(parentCard.id);
+// const childElement = document.getElementById(card.id);
+
+
+// const parentElement = document.querySelector(`[data-cell-id="${parentCard.id}"]`);
+// const childElement = document.querySelector(`[data-cell-id="${card.id}"]`);
