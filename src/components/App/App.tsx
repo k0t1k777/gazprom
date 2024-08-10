@@ -89,24 +89,21 @@ export default function App() {
         if (originalCard) {
           // Создаем новую подчиненную карточку на основе оригинальной
           const newSubordinateCard: initialCardsProps = {
-            ...originalCard, // Копируем все поля оригинальной карточки
+            ...originalCard,
             id: itemId,
             subordinates: [],
             cellId,
             parentId: parentCard.id,
           };
 
-          // Обновляем карточки, добавляя новую подчиненную карточку
-          const updatedCards = addSubordinate(
+           const updatedCards = addSubordinate(
             cards,
             parentCard.id,
             newSubordinateCard
           );
 
-          // Обновляем состояние карточек
           setCards(updatedCards);
 
-          // Добавление новой карточки в droppedCards
           setDroppedCards((prev) => [
             ...prev,
             { id: newSubordinateCard.id, cellId },
@@ -140,17 +137,16 @@ export default function App() {
     for (const card of cards) {
       // Проверяем, соответствует ли текущая карточка родительскому cellId
       if (card.cellId === parentCellId) {
-        return card; // Возвращаем родительскую карточку
+        return card;
       }
       if (card.subordinates) {
         const found = findParentCard(card.subordinates, columnIndex, rowIndex);
-        if (found) return found; // Рекурсивный поиск среди подчиненных
+        if (found) return found;
       }
     }
-    return undefined; // Если не нашли, возвращаем undefined
+    return undefined;
   };
 
-  // Функция для добавления подчиненной карточки
   const addSubordinate = (
     cards: initialCardsProps[],
     parentId: string,

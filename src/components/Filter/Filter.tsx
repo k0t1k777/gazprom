@@ -29,6 +29,7 @@ export default function Filter({
   // useEffect(() => {
   //   dispatch(fetchGetMembers());
   // }, [dispatch]);
+  console.log('droppedCards: ', droppedCards);
 
   const ref = useRef(null);
 
