@@ -10,7 +10,6 @@ export default function Main() {
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
     cards: initialCardsProps[];
   }>();
-  console.log('cards: ', cards);
 
   const allCards: initialCardsProps[] = [];
 
@@ -26,7 +25,11 @@ export default function Main() {
   const renderCards = (card: initialCardsProps) => {
     const [col, row] = card.cellId.split('-').map(Number);
     return (
-      <div key={card.id} style={{ gridColumn: col + 1, gridRow: row + 1 }}>
+      <div
+        key={card.id}
+        data-cell-id={card.id}
+        style={{ gridColumn: col + 1, gridRow: row + 1 }}
+      >
         <Card
           id={card.id}
           name={card.name}
@@ -41,23 +44,20 @@ export default function Main() {
 
   const renderArrows = () => {
     return allCards.map((card) => {
-      console.log('allCards: ', allCards);
       const parentCard = cards.find((item) => item.id === card.parentId);
-      console.log('parentCard: ', parentCard);
 
       if (parentCard) {
         const parentElement = document.getElementById(parentCard.id);
-        console.log('parentElement: ', parentElement);
 
         const childCard = parentCard.subordinates.find(
           (subordinate) => subordinate.id === card.id
         );
-        console.log('childCard: ', childCard);
 
-        const childElement = document.getElementById(childCard.id); 
-        
-          if (parentElement && childElement) {
-          console.log('childElement: ', childElement);
+        const childElement = childCard
+          ? document.querySelector(`[data-cell-id="${childCard.id}"]`)
+          : null;
+
+        if (parentElement && childElement) {
           console.log('parentElement: ', parentElement);
           const from = {
             x: parentElement.offsetLeft + parentElement.offsetWidth / 2,
@@ -69,12 +69,12 @@ export default function Main() {
           };
 
           return (
-            <Arrow 
-              key={`${parentCard.id}-${card.id}`} 
-              startX={from.x} 
-              startY={from.y} 
-              endX={to.x} 
-              endY={to.y} 
+            <Arrow
+              key={`${parentCard.id}-${card.id}`}
+              startX={from.x}
+              startY={from.y}
+              endX={to.x}
+              endY={to.y}
             />
           );
         }

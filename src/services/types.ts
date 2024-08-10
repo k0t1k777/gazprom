@@ -6,12 +6,13 @@ export interface initialCardsProps {
   photo: string;
   cellId: string;
   parentId?: string;
+  newId?: string;
   subordinates: initialCardsProps[];
 }
 
 export interface membersProps {
   id: string;
-  full_name: string;
+  name: string;
   position: string;
   subordinates: initialCardsProps[];
 }
