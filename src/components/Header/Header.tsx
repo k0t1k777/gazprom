@@ -2,7 +2,7 @@ import styles from 'src/components/Header/Header.module.scss';
 import Logo from 'src/assets/Logo.svg?react';
 import { Input } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Filter from 'src/components/Filter/Filter';
 import cn from 'classnames/bind';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
@@ -15,14 +15,19 @@ import { selectUsers } from 'src/store/features/slice/userSlice';
 const cx = cn.bind(styles);
 
 interface HeaderProps {
-  onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
   droppedCards: DroppedCard[];
 }
 
-export default function Header({ onDragStart, droppedCards }: HeaderProps) {
+export default function Header({ droppedCards }: HeaderProps) {
   let { isFilterOpen } = useAppSelector(selectMembers);
   let { loggedIn } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  function handleFilterClick() {
+    dispatch(setIsFilterOpen(!isFilterOpen));
+    navigate('/');
+  }
 
   return (
     <>
@@ -41,7 +46,7 @@ export default function Header({ onDragStart, droppedCards }: HeaderProps) {
               })}
             />
             <FilterOutlined
-              onClick={() => dispatch(setIsFilterOpen(!isFilterOpen))}
+              onClick={handleFilterClick}
               className={cx(styles.headerIcon, {
                 [styles.headerIcon_disabled]: isFilterOpen,
               })}
@@ -50,7 +55,7 @@ export default function Header({ onDragStart, droppedCards }: HeaderProps) {
         )}
       </header>
       {isFilterOpen && (
-        <Filter onDragStart={onDragStart} droppedCards={droppedCards} />
+        <Filter droppedCards={droppedCards} />
       )}
     </>
   );

@@ -12,11 +12,11 @@ import {
   setIsFilterOpen,
 } from 'src/store/features/slice/membersSlice';
 import { DroppedCard } from 'src/services/types';
+import { handleDragStart } from 'src/services/dragAndDrop';
 // import { fetchGetMembers, selectMembers } from 'src/store/features/slice/membersSlice';
 // import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
 interface FilterProps {
-  onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
   droppedCards: DroppedCard[];
 }
 // const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ interface FilterProps {
 // useEffect(() => {
 //   dispatch(fetchGetMembers());
 // }, [dispatch]);
-export default function Filter({ onDragStart, droppedCards }: FilterProps) {
+export default function Filter({ droppedCards }: FilterProps) {
   let { isFilterOpen } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
 
@@ -80,7 +80,7 @@ export default function Filter({ onDragStart, droppedCards }: FilterProps) {
               position={card.position}
               index={index}
               isFilterOpen={isFilterOpen}
-              onDragStart={onDragStart}
+              onDragStart={(e) => handleDragStart(e, droppedCards)}
               draggable={
                 !droppedCards.some((droppedCard) => droppedCard.id === card.id)
               }

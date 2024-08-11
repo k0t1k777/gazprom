@@ -1,3 +1,16 @@
+export interface CardProps {
+  id: string;
+  isFilterOpen?: boolean;
+  employesRout?: boolean;
+  position?: string;
+  title?: string;
+  count?: number;
+  name?: string;
+  index?: number;
+  onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
+  draggable?: boolean;
+}
+
 export interface initialCardsProps {
   id: string;
   name: string;
@@ -12,8 +25,8 @@ export interface initialCardsProps {
 
 export interface membersProps {
   id: string;
-  name: string;
-  position: string;
+  full_name: string;
+  department: string;
   subordinates: initialCardsProps[];
 }
 

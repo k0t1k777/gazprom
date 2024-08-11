@@ -3,22 +3,9 @@ import styles from 'src/ui/Card/Card.module.scss';
 import Avatar from 'src/assets/images/Avatar.png';
 import { useState } from 'react';
 import cn from 'classnames/bind';
+import { CardProps } from 'src/services/types';
 
 const cx = cn.bind(styles);
-
-interface CardProps {
-  id: string;
-  isFilterOpen?: boolean;
-  employesRout?: boolean;
-  position?: string;
-  title?: string;
-  count?: number;
-  name?: string;
-  index?: number;
-  onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
-  draggable?: boolean;
-  cellId?: any;
-}
 
 export default function Card({
   employesRout = false,
@@ -28,8 +15,6 @@ export default function Card({
   title,
   count,
   id,
-  // удалить
-  cellId,
   onDragStart,
   draggable = true,
 }: CardProps) {
@@ -72,8 +57,6 @@ export default function Card({
               [styles.noMoveColor]: !draggable,
             })}
           >
-            {/* удалить */}
-            {cellId}
             {position}
           </p>
           <div
