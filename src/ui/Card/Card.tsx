@@ -25,7 +25,7 @@ export default function Card({
       className={cx(styles.card, {
         [styles.mini]: isFilterOpen,
         [`${styles.noMove} ${styles.noMoveColor}`]: !draggable,
-        [`${styles.noMove} ${styles.card_employesRout}`]: employesRout,
+        // [`${styles.noMove} ${styles.card_employesRout}`]: employesRout,
       })}
       onDragStart={onDragStart}
       id={id}

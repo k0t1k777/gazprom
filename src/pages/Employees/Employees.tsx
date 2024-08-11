@@ -23,18 +23,17 @@ export default function Employees() {
   console.log(' members.count: ', members.count);
 
   const employesRout = location.pathname === '/employees';
+
   return (
     <div className={styles.employees}>
       <p className={styles.title}>Всего {members.length} сотрудников</p>
       <div className={styles.headerContainer}>
-        {/* <div className={styles.filterContainer}> */}
         <FilterList
           employesRout={employesRout}
           teams='ФИО'
           positions='Должность'
           city='Отдел'
         />
-        {/* </div> */}
         <div className={styles.pagesContainer}>
           <p className={styles.pages}>1-12 из 666</p>
           <div className={styles.buttonPages}>
