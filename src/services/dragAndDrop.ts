@@ -64,7 +64,6 @@ export const handleDrop = (
         );
 
         setCards(updatedCards);
-
         setDroppedCards((prev) => [
           ...prev,
           { id: newSubordinateCard.id, cellId },

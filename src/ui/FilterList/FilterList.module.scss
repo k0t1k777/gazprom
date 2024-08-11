@@ -13,6 +13,11 @@
   &_employesRout {
     justify-content: space-between;
     margin: 0;
+    width: 624px;
+    border: $border-white;
+    border-radius: $border-radius-s;
+    padding: 0 8px;
+    flex-wrap: nowrap;
   }
 }
 

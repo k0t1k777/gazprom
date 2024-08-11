@@ -29,7 +29,7 @@ export default function Filter({ droppedCards }: FilterProps) {
   let { isFilterOpen } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
 
-  console.log('droppedCards: ', droppedCards);
+  // console.log('droppedCards: ', droppedCards);
 
   const ref = useRef(null);
 
