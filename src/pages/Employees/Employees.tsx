@@ -3,30 +3,54 @@ import styles from 'src/pages/Employees/Employees.module.scss';
 import Card from 'src/ui/Card/Card';
 import FilterList from 'src/ui/FilterList/FilterList';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { useEffect } from 'react';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
   fetchGetMembers,
+  fetchGetMembersAmount,
   selectMembers,
+  setCurrentPage,
 } from 'src/store/features/slice/membersSlice';
-import { useEffect } from 'react';
-import { initialCards } from 'src/services/mock';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import cn from 'classnames/bind';
+import { itemsPerPage } from 'src/services/const';
+
+const cx = cn.bind(styles);
 
 export default function Employees() {
   const location = useLocation();
   const dispatch = useAppDispatch();
-  const { members } = useAppSelector(selectMembers);
+  const { members, membersAmount, currentPage } = useAppSelector(selectMembers);
+  const employesRout = location.pathname === '/employees';
+
+  const startIndex = (currentPage - 1) * itemsPerPage + 1;
+  const endIndex = Math.min(startIndex + itemsPerPage - 1, membersAmount);
+  const maxPages = Math.ceil(membersAmount / itemsPerPage);
+
+  function nextPage() {
+    if (currentPage < maxPages) {
+      dispatch(fetchGetMembers(currentPage + 1));
+      dispatch(setCurrentPage(currentPage + 1));
+    }
+  }
+
+  function previousPage() {
+    if (currentPage > 1) {
+      dispatch(fetchGetMembers(currentPage - 1));
+      dispatch(setCurrentPage(currentPage - 1));
+    }
+  }
 
   useEffect(() => {
-    dispatch(fetchGetMembers());
+    dispatch(fetchGetMembersAmount());
   }, [dispatch]);
-  console.log('members: ', members);
-  console.log(' members.count: ', members.count);
 
-  const employesRout = location.pathname === '/employees';
+  useEffect(() => {
+    dispatch(fetchGetMembers(currentPage));
+  }, [dispatch]);
 
   return (
     <div className={styles.employees}>
-      <p className={styles.title}>Всего {members.length} сотрудников</p>
+      <p className={styles.title}>Всего {membersAmount} сотрудников</p>
       <div className={styles.headerContainer}>
         <FilterList
           employesRout={employesRout}
@@ -35,18 +59,33 @@ export default function Employees() {
           city='Отдел'
         />
         <div className={styles.pagesContainer}>
-          <p className={styles.pages}>1-12 из 666</p>
+          <p className={styles.pages}>
+            {startIndex}-{endIndex} из {membersAmount}
+          </p>
           <div className={styles.buttonPages}>
-            <LeftOutlined className={styles.button}/>
-            <RightOutlined className={styles.button}/>
+            <LeftOutlined
+              className={cx(styles.button, {
+                [styles.button_disabled]: currentPage === 1,
+              })}
+              onClick={previousPage}
+              disabled={currentPage === 1}
+            />
+            <RightOutlined
+              className={cx(styles.button, {
+                [styles.button_disabled]: currentPage === maxPages,
+              })}
+              disabled={currentPage >= maxPages}
+              onClick={nextPage}
+            />
           </div>
         </div>
       </div>
       <div className={styles.cardContainer}>
-        {initialCards.map((card, index) => (
+        {members.map((card, index) => (
           <Card
             id={card.id}
             key={card.id}
+            title={card.position}
             name={card.full_name}
             position={card.department}
             index={index}

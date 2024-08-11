@@ -6,6 +6,7 @@
   width: 316px;
   height: 388px;
   @include flex-column-container;
+  align-items: center;
   gap: 40px;
   transition: width 0.3s ease;
 

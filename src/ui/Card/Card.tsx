@@ -25,12 +25,11 @@ export default function Card({
       className={cx(styles.card, {
         [styles.mini]: isFilterOpen,
         [`${styles.noMove} ${styles.noMoveColor}`]: !draggable,
-        // [`${styles.noMove} ${styles.card_employesRout}`]: employesRout,
       })}
       onDragStart={onDragStart}
       id={id}
-      draggable={draggable} 
-      >
+      draggable={draggable}
+    >
       <div className={styles.titleContainer}>
         <p className={cx(styles.title, { [styles.disabled]: isFilterOpen })}>
           {title}
@@ -53,7 +52,7 @@ export default function Card({
           </p>
           <p
             className={cx(styles.position, {
-              [styles.miniPosition]: isFilterOpen,
+              [styles.position_miniPosition]: isFilterOpen,
               [styles.noMoveColor]: !draggable,
             })}
           >
@@ -65,7 +64,12 @@ export default function Card({
             })}
           >
             <p className={styles.count}>{count}</p>
-            <div className={styles.countImg} onClick={() => setIsopen(!isOpen)}>
+            <div
+              className={cx(styles.countImg, {
+                [styles.disabled]: employesRout,
+              })}
+              onClick={() => setIsopen(!isOpen)}
+            >
               {isOpen ? <UpOutlined /> : <DownOutlined />}
             </div>
           </div>

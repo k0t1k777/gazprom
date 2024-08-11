@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { membersProps } from 'src/services/types';
-import { getMembers } from 'src/store/api';
+import { getMembers, getMembersAmount } from 'src/store/api';
 import { RootStore } from 'src/store/store';
 
 export interface StateType {
@@ -8,6 +8,8 @@ export interface StateType {
   isLoading: boolean;
   error: string | null | unknown;
   isFilterOpen: boolean;
+  currentPage: number;
+  membersAmount: number;
 }
 
 const initialState: StateType = {
@@ -15,12 +17,25 @@ const initialState: StateType = {
   isLoading: false,
   error: null,
   isFilterOpen: false,
+  currentPage: 1,
+  membersAmount: 0,
 };
 
-export const fetchGetMembers = createAsyncThunk('fetch/members', async () => {
-  const response = await getMembers();
-  return response;
-});
+export const fetchGetMembersAmount = createAsyncThunk(
+  'fetch/members/count',
+  async () => {
+    const response = await getMembersAmount();
+    return response;
+  }
+);
+
+export const fetchGetMembers = createAsyncThunk(
+  'fetch/members',
+  async (page: number) => {
+    const response = await getMembers(page);
+    return response;
+  }
+);
 
 const membersSlice = createSlice({
   name: 'members',
@@ -29,14 +44,29 @@ const membersSlice = createSlice({
     setIsFilterOpen(state, action) {
       state.isFilterOpen = action.payload;
     },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchGetMembersAmount.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchGetMembersAmount.fulfilled, (state, action) => {
+        state.membersAmount = action.payload.count;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchGetMembersAmount.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
       .addCase(fetchGetMembers.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(fetchGetMembers.fulfilled, (state, action) => {
-        state.members = action.payload;
+        state.members = action.payload.results;
         state.isLoading = false;
         state.error = null;
       })
@@ -47,6 +77,6 @@ const membersSlice = createSlice({
   },
 });
 
-export const { setIsFilterOpen } = membersSlice.actions;
+export const { setIsFilterOpen, setCurrentPage } = membersSlice.actions;
 export const membersReducer = membersSlice.reducer;
 export const selectMembers = (state: RootStore) => state.members;

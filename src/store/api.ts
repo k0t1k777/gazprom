@@ -37,11 +37,20 @@ export const registration = async ({ email, password }: RegisterDataProps) => {
   return await request('/token/', options);
 };
 
-export const getMembers = async () => {
+export const getMembersAmount = async () => {
   const options: RequestOptionsType = {
     method: 'GET',
     headers,
   };
-  
-  return await request('/v1/members/', options);
+  // return await request(`/v1/members/`, options);
+  const response = await request('/v1/members/', options);
+  return response
+};
+
+export const getMembers = async (page: number) => {
+  const options: RequestOptionsType = {
+    method: 'GET',
+    headers,
+  };
+  return await request(`/v1/members/?page=${page}`, options);
 };

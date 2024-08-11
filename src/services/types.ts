@@ -25,8 +25,10 @@ export interface initialCardsProps {
 
 export interface membersProps {
   id: string;
+  title: string;
   full_name: string;
   department: string;
+  position: string;
   subordinates: initialCardsProps[];
 }
 

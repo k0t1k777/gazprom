@@ -31,6 +31,7 @@
 .mainContainer {
   @include flex-column-container;
   width: 100%;
+  max-width: 188px;
 }
 
 .edit {
@@ -66,6 +67,9 @@
   @include use-font(14px, 17px, 400);
   @include cut-word;
   color: $main-text-grey;
+  &_miniPosition {
+    color: $main-text-black;
+  }
 }
 
 .count {
@@ -97,10 +101,6 @@
 
 .miniName {
   @include use-font(16px, 19px);
-}
-
-.miniPosition {
-  color: $main-text-black;
 }
 
 .noMove {

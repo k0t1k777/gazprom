@@ -6,29 +6,28 @@ import { CloseOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
 import { cardsList } from 'src/services/mock';
 import FilterList from 'src/ui/FilterList/FilterList';
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import {
-  selectMembers,
-  setIsFilterOpen,
-} from 'src/store/features/slice/membersSlice';
+import { setIsFilterOpen } from 'src/store/features/slice/membersSlice';
 import { DroppedCard } from 'src/services/types';
 import { handleDragStart } from 'src/services/dragAndDrop';
-// import { fetchGetMembers, selectMembers } from 'src/store/features/slice/membersSlice';
-// import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import {
+  fetchGetMembers,
+  selectMembers,
+} from 'src/store/features/slice/membersSlice';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
 interface FilterProps {
   droppedCards: DroppedCard[];
 }
-// const dispatch = useAppDispatch();
-// const { members } = useAppSelector(selectMembers);
 
-// useEffect(() => {
-//   dispatch(fetchGetMembers());
-// }, [dispatch]);
 export default function Filter({ droppedCards }: FilterProps) {
   let { isFilterOpen } = useAppSelector(selectMembers);
+  const { members, currentPage } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
+  console.log('members: ', members);
 
+  useEffect(() => {
+    dispatch(fetchGetMembers(currentPage));
+  }, [dispatch]);
   // console.log('droppedCards: ', droppedCards);
 
   const ref = useRef(null);

@@ -13,6 +13,7 @@ import {
   LeftOutlined,
   RightOutlined,
   TeamOutlined,
+  UpOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 
@@ -39,7 +40,7 @@ export default function SideBar() {
                   [styles.arrow_short]: shortWindow,
                 })}
               >
-                <DownOutlined />
+                {showMore ? <UpOutlined /> : <DownOutlined />}
               </span>
             ),
             text: 'Справочник',

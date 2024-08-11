@@ -24,7 +24,7 @@
 
 .pagesContainer {
   display: flex;
-  max-width: 158px;
+  max-width: 171px;
   width: 100%;
   padding: 12px 16px;
   border: $border-white;
@@ -45,4 +45,10 @@
 .button {
   cursor: pointer;
   color: $button-focus;
+  &_disabled {
+    color: $main-text-grey;
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
 }
