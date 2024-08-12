@@ -7,7 +7,7 @@ import Card from 'src/ui/Card/Card';
 // import { cardsList } from 'src/services/mock';
 import FilterList from 'src/ui/FilterList/FilterList';
 import { setIsFilterOpen } from 'src/store/features/slice/membersSlice';
-import { DroppedCard } from 'src/services/types';
+import { membersProps } from 'src/services/types';
 import { handleDragStart } from 'src/services/dragAndDrop';
 import {
   fetchGetMembers,
@@ -16,7 +16,7 @@ import {
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
 interface FilterProps {
-  droppedCards: DroppedCard[];
+  droppedCards: membersProps[];
 }
 
 export default function Filter({ droppedCards }: FilterProps) {
@@ -27,7 +27,7 @@ export default function Filter({ droppedCards }: FilterProps) {
   useEffect(() => {
     dispatch(fetchGetMembers(currentPage));
   }, [dispatch]);
-  // console.log('droppedCards: ', droppedCards);
+  console.log('droppedCards: ', droppedCards);
 
   const ref = useRef(null);
 
@@ -59,6 +59,7 @@ export default function Filter({ droppedCards }: FilterProps) {
       }
     }
   }, [isFilterOpen]);
+  console.log('members: ', members);
 
   return (
     <div ref={ref} className={styles.filter}>
@@ -74,17 +75,14 @@ export default function Filter({ droppedCards }: FilterProps) {
             <Card
               id={String(card.id)}
               key={String(card.id)}
-              // title={card.title}
-              // name={card.name}
-              // position={card.position}
               title={card.position}
-              name={card.full_name}
-              position={card.department}
+              full_name={card.full_name}
+              department={card.department}
               index={index}
               isFilterOpen={isFilterOpen}
               onDragStart={(e) => handleDragStart(e, droppedCards)}
               draggable={
-                !droppedCards.some((droppedCard) => droppedCard.id === card.id)
+                !droppedCards.some((droppedCard) => droppedCard.id === String(card.id))
               }
             />
           ))}

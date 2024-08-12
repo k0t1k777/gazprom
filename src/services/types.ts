@@ -1,27 +1,26 @@
-export interface CardProps {
-  id: string;
-  isFilterOpen?: boolean;
-  employesRout?: boolean;
-  position?: string;
-  title?: string;
-  count?: number;
-  name?: string;
-  index?: number;
-  onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
-  draggable?: boolean;
-}
-
-// export interface initialCardsProps {
+// export interface CardProps {
 //   id: string;
-//   name: string;
-//   position: string;
-//   title: string;
-//   photo: string;
-//   cellId: string;
-//   parentId?: string;
-//   newId?: string;
-//   subordinates: initialCardsProps[];
+//   isFilterOpen?: boolean;
+//   employesRout?: boolean;
+//   position?: string;
+//   title?: string;
+//   count?: number;
+//   name?: string;
+//   index?: number;
+//   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
+//   draggable?: boolean;
 // }
+
+export interface initialCardsProps {
+  id: string;
+  full_name: string;
+  position: string;
+  title: string;
+  photo?: string;
+  cellId: string;
+  parentId?: string;
+  subordinates: initialCardsProps[];
+}
 
 export interface membersProps {
   id: string;
@@ -32,9 +31,13 @@ export interface membersProps {
   position?: string;
   cellId?: string;
   parentId?: string;
+  photo?: string;
+  count?: number;
   subordinates?: membersProps[];
   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
   draggable?: boolean;
+  isFilterOpen?: boolean;
+  employesRout?: boolean;
 }
 
 export interface RegisterDataProps {

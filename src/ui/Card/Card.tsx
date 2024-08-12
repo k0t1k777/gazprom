@@ -3,22 +3,23 @@ import styles from 'src/ui/Card/Card.module.scss';
 import Avatar from 'src/assets/images/Avatar.png';
 import { useState } from 'react';
 import cn from 'classnames/bind';
-import { CardProps } from 'src/services/types';
+import { membersProps } from 'src/services/types';
 
 const cx = cn.bind(styles);
 
 export default function Card({
   employesRout = false,
   isFilterOpen = false,
-  name,
-  position,
+  full_name,
+  department,
   title,
   count,
   id,
   onDragStart,
   draggable = true,
-}: CardProps) {
+}: membersProps) {
   const [isOpen, setIsopen] = useState(true);
+  // console.log('title: ', title);
 
   return (
     <div
@@ -48,7 +49,7 @@ export default function Card({
           })}
         >
           <p className={cx(styles.name, { [styles.miniName]: isFilterOpen })}>
-            {name}
+            {full_name}
           </p>
           <p
             className={cx(styles.position, {
@@ -56,7 +57,7 @@ export default function Card({
               [styles.noMoveColor]: !draggable,
             })}
           >
-            {position}
+            {department}
           </p>
           <div
             className={cx(styles.countContainer, {

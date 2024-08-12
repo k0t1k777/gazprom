@@ -1,11 +1,11 @@
 import { cellHeight, cellWidth } from 'src/services/const';
 // import { cardsList } from 'src/services/mock';
-import { DroppedCard, membersProps } from 'src/services/types';
+import { membersProps } from 'src/services/types';
 
 // Начальная область переноса
 export const handleDragStart = (
   e: React.DragEvent<HTMLDivElement>,
-  droppedCards: DroppedCard[]
+  droppedCards: membersProps[]
 ) => {
   const itemId = e.currentTarget.id;
 
@@ -26,16 +26,13 @@ export const handleDrop = (
   e: React.DragEvent<HTMLDivElement>,
   cards: membersProps[],
   setCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
-  droppedCards: DroppedCard[],
-  setDroppedCards: React.Dispatch<React.SetStateAction<DroppedCard[]>>,
+  droppedCards: membersProps[],
+  setDroppedCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
   members: membersProps[],
 ) => {
 
-  console.log('members: ', members);
-
   e.preventDefault();
   const itemId = e.dataTransfer.getData('id');
-  console.log('itemId: ', itemId);
 
   const dropTarget = e.currentTarget;
   const dropTargetRect = dropTarget.getBoundingClientRect();
@@ -51,7 +48,7 @@ export const handleDrop = (
     const parentCard = findParentCard(cards, columnIndex, rowIndex);
 
     if (parentCard) {
-      const originalCard = members.find((card) => card.id === itemId);
+      const originalCard = members.find((card) => String(card.id) === itemId);
 
       if (originalCard) {
         const newSubordinateCard: membersProps = {
@@ -117,6 +114,8 @@ const addSubordinate = (
   parentId: string,
   subordinate: membersProps
 ): membersProps[] => {
+  console.log('cards: ', cards);
+
   return cards.map((card) => {
     if (card.id === parentId) {
       return {

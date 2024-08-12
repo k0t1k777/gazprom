@@ -1,6 +1,6 @@
 export const initialCards = [
   {
-    id: '1',
+    id: '999',
     position: 'Директор',
     full_name: 'Иванннн',
     department: 'Frontend Developer',

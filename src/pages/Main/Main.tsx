@@ -1,6 +1,6 @@
 import styles from 'src/pages/Main/Main.module.scss';
 import { useOutletContext } from 'react-router-dom';
-import { initialCardsProps } from 'src/services/types';
+import { initialCardsProps, membersProps } from 'src/services/types';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import {
   renderArrows,
@@ -12,9 +12,10 @@ export default function Main() {
   const { allowDrop, handleDrop, cards } = useOutletContext<{
     allowDrop: (e: React.DragEvent<HTMLImageElement>) => void;
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
-    cards: initialCardsProps[];
+    cards: membersProps[];
   }>();
   const [allCards, setAllCards] = useState<initialCardsProps[]>([]);
+  console.log('allCards: ', allCards);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [busyCells, setBusyCells] = useState<string[]>([]);
 

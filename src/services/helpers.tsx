@@ -3,7 +3,7 @@ import { useAppSelector } from 'src/store/hooks';
 import styles from 'src/pages/Main/Main.module.scss';
 import { numCols, numRows } from 'src/services/const';
 import Arrow from 'src/ui/Arrow/Arrow';
-import { initialCardsProps } from 'src/services/types';
+import { initialCardsProps, membersProps } from 'src/services/types';
 import Card from 'src/ui/Card/Card';
 
 // Рендер карточек в дереве
@@ -17,9 +17,9 @@ export const renderCards = (card: initialCardsProps) => {
     >
       <Card
         id={card.id}
-        name={card.name}
+        full_name={card.full_name}
         position={card.position}
-        title={card.title}
+        title={card.position}
         count={card.subordinates.length}
       />
     </div>
@@ -78,7 +78,7 @@ export const renderEmptyCells = (busyCells: string[]) => {
 
 // Рендер стрелок между карточками
 export const renderArrows = (
-  allCards: initialCardsProps[],
+  allCards: membersProps[],
   setArrows: React.Dispatch<React.SetStateAction<JSX.Element[]>>
 ) => {
   const newArrows = allCards.map((card) => {

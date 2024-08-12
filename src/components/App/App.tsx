@@ -7,8 +7,6 @@ import { initialCards } from 'src/services/mock';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Registration from 'src/pages/Registration/Registration';
 import {
-  DroppedCard,
-  // initialCardsProps,
   membersProps,
   RegisterDataProps,
 } from 'src/services/types';
@@ -24,7 +22,7 @@ export default function App() {
   let { loggedIn } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [droppedCards, setDroppedCards] = useState<DroppedCard[]>([]);
+  const [droppedCards, setDroppedCards] = useState<membersProps[]>([]);
   const [cards, setCards] = useState<membersProps[]>(initialCards);
 
   function handleRegister({ email, password }: RegisterDataProps) {

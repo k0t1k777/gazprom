@@ -10,12 +10,12 @@ import {
   selectMembers,
   setIsFilterOpen,
 } from 'src/store/features/slice/membersSlice';
-import { DroppedCard } from 'src/services/types';
+import { DroppedCard, membersProps } from 'src/services/types';
 import { selectUsers } from 'src/store/features/slice/userSlice';
 const cx = cn.bind(styles);
 
 interface HeaderProps {
-  droppedCards: DroppedCard[];
+  droppedCards: membersProps[];
 }
 
 export default function Header({ droppedCards }: HeaderProps) {
