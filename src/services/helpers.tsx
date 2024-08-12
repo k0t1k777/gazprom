@@ -3,11 +3,15 @@ import { useAppSelector } from 'src/store/hooks';
 import styles from 'src/pages/Main/Main.module.scss';
 import { numCols, numRows } from 'src/services/const';
 import Arrow from 'src/ui/Arrow/Arrow';
-import { initialCardsProps, membersProps } from 'src/services/types';
+import { membersProps } from 'src/services/types';
 import Card from 'src/ui/Card/Card';
 
 // Рендер карточек в дереве
-export const renderCards = (card: initialCardsProps) => {
+export const renderCards = (card: membersProps) => {
+  if (!card.cellId || !card.subordinates) {
+    return null;
+  }
+
   const [col, row] = card.cellId.split('-').map(Number);
   return (
     <div
@@ -17,9 +21,9 @@ export const renderCards = (card: initialCardsProps) => {
     >
       <Card
         id={card.id}
-        full_name={card.full_name}
-        position={card.position}
         title={card.position}
+        full_name={card.full_name}
+        department={card.department}
         count={card.subordinates.length}
       />
     </div>

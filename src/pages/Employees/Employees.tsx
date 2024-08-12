@@ -3,7 +3,7 @@ import styles from 'src/pages/Employees/Employees.module.scss';
 import Card from 'src/ui/Card/Card';
 import FilterList from 'src/ui/FilterList/FilterList';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
   fetchGetMembers,
@@ -86,8 +86,8 @@ export default function Employees() {
             id={card.id}
             key={card.id}
             title={card.position}
-            name={card.full_name}
-            position={card.department}
+            full_name={card.full_name}
+            department={card.department}
             index={index}
             employesRout={employesRout}
           />

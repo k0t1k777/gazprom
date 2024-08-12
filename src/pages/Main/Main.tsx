@@ -1,7 +1,7 @@
 import styles from 'src/pages/Main/Main.module.scss';
 import { useOutletContext } from 'react-router-dom';
-import { initialCardsProps, membersProps } from 'src/services/types';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { membersProps } from 'src/services/types';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   renderArrows,
   renderCards,
@@ -14,29 +14,31 @@ export default function Main() {
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
     cards: membersProps[];
   }>();
-  const [allCards, setAllCards] = useState<initialCardsProps[]>([]);
-  console.log('allCards: ', allCards);
+  const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [busyCells, setBusyCells] = useState<string[]>([]);
 
-  const collectCellIds = (card: initialCardsProps, collected: string[]) => {
-    collected.push(card.cellId);
-    card.subordinates.forEach((subordinate) =>
-      collectCellIds(subordinate, collected)
-    );
+  const collectCellIds = (card: membersProps, collected: string[]) => {
+    if (card.cellId) {
+      collected.push(card.cellId);
+    }
+    if (card.subordinates) {
+      card.subordinates.forEach((subordinate) =>
+        collectCellIds(subordinate, collected)
+      );
+    }
   };
 
   useEffect(() => {
-    const collectCards = (
-      card: initialCardsProps,
-      collected: initialCardsProps[]
-    ) => {
+    const collectCards = (card: membersProps, collected: membersProps[]) => {
       collected.push(card);
-      card.subordinates.forEach((subordinate) =>
-        collectCards(subordinate, collected)
-      );
+      if (card.subordinates) {
+        card.subordinates.forEach((subordinate) =>
+          collectCards(subordinate, collected)
+        );
+      }
     };
-    const newAllCards: initialCardsProps[] = [];
+    const newAllCards: membersProps[] = [];
     const newBusyCells: string[] = [];
 
     cards.forEach((card) => {

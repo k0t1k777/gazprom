@@ -11,16 +11,16 @@
 //   draggable?: boolean;
 // }
 
-export interface initialCardsProps {
-  id: string;
-  full_name: string;
-  position: string;
-  title: string;
-  photo?: string;
-  cellId: string;
-  parentId?: string;
-  subordinates: initialCardsProps[];
-}
+// export interface initialCardsProps {
+//   id: string;
+//   full_name: string;
+//   position: string;
+//   title: string;
+//   photo?: string;
+//   cellId: string;
+//   parentId?: string;
+//   subordinates: initialCardsProps[];
+// }
 
 export interface membersProps {
   id: string;

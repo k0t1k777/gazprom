@@ -3,3 +3,8 @@
   @include flex-column-center;
   margin: 56px 64px 0 0;
 }
+
+.profileContainer {
+  border: $border-white;
+  border-radius: 8px;
+}

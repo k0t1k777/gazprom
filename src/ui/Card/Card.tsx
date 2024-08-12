@@ -19,7 +19,6 @@ export default function Card({
   draggable = true,
 }: membersProps) {
   const [isOpen, setIsopen] = useState(true);
-  // console.log('title: ', title);
 
   return (
     <div
