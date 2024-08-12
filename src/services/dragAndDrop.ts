@@ -1,6 +1,6 @@
 import { cellHeight, cellWidth } from 'src/services/const';
-import { cardsList } from 'src/services/mock';
-import { DroppedCard, initialCardsProps } from 'src/services/types';
+// import { cardsList } from 'src/services/mock';
+import { DroppedCard, membersProps } from 'src/services/types';
 
 // Начальная область переноса
 export const handleDragStart = (
@@ -24,13 +24,18 @@ export const allowDrop = (e: React.DragEvent<HTMLDivElement>) => {
 // Логика сброса карточек
 export const handleDrop = (
   e: React.DragEvent<HTMLDivElement>,
-  cards: initialCardsProps[],
-  setCards: React.Dispatch<React.SetStateAction<initialCardsProps[]>>,
+  cards: membersProps[],
+  setCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
   droppedCards: DroppedCard[],
-  setDroppedCards: React.Dispatch<React.SetStateAction<DroppedCard[]>>
+  setDroppedCards: React.Dispatch<React.SetStateAction<DroppedCard[]>>,
+  members: membersProps[],
 ) => {
+
+  console.log('members: ', members);
+
   e.preventDefault();
   const itemId = e.dataTransfer.getData('id');
+  console.log('itemId: ', itemId);
 
   const dropTarget = e.currentTarget;
   const dropTargetRect = dropTarget.getBoundingClientRect();
@@ -46,10 +51,10 @@ export const handleDrop = (
     const parentCard = findParentCard(cards, columnIndex, rowIndex);
 
     if (parentCard) {
-      const originalCard = cardsList.find((card) => card.id === itemId);
+      const originalCard = members.find((card) => card.id === itemId);
 
       if (originalCard) {
-        const newSubordinateCard: initialCardsProps = {
+        const newSubordinateCard: membersProps = {
           ...originalCard,
           id: itemId,
           subordinates: [],
@@ -68,17 +73,21 @@ export const handleDrop = (
           ...prev,
           { id: newSubordinateCard.id, cellId },
         ]);
+      } else {
+        console.error`(Original card not found for itemId ${itemId})`;
       }
+    } else {
+      console.error`(Parent card not found for cellId ${cellId}.)`;
     }
   }
 };
 
 // Поиск родительской карты
 const findParentCard = (
-  cards: initialCardsProps[],
+  cards: membersProps[],
   columnIndex: number,
   rowIndex: number
-): initialCardsProps | undefined => {
+): membersProps | undefined => {
   let parentCellId;
 
   if (
@@ -104,10 +113,10 @@ const findParentCard = (
 
 // Добавление подчиенной карты
 const addSubordinate = (
-  cards: initialCardsProps[],
+  cards: membersProps[],
   parentId: string,
-  subordinate: initialCardsProps
-): initialCardsProps[] => {
+  subordinate: membersProps
+): membersProps[] => {
   return cards.map((card) => {
     if (card.id === parentId) {
       return {

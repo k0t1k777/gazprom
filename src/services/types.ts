@@ -11,25 +11,30 @@ export interface CardProps {
   draggable?: boolean;
 }
 
-export interface initialCardsProps {
-  id: string;
-  name: string;
-  position: string;
-  title: string;
-  photo: string;
-  cellId: string;
-  parentId?: string;
-  newId?: string;
-  subordinates: initialCardsProps[];
-}
+// export interface initialCardsProps {
+//   id: string;
+//   name: string;
+//   position: string;
+//   title: string;
+//   photo: string;
+//   cellId: string;
+//   parentId?: string;
+//   newId?: string;
+//   subordinates: initialCardsProps[];
+// }
 
 export interface membersProps {
   id: string;
-  title: string;
-  full_name: string;
-  department: string;
-  position: string;
-  subordinates: initialCardsProps[];
+  index?: number;
+  title?: string;
+  full_name?: string;
+  department?: string;
+  position?: string;
+  cellId?: string;
+  parentId?: string;
+  subordinates?: membersProps[];
+  onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
+  draggable?: boolean;
 }
 
 export interface RegisterDataProps {

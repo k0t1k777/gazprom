@@ -59,7 +59,8 @@
 .name {
   @include mp-null;
   @include use-font(14px, 17px, 500);
-  word-wrap: normal;
+  @include cut-word;
+  white-space: nowrap;
 }
 
 .position {

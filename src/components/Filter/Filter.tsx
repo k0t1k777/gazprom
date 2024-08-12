@@ -4,7 +4,7 @@ import useOutsideClick from 'src/hooks/useOutsideClick';
 import { Input } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
-import { cardsList } from 'src/services/mock';
+// import { cardsList } from 'src/services/mock';
 import FilterList from 'src/ui/FilterList/FilterList';
 import { setIsFilterOpen } from 'src/store/features/slice/membersSlice';
 import { DroppedCard } from 'src/services/types';
@@ -23,7 +23,6 @@ export default function Filter({ droppedCards }: FilterProps) {
   let { isFilterOpen } = useAppSelector(selectMembers);
   const { members, currentPage } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
-  console.log('members: ', members);
 
   useEffect(() => {
     dispatch(fetchGetMembers(currentPage));
@@ -71,12 +70,16 @@ export default function Filter({ droppedCards }: FilterProps) {
         </div>
         <FilterList teams='Подразделение' positions='Должность' city='Город' />
         <div className={styles.containerResult}>
-          {cardsList.map((card, index) => (
+          {members.map((card, index) => (
             <Card
-              id={card.id}
-              key={card.id}
-              name={card.name}
-              position={card.position}
+              id={String(card.id)}
+              key={String(card.id)}
+              // title={card.title}
+              // name={card.name}
+              // position={card.position}
+              title={card.position}
+              name={card.full_name}
+              position={card.department}
               index={index}
               isFilterOpen={isFilterOpen}
               onDragStart={(e) => handleDragStart(e, droppedCards)}
