@@ -62,3 +62,12 @@ export const getMembers = async (page: number) => {
   };
   return await request(`/api/v1/members/?page=${page}`, options);
 };
+
+export const getTeams = async () => {
+  const options: RequestOptionsType = {
+    method: 'GET',
+    headers,
+  };
+  const response = await request('/api/v1/teams/', options);
+  return response
+};

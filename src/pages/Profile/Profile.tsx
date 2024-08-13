@@ -18,7 +18,6 @@ import { BASE_URL } from 'src/store/api';
 export default function Profile() {
   let { shortWindow } = useAppSelector(selectMembers);
   let { profile } = useAppSelector(selectUsers);
-  console.log('profile: ', profile);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
