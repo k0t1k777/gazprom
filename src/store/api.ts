@@ -68,6 +68,13 @@ export const getTeams = async () => {
     method: 'GET',
     headers,
   };
-  const response = await request('/api/v1/teams/', options);
-  return response
+  return await request('/api/v1/teams/', options);
 };
+
+// export const getTeams = async () => {
+//   const options: RequestOptionsType = {
+//     method: 'GET',
+//     headers,
+//   };
+//   return await request('/api/v1/teams/', options);
+// };
