@@ -3,7 +3,7 @@ import styles from 'src/pages/Employees/Employees.module.scss';
 import Card from 'src/ui/Card/Card';
 import FilterList from 'src/ui/FilterList/FilterList';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
   fetchGetMembers,
