@@ -50,7 +50,9 @@ export default function Employees() {
   }, [dispatch]);
 
   return (
-    <div className={styles.employees}>
+    <div   className={cx(styles.employees, {
+      [styles.employeesasdasdasd]: shortWindow,
+    })}>
       <p
         className={cx(styles.title, {
           [styles.marginLeft]: shortWindow,

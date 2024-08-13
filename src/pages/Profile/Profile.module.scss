@@ -55,7 +55,7 @@
   align-items: flex-start;
   gap: 40px;
   &_column {
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 }
 
