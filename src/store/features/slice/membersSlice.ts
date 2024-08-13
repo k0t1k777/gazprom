@@ -10,6 +10,7 @@ export interface StateType {
   isFilterOpen: boolean;
   currentPage: number;
   membersAmount: number;
+  shortWindow: boolean;
 }
 
 const initialState: StateType = {
@@ -19,6 +20,7 @@ const initialState: StateType = {
   isFilterOpen: false,
   currentPage: 1,
   membersAmount: 0,
+  shortWindow: false,
 };
 
 export const fetchGetMembersAmount = createAsyncThunk(
@@ -46,6 +48,9 @@ const membersSlice = createSlice({
     },
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
+    },
+    setShortWindow(state, action) {
+      state.shortWindow = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -77,6 +82,6 @@ const membersSlice = createSlice({
   },
 });
 
-export const { setIsFilterOpen, setCurrentPage } = membersSlice.actions;
+export const { setIsFilterOpen, setCurrentPage, setShortWindow } = membersSlice.actions;
 export const membersReducer = membersSlice.reducer;
 export const selectMembers = (state: RootStore) => state.members;

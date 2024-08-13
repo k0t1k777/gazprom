@@ -10,7 +10,7 @@ import {
   selectMembers,
   setIsFilterOpen,
 } from 'src/store/features/slice/membersSlice';
-import { DroppedCard, membersProps } from 'src/services/types';
+import { membersProps } from 'src/services/types';
 import { selectUsers } from 'src/store/features/slice/userSlice';
 const cx = cn.bind(styles);
 

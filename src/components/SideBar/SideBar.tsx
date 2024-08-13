@@ -16,11 +16,14 @@ import {
   UpOutlined,
   UserOutlined,
 } from '@ant-design/icons';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { selectMembers, setShortWindow } from 'src/store/features/slice/membersSlice';
 
 const cx = cn.bind(styles);
 
 export default function SideBar() {
-  const [shortWindow, setShortWindow] = useState(false);
+  let { shortWindow } = useAppSelector(selectMembers);
+  const dispatch = useAppDispatch();
   const [showMore, setShorMore] = useState(true);
   const location = useLocation();
 
@@ -142,7 +145,7 @@ export default function SideBar() {
         className={cx(styles.sideBarButton, {
           [styles.sideBarButton_short]: shortWindow,
         })}
-        onClick={() => setShortWindow(!shortWindow)}
+        onClick={() => dispatch(setShortWindow(!shortWindow))}
       >
         Скрыть
         {shortWindow ? <RightOutlined /> : <LeftOutlined />}

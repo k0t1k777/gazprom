@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import { initialCards } from 'src/services/mock';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Registration from 'src/pages/Registration/Registration';
+import { allowDrop, handleDragStart, handleDrop } from 'src/services/dragAndDrop';
+import { selectMembers } from 'src/store/features/slice/membersSlice';
 import {
   membersProps,
   RegisterDataProps,
@@ -15,8 +17,7 @@ import {
   selectUsers,
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
-import { allowDrop, handleDragStart, handleDrop } from 'src/services/dragAndDrop';
-import { selectMembers } from 'src/store/features/slice/membersSlice';
+
 
 export default function App() {
   let { loggedIn } = useAppSelector(selectUsers);

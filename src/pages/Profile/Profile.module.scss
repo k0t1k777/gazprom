@@ -12,6 +12,7 @@
   gap: 44px;
   position: relative;
   padding: 24px;
+  max-height: 521px;
 }
 
 .photoContainer {
@@ -33,6 +34,12 @@
   list-style: none;
   gap: 48px;
   padding: 24px;
+  max-height: 290px;
+  height: 100%;
+  &_row {
+    flex-direction: column;
+    max-height: 846px;
+  }
 }
 
 .containerButtons {
@@ -44,11 +51,28 @@
 }
 
 .containerInfo {
-
+  @include flex-column-center;
+  align-items: flex-start;
+  gap: 40px;
+  &_column {
+    flex-direction: row;
+  }
 }
 
 .eventsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 60px;
+}
 
+.itemContainer {
+  @include flex-column-center;
+  align-items: flex-start;
+  border: $border-white;
+  border-radius: 8px;
+  padding: 24px;
+  width: 345px;
+  gap: 16px;
 }
 
 .button {
@@ -63,18 +87,22 @@
 .photo {
   width: 150px;
   height: 150px;
-  border: $border-white;
+  border-radius: $border-white;
   border: none;
+  object-fit: cover
+
 }
 
 .name {
   @include mp-null;
   @include use-font(24px, 28.8px);
+  text-align: center;
 }
 
 .text {
   @include mp-null;
   @include use-font(20px, 24px);
+  text-align: center;
   &_bold {
     color: $main-text-grey;
   }
@@ -83,6 +111,7 @@
 .textInfo {
   @include mp-null;
   @include use-font(14px, 16.8px, 400);
+  margin-right: auto;
   &_bold {
     font-weight: 500;
   }
@@ -91,6 +120,7 @@
 .item {
   @include flex-column-center;
   justify-content: space-between;
+  height: 242px;
   gap: 24px;
 }
 
@@ -100,4 +130,27 @@
   object-fit: contain;
   margin-top: auto;
   align-self: flex-end;
+}
+
+.itemContainerTitle {
+  @include mp-null;
+  @include use-font(16px, 19.2px, 500);
+}
+
+.itemContainerList {
+  @include mp-null;
+  @include flex-column-center;
+  align-items: flex-start;
+  list-style: none;
+  gap: 12px;
+}
+
+.itemContainerItem {
+  @include mp-null;
+  @include use-font(14px, 16.8px, 400);
+}
+
+.colorBlue {
+  color: $button-hover;
+  cursor: pointer;
 }

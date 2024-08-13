@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://gazprom.hopto.org/api';
+export const BASE_URL = 'https://gazprom.hopto.org';
 import { RegisterDataProps } from 'src/services/types';
 const TOKEN = localStorage.getItem('token');
 const headers = {
@@ -37,13 +37,21 @@ export const registration = async ({ email, password }: RegisterDataProps) => {
   return await request('/token/', options);
 };
 
+export const getProfile = async () => {
+  const options: RequestOptionsType = {
+    method: 'GET',
+    headers,
+  };
+  const response = await request('/api/v1/users/me/', options);
+  return response
+};
+
 export const getMembersAmount = async () => {
   const options: RequestOptionsType = {
     method: 'GET',
     headers,
   };
-  // return await request(`/v1/members/`, options);
-  const response = await request('/v1/members/', options);
+  const response = await request('/api/v1/members/', options);
   return response
 };
 
@@ -52,5 +60,5 @@ export const getMembers = async (page: number) => {
     method: 'GET',
     headers,
   };
-  return await request(`/v1/members/?page=${page}`, options);
+  return await request(`/api/v1/members/?page=${page}`, options);
 };

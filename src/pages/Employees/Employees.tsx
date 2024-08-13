@@ -14,9 +14,10 @@ import {
 import cn from 'classnames/bind';
 import { itemsPerPage } from 'src/services/const';
 
-const cx = cn.bind(styles);
-
 export default function Employees() {
+  let { shortWindow } = useAppSelector(selectMembers);
+  const cx = cn.bind(styles);
+
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { members, membersAmount, currentPage } = useAppSelector(selectMembers);
@@ -50,8 +51,16 @@ export default function Employees() {
 
   return (
     <div className={styles.employees}>
-      <p className={styles.title}>Всего {membersAmount} сотрудников</p>
-      <div className={styles.headerContainer}>
+      <p
+        className={cx(styles.title, {
+          [styles.marginLeft]: shortWindow,
+        })}
+      >
+        Всего {membersAmount} сотрудников
+      </p>
+      <div className={cx(styles.headerContainer, {
+          [styles.marginLeft]: shortWindow,
+        })}>
         <FilterList
           employesRout={employesRout}
           teams='ФИО'
@@ -80,7 +89,11 @@ export default function Employees() {
           </div>
         </div>
       </div>
-      <div className={styles.cardContainer}>
+      <div
+        className={cx(styles.cardContainer, {
+          [styles.cardContainer_center]: shortWindow,
+        })}
+      >
         {members.map((card, index) => (
           <Card
             id={card.id}

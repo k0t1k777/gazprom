@@ -49,3 +49,18 @@ export interface DroppedCard {
   id: string;
   cellId: string;
 }
+
+export interface ProfileProps {
+  email: string;
+  full_name: string;
+  image: string;
+  profile: {
+      phone: string | null;
+      telegram: string | null;
+      bio: string;
+      position: string;
+      birthday: string | null;
+      time_zone: number;
+  };
+  projects: any[];
+}

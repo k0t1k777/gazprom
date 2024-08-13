@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RegisterDataProps } from 'src/services/types';
-import { registration } from 'src/store/api';
+import { ProfileProps, RegisterDataProps } from 'src/services/types';
+import { getProfile, registration } from 'src/store/api';
 import { RootStore } from 'src/store/store';
 
 export interface StateType {
@@ -8,6 +8,7 @@ export interface StateType {
   isLoading: boolean;
   error: string | null | unknown;
   loggedIn: boolean;
+  profile: ProfileProps | null;
 }
 
 const initialState: StateType = {
@@ -15,12 +16,20 @@ const initialState: StateType = {
   isLoading: false,
   error: null,
   loggedIn: false,
+  profile: null,
 };
 // фетч добавить
 export const registerUser = createAsyncThunk(
   'fetch/user', 
   async ({ email, password }: RegisterDataProps) => {
     const response = await registration({ email, password });
+    return response;
+  }
+);
+export const fetchGetProfile = createAsyncThunk(
+  'fetch/profile', 
+  async () => {
+    const response = await getProfile();
     return response;
   }
 );
@@ -46,6 +55,18 @@ const userSlice = createSlice({
         state.loggedIn = true;
       })
       .addCase(registerUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchGetProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchGetProfile.fulfilled, (state, action) => {
+        state.profile = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchGetProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       });

@@ -20,6 +20,9 @@
   flex-wrap: wrap;
   gap: 24px;
   padding-top: 32px;
+  &_center {
+    justify-content: center;
+  }
 }
 
 .pagesContainer {
@@ -52,4 +55,8 @@
       cursor: not-allowed;
     }
   }
+}
+
+.marginLeft {
+  margin-left: 110px;
 }

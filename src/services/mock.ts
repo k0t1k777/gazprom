@@ -13,18 +13,6 @@ export const CHARTS_DATA = [
   }
 ]
 
-export const PROFILE_DATA = [
-  'UX/UI дизайнер',
-  'Text',
-  'дизайн',
-]
-
-export const INFO_DATA = [
-  'Тел. +7 (919) 891-54-25',
-  'E-mail: vanyavanya@mailru',
-  'Местонахождение: Санкт-Петербург GMT+3',
-]
-
 export const EVENTS_DATA = [
   {
     title: 'Обучения',
@@ -39,13 +27,15 @@ export const EVENTS_DATA = [
     items: ['4 за последний год'],
     link: 'Подробнее',
   },
+]
+
+export const PROJECT_DATA = [
   {
     title: 'Участие в текущих проектах',
     items: [
       'Мегапроект «Ямал»',
       'Ковыктинское месторождение',
     ],
-    link: 'Подробнее',
   },
 ]
 
