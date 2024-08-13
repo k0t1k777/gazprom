@@ -43,7 +43,7 @@ export const getProfile = async () => {
     headers,
   };
   const response = await request('/api/v1/users/me/', options);
-  return response
+  return response;
 };
 
 export const getMembersAmount = async () => {
@@ -52,7 +52,7 @@ export const getMembersAmount = async () => {
     headers,
   };
   const response = await request('/api/v1/members/', options);
-  return response
+  return response;
 };
 
 export const getMembers = async (page: number) => {
@@ -77,4 +77,8 @@ export const getProjects = async () => {
     headers,
   };
   return await request('/api/v1/projects/', options);
+};
+
+export const getFilters = async () => {
+  return await request('/api/v1/filters/');
 };

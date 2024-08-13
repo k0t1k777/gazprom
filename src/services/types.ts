@@ -82,3 +82,9 @@ export interface TeamsProps {
     id?: string;
   }[];
 }
+
+export interface FiltersProps {
+  cities: string[];
+  departments: string[];
+  positions: string[];
+}

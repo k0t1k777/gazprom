@@ -14,6 +14,10 @@ import {
   selectMembers,
 } from 'src/store/features/slice/membersSlice';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import {
+  fetchGetFilters,
+  selectFilters,
+} from 'src/store/features/slice/filterSlice';
 
 interface FilterProps {
   droppedCards: membersProps[];
@@ -21,13 +25,19 @@ interface FilterProps {
 
 export default function Filter({ droppedCards }: FilterProps) {
   let { isFilterOpen } = useAppSelector(selectMembers);
+  const { filters } = useAppSelector(selectFilters);
+  console.log('fiters: ', filters);
+
   const { members, currentPage } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(fetchGetFilters());
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(fetchGetMembers(currentPage));
   }, [dispatch]);
-  console.log('droppedCards: ', droppedCards);
 
   const ref = useRef(null);
 
@@ -59,7 +69,6 @@ export default function Filter({ droppedCards }: FilterProps) {
       }
     }
   }, [isFilterOpen]);
-  console.log('members: ', members);
 
   return (
     <div ref={ref} className={styles.filter}>
@@ -82,7 +91,9 @@ export default function Filter({ droppedCards }: FilterProps) {
               isFilterOpen={isFilterOpen}
               onDragStart={(e) => handleDragStart(e, droppedCards)}
               draggable={
-                !droppedCards.some((droppedCard) => droppedCard.id === String(card.id))
+                !droppedCards.some(
+                  (droppedCard) => droppedCard.id === String(card.id)
+                )
               }
             />
           ))}
