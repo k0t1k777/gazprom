@@ -1,7 +1,7 @@
 import styles from 'src/pages/Main/Main.module.scss';
 import { useOutletContext } from 'react-router-dom';
 import { membersProps } from 'src/services/types';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import {
   renderArrows,
   renderCards,
