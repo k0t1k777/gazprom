@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { TeamsProps } from 'src/services/types';
 import { getTeams } from 'src/store/api';
 import { RootStore } from 'src/store/store';
 
 export interface StateType {
-  teams: any;
+  teams: TeamsProps[];
   isLoading: boolean;
   error: string | null | unknown;
  }

@@ -1,5 +1,7 @@
 .teams {
   @include main-container;
-  @include flex-column-center;
+  display: flex;
   margin: 56px 64px 0 0;
+  flex-wrap: wrap;
+  gap: 16px 8px;
 }

@@ -34,7 +34,7 @@ export const registration = async ({ email, password }: RegisterDataProps) => {
     },
     body: JSON.stringify({ email, password }),
   };
-  return await request('/token/', options);
+  return await request('/api/token/', options);
 };
 
 export const getProfile = async () => {
@@ -71,10 +71,10 @@ export const getTeams = async () => {
   return await request('/api/v1/teams/', options);
 };
 
-// export const getTeams = async () => {
-//   const options: RequestOptionsType = {
-//     method: 'GET',
-//     headers,
-//   };
-//   return await request('/api/v1/teams/', options);
-// };
+export const getProjects = async () => {
+  const options: RequestOptionsType = {
+    method: 'GET',
+    headers,
+  };
+  return await request('/api/v1/projects/', options);
+};

@@ -55,12 +55,30 @@ export interface ProfileProps {
   full_name: string;
   image: string;
   profile: {
-      phone: string | null;
-      telegram: string | null;
-      bio: string;
-      position: string;
-      birthday: string | null;
-      time_zone: number;
+    phone: string | null;
+    telegram: string | null;
+    bio: string;
+    position: string;
+    birthday: string | null;
+    time_zone: number;
   };
   projects: any[];
+}
+
+export interface ProjectseProps {
+  name: string;
+  id?: string;
+  teams?: {
+    name?: string;
+    id?: string;
+  }[];
+}
+
+export interface TeamsProps {
+  name: string;
+  id?: string;
+  projects?: {
+    name?: string;
+    id?: string;
+  }[];
 }
