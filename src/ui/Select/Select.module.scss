@@ -1,0 +1,72 @@
+@import 'src/styles/variables.scss';
+@import 'src/styles/mixins.scss';
+
+.select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 200px;
+  max-height: 56px;
+  border: $main-text-black;
+  color: $main-text-black;
+  box-sizing: border-box;
+  background-color: white;
+  cursor: pointer;
+
+  &__title {
+    color: $main-text-black;
+    box-sizing: border-box;
+    padding: 0;
+    @include cut-word;
+    width: 80%;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 9px;
+    right: 24px;
+    color: $button-focus;
+  }
+
+  &__optionContainer {
+    display: block;
+    position: absolute;
+    width: calc(100%);
+    border: $border-white;
+    border-radius: $border-radius-s;
+    top: 33px;
+    left: -12px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    z-index: 1;
+    background-color: inherit;
+
+    &--open {
+      max-height: 330px;
+    }
+  }
+
+  &__option {
+    margin: 10px 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: calc(100%);
+    box-sizing: border-box;
+    padding: 10px 22px;
+
+    &:hover {
+      background: $button;
+      color: $main-text-black;
+    }
+  }
+
+  &__optionName {
+    @include cut-word;
+    margin: 0;
+  }
+}

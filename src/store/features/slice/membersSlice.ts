@@ -11,6 +11,7 @@ export interface StateType {
   currentPage: number;
   membersAmount: number;
   shortWindow: boolean;
+  membersValue: string;
 }
 
 const initialState: StateType = {
@@ -21,6 +22,7 @@ const initialState: StateType = {
   currentPage: 1,
   membersAmount: 0,
   shortWindow: false,
+  membersValue: '',
 };
 
 export const fetchGetMembersAmount = createAsyncThunk(
@@ -39,6 +41,14 @@ export const fetchGetMembers = createAsyncThunk(
   }
 );
 
+// export const fetchGetMembersValue = createAsyncThunk(
+//   'fetch/members/value',
+//   async (value: string) => {
+//     const response = await getMembersValue(value);
+//     return response;
+//   }
+// );
+
 const membersSlice = createSlice({
   name: 'members',
   initialState,
@@ -55,30 +65,30 @@ const membersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchGetMembersAmount.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchGetMembersAmount.fulfilled, (state, action) => {
-        state.membersAmount = action.payload.count;
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(fetchGetMembersAmount.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message;
-      })
-      .addCase(fetchGetMembers.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchGetMembers.fulfilled, (state, action) => {
-        state.members = action.payload.results;
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(fetchGetMembers.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message;
-      });
+    .addCase(fetchGetMembersAmount.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(fetchGetMembersAmount.fulfilled, (state, action) => {
+      state.membersAmount = action.payload.count;
+      state.isLoading = false;
+      state.error = null;
+    })
+    .addCase(fetchGetMembersAmount.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    })
+    .addCase(fetchGetMembers.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(fetchGetMembers.fulfilled, (state, action) => {
+      state.members = action.payload.results;
+      state.isLoading = false;
+      state.error = null;
+    })
+    .addCase(fetchGetMembers.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
   },
 });
 

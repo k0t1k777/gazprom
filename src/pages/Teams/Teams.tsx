@@ -15,7 +15,7 @@ export default function Teams() {
   }, []);
 
   return (
-    <div className={styles.teams}>
+    <section className={styles.teams}>
       {teams.map((item) => (
         <TeamsItem
           key={item.id}
@@ -23,6 +23,6 @@ export default function Teams() {
           projects={item.projects}
         />
       ))}
-    </div>
+    </section>
   );
 }

@@ -3,11 +3,10 @@
   @include flex-column-container;
   margin: 56px 64px 0 0;
   max-width: 948px;
-}
-
-.employeesasdasdasd {
-  max-width: 948px;
-  margin: 56px auto 0;
+  &_short {
+    max-width: 948px;
+    margin: 56px auto 0;
+  }
 }
 
 .title {
@@ -65,4 +64,30 @@
 
 .marginLeft {
   margin-left: 0;
+}
+
+.containerItem {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.list {
+  @include mp-null-list;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border: $border-white;
+  border-radius: $border-radius-s;
+  padding: 4px 16px;
+  max-height: 41px;
+}
+
+.item {
+  @include mp-null;
+  @include use-font(14px, 17px, 400);
+}
+
+.arrow {
+  color: $button-focus;
 }

@@ -28,7 +28,7 @@ export default function Header({ droppedCards }: HeaderProps) {
     dispatch(setIsFilterOpen(!isFilterOpen));
     navigate('/');
   }
-
+{/* <PlusOutlined /> */}
   return (
     <>
       <header

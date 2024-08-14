@@ -20,7 +20,7 @@ export default function Registration({ handleRegister }: RegistrationProps) {
   };
 
   return (
-    <div className={styles.registration}>
+    <section className={styles.registration}>
       <h1 className={styles.title}>Авторизация</h1>
       <form className={styles.container} onSubmit={handleSubmit}>
         <Input
@@ -40,6 +40,6 @@ export default function Registration({ handleRegister }: RegistrationProps) {
           Войти
         </Button>
       </form>
-    </div>
+    </section>
   );
 }

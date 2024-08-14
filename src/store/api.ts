@@ -79,6 +79,15 @@ export const getProjects = async () => {
   return await request('/api/v1/projects/', options);
 };
 
-export const getFilters = async () => {
-  return await request('/api/v1/filters/');
-};
+// export const getFilters = async () => {
+//   return await request('/api/v1/filters/');
+// };
+
+// export const getMembersValue = async (value: string) => {
+//   const options: RequestOptionsType = {
+//     method: 'GET',
+//     headers,
+//   };
+//   return await request(`/api/v1/members/?department=${value}`, options);
+// };
+// `/?department=${department}` : ''}

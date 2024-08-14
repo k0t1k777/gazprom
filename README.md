@@ -31,6 +31,7 @@
 react-beautiful-dnd
 framer-motion
 classnames
+simplebar-react
 
 
 ## Установка и запуск

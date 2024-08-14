@@ -27,7 +27,7 @@ export default function Profile() {
   const cx = cn.bind(styles);
 
   return (
-    <div className={styles.profile}>
+    <section className={styles.profile}>
       <div className={styles.containerProfile}>
         <div className={styles.photoContainer}>
           <img
@@ -115,6 +115,6 @@ export default function Profile() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
