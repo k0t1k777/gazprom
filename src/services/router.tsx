@@ -3,6 +3,7 @@ import App from 'src/components/App/App';
 import Directory from 'src/pages/Directory/Directory';
 import Employees from 'src/pages/Employees/Employees';
 import Main from 'src/pages/Main/Main';
+import NewTeam from 'src/pages/NewTeam/NewTeam';
 import NotFound from 'src/pages/NotFound/NotFound';
 import Profile from 'src/pages/Profile/Profile';
 import Projects from 'src/pages/Projects/Projects';
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: 'teams',
         element: <Teams />,
+      },
+      {
+        path: 'new-team',
+        element: <NewTeam />,
       },
       {
         path: 'teams/:id',

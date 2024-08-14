@@ -1,7 +1,11 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { useLocation, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import styles from 'src/pages/Teams/Teams.module.scss';
-import { renderArrows, renderCards, renderEmptyCells } from 'src/services/helpers';
+import {
+  renderArrows,
+  renderCards,
+  renderEmptyCells,
+} from 'src/services/helpers';
 import { membersProps } from 'src/services/types';
 import { selectMembers } from 'src/store/features/slice/membersSlice';
 import {
@@ -18,7 +22,7 @@ export default function Teams() {
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
     // cards: membersProps[];
   }>();
-  const { id } = useParams()
+  const { id } = useParams();
   // const teamsRout = location.pathname.includes(`/teams/`)
 
   const dispatch = useAppDispatch();
@@ -26,13 +30,11 @@ export default function Teams() {
   // console.log('team: ', team);
   let { isFilterOpen } = useAppSelector(selectMembers);
 
-
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   // console.log('allCards: ', allCards);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [busyCells, setBusyCells] = useState<string[]>([]);
   const [teamsCards, setTeamsCards] = useState<membersProps[]>([]);
-
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
     if (card.cellId) {
@@ -57,10 +59,11 @@ export default function Teams() {
     const newAllCards: membersProps[] = [];
     const newBusyCells: string[] = [];
 
-    teamsCards && teamsCards.forEach((card) => {
-      collectCards(card, newAllCards);
-      collectCellIds(card, newBusyCells);
-    });
+    teamsCards &&
+      teamsCards.forEach((card) => {
+        collectCards(card, newAllCards);
+        collectCellIds(card, newBusyCells);
+      });
 
     setAllCards(newAllCards);
     setBusyCells(newBusyCells);
@@ -72,32 +75,32 @@ export default function Teams() {
     }
   }, [allCards]);
 
-
   useEffect(() => {
     dispatch(fetchGetTeams());
   }, []);
 
-
   useEffect(() => {
     if (id) {
-      const parsedId = parseInt(id, 10)
-      dispatch(fetchGetTeamsId(parsedId))
+      const parsedId = parseInt(id, 10);
+      dispatch(fetchGetTeamsId(parsedId));
     }
-  }, [dispatch, id])
+  }, [dispatch, id]);
 
   useEffect(() => {
-    setTeamsCards(team && team.employees?.subordinates)
-  }, [team])
-  
-  console.log('teamsCards: ', teamsCards);
+    setTeamsCards(team && team.employees?.subordinates);
+  }, [team]);
 
   return (
-    <section className={styles.teams} onDragOver={allowDrop} onDrop={handleDrop}>
-  {id ? (
-        <div>
-         {teamsCards && teamsCards.map(renderCards)}
-        {renderEmptyCells(busyCells, isFilterOpen)}
-        {arrows}
+    <section className={styles.teams}>
+      {id ? (
+        <div
+          className={styles.teams}
+          onDragOver={allowDrop}
+          onDrop={handleDrop}
+        >
+          {teamsCards && teamsCards.map(renderCards)}
+          {renderEmptyCells(busyCells, isFilterOpen)}
+          {arrows}
         </div>
       ) : (
         teams.map((item) => (

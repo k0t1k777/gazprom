@@ -1,9 +1,6 @@
 import { DownOutlined } from '@ant-design/icons';
 import styles from 'src/ui/FilterList/FilterList.module.scss';
 import cn from 'classnames/bind';
-import { Select } from 'antd';
-import { useAppSelector } from 'src/store/hooks';
-import { selectFilters } from 'src/store/features/slice/filterSlice';
 
 const cx = cn.bind(styles);
 

@@ -1,5 +1,3 @@
-import { selectMembers } from 'src/store/features/slice/membersSlice';
-import { useAppSelector } from 'src/store/hooks';
 import styles from 'src/pages/Main/Main.module.scss';
 import { numCols, numRows } from 'src/services/const';
 import Arrow from 'src/ui/Arrow/Arrow';
@@ -34,8 +32,6 @@ export const renderCards = (card: membersProps) => {
 export const renderEmptyCells = (busyCells: string[], isFilterOpen: boolean) => {
   const busyCellIds = new Set(busyCells);
   const emptyCells = [];
-  // let { isFilterOpen } = useAppSelector(selectMembers);
-
   for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
       const cellId = `${col}-${row}`;

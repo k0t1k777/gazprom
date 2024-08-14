@@ -16,6 +16,7 @@ export interface ISelect {
 }
 
 export default function Select({ text, setValue, value, options }: ISelect) {
+  console.log('setValue: ', setValue);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
 

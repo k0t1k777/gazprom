@@ -1,7 +1,7 @@
 import styles from 'src/components/Header/Header.module.scss';
 import Logo from 'src/assets/Logo.svg?react';
 import { Input } from 'antd';
-import { FilterOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import Filter from 'src/components/Filter/Filter';
 import cn from 'classnames/bind';
@@ -26,9 +26,6 @@ export default function Header({ droppedCards }: HeaderProps) {
   function handleFilterClick() {
     dispatch(setIsFilterOpen(!isFilterOpen));
   }
-  {
-    /* <PlusOutlined /> */
-  }
   return (
     <>
       <header
@@ -45,12 +42,14 @@ export default function Header({ droppedCards }: HeaderProps) {
                 [styles.input_disabled]: isFilterOpen,
               })}
             />
-            <FilterOutlined
-              onClick={handleFilterClick}
-              className={cx(styles.headerIcon, {
-                [styles.headerIcon_disabled]: isFilterOpen,
-              })}
-            />
+            <Link to='/new-team'>
+              <PlusOutlined
+                onClick={handleFilterClick}
+                className={cx(styles.headerIcon, {
+                  [styles.headerIcon_disabled]: isFilterOpen,
+                })}
+              />
+            </Link>
           </div>
         )}
       </header>

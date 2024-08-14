@@ -25,6 +25,35 @@ export default function App() {
   const [droppedCards, setDroppedCards] = useState<membersProps[]>([]);
   const [cards, setCards] = useState<membersProps[]>([]);
 
+  // // const [teamsCards, setTeamsCards] = useState<membersProps[]>([]);
+  // const { team } = useAppSelector(selectTeams);
+  // console.log('team: ', team);
+  // const [cards, setCards] = useState<membersProps[]>([]);
+  // // const { id } = useParams()
+  // const id = 1
+
+  // useEffect(() => {
+  //   if (id) {
+  //     // const parsedId = parseInt(id, 10)
+  //     // dispatch(fetchGetTeamsId(parsedId))
+  //     dispatch(fetchGetTeamsId(2))
+  //   }
+  // }, [dispatch, id])
+
+  // useEffect(() => {
+  //   setCards(team && team.employees)
+  // }, [team])
+
+
+
+
+
+
+
+
+
+
+
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(registerUser({ email, password }))
       .unwrap()

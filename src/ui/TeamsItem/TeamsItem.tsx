@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { TeamsProps } from 'src/services/types';
 import styles from 'src/ui/TeamsItem/TeamsItem.module.scss';
 

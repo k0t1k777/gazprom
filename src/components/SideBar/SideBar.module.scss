@@ -101,3 +101,28 @@
   color: $main-text-black;
   display: flex;
 }
+
+.button {
+  @include use-font(14px, 16.8px, 400);
+  background: $button;
+  box-shadow: $items-shadow;
+  text-shadow: $items-shadow;
+  gap: 8px;
+  border-radius: $border-radius;
+  padding: 0px 16px;
+  width: 106px;
+  height: 32px;
+  color: $main-white !important;
+  border: none;
+  outline: none;
+  transition: width 0.3s ease;
+  margin: 0 auto;
+  &_short {
+    width: 32px;
+    padding: 0px 9px;
+  }
+}
+
+.sideBarWrapper {
+  @include flex-column-container;
+}
