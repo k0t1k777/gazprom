@@ -67,11 +67,15 @@ export default function NewTeam() {
       onDragOver={allowDrop}
       onDrop={handleDrop}
     >
-      <div className={styles.cardContainer}>
-        {allCards.map(renderCards)}
-        {renderEmptyCells(busyCells, isFilterOpen)}
-        {arrows}
-      </div>
+      {allCards.length === 0 ? (
+        <div className={styles.title}>Перенесите мембера сюда</div>
+      ) : (
+        <div className={styles.cardContainer}>
+          {allCards.map(renderCards)}
+          {renderEmptyCells(busyCells, isFilterOpen)}
+          {arrows}
+        </div>
+      )}
     </section>
   );
 }

@@ -87,8 +87,8 @@ export const handleDrop = (
           ...originalCard,
           id: itemId,
           subordinates: [],
-          cellId: '1-0', // Устанавливаем cellId как '1-0'
-          parentId: '', // Или другое значение, если нужно
+          cellId: '1-0',
+          // parentId: '',
         };
         // Добавляем новую карточку в массив
         const updatedCards = [...cards, newSubordinateCard];
