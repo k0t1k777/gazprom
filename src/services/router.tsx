@@ -8,16 +8,11 @@ import Profile from 'src/pages/Profile/Profile';
 import Projects from 'src/pages/Projects/Projects';
 import Teams from 'src/pages/Teams/Teams';
 
-// export const router = createHashRouter([
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
-      {
-        path: '*',
-        element: <NotFound />,
-      },
       {
         path: '/',
         element: <Main />,
@@ -39,8 +34,16 @@ export const router = createBrowserRouter([
         element: <Teams />,
       },
       {
+        path: 'teams/:id',
+        element: <Teams />,
+      },
+      {
         path: 'projects',
         element: <Projects />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },

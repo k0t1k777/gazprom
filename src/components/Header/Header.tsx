@@ -2,7 +2,9 @@ import styles from 'src/components/Header/Header.module.scss';
 import Logo from 'src/assets/Logo.svg?react';
 import { Input } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { 
+  // Link, 
+  useNavigate } from 'react-router-dom';
 import Filter from 'src/components/Filter/Filter';
 import cn from 'classnames/bind';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
@@ -34,9 +36,9 @@ export default function Header({ droppedCards }: HeaderProps) {
       <header
         className={cx(styles.header, { [styles.header_loggedIn]: !loggedIn })}
       >
-        <Link to='/'>
+        {/* <Link to='/'> */}
           <Logo />
-        </Link>
+        {/* </Link> */}
         {loggedIn && (
           <div className={styles.container}>
             <Input

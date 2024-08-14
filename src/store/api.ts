@@ -79,6 +79,14 @@ export const getProjects = async () => {
   return await request('/api/v1/projects/', options);
 };
 
+export const getTeamsId = async (id: number) => {
+  const options: RequestOptionsType = {
+    method: 'GET',
+    headers,
+  };
+  return await request(`/api/v1/teams/${id}/`, options);
+};
+
 // export const getFilters = async () => {
 //   return await request('/api/v1/filters/');
 // };

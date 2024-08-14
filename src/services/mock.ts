@@ -40,36 +40,37 @@ export const PROJECT_DATA = [
 ]
 
 export const initialCards = [
-  {
-    id: '999',
-    position: 'Директор',
-    full_name: 'Иванннн',
-    department: 'Frontend Developer',
-    photo: 'https://example.com/photo1.jpg',
-    cellId: '1-0',
-    parentId: '',
-    subordinates: [
-      // {
-      //   id: '1211',
-      //   name: 'Иван',
-      //   position: 'Разработчик',
-      //   title: 'Frontend Developer',
-      //   photo: 'https://example.com/photo1.jpg',
-      //   parentId: '',
-      //   cellId: '2-1',
-      //   subordinates: [
-      //     // {
-      //     //   id: '1211',
-      //     //   name: 'Иван',
-      //     //   position: 'Разработчик',
-      //     //   title: 'Frontend Developer',
-      //     //   photo: 'https://example.com/photo1.jpg',
-      //     //   parentId: '',
-      //     //   cellId: '0-0',
-      //     //   subordinates: [],
-      //     // },
-      //   ],
-      // },
-    ],
-  },
+  {}
+  // {
+  //   id: '999',
+  //   position: 'Директор',
+  //   full_name: 'Иванннн',
+  //   department: 'Frontend Developer',
+  //   photo: 'https://example.com/photo1.jpg',
+  //   cellId: '1-0',
+  //   parentId: '',
+  //   subordinates: [
+  //     {
+  //       id: '121211',
+  //       name: 'Иван',
+  //       position: 'Разработчик',
+  //       title: 'Frontend Developer',
+  //       photo: 'https://example.com/photo1.jpg',
+  //       parentId: '',
+  //       cellId: '1-1',
+  //       subordinates: [
+  //         {
+  //           id: '112211',
+  //           name: 'Иван',
+  //           position: 'Разработчик',
+  //           title: 'Frontend Developer',
+  //           photo: 'https://example.com/photo1.jpg',
+  //           parentId: '',
+  //           cellId: '0-0',
+  //           subordinates: [],
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
 ];
