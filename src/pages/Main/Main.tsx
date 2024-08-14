@@ -7,6 +7,8 @@ import {
   renderCards,
   renderEmptyCells,
 } from 'src/services/helpers';
+import { selectMembers } from 'src/store/features/slice/membersSlice';
+import { useAppSelector } from 'src/store/hooks';
 
 export default function Main() {
   const { allowDrop, handleDrop, cards } = useOutletContext<{
@@ -14,6 +16,8 @@ export default function Main() {
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
     cards: membersProps[];
   }>();
+  let { isFilterOpen } = useAppSelector(selectMembers);
+
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [busyCells, setBusyCells] = useState<string[]>([]);
@@ -28,6 +32,7 @@ export default function Main() {
       );
     }
   };
+  console.log('cards: ', cards);
 
   useEffect(() => {
     const collectCards = (card: membersProps, collected: membersProps[]) => {
@@ -42,6 +47,7 @@ export default function Main() {
     const newBusyCells: string[] = [];
 
     cards.forEach((card) => {
+      console.log('cards: ', cards);
       collectCards(card, newAllCards);
       collectCellIds(card, newBusyCells);
     });
@@ -60,7 +66,7 @@ export default function Main() {
     <section className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
       <div className={styles.cardContainer}>
         {allCards.map(renderCards)}
-        {renderEmptyCells(busyCells)}
+        {renderEmptyCells(busyCells, isFilterOpen)}
         {arrows}
       </div>
     </section>

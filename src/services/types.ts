@@ -77,12 +77,8 @@ export interface ProjectseProps {
 export interface TeamsProps {
   name: string;
   id?: string;
-  employees?: {
-    id?: 0;
-    user_id?: 0;
-    image: '';
-    subordinates: membersProps[];
-  }[];
+  description?: string;
+  employees?: any;
   projects?: {
     name?: string;
     id?: string;

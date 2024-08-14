@@ -3,7 +3,7 @@ import Header from 'src/components/Header/Header';
 import SideBar from 'src/components/SideBar/SideBar';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { initialCards } from 'src/services/mock';
+// import { initialCards } from 'src/services/mock';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Registration from 'src/pages/Registration/Registration';
 import { allowDrop, handleDragStart, handleDrop } from 'src/services/dragAndDrop';
@@ -18,13 +18,12 @@ import {
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
 
-
 export default function App() {
   let { loggedIn } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [droppedCards, setDroppedCards] = useState<membersProps[]>([]);
-  const [cards, setCards] = useState<membersProps[]>(initialCards);
+  const [cards, setCards] = useState<membersProps[]>([]);
 
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(registerUser({ email, password }))

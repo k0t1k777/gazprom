@@ -31,19 +31,21 @@ export const handleDrop = (
   members: membersProps[]
 ) => {
   e.preventDefault();
-  // Здесь мы получаем ID элемента, который перетаскивается.:
+  // Здесь мы получаем ID элемента, который перетаскивается.
   const itemId = e.dataTransfer.getData('id');
+  console.log('itemId: ', itemId);
 
-  // Эти строки позволяют получить размеры и положение области, куда была сброшена карточка.
+  // получаем размеры и положение области, куда была сброшена карточка.
   const dropTarget = e.currentTarget;
   const dropTargetRect = dropTarget.getBoundingClientRect();
 
-  //в какую ячейку сетки была сброшена карточка, основываясь на координатах курсора.
+  // в какую ячейку сетки была сброшена карточка, основываясь на координатах курсора.
   const columnIndex = Math.floor((e.clientX - dropTargetRect.left) / cellWidth);
   const rowIndex = Math.floor((e.clientY - dropTargetRect.top) / cellHeight);
 
   // ID ячейки формируется как строка, состоящая из индексов столбца и строки.
   const cellId = `${columnIndex}-${rowIndex}`;
+  console.log('cellId: ', cellId);
 
   // Если карточка сбрасывается в определённые ячейки, функция завершает выполнение.
   if (cellId === '0-0' || cellId === '2-0') {
@@ -54,11 +56,11 @@ export const handleDrop = (
   if (!droppedCards.some((card) => card.cellId === cellId)) {
     // Здесь вызывается функция для поиска родительской карточки по текущим координатам.
     const parentCard = findParentCard(cards, columnIndex, rowIndex);
-    if (parentCard) {
-      const originalCard = members.find((card) => String(card.id) === itemId);
+    const originalCard = members.find((card) => String(card.id) === itemId);
 
+    if (originalCard) {
       // Если родительская карточка найдена, создаётся новая подчинённая карточка с необходимыми свойствами.
-      if (originalCard) {
+      if (parentCard) {
         const newSubordinateCard: membersProps = {
           ...originalCard,
           id: itemId,
@@ -80,10 +82,26 @@ export const handleDrop = (
           { id: newSubordinateCard.id, cellId },
         ]);
       } else {
-        console.error`(Original card not found for itemId ${itemId})`;
+        // Если родительская карточка не найдена, создаём новую карточку с cellId '1-0'
+        const newSubordinateCard: membersProps = {
+          ...originalCard,
+          id: itemId,
+          subordinates: [],
+          cellId: '1-0', // Устанавливаем cellId как '1-0'
+          parentId: '', // Или другое значение, если нужно
+        };
+        // Добавляем новую карточку в массив
+        const updatedCards = [...cards, newSubordinateCard];
+
+        // Обновляем состояния карточек и сброшенных карточек
+        setCards(updatedCards);
+        setDroppedCards((prev) => [
+          ...prev,
+          { id: newSubordinateCard.id, cellId: '1-0' },
+        ]);
       }
     } else {
-      console.error`(Parent card not found for cellId ${cellId}.)`;
+      console.error(`(Original card not found for itemId ${itemId})`);
     }
   }
 };
@@ -110,9 +128,9 @@ const findParentCard = (
     if (card.cellId === parentCellId) {
       return card;
     }
-  // Функция проходит по массиву карточек и проверяет, есть ли карточка с соответствующим ID.
-  //  Если такая карточка найдена, она возвращается. Если нет,
-  //  функция рекурсивно ищет среди подчинённых карточек.
+    // Функция проходит по массиву карточек и проверяет, есть ли карточка с соответствующим ID.
+    //  Если такая карточка найдена, она возвращается. Если нет,
+    //  функция рекурсивно ищет среди подчинённых карточек.
     if (card.subordinates) {
       const found = findParentCard(card.subordinates, columnIndex, rowIndex);
       if (found) return found;
@@ -127,10 +145,9 @@ const addSubordinate = (
   parentId: string,
   subordinate: membersProps
 ): membersProps[] => {
-
   // Функция проходит по массиву карточек и ищет родительскую карточку по её ID.
   return cards.map((card) => {
-    // Если родительская карточка найдена, 
+    // Если родительская карточка найдена,
     // новая подчинённая карточка добавляется в её массив подчинённых.
     if (card.id === parentId) {
       return {
@@ -138,7 +155,7 @@ const addSubordinate = (
         subordinates: [...(card.subordinates || []), subordinate],
       };
     }
-    // Если у текущей карточки есть подчинённые, 
+    // Если у текущей карточки есть подчинённые,
     // функция рекурсивно вызывает себя для добавления подчинённой карточки к ним.
     if (card.subordinates) {
       return {

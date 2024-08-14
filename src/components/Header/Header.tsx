@@ -2,9 +2,7 @@ import styles from 'src/components/Header/Header.module.scss';
 import Logo from 'src/assets/Logo.svg?react';
 import { Input } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
-import { 
-  // Link, 
-  useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Filter from 'src/components/Filter/Filter';
 import cn from 'classnames/bind';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
@@ -24,21 +22,21 @@ export default function Header({ droppedCards }: HeaderProps) {
   let { isFilterOpen } = useAppSelector(selectMembers);
   let { loggedIn } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   function handleFilterClick() {
     dispatch(setIsFilterOpen(!isFilterOpen));
-    navigate('/');
   }
-{/* <PlusOutlined /> */}
+  {
+    /* <PlusOutlined /> */
+  }
   return (
     <>
       <header
         className={cx(styles.header, { [styles.header_loggedIn]: !loggedIn })}
       >
-        {/* <Link to='/'> */}
+        <Link to='/'>
           <Logo />
-        {/* </Link> */}
+        </Link>
         {loggedIn && (
           <div className={styles.container}>
             <Input
@@ -56,9 +54,7 @@ export default function Header({ droppedCards }: HeaderProps) {
           </div>
         )}
       </header>
-      {isFilterOpen && (
-        <Filter droppedCards={droppedCards} />
-      )}
+      {isFilterOpen && <Filter droppedCards={droppedCards} />}
     </>
   );
 }

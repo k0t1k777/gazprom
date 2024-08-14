@@ -31,10 +31,10 @@ export const renderCards = (card: membersProps) => {
 };
 
 // Рендер пустых ячеек в дереве для раскрашивания
-export const renderEmptyCells = (busyCells: string[]) => {
+export const renderEmptyCells = (busyCells: string[], isFilterOpen: boolean) => {
   const busyCellIds = new Set(busyCells);
   const emptyCells = [];
-  let { isFilterOpen } = useAppSelector(selectMembers);
+  // let { isFilterOpen } = useAppSelector(selectMembers);
 
   for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {

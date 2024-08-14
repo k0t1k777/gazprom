@@ -18,7 +18,7 @@ const initialState: StateType = {
   members: [],
   isLoading: false,
   error: null,
-  isFilterOpen: false,
+  isFilterOpen: true,
   currentPage: 1,
   membersAmount: 0,
   shortWindow: false,
