@@ -1,19 +1,14 @@
-import {
-  CloseOutlined,
-  DownOutlined,
-  EditOutlined,
-  UpOutlined,
-} from '@ant-design/icons';
 import styles from 'src/ui/Card/Card.module.scss';
 import Avatar from 'src/assets/images/Avatar.png';
 import { useState } from 'react';
 import cn from 'classnames/bind';
 import { membersProps } from 'src/services/types';
 import {
-  selectMembers,
-  setShowMembers,
-} from 'src/store/features/slice/membersSlice';
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+  CloseOutlined,
+  DownOutlined,
+  EditOutlined,
+  UpOutlined,
+} from '@ant-design/icons';
 
 const cx = cn.bind(styles);
 
@@ -26,12 +21,12 @@ export default function Card({
   title,
   count,
   id,
-  handleButtonClick,
+  hideMembers,
+  restoreMembers,
   onDragStart,
 }: membersProps) {
-  const [isOpen, setIsopen] = useState(true);
-  // let { showMembers } = useAppSelector(selectMembers);
-  // const dispatch = useAppDispatch();
+  const [showMembers, setShowMembers] = useState(true);
+  console.log('showMembers: ', showMembers);
 
   return (
     <div
@@ -86,18 +81,15 @@ export default function Card({
               className={cx(styles.countImg, {
                 [styles.disabled]: employesRout,
               })}
-              onClick={() => setIsopen(!isOpen)}
+              onClick={() => setShowMembers(!showMembers)}
             >
-              {isOpen ? (
-                <UpOutlined
-                onClick={handleButtonClick}
-                  // onClick={() => dispatch(setShowMembers(!showMembers))}
+              {showMembers ? (
+                <DownOutlined
+                onClick={hideMembers}
                 />
               ) : (
-                <DownOutlined
-                onClick={handleButtonClick}
-
-                  // onClick={() => dispatch(setShowMembers(!showMembers))}
+                <UpOutlined
+                onClick={restoreMembers}
                 />
               )}
             </div>

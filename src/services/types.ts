@@ -34,7 +34,8 @@ export interface membersProps {
   photo?: string;
   count?: number;
   subordinates?: membersProps[];
-  handleButtonClick?: () => void;
+  hideMembers?: () => void;
+  restoreMembers?: () => void;
   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
   draggable?: boolean;
   isFilterOpen?: boolean;

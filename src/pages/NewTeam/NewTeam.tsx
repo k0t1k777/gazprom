@@ -51,6 +51,7 @@ export default function NewTeam() {
     });
 
     setAllCards(newAllCards);
+    setOriginalCards(newAllCards);
     setBusyCells(newBusyCells);
   }, [cards]);
 
@@ -60,7 +61,10 @@ export default function NewTeam() {
     }
   }, [allCards]);
   console.log('allCards: ', allCards);
-
+  
+  const [originalCards, setOriginalCards] = useState<membersProps[]>([]);
+  console.log('originalCards: ', originalCards);
+  
   return (
     <section
       className={styles.newTeam}
@@ -71,7 +75,10 @@ export default function NewTeam() {
         <div className={styles.title}>Добавьте члена команды сюда</div>
       ) : (
         <div className={styles.cardContainer}>
-          {allCards.map((card) => renderCards(card, setAllCards))}{' '}
+          {allCards.map((card) =>
+            renderCards(card, setAllCards, originalCards, setOriginalCards
+            )
+          )}
           {renderEmptyCells(busyCells, isFilterOpen)}
           {arrows}
         </div>

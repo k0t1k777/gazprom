@@ -7,12 +7,18 @@ import Card from 'src/ui/Card/Card';
 // Рендер карточек в дереве
 export const renderCards = (
   card: membersProps,
-  setAllCards: React.Dispatch<React.SetStateAction<membersProps[]>>
+  setAllCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
+  originalCards: membersProps[],
+  setOriginalCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
 ) => {
+
   if (!card.cellId || !card.subordinates) {
     return null;
   }
-  const handleButtonClick = () => {
+  const hideMembers = () => {
+    console.log('Прячем')
+
+    setOriginalCards(allCards => [...allCards]);
     if (!card.cellId) {
       return card;
     }
@@ -46,6 +52,12 @@ export const renderCards = (
     }
   };
 
+  const restoreMembers = () => {
+    // Восстанавливаем оригинальные карточки
+    console.log('Восстанавливаем')
+    setAllCards(originalCards);
+  };
+
   const [col, row] = card.cellId.split('-').map(Number);
   return (
     <div
@@ -59,7 +71,8 @@ export const renderCards = (
         full_name={card.full_name}
         department={card.department}
         count={card.subordinates.length}
-        handleButtonClick={handleButtonClick}
+        hideMembers={hideMembers}
+        restoreMembers={restoreMembers}
       />
     </div>
   );
