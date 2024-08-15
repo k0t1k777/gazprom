@@ -41,7 +41,6 @@ export const handleDrop = (
   const rowIndex = Math.floor((e.clientY - dropTargetRect.top) / cellHeight);
 
   const cellId = `${columnIndex}-${rowIndex}`;
-  console.log('cellId: ', cellId);
 
   if (cellId === '0-0' || cellId === '2-0') {
     return;
@@ -74,6 +73,9 @@ export const handleDrop = (
           { id: newSubordinateCard.id, cellId },
         ]);
       } else {
+        if (cards.length > 0) {
+          return;
+        }
         // Если родительская карточка не найдена, создаём новую карточку с cellId '1-0' только для первой карточки
         const newSubordinateCard: membersProps = {
           ...originalCard,
@@ -96,7 +98,6 @@ export const handleDrop = (
   }
 };
 
-
 // Поиск родительской карты
 const findParentCard = (
   cards: membersProps[],
@@ -106,9 +107,7 @@ const findParentCard = (
   let parentCellId;
 
   // В зависимости от индексов строки и столбца определяется ID родительской ячейки.
-  if (
-    (rowIndex === 1 && (columnIndex === 0 || columnIndex === 2))
-  ) {
+  if (rowIndex === 1 && (columnIndex === 0 || columnIndex === 2)) {
     parentCellId = '1-0';
   } else {
     parentCellId = `${columnIndex}-${rowIndex - 1}`;

@@ -71,7 +71,7 @@ export default function NewTeam() {
         <div className={styles.title}>Добавьте члена команды сюда</div>
       ) : (
         <div className={styles.cardContainer}>
-          {allCards.map(renderCards, setAllCards)}
+          {allCards.map((card) => renderCards(card, setAllCards))}{' '}
           {renderEmptyCells(busyCells, isFilterOpen)}
           {arrows}
         </div>

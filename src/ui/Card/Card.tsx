@@ -30,8 +30,8 @@ export default function Card({
   onDragStart,
 }: membersProps) {
   const [isOpen, setIsopen] = useState(true);
-  let { showMembers } = useAppSelector(selectMembers);
-  const dispatch = useAppDispatch();
+  // let { showMembers } = useAppSelector(selectMembers);
+  // const dispatch = useAppDispatch();
 
   return (
     <div

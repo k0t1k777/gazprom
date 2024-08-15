@@ -5,27 +5,47 @@ import { membersProps } from 'src/services/types';
 import Card from 'src/ui/Card/Card';
 
 // Рендер карточек в дереве
-export const renderCards = (card: membersProps) => {
+export const renderCards = (
+  card: membersProps,
+  setAllCards: React.Dispatch<React.SetStateAction<membersProps[]>>
+) => {
   if (!card.cellId || !card.subordinates) {
     return null;
   }
-  const handleButtonClick = (cardId: string) => {
-    setAllCards((prevCards) => {
-      return prevCards.map((card) => {
-        if (card.id === cardId) {
-          // Если subordinates пустой, восстанавливаем его
-          if (card.subordinates.length === 0) {
-            // Предположим, что у вас есть способ сохранить оригинальные subordinates
-            return { ...card, subordinates: originalSubordinates[cardId] || [] };
-          } else {
-            // Если subordinates не пустой, очищаем его
-            return { ...card, subordinates: [] };
+  const handleButtonClick = () => {
+    if (!card.cellId) {
+      return card;
+    }
+    const [col, row] = card.cellId.split('-').map(Number);
+
+    if (card.cellId === '1-0') {
+      setAllCards((prevCards) => {
+        return prevCards.map((member) => {
+          // Если ячейка не '1-0', очищаем ее
+          if (member.cellId !== '1-0') {
+            return { ...member, cellId: '' }; // Очищаем карточку
           }
-        }
-        return card;
+          return member; // Возвращаем карточку в '1-0' без изменений
+        });
       });
-    });
+    } else {
+      // Очищаем все ячейки ниже текущей
+      setAllCards((prevCards) => {
+        return prevCards.map((item) => {
+          if (!item.cellId) {
+            return item;
+          }
+          const [cCol, cRow] = item.cellId.split('-').map(Number);
+          // Если строка больше текущей и колонка совпадает, очищаем карточку
+          if (cCol === col && cRow > row) {
+            return { ...item, cellId: '' };
+          }
+          return item;
+        });
+      });
+    }
   };
+
   const [col, row] = card.cellId.split('-').map(Number);
   return (
     <div
@@ -46,7 +66,10 @@ export const renderCards = (card: membersProps) => {
 };
 
 // Рендер пустых ячеек в дереве для раскрашивания
-export const renderEmptyCells = (busyCells: string[], isFilterOpen: boolean) => {
+export const renderEmptyCells = (
+  busyCells: string[],
+  isFilterOpen: boolean
+) => {
   const busyCellIds = new Set(busyCells);
   const emptyCells = [];
   for (let row = 0; row < numRows; row++) {
@@ -133,4 +156,3 @@ export const renderArrows = (
   });
   setArrows(newArrows.filter((arrow): arrow is JSX.Element => arrow !== null));
 };
-
