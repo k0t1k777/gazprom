@@ -1,10 +1,6 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import styles from 'src/pages/Profile/Profile.module.scss';
-import {
-  CHARTS_DATA,
-  EVENTS_DATA,
-  PROJECT_DATA,
-} from 'src/services/mock';
+import { CHARTS_DATA, EVENTS_DATA } from 'src/services/mock';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { selectMembers } from 'src/store/features/slice/membersSlice';
 import cn from 'classnames/bind';
@@ -19,12 +15,12 @@ export default function Profile() {
   let { shortWindow } = useAppSelector(selectMembers);
   let { profile } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
+  const cx = cn.bind(styles);
 
   useEffect(() => {
     dispatch(fetchGetProfile());
   }, [dispatch]);
 
-  const cx = cn.bind(styles);
 
   return (
     <section className={styles.profile}>
@@ -40,7 +36,7 @@ export default function Profile() {
             <p className={`${styles.text} ${styles.text_bold}`}>
               {profile?.profile.position}
             </p>
-           </div>
+          </div>
         </div>
         <div className={styles.containerText}>
           <p className={`${styles.textInfo} ${styles.textInfo_bold}`}>
@@ -78,7 +74,6 @@ export default function Profile() {
             </li>
           ))}
         </ul>
-        {/* <div> */}
         <div className={styles.eventsContainer}>
           {EVENTS_DATA.map((cont, index) => (
             <div className={styles.itemContainer} key={index}>
@@ -98,21 +93,21 @@ export default function Profile() {
               </a>
             </div>
           ))}
-          {PROJECT_DATA.map((cont, index) => (
-            <div className={styles.itemContainer} key={index}>
-              <h3 className={styles.itemContainerTitle}>{cont.title}</h3>
-              <ul className={styles.itemContainerList}>
-                {cont.items.map((item, idx) => (
-                  <li
-                    className={`${styles.itemContainerItem} ${styles.colorBlue}`}
-                    key={idx}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className={styles.itemContainer}>
+            <h3 className={styles.itemContainerTitle}>
+              'Участие в текущих проектах'
+            </h3>
+            <ul className={styles.itemContainerList}>
+              {profile?.projects.map((item, index) => (
+                <li
+                  className={`${styles.itemContainerItem} ${styles.colorBlue}`}
+                  key={index}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

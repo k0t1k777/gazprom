@@ -1,15 +1,15 @@
 export const CHARTS_DATA = [
   {
     text: 'Загруженность 87 %',
-    img: 'src/assets/images/diagram1.png'
+    img: './assets/images/diagram1.png'
   },
   {
     text: 'Следующий грейд 44 %',
-    img: 'src/assets/images/diagram2.png'
+    img: './assets/images/diagram2.png'
   },
   {
     text: 'Эффективность 65 %',
-    img: 'src/assets/images/diagram3.png'
+    img: './assets/images/diagram3.png'
   }
 ]
 
@@ -26,16 +26,6 @@ export const EVENTS_DATA = [
     title: 'Дей оффы',
     items: ['4 за последний год'],
     link: 'Подробнее',
-  },
-]
-
-export const PROJECT_DATA = [
-  {
-    title: 'Участие в текущих проектах',
-    items: [
-      'Мегапроект «Ямал»',
-      'Ковыктинское месторождение',
-    ],
   },
 ]
 
