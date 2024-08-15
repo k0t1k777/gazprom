@@ -10,6 +10,11 @@
   margin: 0;
   cursor: pointer;
   box-shadow: $items-shadow;
+  &_mini {
+    height: 100%;
+    width: 100%;
+    cursor: move;
+  }
 }
 
 .titleContainer {
@@ -26,6 +31,7 @@
   display: flex;
   justify-content: end;
   gap: 8px;
+  margin: auto 0 0;
 }
 
 .mainContainer {
@@ -34,14 +40,19 @@
   max-width: 188px;
 }
 
-.edit {
-  cursor: pointer;
+.buttonsContainer {
   color: $button-focus;
+  display: flex;
+  gap: 8px;
   &disabled {
     display: none !important;
     color: red;
     width: 100px;
   }
+}
+
+.button {
+  cursor: pointer;
 }
 
 .title {
@@ -60,7 +71,7 @@
   @include mp-null;
   @include use-font(14px, 17px, 500);
   @include cut-word;
-  white-space: nowrap;
+  white-space: wrap;
 }
 
 .position {
@@ -78,18 +89,13 @@
   @include use-font(14px, 17px, 500);
   @include cut-word;
   color: $main-text-grey;
+  white-space: wrap;
 }
 
 .countImg {
   cursor: pointer;
   color: $main-text-grey;
   display: flex;
-}
-
-.mini {
-  height: 82px;
-  width: 100%;
-  cursor: move;
 }
 
 .miniContainer {

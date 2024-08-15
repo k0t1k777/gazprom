@@ -28,7 +28,6 @@ export default function Filter({ droppedCards }: FilterProps) {
   // const { filters } = useAppSelector(selectFilters);
 
   const { members, currentPage } = useAppSelector(selectMembers);
-  console.log('members: ', members);
   const dispatch = useAppDispatch();
 
   // useEffect(() => {

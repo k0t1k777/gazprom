@@ -9,7 +9,23 @@ export const renderCards = (card: membersProps) => {
   if (!card.cellId || !card.subordinates) {
     return null;
   }
-
+  const handleButtonClick = (cardId: string) => {
+    setAllCards((prevCards) => {
+      return prevCards.map((card) => {
+        if (card.id === cardId) {
+          // Если subordinates пустой, восстанавливаем его
+          if (card.subordinates.length === 0) {
+            // Предположим, что у вас есть способ сохранить оригинальные subordinates
+            return { ...card, subordinates: originalSubordinates[cardId] || [] };
+          } else {
+            // Если subordinates не пустой, очищаем его
+            return { ...card, subordinates: [] };
+          }
+        }
+        return card;
+      });
+    });
+  };
   const [col, row] = card.cellId.split('-').map(Number);
   return (
     <div
@@ -23,6 +39,7 @@ export const renderCards = (card: membersProps) => {
         full_name={card.full_name}
         department={card.department}
         count={card.subordinates.length}
+        handleButtonClick={handleButtonClick}
       />
     </div>
   );

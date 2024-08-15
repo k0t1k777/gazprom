@@ -12,6 +12,7 @@ export interface StateType {
   membersAmount: number;
   shortWindow: boolean;
   membersValue: string;
+  showMembers: boolean;
 }
 
 const initialState: StateType = {
@@ -23,6 +24,7 @@ const initialState: StateType = {
   membersAmount: 0,
   shortWindow: false,
   membersValue: '',
+  showMembers: false,
 };
 
 export const fetchGetMembersAmount = createAsyncThunk(
@@ -62,36 +64,44 @@ const membersSlice = createSlice({
     setShortWindow(state, action) {
       state.shortWindow = action.payload;
     },
+    setShowMembers(state, action) {
+      state.showMembers = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
-    .addCase(fetchGetMembersAmount.pending, (state) => {
-      state.isLoading = true;
-    })
-    .addCase(fetchGetMembersAmount.fulfilled, (state, action) => {
-      state.membersAmount = action.payload.count;
-      state.isLoading = false;
-      state.error = null;
-    })
-    .addCase(fetchGetMembersAmount.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message;
-    })
-    .addCase(fetchGetMembers.pending, (state) => {
-      state.isLoading = true;
-    })
-    .addCase(fetchGetMembers.fulfilled, (state, action) => {
-      state.members = action.payload.results;
-      state.isLoading = false;
-      state.error = null;
-    })
-    .addCase(fetchGetMembers.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message;
-    });
+      .addCase(fetchGetMembersAmount.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchGetMembersAmount.fulfilled, (state, action) => {
+        state.membersAmount = action.payload.count;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchGetMembersAmount.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchGetMembers.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchGetMembers.fulfilled, (state, action) => {
+        state.members = action.payload.results;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(fetchGetMembers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
-export const { setIsFilterOpen, setCurrentPage, setShortWindow } = membersSlice.actions;
+export const {
+  setIsFilterOpen,
+  setCurrentPage,
+  setShortWindow,
+  setShowMembers,
+} = membersSlice.actions;
 export const membersReducer = membersSlice.reducer;
 export const selectMembers = (state: RootStore) => state.members;

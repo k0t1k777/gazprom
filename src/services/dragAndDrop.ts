@@ -30,7 +30,6 @@ export const handleDrop = (
   setDroppedCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
   members: membersProps[]
 ) => {
-  
   e.preventDefault();
   const itemId = e.dataTransfer.getData('id');
   console.log('itemId: ', itemId);
@@ -76,14 +75,11 @@ export const handleDrop = (
         ]);
       } else {
         // Если родительская карточка не найдена, создаём новую карточку с cellId '1-0' только для первой карточки
-        const fallbackParentCard = cards.find(card => card.cellId === '1-0')
-        
         const newSubordinateCard: membersProps = {
           ...originalCard,
           id: itemId,
           subordinates: [],
-          cellId: cards.length === 0 ? '1-0' : cellId,
-          parentId: fallbackParentCard ? fallbackParentCard.id : '',
+          cellId: cards.length === 0 ? '1-0' : '',
         };
 
         const updatedCards = [...cards, newSubordinateCard];
@@ -111,7 +107,6 @@ const findParentCard = (
 
   // В зависимости от индексов строки и столбца определяется ID родительской ячейки.
   if (
-    (rowIndex === 0 && (columnIndex === 0 || columnIndex === 2)) ||
     (rowIndex === 1 && (columnIndex === 0 || columnIndex === 2))
   ) {
     parentCellId = '1-0';

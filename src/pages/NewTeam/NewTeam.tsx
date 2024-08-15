@@ -46,7 +46,6 @@ export default function NewTeam() {
     const newBusyCells: string[] = [];
 
     cards.forEach((card) => {
-      console.log('cards: ', cards);
       collectCards(card, newAllCards);
       collectCellIds(card, newBusyCells);
     });
@@ -69,10 +68,10 @@ export default function NewTeam() {
       onDrop={handleDrop}
     >
       {allCards.length === 0 ? (
-        <div className={styles.title}>Перенесите мембера сюда</div>
+        <div className={styles.title}>Добавьте члена команды сюда</div>
       ) : (
         <div className={styles.cardContainer}>
-          {allCards.map(renderCards)}
+          {allCards.map(renderCards, setAllCards)}
           {renderEmptyCells(busyCells, isFilterOpen)}
           {arrows}
         </div>

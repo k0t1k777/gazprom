@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styles from 'src/components/SideBar/SideBar.module.scss';
 import cn from 'classnames/bind';
 import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   ClusterOutlined,
   DatabaseOutlined,
@@ -20,6 +20,7 @@ import {
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import {
   selectMembers,
+  setIsFilterOpen,
   setShortWindow,
 } from 'src/store/features/slice/membersSlice';
 
@@ -30,6 +31,12 @@ export default function SideBar() {
   const dispatch = useAppDispatch();
   const [showMore, setShorMore] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate()
+
+  function openFilter() {
+    navigate('/new-team')
+    dispatch(setIsFilterOpen(true))
+  }
 
   return (
     <div
@@ -166,17 +173,13 @@ export default function SideBar() {
       </div>
 
       {!shortWindow ? (
-        <Link to='/new-team' className={styles.link}>
-          <Button className={styles.button}>Создать</Button>
-        </Link>
+          <Button className={styles.button} onClick={openFilter}>Создать</Button>
       ) : (
-        <Link to='/new-team' className={styles.link}>
-          <PlusOutlined
+          <PlusOutlined onClick={openFilter}
             className={cx(styles.button, {
               [styles.button_short]: shortWindow,
             })}
           />
-        </Link>
       )}
     </div>
   );
