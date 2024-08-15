@@ -25,8 +25,7 @@ export default function App() {
   const [droppedCards, setDroppedCards] = useState<membersProps[]>([]);
   const [cards, setCards] = useState<membersProps[]>([]);
 
-  
-  // // const [teamsCards, setTeamsCards] = useState<membersProps[]>([]);
+    // // const [teamsCards, setTeamsCards] = useState<membersProps[]>([]);
   // const { team } = useAppSelector(selectTeams);
   // console.log('team: ', team);
   // const [cards, setCards] = useState<membersProps[]>([]);

@@ -28,6 +28,7 @@ export default function Filter({ droppedCards }: FilterProps) {
   // const { filters } = useAppSelector(selectFilters);
 
   const { members, currentPage } = useAppSelector(selectMembers);
+  console.log('members: ', members);
   const dispatch = useAppDispatch();
 
   // useEffect(() => {
@@ -68,7 +69,6 @@ export default function Filter({ droppedCards }: FilterProps) {
       }
     }
   }, [isFilterOpen]);
-  console.log('members: ', members);
 
   return (
     <div ref={ref} className={styles.filter}>

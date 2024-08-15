@@ -30,6 +30,7 @@ export const handleDrop = (
   setDroppedCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
   members: membersProps[]
 ) => {
+  
   e.preventDefault();
   const itemId = e.dataTransfer.getData('id');
   console.log('itemId: ', itemId);
