@@ -68,6 +68,7 @@ export default function Filter({ droppedCards }: FilterProps) {
       }
     }
   }, [isFilterOpen]);
+  console.log('members: ', members);
 
   return (
     <div ref={ref} className={styles.filter}>

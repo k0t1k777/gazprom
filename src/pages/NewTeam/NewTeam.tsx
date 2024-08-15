@@ -60,6 +60,7 @@ export default function NewTeam() {
       renderArrows(allCards, setArrows);
     }
   }, [allCards]);
+  console.log('allCards: ', allCards);
 
   return (
     <section

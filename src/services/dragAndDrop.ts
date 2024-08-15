@@ -31,30 +31,23 @@ export const handleDrop = (
   members: membersProps[]
 ) => {
   e.preventDefault();
-  // Здесь мы получаем ID элемента, который перетаскивается.
   const itemId = e.dataTransfer.getData('id');
   console.log('itemId: ', itemId);
 
-  // получаем размеры и положение области, куда была сброшена карточка.
   const dropTarget = e.currentTarget;
   const dropTargetRect = dropTarget.getBoundingClientRect();
 
-  // в какую ячейку сетки была сброшена карточка, основываясь на координатах курсора.
   const columnIndex = Math.floor((e.clientX - dropTargetRect.left) / cellWidth);
   const rowIndex = Math.floor((e.clientY - dropTargetRect.top) / cellHeight);
 
-  // ID ячейки формируется как строка, состоящая из индексов столбца и строки.
   const cellId = `${columnIndex}-${rowIndex}`;
   console.log('cellId: ', cellId);
 
-  // Если карточка сбрасывается в определённые ячейки, функция завершает выполнение.
   if (cellId === '0-0' || cellId === '2-0') {
     return;
   }
 
-  // Если карточка уже была сброшена в эту ячейку, дальнейшие действия не выполняются.
   if (!droppedCards.some((card) => card.cellId === cellId)) {
-    // Здесь вызывается функция для поиска родительской карточки по текущим координатам.
     const parentCard = findParentCard(cards, columnIndex, rowIndex);
     const originalCard = members.find((card) => String(card.id) === itemId);
 
@@ -75,36 +68,37 @@ export const handleDrop = (
           newSubordinateCard
         );
 
-        // Обновляются состояния карточек и сброшенных карточек
         setCards(updatedCards);
         setDroppedCards((prev) => [
           ...prev,
           { id: newSubordinateCard.id, cellId },
         ]);
       } else {
-        // Если родительская карточка не найдена, создаём новую карточку с cellId '1-0'
+        // Если родительская карточка не найдена, создаём новую карточку с cellId '1-0' только для первой карточки
+        const fallbackParentCard = cards.find(card => card.cellId === '1-0')
+        
         const newSubordinateCard: membersProps = {
           ...originalCard,
           id: itemId,
           subordinates: [],
-          cellId: '1-0',
-          // parentId: '',
+          cellId: cards.length === 0 ? '1-0' : cellId,
+          parentId: fallbackParentCard ? fallbackParentCard.id : '',
         };
-        // Добавляем новую карточку в массив
+
         const updatedCards = [...cards, newSubordinateCard];
 
-        // Обновляем состояния карточек и сброшенных карточек
         setCards(updatedCards);
         setDroppedCards((prev) => [
           ...prev,
-          { id: newSubordinateCard.id, cellId: '1-0' },
+          { id: newSubordinateCard.id, cellId: newSubordinateCard.cellId },
         ]);
       }
     } else {
-      console.error(`(Original card not found for itemId ${itemId})`);
+      console.error(`Original card not found for itemId ${itemId}`);
     }
   }
 };
+
 
 // Поиск родительской карты
 const findParentCard = (
