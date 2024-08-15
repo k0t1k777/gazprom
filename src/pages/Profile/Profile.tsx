@@ -21,7 +21,6 @@ export default function Profile() {
     dispatch(fetchGetProfile());
   }, [dispatch]);
 
-
   return (
     <section className={styles.profile}>
       <div className={styles.containerProfile}>
