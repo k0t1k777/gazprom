@@ -29,6 +29,7 @@ export const EVENTS_DATA = [
   },
 ]
 
+
 // export const initialCards = [
 //   // {}
 //   {
