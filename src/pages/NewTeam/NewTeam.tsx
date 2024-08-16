@@ -86,21 +86,6 @@ export default function NewTeam() {
 }
 
 
-// useEffect(() => {
-//   const newCards = allCards.map((employee, index) => {
-//     const updatedSubordinates = Array.isArray(employee.subordinates)
-//       ? employee.subordinates.map((subordinate, subIndex) => ({
-//           ...subordinate,
-//           cellId: `${subIndex}-${index + 1}`,
-//         }))
-//       : [];
-
-//     return {
-//       ...employee,
-//       subordinates: updatedSubordinates,
-//       cellId: index === 0 ? '1-0' : undefined,
-//     };
-//   });
-
-//   setUpdatedCards(newCards);
-// }, [allCards]);
+ // Если больше трёх подчинённых, распределяем их по колонкам
+//  newColumn = parColumn + subIndex - Math.floor(subordinatesCount / 2); // Центрируем подчинённых
+// }

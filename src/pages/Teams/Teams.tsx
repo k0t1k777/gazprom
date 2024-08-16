@@ -18,6 +18,7 @@ export default function Teams() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { teams, team } = useAppSelector(selectTeams);
+  console.log('team: ', team);
   // console.log('team: ', team);
 
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
@@ -41,17 +42,32 @@ export default function Teams() {
   };
 
 // Рекурсивная функция для добавления cellId
-const assignCellIds = (employee: membersProps, column: number, row: number): membersProps => {
-  const updatedSubordinates = Array.isArray(employee.subordinates)
-    ? employee.subordinates.map((subordinate, subIndex) => 
-        assignCellIds(subordinate, column + 1, subIndex) // Увеличиваем column на 1
-      )
-    : [];
+const assignCellIds = (employee, column, row) => {
+  const subordinates = Array.isArray(employee.subordinates) ? employee.subordinates : [];
+  
+  // Установка cellId для родителя
+  const cellId = `${column}-${row}`;
+
+  // Если у сотрудника нет подчинённых, просто возвращаем его
+  if (subordinates.length === 0) {
+    return {
+      ...employee,
+      cellId, // Установка cellId для родителя
+    };
+  }
+
+  // Логика размещения подчинённых
+  const updatedSubordinates = subordinates.map((subordinate, index) => {
+    const newRow = row + 1; // Все подчинённые будут на одной строке
+    const newColumn = column + index; // Каждый подчинённый будет в своей колонке
+
+    return assignCellIds(subordinate, newColumn, newRow); // Передаём новые значения колонок и рядов
+  });
 
   return {
     ...employee,
     subordinates: updatedSubordinates,
-    cellId: `${row}-${column}`, // Установка cellId для родителя
+    cellId, // Установка cellId для родителя
   };
 };
 
@@ -60,13 +76,14 @@ useEffect(() => {
     assignCellIds(employee, 0, index) // Начинаем с column = 0 и row = index
   );
 
-  // Устанавливаем cellId для первого элемента
+  // Установка cellId для первого элемента как '1-0'
   if (newCards.length > 0) {
-    newCards[0].cellId = '1-0';
+    newCards[0].cellId = '1-0'; 
   }
 
   setUpdatedCards(newCards);
 }, [allCards]);
+
 
 
   // Собираем все в один []
@@ -111,9 +128,6 @@ useEffect(() => {
       setAllCards([]);
     }
   }, [team]);
-
-  console.log('allCards: ', allCards);
-
 
 
 
