@@ -11,13 +11,13 @@ export default function TeamsItem({ id, name, projects }: TeamsProps) {
 
   return (
     <div className={styles.teamsItem} onClick={handleClick}>
-        <p className={styles.title}>{name}</p>
-        {projects &&
-          projects.map((item) => (
-            <p key={item.id} className={`${styles.text} ${styles.text_link}`}>
-              {item.name}
-            </p>
-          ))}
+      <p className={styles.title}>{name}</p>
+      {projects &&
+        projects.map((item) => (
+          <p key={item.id} className={`${styles.text} ${styles.text_link}`}>
+            {item.name}
+          </p>
+        ))}
     </div>
   );
 }

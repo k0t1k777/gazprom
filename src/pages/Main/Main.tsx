@@ -4,7 +4,7 @@ import { membersProps } from 'src/services/types';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import {
   renderArrows,
-  renderCards,
+  renderCardsServer,
   renderEmptyCells,
 } from 'src/services/helpers';
 import { selectMembers } from 'src/store/features/slice/membersSlice';
@@ -47,7 +47,6 @@ export default function Main() {
     const newBusyCells: string[] = [];
 
     cards.forEach((card) => {
-      console.log('cards: ', cards);
       collectCards(card, newAllCards);
       collectCellIds(card, newBusyCells);
     });
@@ -65,7 +64,7 @@ export default function Main() {
   return (
     <section className={styles.main} onDragOver={allowDrop} onDrop={handleDrop}>
       <div className={styles.cardContainer}>
-        {allCards.map(renderCards)}
+        {allCards.map(renderCardsServer)}
         {renderEmptyCells(busyCells, isFilterOpen)}
         {arrows}
       </div>

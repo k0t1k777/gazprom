@@ -21,7 +21,6 @@
   @include flex-column-container;
   gap: 4px;
   max-width: 268px;
-
 }
 
 .item {
@@ -117,10 +116,23 @@
   outline: none;
   transition: width 0.3s ease;
   margin: 0 auto;
-  &_short {
+  &_none {
+    display: none;
+  }
+  &_mini {
     width: 32px;
     padding: 0px 9px;
   }
+  &:hover {
+    background: $button-hover !important;
+  }
+  &:focus {
+    background: $button-focus;
+  }
+}
+
+.none {
+  display: none !important;
 }
 
 .sideBarWrapper {

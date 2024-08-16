@@ -81,6 +81,7 @@
   color: $main-text-grey;
   &_miniPosition {
     color: $main-text-black;
+    white-space: wrap;
   }
 }
 

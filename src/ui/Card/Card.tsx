@@ -26,7 +26,6 @@ export default function Card({
   onDragStart,
 }: membersProps) {
   const [showMembers, setShowMembers] = useState(true);
-  console.log('showMembers: ', showMembers);
 
   return (
     <div

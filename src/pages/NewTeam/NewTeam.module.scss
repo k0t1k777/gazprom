@@ -21,10 +21,6 @@
   transition: background-color 0.3s ease;
 }
 
-.link {
-  margin: 0 auto;
-}
-
 .title {
   @include use-font(24px, 28px, 500);
   margin: 300px 0;

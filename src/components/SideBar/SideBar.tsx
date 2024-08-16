@@ -5,6 +5,7 @@ import cn from 'classnames/bind';
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
+  CheckOutlined,
   ClusterOutlined,
   DatabaseOutlined,
   DownOutlined,
@@ -31,11 +32,13 @@ export default function SideBar() {
   const dispatch = useAppDispatch();
   const [showMore, setShorMore] = useState(true);
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const newTeamRout = location.pathname === '/new-team';
+  const teamsRout = location.pathname === '/teams';
 
   function openFilter() {
-    navigate('/new-team')
-    dispatch(setIsFilterOpen(true))
+    navigate('/new-team');
+    dispatch(setIsFilterOpen(true));
   }
 
   return (
@@ -173,13 +176,36 @@ export default function SideBar() {
       </div>
 
       {!shortWindow ? (
-          <Button className={styles.button} onClick={openFilter}>Создать</Button>
+        <Button
+          className={cx(styles.button, {
+            [styles.button_none]: !teamsRout && !newTeamRout,
+          })}
+          onClick={openFilter}
+        >
+          {newTeamRout && 'Сохранить'}
+          {teamsRout && 'Создать'}
+        </Button>
       ) : (
-          <PlusOutlined onClick={openFilter}
-            className={cx(styles.button, {
-              [styles.button_short]: shortWindow,
-            })}
-          />
+        <>
+          {teamsRout && (
+            <PlusOutlined
+              onClick={openFilter}
+              className={cx(styles.button, {
+                [styles.button_mini]: shortWindow,
+                [styles.button_none]: !teamsRout && !newTeamRout,
+              })}
+            />
+          )}
+          {newTeamRout && (
+            <CheckOutlined
+              onClick={openFilter}
+              className={cx(styles.button, {
+                [styles.button_mini]: shortWindow,
+                [styles.button_none]: !teamsRout && !newTeamRout,
+              })}
+            />
+          )}
+        </>
       )}
     </div>
   );

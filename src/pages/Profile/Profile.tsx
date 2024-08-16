@@ -94,7 +94,7 @@ export default function Profile() {
           ))}
           <div className={styles.itemContainer}>
             <h3 className={styles.itemContainerTitle}>
-              'Участие в текущих проектах'
+              Участие в текущих проектах
             </h3>
             <ul className={styles.itemContainerList}>
               {profile?.projects.map((item, index) => (

@@ -19,8 +19,10 @@ export default function NewTeam() {
   let { isFilterOpen } = useAppSelector(selectMembers);
 
   const [allCards, setAllCards] = useState<membersProps[]>([]);
+  console.log('allCards: ', allCards);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [busyCells, setBusyCells] = useState<string[]>([]);
+  const [originalCards, setOriginalCards] = useState<membersProps[]>([]);
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
     if (card.cellId) {
@@ -32,6 +34,7 @@ export default function NewTeam() {
       );
     }
   };
+
 
   useEffect(() => {
     const collectCards = (card: membersProps, collected: membersProps[]) => {
@@ -60,11 +63,7 @@ export default function NewTeam() {
       renderArrows(allCards, setArrows);
     }
   }, [allCards]);
-  console.log('allCards: ', allCards);
-  
-  const [originalCards, setOriginalCards] = useState<membersProps[]>([]);
-  console.log('originalCards: ', originalCards);
-  
+
   return (
     <section
       className={styles.newTeam}
@@ -76,8 +75,7 @@ export default function NewTeam() {
       ) : (
         <div className={styles.cardContainer}>
           {allCards.map((card) =>
-            renderCards(card, setAllCards, originalCards, setOriginalCards
-            )
+            renderCards(card, setAllCards, originalCards, setOriginalCards)
           )}
           {renderEmptyCells(busyCells, isFilterOpen)}
           {arrows}
@@ -86,3 +84,23 @@ export default function NewTeam() {
     </section>
   );
 }
+
+
+// useEffect(() => {
+//   const newCards = allCards.map((employee, index) => {
+//     const updatedSubordinates = Array.isArray(employee.subordinates)
+//       ? employee.subordinates.map((subordinate, subIndex) => ({
+//           ...subordinate,
+//           cellId: `${subIndex}-${index + 1}`,
+//         }))
+//       : [];
+
+//     return {
+//       ...employee,
+//       subordinates: updatedSubordinates,
+//       cellId: index === 0 ? '1-0' : undefined,
+//     };
+//   });
+
+//   setUpdatedCards(newCards);
+// }, [allCards]);

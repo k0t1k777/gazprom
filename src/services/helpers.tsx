@@ -4,6 +4,37 @@ import Arrow from 'src/ui/Arrow/Arrow';
 import { membersProps } from 'src/services/types';
 import Card from 'src/ui/Card/Card';
 
+
+// Отрисовка дерева без редактирования
+export const renderCardsServer = (
+  card: membersProps,
+ 
+) => {
+
+  if (!card.cellId || !card.subordinates) {
+    return null;
+  }
+
+  const [col, row] = card.cellId.split('-').map(Number);
+  return (
+    <div
+      key={card.id}
+      data-cell-id={card.id}
+      style={{ gridColumn: col + 1, gridRow: row + 1 }}
+    >
+      <Card
+        id={card.id}
+        title={card.position}
+        full_name={card.full_name}
+        department={card.department}
+        count={card.subordinates.length}
+      />
+    </div>
+  );
+};
+
+
+
 // Рендер карточек в дереве
 export const renderCards = (
   card: membersProps,
@@ -54,7 +85,6 @@ export const renderCards = (
 
   const restoreMembers = () => {
     // Восстанавливаем оригинальные карточки
-    console.log('Восстанавливаем')
     setAllCards(originalCards);
   };
 
