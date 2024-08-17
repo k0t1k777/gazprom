@@ -8,8 +8,7 @@ import Card from 'src/ui/Card/Card';
 // Отрисовка дерева без редактирования
 export const renderCardsServer = (
   card: membersProps,
- 
-) => {
+ ) => {
 
   if (!card.cellId || !card.subordinates) {
     return null;
@@ -33,8 +32,6 @@ export const renderCardsServer = (
   );
 };
 
-
-
 // Рендер карточек в дереве
 export const renderCards = (
   card: membersProps,
@@ -57,22 +54,19 @@ export const renderCards = (
     if (card.cellId === '1-0') {
       setAllCards((prevCards) => {
         return prevCards.map((member) => {
-          // Если ячейка не '1-0', очищаем ее
           if (member.cellId !== '1-0') {
-            return { ...member, cellId: '' }; // Очищаем карточку
+            return { ...member, cellId: '' };
           }
-          return member; // Возвращаем карточку в '1-0' без изменений
+          return member;
         });
       });
     } else {
-      // Очищаем все ячейки ниже текущей
       setAllCards((prevCards) => {
         return prevCards.map((item) => {
           if (!item.cellId) {
             return item;
           }
           const [cCol, cRow] = item.cellId.split('-').map(Number);
-          // Если строка больше текущей и колонка совпадает, очищаем карточку
           if (cCol === col && cRow > row) {
             return { ...item, cellId: '' };
           }

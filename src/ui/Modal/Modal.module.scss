@@ -1,0 +1,35 @@
+.modal {
+  width: 100%;
+  @include flex-column-center;
+}
+
+.title {
+  @include mp-null;
+  @include use-font(38px, 46px, 500);
+  margin: 164px auto 56px;
+}
+
+.container {
+  @include flex-column-container;
+  align-items: center;
+  width: 310px;
+  gap: 12px;
+}
+
+.input {
+  width: 100%;
+}
+
+.button {
+  @include use-font;
+  color: $main-white;
+  border-radius: $border-radius-s;
+  border: none;
+  outline: none;
+  padding: 0 16px;
+  width: 181px;
+  height: 40px;
+  box-shadow: $items-shadow;
+  background: $button;
+  margin-top: 56px;
+}

@@ -6,12 +6,13 @@ import { useEffect, useState } from 'react';
 // import { initialCards } from 'src/services/mock';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Registration from 'src/pages/Registration/Registration';
-import { allowDrop, handleDragStart, handleDrop } from 'src/services/dragAndDrop';
-import { selectMembers } from 'src/store/features/slice/membersSlice';
 import {
-  membersProps,
-  RegisterDataProps,
-} from 'src/services/types';
+  allowDrop,
+  handleDragStart,
+  handleDrop,
+} from 'src/services/dragAndDrop';
+import { selectMembers } from 'src/store/features/slice/membersSlice';
+import { membersProps, RegisterDataProps } from 'src/services/types';
 import {
   registerUser,
   selectUsers,
@@ -23,36 +24,9 @@ export default function App() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [droppedCards, setDroppedCards] = useState<membersProps[]>([]);
-  const [cards, setCards] = useState<membersProps[]>([]);
+  let { cards } = useAppSelector(selectMembers);
 
-     // const [teamsCards, setTeamsCards] = useState<membersProps[]>([]);
-  // const { team } = useAppSelector(selectTeams);
-  // console.log('team: ', team);
   // const [cards, setCards] = useState<membersProps[]>([]);
-  // // const { id } = useParams()
-  // const id = 1
-
-  // useEffect(() => {
-  //   if (id) {
-  //     // const parsedId = parseInt(id, 10)
-  //     // dispatch(fetchGetTeamsId(parsedId))
-  //     dispatch(fetchGetTeamsId(2))
-  //   }
-  // }, [dispatch, id])
-
-  // useEffect(() => {
-  //   setCards(team && team.employees)
-  // }, [team])
-
-
-
-
-
-
-
-
-
-
 
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(registerUser({ email, password }))
@@ -86,7 +60,14 @@ export default function App() {
             context={{
               allowDrop,
               handleDrop: (e: React.DragEvent<HTMLDivElement>) =>
-                handleDrop(e, cards, setCards, droppedCards, setDroppedCards, members),
+                handleDrop(
+                  e,
+                  cards,
+                  dispatch,
+                  droppedCards,
+                  setDroppedCards,
+                  members
+                ),
               handleDragStart,
               cards,
             }}

@@ -10,9 +10,10 @@ import {
 import Card from 'src/ui/Card/Card';
 import Arrow from 'src/ui/Arrow/Arrow';
 import Preloader from 'src/ui/Preloader/Preloader';
+import { id } from 'src/services/const';
 
 export default function Main() {
-  const id = '1';
+ 
 
   const dispatch = useAppDispatch();
   const { team } = useAppSelector(selectTeams);

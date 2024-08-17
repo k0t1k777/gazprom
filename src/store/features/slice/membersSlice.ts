@@ -12,6 +12,7 @@ export interface StateType {
   membersAmount: number;
   shortWindow: boolean;
   membersValue: string;
+  cards: membersProps[];
 }
 
 const initialState: StateType = {
@@ -23,6 +24,7 @@ const initialState: StateType = {
   membersAmount: 0,
   shortWindow: false,
   membersValue: '',
+  cards: [],
 };
 
 export const fetchGetMembersAmount = createAsyncThunk(
@@ -62,6 +64,9 @@ const membersSlice = createSlice({
     setShortWindow(state, action) {
       state.shortWindow = action.payload;
     },
+    setCards(state, action) {
+      state.cards = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -96,6 +101,7 @@ export const {
   setIsFilterOpen,
   setCurrentPage,
   setShortWindow,
+  setCards,
 } = membersSlice.actions;
 export const membersReducer = membersSlice.reducer;
 export const selectMembers = (state: RootStore) => state.members;

@@ -87,6 +87,14 @@ export const getTeamsId = async (id: number) => {
   return await request(`/api/v1/teams/${id}/`, options);
 };
 
+// export const postTeamsId = async (name: string, owner: string) => {
+//   const options: RequestOptionsType = {
+//     method: 'POST',
+//     headers,
+//   };
+//   return await request(`/api/v1/teams/${id}/`, options);
+// };
+
 // export const getFilters = async () => {
 //   return await request('/api/v1/filters/');
 // };

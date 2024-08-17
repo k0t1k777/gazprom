@@ -11,12 +11,12 @@ import {
 } from 'src/services/helpers';
 
 export default function NewTeam() {
-  const { allowDrop, handleDrop, cards } = useOutletContext<{
+  const { allowDrop, handleDrop } = useOutletContext<{
     allowDrop: (e: React.DragEvent<HTMLImageElement>) => void;
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
-    cards: membersProps[];
+    // cards: membersProps[];
   }>();
-  let { isFilterOpen } = useAppSelector(selectMembers);
+  let { isFilterOpen, cards } = useAppSelector(selectMembers);
 
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);

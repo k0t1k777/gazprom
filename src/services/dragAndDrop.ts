@@ -1,6 +1,8 @@
 import { cellHeight, cellWidth } from 'src/services/const';
 // import { cardsList } from 'src/services/mock';
 import { membersProps } from 'src/services/types';
+import { setCards } from 'src/store/features/slice/membersSlice';
+import { useAppDispatch } from 'src/store/hooks';
 
 // Начальная область переноса
 export const handleDragStart = (
@@ -25,14 +27,13 @@ export const allowDrop = (e: React.DragEvent<HTMLDivElement>) => {
 export const handleDrop = (
   e: React.DragEvent<HTMLDivElement>,
   cards: membersProps[],
-  setCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
-  droppedCards: membersProps[],
+  dispatch: any,
+    droppedCards: membersProps[],
   setDroppedCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
   members: membersProps[]
 ) => {
   e.preventDefault();
   const itemId = e.dataTransfer.getData('id');
-  console.log('itemId: ', itemId);
 
   const dropTarget = e.currentTarget;
   const dropTargetRect = dropTarget.getBoundingClientRect();
@@ -67,7 +68,7 @@ export const handleDrop = (
           newSubordinateCard
         );
 
-        setCards(updatedCards);
+        dispatch(setCards(updatedCards));
         setDroppedCards((prev) => [
           ...prev,
           { id: newSubordinateCard.id, cellId },
@@ -86,7 +87,7 @@ export const handleDrop = (
 
         const updatedCards = [...cards, newSubordinateCard];
 
-        setCards(updatedCards);
+        dispatch(setCards(updatedCards));
         setDroppedCards((prev) => [
           ...prev,
           { id: newSubordinateCard.id, cellId: newSubordinateCard.cellId },

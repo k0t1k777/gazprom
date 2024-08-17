@@ -1,6 +1,6 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import styles from 'src/pages/Profile/Profile.module.scss';
-import { CHARTS_DATA, EVENTS_DATA } from 'src/services/mock';
+import { CHARTS_DATA, EVENTS_DATA } from 'src/services/const';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { selectMembers } from 'src/store/features/slice/membersSlice';
 import cn from 'classnames/bind';
