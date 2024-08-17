@@ -234,7 +234,6 @@ useEffect(() => {
     ) : id ? (
         <div className={styles.cardContainer}>
           {teamCard && teamCard.map(renderCardsServer)}
-          {/* {arrows} */}
           {drawArrows}
         </div>
       ) : (
