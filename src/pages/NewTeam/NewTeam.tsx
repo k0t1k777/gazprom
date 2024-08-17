@@ -85,7 +85,3 @@ export default function NewTeam() {
   );
 }
 
-
- // Если больше трёх подчинённых, распределяем их по колонкам
-//  newColumn = parColumn + subIndex - Math.floor(subordinatesCount / 2); // Центрируем подчинённых
-// }

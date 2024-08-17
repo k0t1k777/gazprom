@@ -47,7 +47,6 @@ export const renderCards = (
     return null;
   }
   const hideMembers = () => {
-    console.log('Прячем')
 
     setOriginalCards(allCards => [...allCards]);
     if (!card.cellId) {
