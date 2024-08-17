@@ -7,6 +7,7 @@ export interface membersProps {
   position?: string;
   cellId?: string;
   parentId?: string;
+  parent_id?: string;
   photo?: string;
   count?: number;
   subordinates?: membersProps[];

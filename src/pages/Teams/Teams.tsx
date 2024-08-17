@@ -19,7 +19,6 @@ export default function Teams() {
   const { teams, team } = useAppSelector(selectTeams);
   const [loading, setLoading] = useState(true);
 
-  const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
@@ -120,48 +119,54 @@ export default function Teams() {
     );
   };
 
+  const [drawArrows, setDrawArrows] = useState<JSX.Element[]>([]);
 
-  export const renderArrows = (
-    allCards: membersProps[],
-    setArrows: React.Dispatch<React.SetStateAction<JSX.Element[]>>
-  ) => {
-    const newArrows = allCards.map((card) => {
-      const parentCard = allCards.find((item) => item.id === card.parentId);
-      if (parentCard) {
-        const parentElement = document.querySelector(
-          `[data-cell-id="${parentCard.id}"]`
-        ) as HTMLElement;
-        const childElement = document.querySelector(
-          `[data-cell-id="${card.id}"]`
-        ) as HTMLElement;
-  
-        if (parentElement && childElement) {
-          const from = {
-            x: parentElement.offsetLeft + parentElement.offsetWidth / 2,
-            y: parentElement.offsetTop + parentElement.offsetHeight,
-          };
-          const to = {
-            x: childElement.offsetLeft + childElement.offsetWidth / 2,
-            y: childElement.offsetTop,
-          };
-  
-          return (
-            <Arrow
-              key={`${parentCard.id}-${card.id}`}
-              startX={from.x}
-              startY={from.y}
-              endX={to.x}
-              endY={to.y}
-            />
-          );
-        }
+
+    // Находим родительскую карточку
+   const findArrows = (parentId: string) => {
+    const parentElement = document.getElementById(parentId);
+    const childCards = teamCard.filter(card => card.parent_id === parentId);
+    const arrows: JSX.Element[] = [];
+
+    childCards.forEach(childCard => {
+      const childElement = document.getElementById(childCard.id);
+
+      if (childElement && parentElement) {
+        const from = {
+          x: parentElement.offsetLeft + parentElement.offsetWidth / 2,
+          y: parentElement.offsetTop + parentElement.offsetHeight,
+        };
+        const to = {
+          x: childElement.offsetLeft + childElement.offsetWidth / 2,
+          y: childElement.offsetTop,
+        };
+
+        arrows.push(
+          <Arrow
+            key={`${parentId}-${childCard.id}`}
+            startX={from.x}
+            startY={from.y}
+            endX={to.x}
+            endY={to.y}
+          />
+        );
+
+        arrows.push(...findArrows(childCard.id));
       }
-      return null;
     });
-    setArrows(newArrows.filter((arrow): arrow is JSX.Element => arrow !== null));
-  };
-  
 
+    return arrows;
+  };
+
+  useEffect(() => {
+    const foundParentCard = teamCard.find(card => card.parent_id === null);
+
+    if (foundParentCard) {
+      const arrows = findArrows(foundParentCard.id);
+      setDrawArrows(arrows);
+    }
+  }, [teamCard]);
+    
   useEffect(() => {
     dispatch(fetchGetTeams());
   }, []);
@@ -229,7 +234,8 @@ useEffect(() => {
     ) : id ? (
         <div className={styles.cardContainer}>
           {teamCard && teamCard.map(renderCardsServer)}
-          {arrows}
+          {/* {arrows} */}
+          {drawArrows}
         </div>
       ) : (
         teams.map((item) => (
