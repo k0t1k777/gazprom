@@ -3,7 +3,6 @@ import Header from 'src/components/Header/Header';
 import SideBar from 'src/components/SideBar/SideBar';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-// import { initialCards } from 'src/services/mock';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Registration from 'src/pages/Registration/Registration';
 import {
@@ -16,19 +15,21 @@ import { membersProps, RegisterDataProps } from 'src/services/types';
 import {
   registerUser,
   selectUsers,
+  setLoading,
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
+import Preloader from 'src/ui/Preloader/Preloader';
 
 export default function App() {
-  let { loggedIn } = useAppSelector(selectUsers);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  let { loggedIn, loading } = useAppSelector(selectUsers);
   const [droppedCards, setDroppedCards] = useState<membersProps[]>([]);
   let { cards } = useAppSelector(selectMembers);
-
-  // const [cards, setCards] = useState<membersProps[]>([]);
+  const { members } = useAppSelector(selectMembers);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   function handleRegister({ email, password }: RegisterDataProps) {
+    dispatch(setLoading(true));
     dispatch(registerUser({ email, password }))
       .unwrap()
       .then((data) => {
@@ -40,6 +41,9 @@ export default function App() {
       })
       .catch((error) => {
         console.error('Ошибка регистрации:', error);
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
       });
   }
 
@@ -49,10 +53,11 @@ export default function App() {
       dispatch(setLoggedIn(true));
     }
   }, [dispatch]);
-  const { members } = useAppSelector(selectMembers);
+
   return (
     <div>
       <Header droppedCards={droppedCards} />
+     {loading && <Preloader />}
       {loggedIn ? (
         <div className='container'>
           <SideBar />

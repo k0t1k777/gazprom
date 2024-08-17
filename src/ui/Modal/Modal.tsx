@@ -1,10 +1,10 @@
 import { Button, Input } from 'antd';
 import styles from 'src/ui/Modal/Modal.module.scss';
 
-interface RegistrationProps {
-  handleOk: () => void;
-  handleCancel:  () => void;
-}
+// interface RegistrationProps {
+//   handleOk: () => void;
+//   handleCancel:  () => void;
+// }
 
 export default function Modal() {
 

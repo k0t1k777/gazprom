@@ -29,8 +29,8 @@ import Modal from 'src/ui/Modal/Modal';
 const cx = cn.bind(styles);
 
 export default function SideBar() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [teamName, setTeamName] = useState('');
+  // const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [teamName, setTeamName] = useState('');
   let { shortWindow } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
   const [showMore, setShorMore] = useState(true);
@@ -44,11 +44,11 @@ export default function SideBar() {
     dispatch(setIsFilterOpen(true));
   }
 
-  const handleOk = () => {
-    // Здесь можно обработать отправку имени команды
-    console.log('Имя команды:', teamName);
-    setIsModalVisible(false);
-  };
+  // const handleOk = () => {
+  //   // Здесь можно обработать отправку имени команды
+  //   console.log('Имя команды:', teamName);
+  //   setIsModalVisible(false);
+  // };
 
   return (
     <div

@@ -11,17 +11,17 @@ import Card from 'src/ui/Card/Card';
 import Arrow from 'src/ui/Arrow/Arrow';
 import Preloader from 'src/ui/Preloader/Preloader';
 import { id } from 'src/services/const';
+import { selectUsers, setLoading } from 'src/store/features/slice/userSlice';
 
 export default function Main() {
- 
-
   const dispatch = useAppDispatch();
   const { team } = useAppSelector(selectTeams);
+  let { loading } = useAppSelector(selectUsers);
 
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [drawArrows, setDrawArrows] = useState<JSX.Element[]>([]);
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
     if (card.cellId) {
@@ -118,7 +118,6 @@ export default function Main() {
     );
   };
 
-  const [drawArrows, setDrawArrows] = useState<JSX.Element[]>([]);
 
   // Находим родительскую карточку
   const findArrows = (parentId: string) => {
@@ -158,7 +157,6 @@ export default function Main() {
 
   useEffect(() => {
     const foundParentCard = teamCard.find((card) => card.parent_id === null);
-
     if (foundParentCard) {
       const arrows = findArrows(foundParentCard.id);
       setDrawArrows(arrows);
@@ -171,17 +169,29 @@ export default function Main() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
+      dispatch(setLoading(true));
       await dispatch(fetchGetTeams());
       if (id) {
         const parsedId = parseInt(id, 10);
         await dispatch(fetchGetTeamsId(parsedId));
       }
-      setLoading(false);
+      dispatch(setLoading(false));
     };
-
     fetchData();
   }, [dispatch, id]);
+
+  //   const fetchData = async () => {
+  //     setLoading(true); // Устанавливаем загрузку в true
+  //     await dispatch(fetchGetTeams());
+  //     if (id) {
+  //       const parsedId = parseInt(id, 10);
+  //       await dispatch(fetchGetTeamsId(parsedId));
+  //     }
+  //     setLoading(false); // Устанавливаем загрузку в false
+  //     // setDataLoaded(true); // Данные загружены
+  //   };
+  //   fetchData();
+  // }, [dispatch, id]);
 
   useEffect(() => {
     if (team?.employees) {

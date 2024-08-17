@@ -9,6 +9,7 @@ export interface StateType {
   error: string | null | unknown;
   loggedIn: boolean;
   profile: ProfileProps | null;
+  loading: boolean;
 }
 
 const initialState: StateType = {
@@ -17,6 +18,7 @@ const initialState: StateType = {
   error: null,
   loggedIn: false,
   profile: null,
+  loading: false,
 };
 // фетч добавить
 export const registerUser = createAsyncThunk(
@@ -41,6 +43,9 @@ const userSlice = createSlice({
     setLoggedIn(state, action) {
       state.access = action.payload;
       state.loggedIn = true;
+    },
+    setLoading(state, action) {
+      state.loading = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -73,6 +78,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setLoggedIn } = userSlice.actions;
+export const { setLoggedIn, setLoading } = userSlice.actions;
 export const userReducer = userSlice.reducer;
 export const selectUsers = (state: RootStore) => state.user;

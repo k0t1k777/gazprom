@@ -12,12 +12,15 @@ import Card from 'src/ui/Card/Card';
 import TeamsItem from 'src/ui/TeamsItem/TeamsItem';
 import Preloader from 'src/ui/Preloader/Preloader'
 import Arrow from 'src/ui/Arrow/Arrow';
+import { selectUsers, setLoading } from 'src/store/features/slice/userSlice';
 
 export default function Teams() {
   const { id } = useParams();
-  const dispatch = useAppDispatch();
   const { teams, team } = useAppSelector(selectTeams);
-  const [loading, setLoading] = useState(true);
+  let { loading } = useAppSelector(selectUsers);
+  const dispatch = useAppDispatch();
+
+  // const [loading, setLoading] = useState(true);
 
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
@@ -173,15 +176,14 @@ export default function Teams() {
 
 useEffect(() => {
   const fetchData = async () => {
-    setLoading(true);
+    dispatch(setLoading(true));
     await dispatch(fetchGetTeams());
     if (id) {
       const parsedId = parseInt(id, 10);
       await dispatch(fetchGetTeamsId(parsedId));
     }
-    setLoading(false);
+    dispatch(setLoading(false));
   };
-
   fetchData();
 }, [dispatch, id]);
 

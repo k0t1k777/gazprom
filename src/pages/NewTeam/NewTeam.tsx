@@ -14,7 +14,6 @@ export default function NewTeam() {
   const { allowDrop, handleDrop } = useOutletContext<{
     allowDrop: (e: React.DragEvent<HTMLImageElement>) => void;
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
-    // cards: membersProps[];
   }>();
   let { isFilterOpen, cards } = useAppSelector(selectMembers);
 

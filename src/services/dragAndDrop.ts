@@ -1,8 +1,6 @@
 import { cellHeight, cellWidth } from 'src/services/const';
-// import { cardsList } from 'src/services/mock';
 import { membersProps } from 'src/services/types';
 import { setCards } from 'src/store/features/slice/membersSlice';
-import { useAppDispatch } from 'src/store/hooks';
 
 // Начальная область переноса
 export const handleDragStart = (

@@ -1,12 +1,10 @@
-import 'src/ui/Preloader/Preloader.scss';
+import styles from 'src/ui/Preloader/Preloader.module.scss';
 
 export default function Preloader() {
-
   return (
-    <div className='preloader'>
-      <div className='preloader__overlay'></div>
-      <div
-        className='preloader__loader'></div>
+    <div className={styles.preloader}>
+      <div className={styles.preloader__overlay}></div>
+      <div className={styles.preloader__loader}></div>
     </div>
   );
 }

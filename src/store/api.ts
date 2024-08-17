@@ -1,10 +1,17 @@
 export const BASE_URL = 'https://gazprom.hopto.org';
 import { RegisterDataProps } from 'src/services/types';
-const TOKEN = localStorage.getItem('token');
-const headers = {
-  authorization: `Bearer ${TOKEN}`,
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
+
+const getToken = () => {
+  return localStorage.getItem('token');
+};
+
+const createHeaders = () => {
+  const TOKEN = getToken();
+  return {
+    authorization: `Bearer ${TOKEN}`,
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
 };
 
 type RequestOptionsType = RequestInit & {
@@ -28,10 +35,7 @@ const request = (endpoint: string, options?: RequestOptionsType) =>
 export const registration = async ({ email, password }: RegisterDataProps) => {
   const options: RequestOptionsType = {
     method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+    headers: createHeaders(),
     body: JSON.stringify({ email, password }),
   };
   return await request('/api/token/', options);
@@ -40,7 +44,7 @@ export const registration = async ({ email, password }: RegisterDataProps) => {
 export const getProfile = async () => {
   const options: RequestOptionsType = {
     method: 'GET',
-    headers,
+    headers: createHeaders(),
   };
   const response = await request('/api/v1/users/me/', options);
   return response;
@@ -49,7 +53,7 @@ export const getProfile = async () => {
 export const getMembersAmount = async () => {
   const options: RequestOptionsType = {
     method: 'GET',
-    headers,
+    headers: createHeaders(),
   };
   const response = await request('/api/v1/members/', options);
   return response;
@@ -58,7 +62,7 @@ export const getMembersAmount = async () => {
 export const getMembers = async (page: number) => {
   const options: RequestOptionsType = {
     method: 'GET',
-    headers,
+    headers: createHeaders(),
   };
   return await request(`/api/v1/members/?page=${page}`, options);
 };
@@ -66,7 +70,7 @@ export const getMembers = async (page: number) => {
 export const getTeams = async () => {
   const options: RequestOptionsType = {
     method: 'GET',
-    headers,
+    headers: createHeaders(),
   };
   return await request('/api/v1/teams/', options);
 };
@@ -74,7 +78,7 @@ export const getTeams = async () => {
 export const getProjects = async () => {
   const options: RequestOptionsType = {
     method: 'GET',
-    headers,
+    headers: createHeaders(),
   };
   return await request('/api/v1/projects/', options);
 };
@@ -82,7 +86,7 @@ export const getProjects = async () => {
 export const getTeamsId = async (id: number) => {
   const options: RequestOptionsType = {
     method: 'GET',
-    headers,
+    headers: createHeaders(),
   };
   return await request(`/api/v1/teams/${id}/`, options);
 };
