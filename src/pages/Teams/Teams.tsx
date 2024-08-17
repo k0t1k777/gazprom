@@ -10,24 +10,18 @@ import {
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Card from 'src/ui/Card/Card';
 import TeamsItem from 'src/ui/TeamsItem/TeamsItem';
-// const teamsRout = location.pathname.includes(`/teams/`)
-
-// interface Card {
-//   cellId?: string;
-//   subordinates?: Card[];
-// }
+import Preloader from 'src/ui/Preloader/Preloader'
+import Arrow from 'src/ui/Arrow/Arrow';
 
 export default function Teams() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { teams, team } = useAppSelector(selectTeams);
-  // console.log('team: ', team);
+  const [loading, setLoading] = useState(true);
 
-  // const [arrows, setArrows] = useState<JSX.Element[]>([]);
+  const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [allCards, setAllCards] = useState<membersProps[]>([]);
-  console.log('allCards: ', allCards);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
-  console.log('updatedCards: ', updatedCards);
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
@@ -50,50 +44,39 @@ export default function Teams() {
     if (card.subordinates && Array.isArray(card.subordinates)) {
       const updatedSubordinates = card.subordinates.map(
         (sub: membersProps, index: number) => {
-          // Расчёт cellId для подчинённых карточек
           let cellId;
 
           if (card.subordinates && card.subordinates.length === 1) {
-            // Проверяем, если у родителя 3 подчинённых
             if (index === 0) {
-              // Первая карточка
-              cellId = `${parentColom}-${parentRow + 1}`; // Прямо под родителем
+              cellId = `${parentColom}-${parentRow + 1}`;
             }
           }
 
           if (card.subordinates && card.subordinates.length === 2) {
-            // Проверяем, если у родителя 3 подчинённых
             if (index === 0) {
-              // Первая карточка
-              cellId = `${parentColom}-${parentRow + 1}`; // Прямо под родителем
+              cellId = `${parentColom}-${parentRow + 1}`;
             } else if (index === 1) {
-              // Вторая карточка
-              cellId = `${parentColom + 1}-${parentRow + 1}`; // Вправо
+              cellId = `${parentColom + 1}-${parentRow + 1}`;
             }
           }
 
           if (card.subordinates && card.subordinates.length === 3) {
-            // Проверяем, если у родителя 3 подчинённых
             if (index === 0) {
-              // Первая карточка
-              cellId = `${parentColom}-${parentRow + 1}`; // Прямо под родителем
+              cellId = `${parentColom}-${parentRow + 1}`;
             } else if (index === 1) {
-              // Вторая карточка
-              cellId = `${parentColom + 1}-${parentRow + 1}`; // Вправо
+              cellId = `${parentColom + 1}-${parentRow + 1}`;
             } else if (index === 2) {
-              // Третья карточка
-              cellId = `${parentColom - 1}-${parentRow + 1}`; // Влево
+              cellId = `${parentColom - 1}-${parentRow + 1}`;
             }
           }
 
           if (card.subordinates && card.subordinates.length > 3) {
-            // Проверяем, если у родителя 3 подчинённых
             if (index === 0) {
               cellId = `${parentColom}-${parentRow + 1}`;
             } else if (index === 1) {
-              cellId = `${parentColom + 1}-${parentRow + 1}`; // Вправо
+              cellId = `${parentColom + 1}-${parentRow + 1}`;
             } else if (index === 2) {
-              cellId = `${parentColom - 1}-${parentRow + 1}`; // Влево
+              cellId = `${parentColom - 1}-${parentRow + 1}`;
             } else if (index === 3) {
               cellId = `${parentColom + 2}-${parentRow + 1}`;
             }
@@ -112,6 +95,101 @@ export default function Teams() {
     }
     return card;
   };
+
+  
+  const renderCardsServer = (card: membersProps) => {
+    if (!card.cellId || !card.subordinates) {
+      return null;
+    }
+
+    const [col, row] = card.cellId.split('-').map(Number);
+    return (
+      <div
+        key={card.id}
+        data-cell-id={card.id}
+        style={{ gridColumn: col + 1, gridRow: row + 1 }}
+      >
+        <Card
+          id={card.id}
+          title={card.position}
+          full_name={card.full_name}
+          department={card.department}
+          count={card.subordinates.length}
+        />
+      </div>
+    );
+  };
+
+
+  export const renderArrows = (
+    allCards: membersProps[],
+    setArrows: React.Dispatch<React.SetStateAction<JSX.Element[]>>
+  ) => {
+    const newArrows = allCards.map((card) => {
+      const parentCard = allCards.find((item) => item.id === card.parentId);
+      if (parentCard) {
+        const parentElement = document.querySelector(
+          `[data-cell-id="${parentCard.id}"]`
+        ) as HTMLElement;
+        const childElement = document.querySelector(
+          `[data-cell-id="${card.id}"]`
+        ) as HTMLElement;
+  
+        if (parentElement && childElement) {
+          const from = {
+            x: parentElement.offsetLeft + parentElement.offsetWidth / 2,
+            y: parentElement.offsetTop + parentElement.offsetHeight,
+          };
+          const to = {
+            x: childElement.offsetLeft + childElement.offsetWidth / 2,
+            y: childElement.offsetTop,
+          };
+  
+          return (
+            <Arrow
+              key={`${parentCard.id}-${card.id}`}
+              startX={from.x}
+              startY={from.y}
+              endX={to.x}
+              endY={to.y}
+            />
+          );
+        }
+      }
+      return null;
+    });
+    setArrows(newArrows.filter((arrow): arrow is JSX.Element => arrow !== null));
+  };
+  
+
+  useEffect(() => {
+    dispatch(fetchGetTeams());
+  }, []);
+
+useEffect(() => {
+  const fetchData = async () => {
+    setLoading(true);
+    await dispatch(fetchGetTeams());
+    if (id) {
+      const parsedId = parseInt(id, 10);
+      await dispatch(fetchGetTeamsId(parsedId));
+    }
+    setLoading(false);
+  };
+
+  fetchData();
+}, [dispatch, id]);
+
+
+  useEffect(() => {
+    if (team?.employees) {
+      const allEmployeeData = [{ ...team.employees, cellId: '1-0' }];
+      setAllCards(allEmployeeData);
+    } else {
+      setAllCards([]);
+    }
+  }, [team]);
+
 
   useEffect(() => {
     const updatedAllCards = allCards.map((card) =>
@@ -144,56 +222,14 @@ export default function Teams() {
     setTeamCard(newAllCards);
   }, [updatedCards]);
 
-  useEffect(() => {
-    dispatch(fetchGetTeams());
-  }, []);
-
-  useEffect(() => {
-    if (id) {
-      const parsedId = parseInt(id, 10);
-      dispatch(fetchGetTeamsId(parsedId));
-    }
-  }, [dispatch, id]);
-
-
-  useEffect(() => {
-    if (team?.employees) {
-      const allEmployeeData = [{ ...team.employees, cellId: '1-0' }];
-      setAllCards(allEmployeeData);
-    } else {
-      setAllCards([]);
-    }
-  }, [team]);
-
-  const renderCardsServer = (card: membersProps) => {
-    if (!card.cellId || !card.subordinates) {
-      return null;
-    }
-
-    const [col, row] = card.cellId.split('-').map(Number);
-    return (
-      <div
-        key={card.id}
-        data-cell-id={card.id}
-        style={{ gridColumn: col + 1, gridRow: row + 1 }}
-      >
-        <Card
-          id={card.id}
-          title={card.position}
-          full_name={card.full_name}
-          department={card.department}
-          count={card.subordinates.length}
-        />
-      </div>
-    );
-  };
-
   return (
     <section className={styles.teams}>
-      {id ? (
+      {loading ? (
+    <Preloader />
+    ) : id ? (
         <div className={styles.cardContainer}>
           {teamCard && teamCard.map(renderCardsServer)}
-          {/* {arrows} */}
+          {arrows}
         </div>
       ) : (
         teams.map((item) => (

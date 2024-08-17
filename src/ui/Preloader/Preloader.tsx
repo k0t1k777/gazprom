@@ -1,6 +1,6 @@
 import 'src/ui/Preloader/Preloader.scss';
 
-export const Preloader = () => {
+export default function Preloader() {
 
   return (
     <div className='preloader'>

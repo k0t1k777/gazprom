@@ -19,7 +19,6 @@ export default function NewTeam() {
   let { isFilterOpen } = useAppSelector(selectMembers);
 
   const [allCards, setAllCards] = useState<membersProps[]>([]);
-  console.log('allCards: ', allCards);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [busyCells, setBusyCells] = useState<string[]>([]);
   const [originalCards, setOriginalCards] = useState<membersProps[]>([]);
