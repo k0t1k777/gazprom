@@ -14,15 +14,17 @@ import {
   fetchGetTeamsId,
   selectTeams,
 } from 'src/store/features/slice/teamsSlice';
+import PopupProfile from 'src/components/PopupProfile/PopupProfile';
 
 export default function Teams() {
-  const { loading } = useAppSelector(selectUsers);
+  const { loading, isProfileOpen } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const { teams, team, addTeam } = useAppSelector(selectTeams);
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
+  const [drawArrows, setDrawArrows] = useState<JSX.Element[]>([]);
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
     if (card.cellId) {
@@ -44,42 +46,10 @@ export default function Teams() {
     if (card.subordinates && Array.isArray(card.subordinates)) {
       const updatedSubordinates = card.subordinates.map(
         (sub: membersProps, index: number) => {
-          let cellId;
-
-          if (card.subordinates && card.subordinates.length === 1) {
-            if (index === 0) {
-              cellId = `${parentColom}-${parentRow + 1}`;
-            }
-          }
-          if (card.subordinates && card.subordinates.length === 2) {
-            if (index === 0) {
-              cellId = `${parentColom}-${parentRow + 1}`;
-            } else if (index === 1) {
-              cellId = `${parentColom + 1}-${parentRow + 1}`;
-            }
-          }
-
-          if (card.subordinates && card.subordinates.length === 3) {
-            if (index === 0) {
-              cellId = `${parentColom}-${parentRow + 1}`;
-            } else if (index === 1) {
-              cellId = `${parentColom + 1}-${parentRow + 1}`;
-            } else if (index === 2) {
-              cellId = `${parentColom - 1}-${parentRow + 1}`;
-            }
-          }
-
-          if (card.subordinates && card.subordinates.length > 3) {
-            if (index === 0) {
-              cellId = `${parentColom}-${parentRow + 1}`;
-            } else if (index === 1) {
-              cellId = `${parentColom + 1}-${parentRow + 1}`;
-            } else if (index === 2) {
-              cellId = `${parentColom - 1}-${parentRow + 1}`;
-            } else if (index === 3) {
-              cellId = `${parentColom + 2}-${parentRow + 1}`;
-            }
-          }
+          const cellId = `${
+            parentColom +
+            (index === 0 ? 0 : index === 1 ? 1 : index === 2 ? -1 : index - 2)
+          }-${parentRow + 1}`;
 
           const updatedSub = updateSubordinates(
             sub,
@@ -99,7 +69,6 @@ export default function Teams() {
     if (!card.cellId || !card.subordinates) {
       return null;
     }
-
     const [col, row] = card.cellId.split('-').map(Number);
     return (
       <div
@@ -117,8 +86,6 @@ export default function Teams() {
       </div>
     );
   };
-
-  const [drawArrows, setDrawArrows] = useState<JSX.Element[]>([]);
 
   // Находим родительскую карточку
   const findArrows = (parentId: string) => {
@@ -246,6 +213,7 @@ export default function Teams() {
           ))}
         </>
       )}
+      {isProfileOpen && <PopupProfile />}
     </section>
   );
 }

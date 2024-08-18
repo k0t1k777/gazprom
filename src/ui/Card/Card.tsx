@@ -3,11 +3,9 @@ import Avatar from 'src/assets/images/Avatar.png';
 import { useState } from 'react';
 import cn from 'classnames/bind';
 import { membersProps } from 'src/services/types';
-import {
-  DownOutlined,
-  EditOutlined,
-  UpOutlined,
-} from '@ant-design/icons';
+import { DownOutlined, EditOutlined, UpOutlined } from '@ant-design/icons';
+import { useAppDispatch } from 'src/store/hooks';
+import { fetchGetMemberId, setIsProfileOpen } from 'src/store/features/slice/userSlice';
 
 const cx = cn.bind(styles);
 
@@ -25,6 +23,14 @@ export default function Card({
   onDragStart,
 }: membersProps) {
   const [showMembers, setShowMembers] = useState(true);
+    const dispatch = useAppDispatch();
+
+    const handleMemberClick = async (id: number) => {
+      const memberData = await dispatch(fetchGetMemberId(id));
+      if (memberData.payload) {
+        dispatch(setIsProfileOpen(true));
+      }
+    };
 
   return (
     <div
@@ -45,7 +51,10 @@ export default function Card({
             [styles.disabled]: isFilterOpen,
           })}
         >
-          <EditOutlined className={styles.button} />
+          <EditOutlined
+            className={styles.button}
+            onClick={() => handleMemberClick(Number(id))}
+          />
         </div>
       </div>
       <div className={styles.nameContainer}>
@@ -57,17 +66,17 @@ export default function Card({
             [styles.miniContainer]: isFilterOpen,
           })}
         >
-            <p className={cx(styles.name, { [styles.miniName]: isFilterOpen })}>
-              {full_name}
-            </p>
-            <p
-              className={cx(styles.position, {
-                [styles.position_miniPosition]: isFilterOpen,
-                [styles.noMoveColor]: !draggable,
-              })}
-            >
-              {department}
-            </p>
+          <p className={cx(styles.name, { [styles.miniName]: isFilterOpen })}>
+            {full_name}
+          </p>
+          <p
+            className={cx(styles.position, {
+              [styles.position_miniPosition]: isFilterOpen,
+              [styles.noMoveColor]: !draggable,
+            })}
+          >
+            {department}
+          </p>
           <div
             className={cx(styles.countContainer, {
               [styles.disabled]: isFilterOpen,
@@ -81,13 +90,9 @@ export default function Card({
               onClick={() => setShowMembers(!showMembers)}
             >
               {showMembers ? (
-                <DownOutlined
-                onClick={hideMembers}
-                />
+                <DownOutlined onClick={hideMembers} />
               ) : (
-                <UpOutlined
-                onClick={restoreMembers}
-                />
+                <UpOutlined onClick={restoreMembers} />
               )}
             </div>
           </div>

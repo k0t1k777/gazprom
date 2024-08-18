@@ -13,10 +13,6 @@ import {
   selectMembers,
 } from 'src/store/features/slice/membersSlice';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-// import {
-//   fetchGetFilters,
-//   selectFilters,
-// } from 'src/store/features/slice/filterSlice';
 
 interface FilterProps {
   droppedCards: membersProps[];
@@ -24,14 +20,9 @@ interface FilterProps {
 
 export default function Filter({ droppedCards }: FilterProps) {
   const { isFilterOpen } = useAppSelector(selectMembers);
-  // const { filters } = useAppSelector(selectFilters);
 
   const { members, currentPage } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchGetFilters());
-  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchGetMembers(currentPage));

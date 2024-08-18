@@ -15,8 +15,8 @@ export interface ISelect {
   options?: string[];
 }
 
-export default function Select({ text, setValue, value, options }: ISelect) {
-  console.log('setValue: ', setValue);
+export default function Select({ text, 
+   value, options }: ISelect) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
 
@@ -49,9 +49,6 @@ export default function Select({ text, setValue, value, options }: ISelect) {
           <SimpleBar style={{ maxHeight: 'inherit' }}>
             {options.map((option, index) => (
               <li
-                // onClick={() => {
-                //   setValue(option);
-                // }}
                 className={styles.select__option}
                 key={index}
                 aria-hidden='true'

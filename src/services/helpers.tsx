@@ -4,8 +4,12 @@ import Arrow from 'src/ui/Arrow/Arrow';
 import { membersProps } from 'src/services/types';
 import Card from 'src/ui/Card/Card';
 
+
 // Отрисовка дерева без редактирования
-export const renderCardsServer = (card: membersProps) => {
+export const renderCardsServer = (
+  card: membersProps,
+ ) => {
+
   if (!card.cellId || !card.subordinates) {
     return null;
   }
@@ -33,13 +37,15 @@ export const renderCards = (
   card: membersProps,
   setPersonalTeam: React.Dispatch<React.SetStateAction<membersProps[]>>,
   originalCards: membersProps[],
-  setOriginalCards: React.Dispatch<React.SetStateAction<membersProps[]>>
+  setOriginalCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
 ) => {
+
   if (!card.cellId || !card.subordinates) {
     return null;
   }
   const hideMembers = () => {
-    setOriginalCards((allCards) => [...allCards]);
+
+    setOriginalCards(allCards => [...allCards]);
     if (!card.cellId) {
       return card;
     }
@@ -74,7 +80,7 @@ export const renderCards = (
     setPersonalTeam(originalCards);
   };
 
-  const [col, row] = card.cellId.split('-').map(Number);
+   const [col, row] = card.cellId.split('-').map(Number);
   return (
     <div
       key={card.id}

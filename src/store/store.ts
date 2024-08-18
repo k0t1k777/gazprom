@@ -3,7 +3,6 @@ import { userReducer } from 'src/store/features/slice/userSlice';
 import { membersReducer } from './features/slice/membersSlice';
 import { teamsReducer } from './features/slice/teamsSlice';
 import { projectsReducer } from './features/slice/projectsSlice';
-// import { filtersReducer } from './features/slice/filterSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +10,6 @@ export const store = configureStore({
     members: membersReducer,
     teams: teamsReducer,
     projects: projectsReducer,
-    // filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),

@@ -1,5 +1,5 @@
 import styles from 'src/components/Header/Header.module.scss';
-import Logo from 'src/assets/Logo.svg?react';
+import Logo from 'src/assets/icon/Logo.svg?react';
 import { Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';

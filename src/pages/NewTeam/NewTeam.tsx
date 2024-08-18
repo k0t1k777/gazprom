@@ -10,6 +10,8 @@ import {
   renderEmptyCells,
 } from 'src/services/helpers';
 import Modal from 'src/ui/Modal/Modal';
+import PopupProfile from 'src/components/PopupProfile/PopupProfile';
+import { selectUsers } from 'src/store/features/slice/userSlice';
 
 export default function NewTeam() {
   const { allowDrop, handleDrop } = useOutletContext<{
@@ -17,11 +19,11 @@ export default function NewTeam() {
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
   }>();
   const { isFilterOpen, cards } = useAppSelector(selectMembers);
-
   const [personalTeam, setPersonalTeam] = useState<membersProps[]>([]);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [busyCells, setBusyCells] = useState<string[]>([]);
   const [originalCards, setOriginalCards] = useState<membersProps[]>([]);
+  const { isProfileOpen } = useAppSelector(selectUsers);
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
     if (card.cellId) {
@@ -69,7 +71,9 @@ export default function NewTeam() {
       onDrop={handleDrop}
     >
       {personalTeam.length === 0 ? (
-        <div className={styles.title}>Добавьте члена команды сюда</div>
+        <div className={styles.overlay}>
+          <p className={styles.title}>Добавьте члена команды сюда</p>
+        </div>
       ) : (
         <>
           <div className={styles.cardContainer}>
@@ -87,6 +91,7 @@ export default function NewTeam() {
           <Modal />
         </>
       )}
+      {isProfileOpen && <PopupProfile />}
     </section>
   );
 }

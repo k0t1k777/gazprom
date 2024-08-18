@@ -1,18 +1,21 @@
 import styles from 'src/components/PopupProfile/PopupProfile.module.scss';
 import { useEffect, useRef } from 'react';
 import useOutsideClick from 'src/hooks/useOutsideClick';
-import { Input } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import FilterList from 'src/ui/FilterList/FilterList';
 import { setIsFilterOpen } from 'src/store/features/slice/membersSlice';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { selectUsers } from 'src/store/features/slice/userSlice';
-
-
+import Avatar from 'src/assets/images/Avatar.png';
+import {
+  selectUsers,
+  setIsProfileOpen,
+} from 'src/store/features/slice/userSlice';
 
 export default function PopupProfile() {
   const dispatch = useAppDispatch();
   const { isProfileOpen } = useAppSelector(selectUsers);
+  const { selectedMember } = useAppSelector(selectUsers);
+
+  if (!isProfileOpen) return null;
 
   const ref = useRef(null);
 
@@ -48,14 +51,34 @@ export default function PopupProfile() {
   return (
     <div ref={ref} className={styles.popupProfile}>
       <div ref={modalRef}>
-        <Input className={styles.input} placeholder='Поиск' />
         <div className={styles.container}>
-          <CloseOutlined className={styles.img} />
-          <p className={styles.text}>Фильтры</p>
+          <CloseOutlined
+            className={styles.img}
+            onClick={() => dispatch(setIsProfileOpen(false))}
+          />
+          <p className={styles.text}>Карточка сотрудника</p>
         </div>
-        <FilterList teams='Подразделение' positions='Должность' city='Город' />
-        <div className={styles.containerResult}>
-         
+        <div className={styles.containerProfile}>
+          <div className={styles.photoContainer}>
+            <img
+              src={Avatar}
+              alt='ваше фото'
+              className={styles.photo}
+            />
+            <div className={styles.containerText}>
+              <p className={styles.name}>{selectedMember?.full_name}</p>
+              <p className={`${styles.text} ${styles.text_bold}`}>
+                {selectedMember?.department}
+              </p>
+            </div>
+          </div>
+          <div className={styles.containerText}>
+            <p className={styles.textInfo}>Tел 8 (812) 002 00 00</p>
+            <p className={styles.textInfo}>Email icpdir@yandex.ru</p>
+            <p className={styles.textInfo}>
+              Местонахождение: Санкт-Петербург GMT+3
+            </p>
+          </div>
         </div>
       </div>
     </div>

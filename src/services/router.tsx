@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from 'src/components/App/App';
-import Directory from 'src/pages/Directory/Directory';
 import Employees from 'src/pages/Employees/Employees';
 import Main from 'src/pages/Main/Main';
 import NewTeam from 'src/pages/NewTeam/NewTeam';
@@ -21,10 +20,6 @@ export const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile />,
-      },
-      {
-        path: 'directory',
-        element: <Directory />,
       },
       {
         path: 'employees',

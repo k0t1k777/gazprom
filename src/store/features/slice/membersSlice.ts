@@ -43,14 +43,6 @@ export const fetchGetMembers = createAsyncThunk(
   }
 );
 
-// export const fetchGetMembersValue = createAsyncThunk(
-//   'fetch/members/value',
-//   async (value: string) => {
-//     const response = await getMembersValue(value);
-//     return response;
-//   }
-// );
-
 const membersSlice = createSlice({
   name: 'members',
   initialState,
@@ -94,7 +86,7 @@ const membersSlice = createSlice({
       .addCase(fetchGetMembers.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
-      });
+      })
   },
 });
 

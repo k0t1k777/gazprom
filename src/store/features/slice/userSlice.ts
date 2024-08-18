@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ProfileProps, RegisterDataProps } from 'src/services/types';
-import { getProfile, registration } from 'src/store/api';
+import { membersProps, ProfileProps, RegisterDataProps } from 'src/services/types';
+import { getMemberId, getProfile, registration } from 'src/store/api';
 import { RootStore } from 'src/store/store';
 
 export interface StateType {
@@ -11,6 +11,7 @@ export interface StateType {
   profile: ProfileProps | null;
   loading: boolean;
   isProfileOpen: boolean;
+  selectedMember: membersProps | null;
 }
 
 const initialState: StateType = {
@@ -20,7 +21,8 @@ const initialState: StateType = {
   loggedIn: false,
   profile: null,
   loading: false,
-  isProfileOpen: true,
+  isProfileOpen: false,
+  selectedMember: null,
 };
 
 export const fetchRegisterUser = createAsyncThunk(
@@ -34,6 +36,14 @@ export const fetchGetProfile = createAsyncThunk('fetch/profile', async () => {
   const response = await getProfile();
   return response;
 });
+
+export const fetchGetMemberId = createAsyncThunk(
+  'fetch/members/count',
+  async (id: number) => {
+    const response = await getMemberId(id);
+    return response;
+  }
+);
 
 const userSlice = createSlice({
   name: 'user',
@@ -75,6 +85,18 @@ const userSlice = createSlice({
       .addCase(fetchGetProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(fetchGetMemberId.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchGetMemberId.fulfilled, (state, action) => {
+        state.selectedMember = action.payload;
+        state.isProfileOpen = false;
+      })
+      .addCase(fetchGetMemberId.rejected, (state, action) => {
+        state.isProfileOpen = false;
+        state.error = action.error.message;
+        state.selectedMember = null;
       });
   },
 });

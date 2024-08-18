@@ -29,7 +29,6 @@ export default function App() {
   const { members } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const mainRout = location.pathname === '/';
 
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(setLoading(true));
@@ -52,7 +51,6 @@ export default function App() {
   }
 
   const fetchTeamsId = async () => {
-    console.log('fetchTeamsId')
     dispatch(setLoading(true));
     const parsedId = parseInt(id, 10)
     await dispatch(fetchGetTeamsId(parsedId));
@@ -67,9 +65,7 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (mainRout) {
       fetchTeamsId();
-    }
   }, [dispatch]);
 
    return (
@@ -90,7 +86,7 @@ export default function App() {
                   dispatch,
                   droppedCards,
                   setDroppedCards,
-                  members
+                  members,
                 ),
               handleDragStart,
               cards,

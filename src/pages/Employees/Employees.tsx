@@ -1,14 +1,12 @@
 import { useLocation } from 'react-router-dom';
 import styles from 'src/pages/Employees/Employees.module.scss';
 import Card from 'src/ui/Card/Card';
-// import FilterList from 'src/ui/FilterList/FilterList';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { useEffect } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
   fetchGetMembers,
   fetchGetMembersAmount,
-  // fetchGetMembersValue,
   selectMembers,
   setCurrentPage,
 } from 'src/store/features/slice/membersSlice';
@@ -16,40 +14,21 @@ import cn from 'classnames/bind';
 import { itemsPerPage } from 'src/services/const';
 import Select from 'src/ui/Select/Select';
 import { Input } from 'antd';
-// import {
-//   fetchGetFilters,
-//   selectFilters,
-// } from 'src/store/features/slice/filterSlice';
+import PopupProfile from 'src/components/PopupProfile/PopupProfile';
+import { selectUsers } from 'src/store/features/slice/userSlice';
 
 export default function Employees() {
   const { shortWindow } = useAppSelector(selectMembers);
   const cx = cn.bind(styles);
-  // const { filters } = useAppSelector(selectFilters);
-  // console.log('fiters: ', filters);
-
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { members, membersAmount, currentPage } = useAppSelector(selectMembers);
-  console.log('members: ', members);
+  const { isProfileOpen } = useAppSelector(selectUsers);
   const employesRout = location.pathname === '/employees';
 
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(startIndex + itemsPerPage - 1, membersAmount);
   const maxPages = Math.ceil(membersAmount / itemsPerPage);
-
-  // const [value, setValue] = useState('');
-  // const [valuePositions, setValuePosition] = useState('');
-  // const [valueDepartments, setDepartments] = useState('');
-  
-
-  // const handleChange = (value) => {
-  //   setDepartments(value);
-  //   dispatch(fetchGetMembersValue(value)); 
-  // };
-
-  // useEffect(() => {
-  //   dispatch(fetchGetMembersValue(valuePositions));
-  // }, [dispatch]);
 
   function nextPage() {
     if (currentPage < maxPages) {
@@ -73,10 +52,6 @@ export default function Employees() {
     dispatch(fetchGetMembers(currentPage));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(fetchGetFilters());
-  // }, [dispatch]);
-
   return (
     <section
       className={cx(styles.employees, {
@@ -97,28 +72,13 @@ export default function Employees() {
       >
         <ul className={styles.list}>
           <li className={styles.containerItem}>
-            <Input
-              placeholder='ФИО'
-              className={styles.input}
-              // value={value}
-              // setValue={setValue}
-            />
+            <Input placeholder='ФИО' className={styles.input} />
           </li>
           <li className={styles.containerItem}>
-            <Select
-              text='Должность'
-              // options={filters.positions}
-              // value={valuePositions}
-              // setValue={setValuePosition}
-            />
+            <Select text='Должность' />
           </li>
           <li className={styles.containerItem}>
-            <Select
-              text='Отдел'
-              // options={filters.departments}
-              // value={valueDepartments}
-              // setValue={setDepartments}
-            />
+            <Select text='Отдел' />
           </li>
         </ul>
         <div className={styles.pagesContainer}>
@@ -160,6 +120,7 @@ export default function Employees() {
           />
         ))}
       </div>
+      {isProfileOpen && <PopupProfile />}
     </section>
   );
 }
