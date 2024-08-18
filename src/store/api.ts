@@ -23,6 +23,7 @@ export const checkResponse = (response: Response) => {
     return response.json();
   }
   return response.json().then((data) => {
+    console.error('Ошибка ответа:', data);
     return Promise.reject(
       `Ошибка ${response.status}: ${data.message || 'Неизвестная ошибка'}`
     );

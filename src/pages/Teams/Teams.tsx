@@ -10,21 +10,21 @@ import {
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Card from 'src/ui/Card/Card';
 import TeamsItem from 'src/ui/TeamsItem/TeamsItem';
-import Preloader from 'src/ui/Preloader/Preloader'
+import Preloader from 'src/ui/Preloader/Preloader';
 import Arrow from 'src/ui/Arrow/Arrow';
 import { selectUsers, setLoading } from 'src/store/features/slice/userSlice';
 
 export default function Teams() {
   const { id } = useParams();
   const { teams, team } = useAppSelector(selectTeams);
+  console.log('teams: ', teams);
   let { loading } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
-
-  // const [loading, setLoading] = useState(true);
-
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
+  // const teamsRout = location.pathname === '/teams';
+  // console.log('teamsRout: ', teamsRout);
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
     if (card.cellId) {
@@ -98,7 +98,6 @@ export default function Teams() {
     return card;
   };
 
-  
   const renderCardsServer = (card: membersProps) => {
     if (!card.cellId || !card.subordinates) {
       return null;
@@ -124,14 +123,13 @@ export default function Teams() {
 
   const [drawArrows, setDrawArrows] = useState<JSX.Element[]>([]);
 
-
-    // Находим родительскую карточку
-   const findArrows = (parentId: string) => {
+  // Находим родительскую карточку
+  const findArrows = (parentId: string) => {
     const parentElement = document.getElementById(parentId);
-    const childCards = teamCard.filter(card => card.parent_id === parentId);
+    const childCards = teamCard.filter((card) => card.parent_id === parentId);
     const arrows: JSX.Element[] = [];
 
-    childCards.forEach(childCard => {
+    childCards.forEach((childCard) => {
       const childElement = document.getElementById(childCard.id);
 
       if (childElement && parentElement) {
@@ -162,31 +160,12 @@ export default function Teams() {
   };
 
   useEffect(() => {
-    const foundParentCard = teamCard.find(card => card.parent_id === null);
-
+    const foundParentCard = teamCard.find((card) => card.parent_id === null);
     if (foundParentCard) {
       const arrows = findArrows(foundParentCard.id);
       setDrawArrows(arrows);
     }
   }, [teamCard]);
-    
-  useEffect(() => {
-    dispatch(fetchGetTeams());
-  }, []);
-
-useEffect(() => {
-  const fetchData = async () => {
-    dispatch(setLoading(true));
-    await dispatch(fetchGetTeams());
-    if (id) {
-      const parsedId = parseInt(id, 10);
-      await dispatch(fetchGetTeamsId(parsedId));
-    }
-    dispatch(setLoading(false));
-  };
-  fetchData();
-}, [dispatch, id]);
-
 
   useEffect(() => {
     if (team?.employees) {
@@ -196,7 +175,6 @@ useEffect(() => {
       setAllCards([]);
     }
   }, [team]);
-
 
   useEffect(() => {
     const updatedAllCards = allCards.map((card) =>
@@ -229,11 +207,24 @@ useEffect(() => {
     setTeamCard(newAllCards);
   }, [updatedCards]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(fetchGetTeams());
+      dispatch(setLoading(true));
+      if (id) {
+        const parsedId = parseInt(id, 10);
+        await dispatch(fetchGetTeamsId(parsedId));
+      }
+      dispatch(setLoading(false));
+    };
+    fetchData();
+  }, [dispatch, id]);
+
   return (
     <section className={styles.teams}>
       {loading ? (
-    <Preloader />
-    ) : id ? (
+        <Preloader />
+      ) : id ? (
         <div className={styles.cardContainer}>
           {teamCard && teamCard.map(renderCardsServer)}
           {drawArrows}

@@ -1,20 +1,17 @@
 import styles from 'src/pages/Main/Main.module.scss';
 import { membersProps } from 'src/services/types';
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { useAppSelector } from 'src/store/hooks';
 import {
-  fetchGetTeams,
-  fetchGetTeamsId,
   selectTeams,
 } from 'src/store/features/slice/teamsSlice';
 import Card from 'src/ui/Card/Card';
 import Arrow from 'src/ui/Arrow/Arrow';
 import Preloader from 'src/ui/Preloader/Preloader';
-import { id } from 'src/services/const';
-import { selectUsers, setLoading } from 'src/store/features/slice/userSlice';
+import { selectUsers } from 'src/store/features/slice/userSlice';
 
 export default function Main() {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const { team } = useAppSelector(selectTeams);
   let { loading } = useAppSelector(selectUsers);
 
@@ -118,7 +115,6 @@ export default function Main() {
     );
   };
 
-
   // Находим родительскую карточку
   const findArrows = (parentId: string) => {
     const parentElement = document.getElementById(parentId);
@@ -162,36 +158,6 @@ export default function Main() {
       setDrawArrows(arrows);
     }
   }, [teamCard]);
-
-  useEffect(() => {
-    dispatch(fetchGetTeams());
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      dispatch(setLoading(true));
-      await dispatch(fetchGetTeams());
-      if (id) {
-        const parsedId = parseInt(id, 10);
-        await dispatch(fetchGetTeamsId(parsedId));
-      }
-      dispatch(setLoading(false));
-    };
-    fetchData();
-  }, [dispatch, id]);
-
-  //   const fetchData = async () => {
-  //     setLoading(true); // Устанавливаем загрузку в true
-  //     await dispatch(fetchGetTeams());
-  //     if (id) {
-  //       const parsedId = parseInt(id, 10);
-  //       await dispatch(fetchGetTeamsId(parsedId));
-  //     }
-  //     setLoading(false); // Устанавливаем загрузку в false
-  //     // setDataLoaded(true); // Данные загружены
-  //   };
-  //   fetchData();
-  // }, [dispatch, id]);
 
   useEffect(() => {
     if (team?.employees) {

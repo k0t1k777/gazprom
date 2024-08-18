@@ -19,6 +19,8 @@ import {
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
 import Preloader from 'src/ui/Preloader/Preloader';
+import { fetchGetTeamsId } from 'src/store/features/slice/teamsSlice';
+import { id } from 'src/services/const';
 
 export default function App() {
   let { loggedIn, loading } = useAppSelector(selectUsers);
@@ -27,6 +29,7 @@ export default function App() {
   const { members } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const mainRout = location.pathname === '/';
 
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(setLoading(true));
@@ -37,6 +40,7 @@ export default function App() {
           localStorage.setItem('token', data.access);
           dispatch(setLoggedIn(true));
           navigate('/');
+          fetchTeamsId();
         }
       })
       .catch((error) => {
@@ -47,6 +51,13 @@ export default function App() {
       });
   }
 
+  const fetchTeamsId = async () => {
+    dispatch(setLoading(true));
+    const parsedId = parseInt(id, 10)
+    await dispatch(fetchGetTeamsId(parsedId));
+    dispatch(setLoading(false));
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -54,15 +65,22 @@ export default function App() {
     }
   }, [dispatch]);
 
-  return (
+  useEffect(() => {
+    if (loggedIn && mainRout) {
+      fetchTeamsId();
+    }
+  }, [dispatch, loggedIn]);
+
+   return (
     <div>
       <Header droppedCards={droppedCards} />
-     {loading && <Preloader />}
+      {loading && <Preloader />}
       {loggedIn ? (
         <div className='container'>
           <SideBar />
           <Outlet
             context={{
+              handleRegister,
               allowDrop,
               handleDrop: (e: React.DragEvent<HTMLDivElement>) =>
                 handleDrop(
