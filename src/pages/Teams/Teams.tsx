@@ -16,16 +16,15 @@ import { selectUsers, setLoading } from 'src/store/features/slice/userSlice';
 import TeamsItemPersonal from 'src/ui/TeamsItem/TeamsItemPersonal';
 
 export default function Teams() {
-  const { id } = useParams();
-  const { teams, team, addTeam } = useAppSelector(selectTeams);
   let { loading } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
+  const { id } = useParams();
+  const { teams, team, addTeam } = useAppSelector(selectTeams);
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
   // const teamsRout = location.pathname === '/teams';
   // console.log('teamsRout: ', teamsRout);
-  console.log('addTeam: ', addTeam);
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
     if (card.cellId) {

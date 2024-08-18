@@ -10,6 +10,10 @@ import {
 export default function Projects() {
   const dispatch = useAppDispatch();
   const { projects } = useAppSelector(selectProjects);
+  console.log('projects: ', projects);
+
+
+
   useEffect(() => {
     dispatch(fetchGetProjects());
   }, []);

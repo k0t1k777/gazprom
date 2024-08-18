@@ -11,6 +11,7 @@ export interface StateType {
   error: string | null | unknown;
   nameTeam: string;
   addTeam: TeamsProps[];
+  selectedTeam: null,
  }
 
 const initialState: StateType = {
@@ -20,6 +21,7 @@ const initialState: StateType = {
   error: null,
   nameTeam: '',
   addTeam: [],
+  selectedTeam: null,
  };
 
 export const fetchGetTeams = createAsyncThunk(
@@ -47,6 +49,9 @@ const teamsSlice = createSlice({
     },
     setAddTeam(state, action) {
       state.addTeam = action.payload;
+    },
+    setSelectedTeam(state, action) {
+      state.selectedTeam = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -78,6 +83,6 @@ const teamsSlice = createSlice({
   },
 });
 
-export const { setNameTeam, setAddTeam } = teamsSlice.actions;
+export const { setNameTeam, setAddTeam, setSelectedTeam } = teamsSlice.actions;
 export const teamsReducer = teamsSlice.reducer;
 export const selectTeams = (state: RootStore) => state.teams;
