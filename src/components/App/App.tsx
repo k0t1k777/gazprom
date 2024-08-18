@@ -52,6 +52,7 @@ export default function App() {
   }
 
   const fetchTeamsId = async () => {
+    console.log('fetchTeamsId')
     dispatch(setLoading(true));
     const parsedId = parseInt(id, 10)
     await dispatch(fetchGetTeamsId(parsedId));
@@ -66,10 +67,10 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (loggedIn && mainRout) {
+    if (mainRout) {
       fetchTeamsId();
     }
-  }, [dispatch, loggedIn]);
+  }, [dispatch]);
 
    return (
     <div>

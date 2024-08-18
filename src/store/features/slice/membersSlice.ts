@@ -67,6 +67,7 @@ const membersSlice = createSlice({
     setCards(state, action) {
       state.cards = action.payload;
     },
+
   },
   extraReducers: (builder) => {
     builder

@@ -4,7 +4,6 @@ import { useState } from 'react';
 import cn from 'classnames/bind';
 import { membersProps } from 'src/services/types';
 import {
-  CloseOutlined,
   DownOutlined,
   EditOutlined,
   UpOutlined,
@@ -46,7 +45,6 @@ export default function Card({
             [styles.disabled]: isFilterOpen,
           })}
         >
-          <CloseOutlined className={styles.button} />
           <EditOutlined className={styles.button} />
         </div>
       </div>

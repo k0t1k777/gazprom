@@ -110,7 +110,7 @@
   border-radius: $border-radius;
   padding: 0px 16px;
   width: 106px;
-  height: 32px;
+  min-height: 32px;
   color: $main-white !important;
   border: none;
   outline: none;

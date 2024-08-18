@@ -9,6 +9,7 @@ import {
   renderCards,
   renderEmptyCells,
 } from 'src/services/helpers';
+import Modal from 'src/ui/Modal/Modal';
 
 export default function NewTeam() {
   const { allowDrop, handleDrop } = useOutletContext<{
@@ -17,7 +18,7 @@ export default function NewTeam() {
   }>();
   let { isFilterOpen, cards } = useAppSelector(selectMembers);
 
-  const [allCards, setAllCards] = useState<membersProps[]>([]);
+  const [personalTeam, setPersonalTeam] = useState<membersProps[]>([]);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);
   const [busyCells, setBusyCells] = useState<string[]>([]);
   const [originalCards, setOriginalCards] = useState<membersProps[]>([]);
@@ -32,7 +33,6 @@ export default function NewTeam() {
       );
     }
   };
-
 
   useEffect(() => {
     const collectCards = (card: membersProps, collected: membersProps[]) => {
@@ -51,16 +51,16 @@ export default function NewTeam() {
       collectCellIds(card, newBusyCells);
     });
 
-    setAllCards(newAllCards);
+    setPersonalTeam(newAllCards);
     setOriginalCards(newAllCards);
     setBusyCells(newBusyCells);
   }, [cards]);
 
   useLayoutEffect(() => {
-    if (allCards.length > 0) {
-      renderArrows(allCards, setArrows);
+    if (personalTeam.length > 0) {
+      renderArrows(personalTeam, setArrows);
     }
-  }, [allCards]);
+  }, [personalTeam]);
 
   return (
     <section
@@ -68,18 +68,25 @@ export default function NewTeam() {
       onDragOver={allowDrop}
       onDrop={handleDrop}
     >
-      {allCards.length === 0 ? (
+      {personalTeam.length === 0 ? (
         <div className={styles.title}>Добавьте члена команды сюда</div>
       ) : (
-        <div className={styles.cardContainer}>
-          {allCards.map((card) =>
-            renderCards(card, setAllCards, originalCards, setOriginalCards)
-          )}
-          {renderEmptyCells(busyCells, isFilterOpen)}
-          {arrows}
-        </div>
+        <>
+          <div className={styles.cardContainer}>
+            {personalTeam.map((card) =>
+              renderCards(
+                card,
+                setPersonalTeam,
+                originalCards,
+                setOriginalCards
+              )
+            )}
+            {renderEmptyCells(busyCells, isFilterOpen)}
+            {arrows}
+          </div>
+          <Modal />
+        </>
       )}
     </section>
   );
 }
-

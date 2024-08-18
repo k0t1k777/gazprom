@@ -1,27 +1,50 @@
 import { Button, Input } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import {
+  selectTeams,
+  setAddTeam,
+  setNameTeam,
+} from 'src/store/features/slice/teamsSlice';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import styles from 'src/ui/Modal/Modal.module.scss';
 
-// interface RegistrationProps {
-//   handleOk: () => void;
-//   handleCancel:  () => void;
-// }
-
 export default function Modal() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { addTeam, nameTeam } = useAppSelector(selectTeams);
+  console.log('addTeam: ', addTeam);
+
+  const addNewTeam = () => {
+    const newTeam = {
+      id: (addTeam.length + 777).toString(),
+      name: nameTeam,
+    };
+
+    dispatch(setAddTeam([...addTeam, newTeam]));
+    dispatch(setNameTeam(''));
+    navigate('/teams');
+  };
 
   return (
-    <section className={styles.registration}>
-      <h3 className={styles.title}>Введите имя команды</h3>
-      <form className={styles.container} >
+    <div className={styles.modal}>
+      <p className={styles.title}>Введите имя команды</p>
+      <form
+        className={styles.container}
+        onSubmit={(e) => {
+          e.preventDefault();
+          addNewTeam();
+        }}
+      >
         <Input
           className={styles.input}
-          // value={email}
-          // onChange={(e) => setEmail(e.target.value)}
+          value={nameTeam}
+          onChange={(e) => dispatch(setNameTeam(e.target.value))}
           placeholder='введите текст'
-        ></Input>
+        />
         <Button htmlType='submit' className={styles.button}>
           Отправить
         </Button>
       </form>
-    </section>
+    </div>
   );
 }

@@ -4,12 +4,8 @@ import Arrow from 'src/ui/Arrow/Arrow';
 import { membersProps } from 'src/services/types';
 import Card from 'src/ui/Card/Card';
 
-
 // Отрисовка дерева без редактирования
-export const renderCardsServer = (
-  card: membersProps,
- ) => {
-
+export const renderCardsServer = (card: membersProps) => {
   if (!card.cellId || !card.subordinates) {
     return null;
   }
@@ -35,24 +31,22 @@ export const renderCardsServer = (
 // Рендер карточек в дереве
 export const renderCards = (
   card: membersProps,
-  setAllCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
+  setPersonalTeam: React.Dispatch<React.SetStateAction<membersProps[]>>,
   originalCards: membersProps[],
-  setOriginalCards: React.Dispatch<React.SetStateAction<membersProps[]>>,
+  setOriginalCards: React.Dispatch<React.SetStateAction<membersProps[]>>
 ) => {
-
   if (!card.cellId || !card.subordinates) {
     return null;
   }
   const hideMembers = () => {
-
-    setOriginalCards(allCards => [...allCards]);
+    setOriginalCards((allCards) => [...allCards]);
     if (!card.cellId) {
       return card;
     }
     const [col, row] = card.cellId.split('-').map(Number);
 
     if (card.cellId === '1-0') {
-      setAllCards((prevCards) => {
+      setPersonalTeam((prevCards) => {
         return prevCards.map((member) => {
           if (member.cellId !== '1-0') {
             return { ...member, cellId: '' };
@@ -61,7 +55,7 @@ export const renderCards = (
         });
       });
     } else {
-      setAllCards((prevCards) => {
+      setPersonalTeam((prevCards) => {
         return prevCards.map((item) => {
           if (!item.cellId) {
             return item;
@@ -77,8 +71,7 @@ export const renderCards = (
   };
 
   const restoreMembers = () => {
-    // Восстанавливаем оригинальные карточки
-    setAllCards(originalCards);
+    setPersonalTeam(originalCards);
   };
 
   const [col, row] = card.cellId.split('-').map(Number);
@@ -154,11 +147,11 @@ export const renderEmptyCells = (
 
 // Рендер стрелок между карточками
 export const renderArrows = (
-  allCards: membersProps[],
+  personalTeam: membersProps[],
   setArrows: React.Dispatch<React.SetStateAction<JSX.Element[]>>
 ) => {
-  const newArrows = allCards.map((card) => {
-    const parentCard = allCards.find((item) => item.id === card.parentId);
+  const newArrows = personalTeam.map((card) => {
+    const parentCard = personalTeam.find((item) => item.id === card.parentId);
     if (parentCard) {
       const parentElement = document.querySelector(
         `[data-cell-id="${parentCard.id}"]`

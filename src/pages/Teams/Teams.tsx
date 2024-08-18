@@ -13,11 +13,11 @@ import TeamsItem from 'src/ui/TeamsItem/TeamsItem';
 import Preloader from 'src/ui/Preloader/Preloader';
 import Arrow from 'src/ui/Arrow/Arrow';
 import { selectUsers, setLoading } from 'src/store/features/slice/userSlice';
+import TeamsItemPersonal from 'src/ui/TeamsItem/TeamsItemPersonal';
 
 export default function Teams() {
   const { id } = useParams();
-  const { teams, team } = useAppSelector(selectTeams);
-  console.log('teams: ', teams);
+  const { teams, team, addTeam } = useAppSelector(selectTeams);
   let { loading } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
   const [allCards, setAllCards] = useState<membersProps[]>([]);
@@ -25,6 +25,7 @@ export default function Teams() {
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
   // const teamsRout = location.pathname === '/teams';
   // console.log('teamsRout: ', teamsRout);
+  console.log('addTeam: ', addTeam);
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
     if (card.cellId) {
@@ -53,7 +54,6 @@ export default function Teams() {
               cellId = `${parentColom}-${parentRow + 1}`;
             }
           }
-
           if (card.subordinates && card.subordinates.length === 2) {
             if (index === 0) {
               cellId = `${parentColom}-${parentRow + 1}`;
@@ -230,14 +230,24 @@ export default function Teams() {
           {drawArrows}
         </div>
       ) : (
-        teams.map((item) => (
-          <TeamsItem
-            id={item.id}
-            key={item.id}
-            name={item.name}
-            projects={item.projects}
-          />
-        ))
+        <>
+          {teams.map((item) => (
+            <TeamsItem
+              id={item.id}
+              key={item.id}
+              name={item.name}
+              projects={item.projects}
+            />
+          ))}
+          {addTeam.map((item) => (
+            <TeamsItemPersonal
+              id={item.id}
+              key={item.id}
+              name={item.name}
+              projects={item.projects}
+            />
+          ))}
+        </>
       )}
     </section>
   );
