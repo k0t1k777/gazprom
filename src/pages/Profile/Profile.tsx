@@ -10,10 +10,15 @@ import {
 } from 'src/store/features/slice/userSlice';
 import { useEffect } from 'react';
 import { BASE_URL } from 'src/store/api';
+import DigramOne from 'src/assets/images/diagram1.png'
+import DigramTwo from 'src/assets/images/diagram2.png'
+import DigramThree from 'src/assets/images/diagram3.png'
+
 
 export default function Profile() {
   let { shortWindow } = useAppSelector(selectMembers);
   let { profile } = useAppSelector(selectUsers);
+  console.log('profile: ', profile);
   const dispatch = useAppDispatch();
   const cx = cn.bind(styles);
 
@@ -66,7 +71,7 @@ export default function Profile() {
               <p className={styles.text}>Загруженность 87 %</p>
               <img
                 className={styles.chart}
-                src='src/assets/images/diagram1.png'
+                src={DigramOne}
                 alt='иконка диаграммы'
               />
             </li>
@@ -74,7 +79,7 @@ export default function Profile() {
               <p className={styles.text}>Следующий грейд 44 %</p>
               <img
                 className={styles.chart}
-                src='src/assets/images/diagram2.png'
+                src={DigramTwo}
                 alt='иконка диаграммы'
               />
             </li>
@@ -82,7 +87,7 @@ export default function Profile() {
               <p className={styles.text}>Эффективность 65 %</p>
               <img
                 className={styles.chart}
-                src='src/assets/images/diagram3.png'
+                src={DigramThree}
                 alt='иконка диаграммы'
               />
             </li>
