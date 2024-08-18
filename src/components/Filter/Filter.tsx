@@ -4,7 +4,6 @@ import useOutsideClick from 'src/hooks/useOutsideClick';
 import { Input } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
-// import { cardsList } from 'src/services/mock';
 import FilterList from 'src/ui/FilterList/FilterList';
 import { setIsFilterOpen } from 'src/store/features/slice/membersSlice';
 import { membersProps } from 'src/services/types';
@@ -24,7 +23,7 @@ interface FilterProps {
 }
 
 export default function Filter({ droppedCards }: FilterProps) {
-  let { isFilterOpen } = useAppSelector(selectMembers);
+  const { isFilterOpen } = useAppSelector(selectMembers);
   // const { filters } = useAppSelector(selectFilters);
 
   const { members, currentPage } = useAppSelector(selectMembers);

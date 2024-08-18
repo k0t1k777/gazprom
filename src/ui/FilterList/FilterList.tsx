@@ -10,7 +10,7 @@ interface FilterListProps {
   positions: string;
   city: string;
 }
-// Удалить
+
 export default function FilterList({
   employesRout,
   teams,

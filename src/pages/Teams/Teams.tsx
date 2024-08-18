@@ -2,11 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from 'src/pages/Teams/Teams.module.scss';
 import { membersProps } from 'src/services/types';
-import {
-  fetchGetTeams,
-  fetchGetTeamsId,
-  selectTeams,
-} from 'src/store/features/slice/teamsSlice';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Card from 'src/ui/Card/Card';
 import TeamsItem from 'src/ui/TeamsItem/TeamsItem';
@@ -14,17 +9,20 @@ import Preloader from 'src/ui/Preloader/Preloader';
 import Arrow from 'src/ui/Arrow/Arrow';
 import { selectUsers, setLoading } from 'src/store/features/slice/userSlice';
 import TeamsItemPersonal from 'src/ui/TeamsItem/TeamsItemPersonal';
+import {
+  fetchGetTeams,
+  fetchGetTeamsId,
+  selectTeams,
+} from 'src/store/features/slice/teamsSlice';
 
 export default function Teams() {
-  let { loading } = useAppSelector(selectUsers);
+  const { loading } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const { teams, team, addTeam } = useAppSelector(selectTeams);
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
-  // const teamsRout = location.pathname === '/teams';
-  // console.log('teamsRout: ', teamsRout);
 
   const collectCellIds = (card: membersProps, collected: string[]) => {
     if (card.cellId) {

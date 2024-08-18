@@ -19,8 +19,8 @@ interface HeaderProps {
 }
 
 export default function Header({ droppedCards }: HeaderProps) {
-  let { isFilterOpen } = useAppSelector(selectMembers);
-  let { loggedIn } = useAppSelector(selectUsers);
+  const { isFilterOpen } = useAppSelector(selectMembers);
+  const { loggedIn } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
 
   function handleFilterClick() {

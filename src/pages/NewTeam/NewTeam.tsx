@@ -16,7 +16,7 @@ export default function NewTeam() {
     allowDrop: (e: React.DragEvent<HTMLImageElement>) => void;
     handleDrop: (e: React.DragEvent<HTMLDivElement>) => void;
   }>();
-  let { isFilterOpen, cards } = useAppSelector(selectMembers);
+  const { isFilterOpen, cards } = useAppSelector(selectMembers);
 
   const [personalTeam, setPersonalTeam] = useState<membersProps[]>([]);
   const [arrows, setArrows] = useState<JSX.Element[]>([]);

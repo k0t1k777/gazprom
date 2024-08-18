@@ -10,6 +10,7 @@ export interface StateType {
   loggedIn: boolean;
   profile: ProfileProps | null;
   loading: boolean;
+  isProfileOpen: boolean;
 }
 
 const initialState: StateType = {
@@ -19,22 +20,20 @@ const initialState: StateType = {
   loggedIn: false,
   profile: null,
   loading: false,
+  isProfileOpen: true,
 };
-// фетч добавить
-export const registerUser = createAsyncThunk(
-  'fetch/user', 
+
+export const fetchRegisterUser = createAsyncThunk(
+  'fetch/user',
   async ({ email, password }: RegisterDataProps) => {
     const response = await registration({ email, password });
     return response;
   }
 );
-export const fetchGetProfile = createAsyncThunk(
-  'fetch/profile', 
-  async () => {
-    const response = await getProfile();
-    return response;
-  }
-);
+export const fetchGetProfile = createAsyncThunk('fetch/profile', async () => {
+  const response = await getProfile();
+  return response;
+});
 
 const userSlice = createSlice({
   name: 'user',
@@ -47,18 +46,21 @@ const userSlice = createSlice({
     setLoading(state, action) {
       state.loading = action.payload;
     },
+    setIsProfileOpen(state, action) {
+      state.isProfileOpen = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, (state) => {
+      .addCase(fetchRegisterUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registerUser.fulfilled, (state, action) => {
+      .addCase(fetchRegisterUser.fulfilled, (state, action) => {
         state.access = action.payload.access;
         state.error = null;
         state.loggedIn = true;
       })
-      .addCase(registerUser.rejected, (state, action) => {
+      .addCase(fetchRegisterUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       })
@@ -77,6 +79,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setLoggedIn, setLoading } = userSlice.actions;
+export const { setLoggedIn, setLoading, setIsProfileOpen } = userSlice.actions;
 export const userReducer = userSlice.reducer;
 export const selectUsers = (state: RootStore) => state.user;

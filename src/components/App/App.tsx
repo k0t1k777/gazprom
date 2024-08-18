@@ -13,7 +13,7 @@ import {
 import { selectMembers } from 'src/store/features/slice/membersSlice';
 import { membersProps, RegisterDataProps } from 'src/services/types';
 import {
-  registerUser,
+  fetchRegisterUser,
   selectUsers,
   setLoading,
   setLoggedIn,
@@ -23,9 +23,9 @@ import { fetchGetTeamsId } from 'src/store/features/slice/teamsSlice';
 import { id } from 'src/services/const';
 
 export default function App() {
-  let { loggedIn, loading } = useAppSelector(selectUsers);
+  const { loggedIn, loading } = useAppSelector(selectUsers);
   const [droppedCards, setDroppedCards] = useState<membersProps[]>([]);
-  let { cards } = useAppSelector(selectMembers);
+  const { cards } = useAppSelector(selectMembers);
   const { members } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export default function App() {
 
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(setLoading(true));
-    dispatch(registerUser({ email, password }))
+    dispatch(fetchRegisterUser({ email, password }))
       .unwrap()
       .then((data) => {
         if (data.access) {

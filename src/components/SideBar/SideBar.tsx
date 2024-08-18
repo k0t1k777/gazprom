@@ -28,7 +28,7 @@ import {
 const cx = cn.bind(styles);
 
 export default function SideBar() {
-  let { shortWindow } = useAppSelector(selectMembers);
+  const { shortWindow } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
   const [showMore, setShorMore] = useState(true);
   const location = useLocation();

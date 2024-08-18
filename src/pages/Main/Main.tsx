@@ -13,7 +13,7 @@ import { selectUsers } from 'src/store/features/slice/userSlice';
 export default function Main() {
   // const dispatch = useAppDispatch();
   const { team } = useAppSelector(selectTeams);
-  let { loading } = useAppSelector(selectUsers);
+  const { loading } = useAppSelector(selectUsers);
 
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);

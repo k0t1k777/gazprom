@@ -22,7 +22,7 @@ import { Input } from 'antd';
 // } from 'src/store/features/slice/filterSlice';
 
 export default function Employees() {
-  let { shortWindow } = useAppSelector(selectMembers);
+  const { shortWindow } = useAppSelector(selectMembers);
   const cx = cn.bind(styles);
   // const { filters } = useAppSelector(selectFilters);
   // console.log('fiters: ', filters);

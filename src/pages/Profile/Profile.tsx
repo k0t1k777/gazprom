@@ -16,8 +16,8 @@ import DigramThree from 'src/assets/images/diagram3.png'
 
 
 export default function Profile() {
-  let { shortWindow } = useAppSelector(selectMembers);
-  let { profile } = useAppSelector(selectUsers);
+  const { shortWindow } = useAppSelector(selectMembers);
+  const { profile } = useAppSelector(selectUsers);
   console.log('profile: ', profile);
   const dispatch = useAppDispatch();
   const cx = cn.bind(styles);
