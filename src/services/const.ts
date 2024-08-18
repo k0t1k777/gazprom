@@ -14,21 +14,6 @@ export const inintialTeam = {
   id: '',
 }
 
-export const CHARTS_DATA = [
-  {
-    text: 'Загруженность 87 %',
-    img: './assets/images/diagram1.png'
-  },
-  {
-    text: 'Следующий грейд 44 %',
-    img: './assets/images/diagram2.png'
-  },
-  {
-    text: 'Эффективность 65 %',
-    img: './assets/images/diagram3.png'
-  }
-]
-
 export const EVENTS_DATA = [
   {
     title: 'Обучения',

@@ -1,6 +1,6 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import styles from 'src/pages/Profile/Profile.module.scss';
-import { CHARTS_DATA, EVENTS_DATA } from 'src/services/const';
+import { EVENTS_DATA } from 'src/services/const';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { selectMembers } from 'src/store/features/slice/membersSlice';
 import cn from 'classnames/bind';
@@ -62,16 +62,30 @@ export default function Profile() {
             [styles.containerCharts_row]: !shortWindow,
           })}
         >
-          {CHARTS_DATA.map((item, index) => (
-            <li className={styles.item} key={index}>
-              <p className={styles.text}>{item.text}</p>
+            <li className={styles.item}>
+              <p className={styles.text}>Загруженность 87 %</p>
               <img
                 className={styles.chart}
-                src={item.img}
+                src='src/assets/images/diagram1.png'
                 alt='иконка диаграммы'
               />
             </li>
-          ))}
+            <li className={styles.item}>
+              <p className={styles.text}>Следующий грейд 44 %</p>
+              <img
+                className={styles.chart}
+                src='src/assets/images/diagram2.png'
+                alt='иконка диаграммы'
+              />
+            </li>
+            <li className={styles.item}>
+              <p className={styles.text}>Эффективность 65 %</p>
+              <img
+                className={styles.chart}
+                src='src/assets/images/diagram3.png'
+                alt='иконка диаграммы'
+              />
+            </li>
         </ul>
         <div className={styles.eventsContainer}>
           {EVENTS_DATA.map((cont, index) => (
