@@ -21,10 +21,12 @@
 }
 
 .button {
+  @include use-font;
+  color: $main-white;
   border-radius: $border-radius-s;
   border: none;
   outline: none;
-  padding: 0px 16px;
+  padding: 0 16px;
   width: 181px;
   height: 40px;
   box-shadow: $items-shadow;

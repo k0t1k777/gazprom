@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" , "dev" ]
   pull_request:
     branches: [ "main" ]
 
@@ -44,4 +44,5 @@ jobs:
 
           script: |
             cd backend
+            sudo docker compose pull frontend
             sudo docker compose up frontend

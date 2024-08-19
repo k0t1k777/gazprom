@@ -1,7 +1,25 @@
 .main {
   @include main-container;
-  @include flex-column-center;
+  height: 100vh;
   margin: 56px 64px 0 0;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  grid-template-rows: repeat(auto-fill, 127px);
+  gap: 24px;
   position: relative;
   height: 100vh;
+}
+
+.cell {
+  width: 100%;
+  border-radius: $border-radius-s;
+  height: 127px;
+  transition: background-color 0.3s ease;
+}
+
+.link {
+  margin: 0 auto;
 }

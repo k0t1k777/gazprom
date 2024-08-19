@@ -1,0 +1,30 @@
+.notFound {
+  @include flex-column-center;
+  width: 100%;
+}
+
+.title {
+  @include mp-null;
+  @include use-font(38px, 45.6px, 500);
+  margin: 164px auto 56px;
+}
+
+.text {
+  @include mp-null;
+  @include use-font(24px, 28.8px, 500);
+  margin-bottom: 48px;
+}
+
+.button {
+  @include use-font;
+  border-radius: $border-radius-s!important;
+  border: none;
+  outline: none;
+  padding: 10.5px 16px;
+  width: 181px;
+  height: 40px;
+  box-shadow: $items-shadow;
+  background: $button;
+  color: $main-white;
+  text-align: center;
+}

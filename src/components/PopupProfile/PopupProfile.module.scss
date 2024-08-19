@@ -1,0 +1,83 @@
+.popupProfile {
+  position: fixed;
+  top: 96px;
+  right: 10px;
+  border-radius: 0 0 0 16px;
+  width: 354px;
+  height: 100vh;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  background: #fff;
+  padding: 56px 64px 0 48px;
+  z-index: 3;
+  overflow-y: auto;
+}
+
+.container {
+  display: flex;
+  gap: 16px;
+  padding: 0 0 16px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.img {
+  color: $button;
+  cursor: pointer;
+}
+
+.text {
+  @include mp-null;
+  @include use-font;
+}
+
+
+.containerProfile {
+  @include flex-column-center;
+  border-radius: 8px;
+  gap: 8px;
+  position: relative;
+  padding: 24px;
+  max-height: 521px;
+}
+
+.photoContainer {
+  @include flex-column-center;
+  gap: 16px;
+}
+
+.photo {
+  width: 100px;
+  height: 100px;
+  border-radius: $border-radius;
+  border: none;
+  object-fit: cover
+}
+
+.containerText {
+  @include flex-column-center;
+  gap: 8px;
+  width: 246px;
+}
+
+.name {
+  @include mp-null;
+  @include use-font(24px, 28.8px);
+  text-align: center;
+}
+
+.text {
+  @include mp-null;
+  @include use-font(20px, 24px);
+  text-align: center;
+  &_bold {
+    color: $main-text-grey;
+  }
+}
+
+.textInfo {
+  @include mp-null;
+  @include use-font(14px, 16.8px, 400);
+  margin-right: auto;
+  &_bold {
+    font-weight: 500;
+  }
+}

@@ -1,11 +1,12 @@
 .sideBar {
   border: $border-white;
   border-radius: $border-radius-xl;
-  margin: 56px 66px;
+  margin: 56px 48px 20px;
   padding: 24px;
   width: 316px;
   height: 388px;
   @include flex-column-container;
+  align-items: center;
   gap: 40px;
   transition: width 0.3s ease;
 
@@ -20,7 +21,6 @@
   @include flex-column-container;
   gap: 4px;
   max-width: 268px;
-
 }
 
 .item {
@@ -99,4 +99,42 @@
   @include link-null;
   color: $main-text-black;
   display: flex;
+}
+
+.button {
+  @include use-font(14px, 16.8px, 400);
+  background: $button;
+  box-shadow: $items-shadow;
+  text-shadow: $items-shadow;
+  gap: 8px;
+  border-radius: $border-radius;
+  padding: 0px 16px;
+  width: 106px;
+  min-height: 32px;
+  color: $main-white !important;
+  border: none;
+  outline: none;
+  transition: width 0.3s ease;
+  margin: 0 auto;
+  &_none {
+    display: none;
+  }
+  &_mini {
+    width: 32px;
+    padding: 0px 9px;
+  }
+  &:hover {
+    background: $button-hover !important;
+  }
+  &:focus {
+    background: $button-focus;
+  }
+}
+
+.none {
+  display: none !important;
+}
+
+.sideBarWrapper {
+  @include flex-column-container;
 }

@@ -1,5 +1,155 @@
 .profile {
   @include main-container;
-  @include flex-column-center;
+  display: flex;
   margin: 56px 64px 0 0;
+  gap: 40px;
+}
+
+.containerProfile {
+  @include flex-column-center;
+  border: $border-white;
+  border-radius: 8px;
+  gap: 44px;
+  position: relative;
+  padding: 24px;
+  max-height: 521px;
+}
+
+.photoContainer {
+  @include flex-column-center;
+  gap: 16px;
+}
+
+.containerText {
+  @include flex-column-center;
+  gap: 8px;
+  width: 246px;
+}
+
+.containerCharts {
+  @include mp-null;
+  display: flex;
+  border: $border-white;
+  border-radius: 8px;
+  list-style: none;
+  gap: 48px;
+  padding: 24px;
+  max-height: 290px;
+  height: 100%;
+  &_row {
+    flex-direction: column;
+    max-height: 846px;
+  }
+}
+
+.containerButtons {
+  @include flex-column-center;
+  gap: 8px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.containerInfo {
+  @include flex-column-center;
+  align-items: flex-start;
+  gap: 40px;
+  &_column {
+    flex-direction: row-reverse;
+  }
+}
+
+.eventsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 60px;
+}
+
+.itemContainer {
+  @include flex-column-center;
+  align-items: flex-start;
+  border: $border-white;
+  border-radius: 8px;
+  padding: 24px;
+  width: 345px;
+  gap: 16px;
+}
+
+.button {
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: $button-focus;
+}
+
+.photo {
+  width: 150px;
+  height: 150px;
+  border-radius: $border-radius;
+  border: none;
+  object-fit: cover
+}
+
+.name {
+  @include mp-null;
+  @include use-font(24px, 28.8px);
+  text-align: center;
+}
+
+.text {
+  @include mp-null;
+  @include use-font(20px, 24px);
+  text-align: center;
+  &_bold {
+    color: $main-text-grey;
+  }
+}
+
+.textInfo {
+  @include mp-null;
+  @include use-font(14px, 16.8px, 400);
+  margin-right: auto;
+  &_bold {
+    font-weight: 500;
+  }
+}
+
+.item {
+  @include flex-column-center;
+  justify-content: space-between;
+  height: 242px;
+  gap: 24px;
+}
+
+.chart {
+  max-width: 193px;
+  max-height: 193px;
+  object-fit: contain;
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.itemContainerTitle {
+  @include mp-null;
+  @include use-font(16px, 19.2px, 500);
+}
+
+.itemContainerList {
+  @include mp-null;
+  @include flex-column-center;
+  align-items: flex-start;
+  list-style: none;
+  gap: 12px;
+}
+
+.itemContainerItem {
+  @include mp-null;
+  @include use-font(14px, 16.8px, 400);
+}
+
+.colorBlue {
+  color: $button-hover;
+  cursor: pointer;
 }

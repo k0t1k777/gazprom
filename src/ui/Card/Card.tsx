@@ -1,45 +1,60 @@
-import { DownOutlined, EditOutlined, UpOutlined } from '@ant-design/icons';
 import styles from 'src/ui/Card/Card.module.scss';
 import Avatar from 'src/assets/images/Avatar.png';
 import { useState } from 'react';
 import cn from 'classnames/bind';
+import { membersProps } from 'src/services/types';
+import { DownOutlined, EditOutlined, UpOutlined } from '@ant-design/icons';
+import { useAppDispatch } from 'src/store/hooks';
+import { fetchGetMemberId, setIsProfileOpen } from 'src/store/features/slice/userSlice';
 
 const cx = cn.bind(styles);
 
-interface CardProps {
-  id?: number;
-  isFilterOpen?: boolean;
-  position?: string;
-  title?: string;
-  count?: number;
-  name?: string;
-  index?: number;
-  onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
-}
-
 export default function Card({
-  isFilterOpen,
-  name,
-  position,
+  isFilterOpen = false,
+  draggable = true,
+  full_name,
+  department,
   title,
   count,
+  id,
+  hideMembers,
+  restoreMembers,
   onDragStart,
-}: CardProps) {
-  const [isOpen, setIsopen] = useState(true);
+}: membersProps) {
+  const [showMembers, setShowMembers] = useState(true);
+  const employesNewTeam = location.pathname === '/new-team'
+    const dispatch = useAppDispatch();
+
+    const handleMemberClick = async (id: number) => {
+      const memberData = await dispatch(fetchGetMemberId(id));
+      if (memberData.payload) {
+        dispatch(setIsProfileOpen(true));
+      }
+    };
 
   return (
     <div
-      className={cx(styles.card, { [styles.mini]: isFilterOpen })}
+      className={cx(styles.card, {
+        [styles.card_mini]: isFilterOpen,
+        [`${styles.noMove} ${styles.noMoveColor}`]: !draggable,
+      })}
       onDragStart={onDragStart}
-      id='moveCard'
-      draggable={true}
+      id={id}
+      draggable={draggable}
     >
       <div className={styles.titleContainer}>
         <p className={cx(styles.title, { [styles.disabled]: isFilterOpen })}>
           {title}
         </p>
-        <div className={cx(styles.edit, { [styles.disabled]: isFilterOpen })}>
-          <EditOutlined />
+        <div
+          className={cx(styles.buttonsContainer, {
+            [styles.disabled]: isFilterOpen,
+          })}
+        >
+          <EditOutlined
+            className={styles.button}
+            onClick={() => handleMemberClick(Number(id))}
+          />
         </div>
       </div>
       <div className={styles.nameContainer}>
@@ -52,14 +67,15 @@ export default function Card({
           })}
         >
           <p className={cx(styles.name, { [styles.miniName]: isFilterOpen })}>
-            {name}
+            {full_name}
           </p>
           <p
             className={cx(styles.position, {
-              [styles.miniPosition]: isFilterOpen,
+              [styles.position_miniPosition]: isFilterOpen,
+              [styles.noMoveColor]: !draggable,
             })}
           >
-            {position}
+            {department}
           </p>
           <div
             className={cx(styles.countContainer, {
@@ -67,8 +83,17 @@ export default function Card({
             })}
           >
             <p className={styles.count}>{count}</p>
-            <div className={styles.countImg} onClick={() => setIsopen(!isOpen)}>
-              {isOpen ? <UpOutlined /> : <DownOutlined />}
+            <div
+              className={cx(styles.countImg, {
+                [styles.disabled]: !employesNewTeam,
+              })}
+              onClick={() => setShowMembers(!showMembers)}
+            >
+              {showMembers ? (
+                <DownOutlined onClick={hideMembers} />
+              ) : (
+                <UpOutlined onClick={restoreMembers} />
+              )}
             </div>
           </div>
         </div>

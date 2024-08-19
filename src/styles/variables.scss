@@ -1,4 +1,3 @@
-//  -------------- BASIC -----------------
 @mixin mp-null {
   margin: 0;
   padding: 0;
@@ -15,7 +14,6 @@
 }
 
 // FONTS
-// значения по умолчанию!
 // там где используются данные параметры, просто надо вызвать миксин
 @mixin use-font(
   $font-size: 16px,
@@ -30,9 +28,6 @@
   font-style: $font-style;
   font-family: $font-family;
 }
-
-  // @include use-font($font-size, $line-height);
-
 
 // обрезка слов и добавление '...'
 @mixin cut-word {

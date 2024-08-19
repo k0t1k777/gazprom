@@ -1,5 +1,93 @@
 .employees {
   @include main-container;
-  @include flex-column-center;
+  @include flex-column-container;
   margin: 56px 64px 0 0;
+  max-width: 948px;
+  &_short {
+    max-width: 948px;
+    margin: 56px auto 0;
+  }
+}
+
+.title {
+  @include mp-null;
+  @include use-font(24px, 28.8px, 500);
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 32px;
+  &_center {
+    justify-content: center;
+  }
+}
+
+.pagesContainer {
+  display: flex;
+  max-width: 171px;
+  width: 100%;
+  padding: 12px 16px;
+  border: $border-white;
+  border-radius: $border-radius-s;
+  justify-content: space-between;
+}
+
+.buttonPages {
+  display: flex;
+  gap: 8px;
+}
+
+.pages {
+  @include mp-null;
+  @include use-font(14px, 16.8px, 400);
+  user-select: none;
+}
+
+.button {
+  cursor: pointer;
+  color: $button-focus;
+  &_disabled {
+    color: $main-text-grey;
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.marginLeft {
+  margin-left: 0;
+}
+
+.containerItem {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.list {
+  @include mp-null-list;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border: $border-white;
+  border-radius: $border-radius-s;
+  padding: 4px 16px;
+  max-height: 41px;
+}
+
+.item {
+  @include mp-null;
+  @include use-font(14px, 17px, 400);
+}
+
+.arrow {
+  color: $button-focus;
 }

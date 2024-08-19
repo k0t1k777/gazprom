@@ -1,8 +1,14 @@
+Логин/пароль для входа
+Логин: admin@admin.com
+Пароль: admin
+
 # Проект "Gazprom"
 
-Проект представляет собой MVP web-приложения для онлайн-галереи, представленное командой №5 в рамках Хакатон+ по задаче от sagaart.
+Задача: создание MVP Системы управления организационной структурой. Целью проведения Конкурса является:
+- Поддержка и развитие IT-сообщества,
+- Разработка сервиса Соорганизатора
 
-[**Ссылка на сайт**](https://hackathon-gazprom.github.io/gazprom/)
+[**Ссылка на сайт**](https://gazprom.hopto.org)
 
 [**Макет Фигма**](https://www.figma.com/design/ccc8iapZ8bQ32EQyYqytgW/%D0%93%D0%B0%D0%B7%D0%BF%D1%80%D0%BE%D0%BC-ID-%D0%A5%D0%B0%D0%BA%D0%B0%D1%82%D0%BE%D0%BD%2B-%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0-1?node-id=42-2&t=M2QMAj7GoCSYpxNe-0)
 
@@ -22,16 +28,6 @@
 ![Static Badge](https://img.shields.io/badge/react_router-faf9f6?style=for-the-badge&logo=react%20router)
 ![Static Badge](https://img.shields.io/badge/scss-hotpink?style=for-the-badge&logo=sass&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/html5-e34c26?style=for-the-badge&logo=html5&logoColor=white)
-
-**Инструменты разработчика:**
-
-![Static Badge](https://img.shields.io/badge/git-f14e32?style=for-the-badge&logo=git&logoColor=white)
-![Static Badge](https://img.shields.io/badge/vite-646cff?style=for-the-badge&logo=vite&logoColor=white)
-
-react-beautiful-dnd
-framer-motion
-classnames
-
 
 ## Установка и запуск
 
@@ -62,12 +58,11 @@ npm run dev
 
 В приложении использовались следующие библиотеки:
 
-- [React](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Redux/toolkit](https://redux-toolkit.js.org/)
-- [React Router](https://reactrouter.com/en/main)
-- [React Intersection Observer](https://github.com/thebuilder/react-intersection-observer)
-- [SASS](https://github.com/sass/dart-sass)
+- ant-design/icons
+- simplebar-react
+- framer-motion
+- classnames
+- react-svg
 
 ## SCSS
 
@@ -84,3 +79,15 @@ npm run dev
 ## Примечание
 
 Проект сверстан для просмотра в десктопных браузерах и экранах с разрешением 1440px и более.
+
+## Скриншоты
+
+![alt text](./src/assets/screenshots/pic1.JPG)
+![alt text](./src/assets/screenshots/pic2.JPG)
+![alt text](./src/assets/screenshots/pic3.JPG)
+![alt text](./src/assets/screenshots/pic4.JPG)
+![alt text](./src/assets/screenshots/pic5.JPG)
+![alt text](./src/assets/screenshots/pic6.JPG)
+![alt text](./src/assets/screenshots/pic7.JPG)
+![alt text](./src/assets/screenshots/pic8.JPG)
+![alt text](./src/assets/screenshots/pic9.JPG)
