@@ -11,7 +11,7 @@ import {
   setIsFilterOpen,
 } from 'src/store/features/slice/membersSlice';
 import { membersProps } from 'src/services/types';
-import { selectUsers } from 'src/store/features/slice/userSlice';
+import { selectUsers, setIsProfileOpen } from 'src/store/features/slice/userSlice';
 const cx = cn.bind(styles);
 
 interface HeaderProps {
@@ -25,6 +25,7 @@ export default function Header({ droppedCards }: HeaderProps) {
 
   function handleFilterClick() {
     dispatch(setIsFilterOpen(!isFilterOpen));
+    dispatch(setIsProfileOpen(false));
   }
   return (
     <>

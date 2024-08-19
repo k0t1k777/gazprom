@@ -164,14 +164,14 @@ export default function Main() {
   return (
     <section className={styles.main}>
       <div className={styles.cardContainer}>
-        {loading ? (
-          <Preloader />
-        ) : (
-          <>
+        {/* {loading ? ( */}
+          {/* <Preloader /> */}
+        {/* ) : ( */}
+          {/* <> */}
             {teamCard && teamCard.map(renderCardsServer)}
             {drawArrows}
-          </>
-        )}
+          {/* </> */}
+        {/* )} */}
       </div>
       {isProfileOpen && <PopupProfile />}
     </section>

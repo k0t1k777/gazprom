@@ -220,6 +220,7 @@ export default function Teams() {
 
   return (
     <section className={styles.teams}>
+      <div className={styles.teamsContainer}>
       {loading ? (
         <Preloader />
       ) : id ? (
@@ -247,6 +248,7 @@ export default function Teams() {
           ))}
         </>
       )}
+       </div>
       {isProfileOpen && <PopupProfile />}
     </section>
   );

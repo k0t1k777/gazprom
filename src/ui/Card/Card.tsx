@@ -4,9 +4,10 @@ import { useState } from 'react';
 import cn from 'classnames/bind';
 import { membersProps } from 'src/services/types';
 import { DownOutlined, EditOutlined, UpOutlined } from '@ant-design/icons';
-import { useAppDispatch } from 'src/store/hooks';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import {
   fetchGetMemberId,
+  selectUsers,
   setIsProfileOpen,
 } from 'src/store/features/slice/userSlice';
 import Avatar from 'src/assets/images/Avatar.png';
@@ -29,11 +30,12 @@ export default function Card({
   const [showMembers, setShowMembers] = useState(true);
   const employesNewTeam = location.pathname === '/new-team';
   const dispatch = useAppDispatch();
+  const { isProfileOpen } = useAppSelector(selectUsers);
 
   const handleMemberClick = async (id: number) => {
     const memberData = await dispatch(fetchGetMemberId(id));
     if (memberData.payload) {
-      dispatch(setIsProfileOpen(true));
+      dispatch(setIsProfileOpen(!isProfileOpen));
     }
   };
 

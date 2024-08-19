@@ -10,13 +10,18 @@
 }
 
 .teams {
+  height: 100%;
+}
+
+.teamsContainer {
+  animation: fadeIn 0.5s ease forwards;
   @include main-container;
   display: flex;
   margin: 56px 64px 0 0;
   flex-wrap: wrap;
   gap: 16px 8px;
   position: relative;
-  animation: fadeIn 0.5s ease forwards;
+  height: 100%;
 }
 
 .cardContainer {
