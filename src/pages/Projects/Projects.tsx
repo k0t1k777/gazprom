@@ -1,6 +1,6 @@
 import styles from 'src/pages/Projects/Projects.module.scss';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ProjectsItem from 'src/ui/ProjectsItem/ProjectsItem';
 import {
   fetchGetProjects,
