@@ -23,6 +23,7 @@ export const renderCardsServer = (
     >
       <Card
         id={card.id}
+        image={card.image}
         title={card.position}
         full_name={card.full_name}
         department={card.department}

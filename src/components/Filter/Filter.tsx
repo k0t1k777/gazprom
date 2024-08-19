@@ -5,7 +5,7 @@ import { Input } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
 import FilterList from 'src/ui/FilterList/FilterList';
-import { setIsFilterOpen } from 'src/store/features/slice/membersSlice';
+import { setCurrentPageFilter, setIsFilterOpen } from 'src/store/features/slice/membersSlice';
 import { membersProps } from 'src/services/types';
 import { handleDragStart } from 'src/services/dragAndDrop';
 import {
@@ -13,27 +13,64 @@ import {
   selectMembers,
 } from 'src/store/features/slice/membersSlice';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { selectUsers, setLoading } from 'src/store/features/slice/userSlice';
 
 interface FilterProps {
   droppedCards: membersProps[];
 }
 
 export default function Filter({ droppedCards }: FilterProps) {
-  const { isFilterOpen } = useAppSelector(selectMembers);
-  const { members, currentPage } = useAppSelector(selectMembers);
+  const { isFilterOpen, members, currentPageFilter } = useAppSelector(selectMembers);
+  const { loading } = useAppSelector(selectUsers);
+  const modalRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
 
+  // Подгрузка карточек
+  const handleScroll = () => {
+    if (!modalRef.current) return;
+    const { scrollTop, clientHeight, scrollHeight } = modalRef.current;
+    if (
+      scrollHeight - scrollTop - clientHeight <= 0 &&
+      !loading &&
+      currentPageFilter < 12
+    ) {
+      setLoading(true);
+      dispatch(setCurrentPageFilter(1));
+    }
+  };
+
   useEffect(() => {
-    dispatch(fetchGetMembers(currentPage));
-  }, [dispatch]);
+    const fetchMembers = async () => {
+      if (loading) return;
+      await dispatch(fetchGetMembers(currentPageFilter));
+    };
 
-  const ref = useRef(null);
+    fetchMembers();
+  }, [dispatch, currentPageFilter]);
 
-  useOutsideClick(ref, () => {
+  useEffect(() => {
+    const modalElement = modalRef.current;
+    if (modalElement) {
+      modalElement.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (modalElement) {
+        modalElement.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [modalRef]);
+
+  useEffect(() => {
+    if (modalRef.current) {
+      modalRef.current.scrollTop = 0;
+    }
+  }, [members]);
+
+  useOutsideClick(modalRef, () => {
     dispatch(setIsFilterOpen(false));
   });
 
-  const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (modalRef.current) {
       const modal = modalRef.current;
@@ -59,8 +96,8 @@ export default function Filter({ droppedCards }: FilterProps) {
   }, [isFilterOpen]);
 
   return (
-    <div ref={ref} className={styles.filter}>
-      <div ref={modalRef}>
+    <div ref={modalRef} className={styles.filter}>
+      <div>
         <Input className={styles.input} placeholder='Поиск' />
         <div className={styles.container}>
           <CloseOutlined className={styles.img} />
@@ -86,6 +123,7 @@ export default function Filter({ droppedCards }: FilterProps) {
             />
           ))}
         </div>
+        <div className={styles.downContainer}></div>
       </div>
     </div>
   );

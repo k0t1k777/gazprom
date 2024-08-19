@@ -4,7 +4,7 @@
   right: 10px;
   border-radius: 0 0 0 16px;
   width: 354px;
-  height: 100vh;
+  height: 99%;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12);
   background: #fff;
   padding: 56px 48px;
@@ -41,4 +41,8 @@
 .text {
   @include mp-null;
   @include use-font;
+}
+
+.downContainer {
+  height: 250px;
 }

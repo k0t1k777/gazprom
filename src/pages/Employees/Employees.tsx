@@ -47,7 +47,7 @@ export default function Employees() {
 
   useEffect(() => {
     dispatch(fetchGetMembers(currentPage));
-  }, [dispatch]);
+  }, [dispatch, currentPage]);
 
   return (
     <section

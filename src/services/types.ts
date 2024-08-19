@@ -8,7 +8,7 @@ export interface membersProps {
   cellId?: string;
   parentId?: string;
   parent_id?: string;
-  photo?: string;
+  image?: string;
   count?: number;
   subordinates?: membersProps[];
   hideMembers?: () => void;

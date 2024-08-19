@@ -1,11 +1,15 @@
 import styles from 'src/ui/Card/Card.module.scss';
-import Avatar from 'src/assets/images/Avatar.png';
+import { BASE_URL } from 'src/store/api';
 import { useState } from 'react';
 import cn from 'classnames/bind';
 import { membersProps } from 'src/services/types';
 import { DownOutlined, EditOutlined, UpOutlined } from '@ant-design/icons';
 import { useAppDispatch } from 'src/store/hooks';
-import { fetchGetMemberId, setIsProfileOpen } from 'src/store/features/slice/userSlice';
+import {
+  fetchGetMemberId,
+  setIsProfileOpen,
+} from 'src/store/features/slice/userSlice';
+import Avatar from 'src/assets/images/Avatar.png';
 
 const cx = cn.bind(styles);
 
@@ -16,21 +20,22 @@ export default function Card({
   department,
   title,
   count,
+  image,
   id,
   hideMembers,
   restoreMembers,
   onDragStart,
 }: membersProps) {
   const [showMembers, setShowMembers] = useState(true);
-  const employesNewTeam = location.pathname === '/new-team'
-    const dispatch = useAppDispatch();
+  const employesNewTeam = location.pathname === '/new-team';
+  const dispatch = useAppDispatch();
 
-    const handleMemberClick = async (id: number) => {
-      const memberData = await dispatch(fetchGetMemberId(id));
-      if (memberData.payload) {
-        dispatch(setIsProfileOpen(true));
-      }
-    };
+  const handleMemberClick = async (id: number) => {
+    const memberData = await dispatch(fetchGetMemberId(id));
+    if (memberData.payload) {
+      dispatch(setIsProfileOpen(true));
+    }
+  };
 
   return (
     <div
@@ -59,7 +64,11 @@ export default function Card({
       </div>
       <div className={styles.nameContainer}>
         <div className={cx(styles.img, { [styles.disabled]: isFilterOpen })}>
-          <img src={Avatar} alt='Фото профиля' />
+          <img
+            className={styles.img}
+            src={image ? `${BASE_URL}${image}` : Avatar}
+            alt='Фото профиля'
+          />
         </div>
         <div
           className={cx(styles.mainContainer, {
