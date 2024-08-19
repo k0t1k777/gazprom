@@ -1,3 +1,4 @@
+Логин/пароль для входа
 Логин: admin@admin.com
 Пароль: admin
 
@@ -28,17 +29,6 @@
 ![Static Badge](https://img.shields.io/badge/scss-hotpink?style=for-the-badge&logo=sass&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/html5-e34c26?style=for-the-badge&logo=html5&logoColor=white)
 
-**Инструменты разработчика:**
-
-![Static Badge](https://img.shields.io/badge/git-f14e32?style=for-the-badge&logo=git&logoColor=white)
-![Static Badge](https://img.shields.io/badge/vite-646cff?style=for-the-badge&logo=vite&logoColor=white)
-
-react-beautiful-dnd
-framer-motion
-classnames
-simplebar-react
-
-
 ## Установка и запуск
 
 Клонируйте репозиторий и перейдите в его директорию:
@@ -68,12 +58,11 @@ npm run dev
 
 В приложении использовались следующие библиотеки:
 
-- [React](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Redux/toolkit](https://redux-toolkit.js.org/)
-- [React Router](https://reactrouter.com/en/main)
-- [React Intersection Observer](https://github.com/thebuilder/react-intersection-observer)
-- [SASS](https://github.com/sass/dart-sass)
+- ant-design/icons
+- simplebar-react
+- framer-motion
+- classnames
+- react-svg
 
 ## SCSS
 
@@ -90,3 +79,15 @@ npm run dev
 ## Примечание
 
 Проект сверстан для просмотра в десктопных браузерах и экранах с разрешением 1440px и более.
+
+## Скриншоты
+
+![alt text](./src/assets/screenshots/pic1.JPG)
+![alt text](./src/assets/screenshots/pic2.JPG)
+![alt text](./src/assets/screenshots/pic3.JPG)
+![alt text](./src/assets/screenshots/pic4.JPG)
+![alt text](./src/assets/screenshots/pic5.JPG)
+![alt text](./src/assets/screenshots/pic6.JPG)
+![alt text](./src/assets/screenshots/pic7.JPG)
+![alt text](./src/assets/screenshots/pic8.JPG)
+![alt text](./src/assets/screenshots/pic9.JPG)

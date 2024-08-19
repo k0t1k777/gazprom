@@ -100,15 +100,3 @@ export const getMemberId = async (id: number) => {
   return await request(`/api/v1/members/${id}/`, options);
 };
 
-// export const getFilters = async () => {
-//   return await request('/api/v1/filters/');
-// };
-
-// export const getMembersValue = async (value: string) => {
-//   const options: RequestOptionsType = {
-//     method: 'GET',
-//     headers,
-//   };
-//   return await request(`/api/v1/members/?department=${value}`, options);
-// };
-// `/?department=${department}` : ''}

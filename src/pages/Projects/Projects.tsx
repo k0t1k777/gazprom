@@ -12,8 +12,11 @@ export default function Projects() {
   const { projects } = useAppSelector(selectProjects);
 
   useEffect(() => {
-    dispatch(fetchGetProjects());
-  }, []);
+    const fetchProjects = async () => {
+      await dispatch(fetchGetProjects());
+    };
+    fetchProjects();
+  }, [dispatch])
 
   return (
     <section className={styles.projects}>

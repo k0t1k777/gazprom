@@ -20,7 +20,7 @@ export default function Teams() {
   const { loading, isProfileOpen } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const { teams, team, addTeam } = useAppSelector(selectTeams);
+  const { teams, team, addTeam, teamsLoaded } = useAppSelector(selectTeams);
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
@@ -173,7 +173,9 @@ export default function Teams() {
 
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(fetchGetTeams());
+      if (!teamsLoaded) {
+        dispatch(fetchGetTeams());
+      }
       dispatch(setLoading(true));
       if (id) {
         const parsedId = parseInt(id, 10);
@@ -182,7 +184,7 @@ export default function Teams() {
       dispatch(setLoading(false));
     };
     fetchData();
-  }, [dispatch, id]);
+  }, [dispatch, id, teamsLoaded]);
 
   return (
     <section className={styles.teams}>

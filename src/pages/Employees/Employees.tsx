@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import styles from 'src/pages/Employees/Employees.module.scss';
 import Card from 'src/ui/Card/Card';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
@@ -20,11 +19,9 @@ import { selectUsers } from 'src/store/features/slice/userSlice';
 export default function Employees() {
   const { shortWindow } = useAppSelector(selectMembers);
   const cx = cn.bind(styles);
-  const location = useLocation();
   const dispatch = useAppDispatch();
   const { members, membersAmount, currentPage } = useAppSelector(selectMembers);
   const { isProfileOpen } = useAppSelector(selectUsers);
-  const employesRout = location.pathname === '/employees';
 
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(startIndex + itemsPerPage - 1, membersAmount);
@@ -116,7 +113,6 @@ export default function Employees() {
             full_name={card.full_name}
             department={card.department}
             index={index}
-            employesRout={employesRout}
           />
         ))}
       </div>

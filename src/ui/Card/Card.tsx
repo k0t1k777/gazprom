@@ -10,7 +10,6 @@ import { fetchGetMemberId, setIsProfileOpen } from 'src/store/features/slice/use
 const cx = cn.bind(styles);
 
 export default function Card({
-  employesRout = false,
   isFilterOpen = false,
   draggable = true,
   full_name,
@@ -23,6 +22,7 @@ export default function Card({
   onDragStart,
 }: membersProps) {
   const [showMembers, setShowMembers] = useState(true);
+  const employesNewTeam = location.pathname === '/new-team'
     const dispatch = useAppDispatch();
 
     const handleMemberClick = async (id: number) => {
@@ -85,7 +85,7 @@ export default function Card({
             <p className={styles.count}>{count}</p>
             <div
               className={cx(styles.countImg, {
-                [styles.disabled]: employesRout,
+                [styles.disabled]: !employesNewTeam,
               })}
               onClick={() => setShowMembers(!showMembers)}
             >

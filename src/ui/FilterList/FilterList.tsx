@@ -5,27 +5,23 @@ import cn from 'classnames/bind';
 const cx = cn.bind(styles);
 
 interface FilterListProps {
-  employesRout?: boolean;
   teams: string;
   positions: string;
   city: string;
 }
 
 export default function FilterList({
-  employesRout,
   teams,
   positions,
   city,
 }: FilterListProps) {
   return (
     <ul
-      className={cx(styles.list, { [styles.list_employesRout]: employesRout })}
+      className={styles.list}
     >
       <li className={styles.containerItem}>
         <p
-          className={cx(styles.item, {
-            [styles.item_employesRout]: employesRout,
-          })}
+          className={cx(styles.item)}
         >
           {teams}
         </p>
@@ -33,9 +29,7 @@ export default function FilterList({
       </li>
       <li className={styles.containerItem}>
         <p
-          className={cx(styles.item, {
-            [styles.item_employesRout]: employesRout,
-          })}
+          className={cx(styles.item)}
         >
           {positions}
         </p>
@@ -43,9 +37,7 @@ export default function FilterList({
       </li>
       <li className={styles.containerItem}>
         <p
-          className={cx(styles.item, {
-            [styles.item_employesRout]: employesRout,
-          })}
+          className={cx(styles.item)}
         >
           {city}
         </p>

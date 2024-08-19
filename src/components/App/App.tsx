@@ -29,6 +29,7 @@ export default function App() {
   const { members } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const mainRout = location.pathname === '/';
 
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(setLoading(true));
@@ -65,8 +66,10 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
+    if (mainRout && loggedIn) {
       fetchTeamsId();
-  }, [dispatch]);
+    }
+  }, [dispatch, mainRout, loggedIn]);
 
    return (
     <div>
@@ -86,7 +89,7 @@ export default function App() {
                   dispatch,
                   droppedCards,
                   setDroppedCards,
-                  members,
+                  members
                 ),
               handleDragStart,
               cards,

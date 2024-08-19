@@ -12,7 +12,6 @@ export default function Modal() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { addTeam, nameTeam } = useAppSelector(selectTeams);
-  console.log('addTeam: ', addTeam);
 
   const addNewTeam = () => {
     const newTeam = {

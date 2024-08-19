@@ -16,7 +16,6 @@ export interface membersProps {
   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
   draggable?: boolean;
   isFilterOpen?: boolean;
-  employesRout?: boolean;
 }
 
 export interface RegisterDataProps {
