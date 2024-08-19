@@ -46,10 +46,42 @@ export default function Teams() {
     if (card.subordinates && Array.isArray(card.subordinates)) {
       const updatedSubordinates = card.subordinates.map(
         (sub: membersProps, index: number) => {
-          const cellId = `${
-            parentColom +
-            (index === 0 ? 0 : index === 1 ? 1 : index === 2 ? -1 : index - 2)
-          }-${parentRow + 1}`;
+          let cellId;
+
+          if (card.subordinates && card.subordinates.length === 1) {
+            if (index === 0) {
+              cellId = `${parentColom}-${parentRow + 1}`;
+            }
+          }
+          if (card.subordinates && card.subordinates.length === 2) {
+            if (index === 0) {
+              cellId = `${parentColom}-${parentRow + 1}`;
+            } else if (index === 1) {
+              cellId = `${parentColom + 1}-${parentRow + 1}`;
+            }
+          }
+
+          if (card.subordinates && card.subordinates.length === 3) {
+            if (index === 0) {
+              cellId = `${parentColom}-${parentRow + 1}`;
+            } else if (index === 1) {
+              cellId = `${parentColom + 1}-${parentRow + 1}`;
+            } else if (index === 2) {
+              cellId = `${parentColom - 1}-${parentRow + 1}`;
+            }
+          }
+
+          if (card.subordinates && card.subordinates.length > 3) {
+            if (index === 0) {
+              cellId = `${parentColom}-${parentRow + 1}`;
+            } else if (index === 1) {
+              cellId = `${parentColom + 1}-${parentRow + 1}`;
+            } else if (index === 2) {
+              cellId = `${parentColom - 1}-${parentRow + 1}`;
+            } else if (index === 3) {
+              cellId = `${parentColom + 2}-${parentRow + 1}`;
+            }
+          }
 
           const updatedSub = updateSubordinates(
             sub,
@@ -64,7 +96,6 @@ export default function Teams() {
     }
     return card;
   };
-
   const renderCardsServer = (card: membersProps) => {
     if (!card.cellId || !card.subordinates) {
       return null;
