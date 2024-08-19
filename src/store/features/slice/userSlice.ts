@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { membersProps, ProfileProps, RegisterDataProps } from 'src/services/types';
+import {
+  membersProps,
+  ProfileProps,
+  RegisterDataProps,
+} from 'src/services/types';
 import { getMemberId, getProfile, registration } from 'src/store/api';
 import { RootStore } from 'src/store/store';
 
@@ -12,6 +16,9 @@ export interface StateType {
   loading: boolean;
   isProfileOpen: boolean;
   selectedMember: membersProps | null;
+  showMore: boolean;
+  email: string;
+  password: string;
 }
 
 const initialState: StateType = {
@@ -23,6 +30,9 @@ const initialState: StateType = {
   loading: false,
   isProfileOpen: false,
   selectedMember: null,
+  showMore: true,
+  email: '',
+  password: '',
 };
 
 export const fetchRegisterUser = createAsyncThunk(
@@ -58,6 +68,15 @@ const userSlice = createSlice({
     },
     setIsProfileOpen(state, action) {
       state.isProfileOpen = action.payload;
+    },
+    setShorMore(state, action) {
+      state.showMore = action.payload;
+    },
+    setEmail(state, action) {
+      state.email = action.payload;
+    },
+    setPassword(state, action) {
+      state.password = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -101,6 +120,13 @@ const userSlice = createSlice({
   },
 });
 
-export const { setLoggedIn, setLoading, setIsProfileOpen } = userSlice.actions;
+export const {
+  setLoggedIn,
+  setLoading,
+  setIsProfileOpen,
+  setShorMore,
+  setEmail,
+  setPassword,
+} = userSlice.actions;
 export const userReducer = userSlice.reducer;
 export const selectUsers = (state: RootStore) => state.user;

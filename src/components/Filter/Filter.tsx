@@ -20,7 +20,6 @@ interface FilterProps {
 
 export default function Filter({ droppedCards }: FilterProps) {
   const { isFilterOpen } = useAppSelector(selectMembers);
-
   const { members, currentPage } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
 

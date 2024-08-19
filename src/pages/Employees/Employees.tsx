@@ -22,7 +22,7 @@ export default function Employees() {
   const dispatch = useAppDispatch();
   const { members, membersAmount, currentPage } = useAppSelector(selectMembers);
   const { isProfileOpen } = useAppSelector(selectUsers);
-
+  
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(startIndex + itemsPerPage - 1, membersAmount);
   const maxPages = Math.ceil(membersAmount / itemsPerPage);

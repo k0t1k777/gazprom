@@ -1,15 +1,15 @@
 import { Button, Input } from 'antd';
-import { useState } from 'react';
 import styles from 'src/pages/Registration/Registration.module.scss';
+import { selectUsers, setEmail, setPassword } from 'src/store/features/slice/userSlice';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
 interface RegistrationProps {
   handleRegister: (data: { email: string; password: string }) => void;
 }
 
 export default function Registration({ handleRegister }: RegistrationProps) {
-
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const { email, password } = useAppSelector(selectUsers);
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,14 +26,14 @@ export default function Registration({ handleRegister }: RegistrationProps) {
         <Input
           className={styles.input}
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => dispatch(setEmail(e.target.value))}
           placeholder='Логин'
         ></Input>
         <Input
           className={styles.input}
           type='current-password'
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => dispatch(setPassword(e.target.value))}
           placeholder='Введите пароль'
         ></Input>
         <Button htmlType='submit' className={styles.button}>

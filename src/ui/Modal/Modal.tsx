@@ -1,12 +1,12 @@
 import { Button, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import styles from 'src/ui/Modal/Modal.module.scss';
 import {
   selectTeams,
   setAddTeam,
   setNameTeam,
 } from 'src/store/features/slice/teamsSlice';
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import styles from 'src/ui/Modal/Modal.module.scss';
 
 export default function Modal() {
   const dispatch = useAppDispatch();
@@ -18,7 +18,6 @@ export default function Modal() {
       id: (addTeam.length + 777).toString(),
       name: nameTeam,
     };
-
     dispatch(setAddTeam([...addTeam, newTeam]));
     dispatch(setNameTeam(''));
     navigate('/teams');

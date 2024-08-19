@@ -16,31 +16,17 @@ export default function FilterList({
   city,
 }: FilterListProps) {
   return (
-    <ul
-      className={styles.list}
-    >
+    <ul className={styles.list}>
       <li className={styles.containerItem}>
-        <p
-          className={cx(styles.item)}
-        >
-          {teams}
-        </p>
+        <p className={cx(styles.item)}>{teams}</p>
         <DownOutlined className={styles.arrow} />
       </li>
       <li className={styles.containerItem}>
-        <p
-          className={cx(styles.item)}
-        >
-          {positions}
-        </p>
+        <p className={cx(styles.item)}>{positions}</p>
         <DownOutlined className={styles.arrow} />
       </li>
       <li className={styles.containerItem}>
-        <p
-          className={cx(styles.item)}
-        >
-          {city}
-        </p>
+        <p className={cx(styles.item)}>{city}</p>
         <DownOutlined className={styles.arrow} />
       </li>
     </ul>

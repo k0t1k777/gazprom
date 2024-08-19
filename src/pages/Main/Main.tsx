@@ -28,7 +28,7 @@ export default function Main() {
     }
   };
 
-  // Рекурсивная функция для добавления cellId
+  // Рекурсивная функция для добавления ячеек cellId
   const updateSubordinates = (
     card: membersProps,
     parentColom: number,

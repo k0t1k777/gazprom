@@ -1,5 +1,4 @@
 import { Button } from 'antd';
-import { useState } from 'react';
 import styles from 'src/components/SideBar/SideBar.module.scss';
 import cn from 'classnames/bind';
 import { motion } from 'framer-motion';
@@ -24,13 +23,14 @@ import {
   setIsFilterOpen,
   setShortWindow,
 } from 'src/store/features/slice/membersSlice';
+import { selectUsers, setShorMore } from 'src/store/features/slice/userSlice';
 
 const cx = cn.bind(styles);
 
 export default function SideBar() {
   const { shortWindow } = useAppSelector(selectMembers);
+  const { showMore } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
-  const [showMore, setShorMore] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
   const newTeamRout = location.pathname === '/new-team';
@@ -70,7 +70,7 @@ export default function SideBar() {
                 </span>
               ),
               text: 'Справочник',
-              onClick: () => setShorMore(!showMore),
+              onClick: () => dispatch(setShorMore(!showMore)),
             },
           ].map((item, index) =>
             item.link ? (
@@ -103,7 +103,7 @@ export default function SideBar() {
               <li
                 key={index}
                 className={cx(styles.item)}
-                onClick={() => setShorMore(!showMore)}
+                onClick={() => dispatch(setShorMore(!showMore))}
               >
                 {item.icon}
                 <motion.p

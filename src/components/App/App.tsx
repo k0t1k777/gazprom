@@ -5,22 +5,23 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import Registration from 'src/pages/Registration/Registration';
+import Preloader from 'src/ui/Preloader/Preloader';
+import { fetchGetTeamsId } from 'src/store/features/slice/teamsSlice';
+import { id } from 'src/services/const';
+import { selectMembers } from 'src/store/features/slice/membersSlice';
+import { membersProps, RegisterDataProps } from 'src/services/types';
 import {
   allowDrop,
   handleDragStart,
   handleDrop,
 } from 'src/services/dragAndDrop';
-import { selectMembers } from 'src/store/features/slice/membersSlice';
-import { membersProps, RegisterDataProps } from 'src/services/types';
 import {
   fetchRegisterUser,
   selectUsers,
   setLoading,
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
-import Preloader from 'src/ui/Preloader/Preloader';
-import { fetchGetTeamsId } from 'src/store/features/slice/teamsSlice';
-import { id } from 'src/services/const';
+
 
 export default function App() {
   const { loggedIn, loading } = useAppSelector(selectUsers);
