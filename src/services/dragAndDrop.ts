@@ -89,8 +89,6 @@ export const handleDrop = (
           { id: newSubordinateCard.id, cellId: newSubordinateCard.cellId },
         ]);
       }
-    } else {
-      console.error(`Original card not found for itemId ${itemId}`);
     }
   }
 };

@@ -14,6 +14,9 @@ export default function Modal() {
   const { addTeam, nameTeam } = useAppSelector(selectTeams);
 
   const addNewTeam = () => {
+    if (!nameTeam.trim()) {
+      return;
+    }
     const newTeam = {
       id: (addTeam.length + 777).toString(),
       name: nameTeam,

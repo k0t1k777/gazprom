@@ -5,7 +5,10 @@ import { Input } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import Card from 'src/ui/Card/Card';
 import FilterList from 'src/ui/FilterList/FilterList';
-import { setCurrentPageFilter, setIsFilterOpen } from 'src/store/features/slice/membersSlice';
+import {
+  setCurrentPageFilter,
+  setIsFilterOpen,
+} from 'src/store/features/slice/membersSlice';
 import { membersProps } from 'src/services/types';
 import { handleDragStart } from 'src/services/dragAndDrop';
 import {
@@ -20,7 +23,8 @@ interface FilterProps {
 }
 
 export default function Filter({ droppedCards }: FilterProps) {
-  const { isFilterOpen, members, currentPageFilter } = useAppSelector(selectMembers);
+  const { isFilterOpen, members, currentPageFilter } =
+    useAppSelector(selectMembers);
   const { loading } = useAppSelector(selectUsers);
   const modalRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
@@ -100,7 +104,10 @@ export default function Filter({ droppedCards }: FilterProps) {
       <div>
         <Input className={styles.input} placeholder='Поиск' />
         <div className={styles.container}>
-          <CloseOutlined className={styles.img} />
+          <CloseOutlined
+            className={styles.img}
+            onClick={() => dispatch(setIsFilterOpen(false))}
+          />
           <p className={styles.text}>Фильтры</p>
         </div>
         <FilterList teams='Подразделение' positions='Должность' city='Город' />
