@@ -22,7 +22,6 @@ export default function Modal() {
       name: nameTeam,
     };
     dispatch(setAddTeam([...addTeam, newTeam]));
-    dispatch(setNameTeam(''));
     navigate('/teams');
   };
 
@@ -40,7 +39,7 @@ export default function Modal() {
           className={styles.input}
           value={nameTeam}
           onChange={(e) => dispatch(setNameTeam(e.target.value))}
-          placeholder='введите текст'
+          placeholder='Введите название команды'
         />
         <Button htmlType='submit' className={styles.button}>
           Отправить

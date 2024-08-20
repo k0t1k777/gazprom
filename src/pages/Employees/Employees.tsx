@@ -18,10 +18,10 @@ import { selectUsers } from 'src/store/features/slice/userSlice';
 
 export default function Employees() {
   const { shortWindow } = useAppSelector(selectMembers);
-  const cx = cn.bind(styles);
-  const dispatch = useAppDispatch();
   const { members, membersAmount, currentPage } = useAppSelector(selectMembers);
   const { isProfileOpen } = useAppSelector(selectUsers);
+  const cx = cn.bind(styles);
+  const dispatch = useAppDispatch();
   
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(startIndex + itemsPerPage - 1, membersAmount);
