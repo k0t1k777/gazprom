@@ -9,6 +9,7 @@ export default function ProjectsItem({ name, teams }: ProjectseProps) {
     navigate(`/teams/${teamId}`);
   };
 
+  
   return (
     <div className={styles.projectsItem}>
       <p className={styles.title}>{name}</p>
