@@ -10,10 +10,10 @@ import {
 } from 'src/store/features/slice/userSlice';
 import { useEffect } from 'react';
 import { BASE_URL } from 'src/store/api';
-import DigramOne from 'src/assets/images/diagram1.png'
-import DigramTwo from 'src/assets/images/diagram2.png'
-import DigramThree from 'src/assets/images/diagram3.png'
-
+import DigramOne from 'src/assets/images/diagram1.png';
+import DigramTwo from 'src/assets/images/diagram2.png';
+import DigramThree from 'src/assets/images/diagram3.png';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const { shortWindow } = useAppSelector(selectMembers);
@@ -66,30 +66,30 @@ export default function Profile() {
             [styles.containerCharts_row]: !shortWindow,
           })}
         >
-            <li className={styles.item}>
-              <p className={styles.text}>Загруженность 87 %</p>
-              <img
-                className={styles.chart}
-                src={DigramOne}
-                alt='иконка диаграммы'
-              />
-            </li>
-            <li className={styles.item}>
-              <p className={styles.text}>Следующий грейд 44 %</p>
-              <img
-                className={styles.chart}
-                src={DigramTwo}
-                alt='иконка диаграммы'
-              />
-            </li>
-            <li className={styles.item}>
-              <p className={styles.text}>Эффективность 65 %</p>
-              <img
-                className={styles.chart}
-                src={DigramThree}
-                alt='иконка диаграммы'
-              />
-            </li>
+          <li className={styles.item}>
+            <p className={styles.text}>Загруженность 87 %</p>
+            <img
+              className={styles.chart}
+              src={DigramOne}
+              alt='иконка диаграммы'
+            />
+          </li>
+          <li className={styles.item}>
+            <p className={styles.text}>Следующий грейд 44 %</p>
+            <img
+              className={styles.chart}
+              src={DigramTwo}
+              alt='иконка диаграммы'
+            />
+          </li>
+          <li className={styles.item}>
+            <p className={styles.text}>Эффективность 65 %</p>
+            <img
+              className={styles.chart}
+              src={DigramThree}
+              alt='иконка диаграммы'
+            />
+          </li>
         </ul>
         <div className={styles.eventsContainer}>
           {EVENTS_DATA.map((cont, index) => (
@@ -116,12 +116,14 @@ export default function Profile() {
             </h3>
             <ul className={styles.itemContainerList}>
               {profile?.projects.map((item, index) => (
-                <li
-                  className={`${styles.itemContainerItem} ${styles.colorBlue}`}
-                  key={index}
-                >
-                  {item}
-                </li>
+                <Link to='/projects' className={styles.link}>
+                  <li
+                    className={`${styles.itemContainerItem} ${styles.colorBlue}`}
+                    key={index}
+                  >
+                    {item}
+                  </li>
+                </Link>
               ))}
             </ul>
           </div>
