@@ -16,6 +16,7 @@ export interface StateType {
   search: string;
   position: string;
   department: string;
+  citie: string;
 }
 
 const initialState: StateType = {
@@ -31,6 +32,7 @@ const initialState: StateType = {
   search: '',
   position: '',
   department: '',
+  citie: '',
 };
 
 export const fetchGetMembers = createAsyncThunk(
@@ -40,13 +42,15 @@ export const fetchGetMembers = createAsyncThunk(
     search,
     position,
     department,
+    citie,
   }: {
     page: number;
     search: string;
     position: string;
     department: string;
+    citie: string;
   }) => {
-    const response = await getMembersData(page, search, position, department);
+    const response = await getMembersData(page, search, position, department, citie);
     return response;
   }
 );

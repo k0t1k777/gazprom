@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 import useOutsideClick from 'src/hooks/useOutsideClick';
 import 'src/ui/Select/SimpleBar.scss';
 import styles from 'src/ui/Select/Select.module.scss';
-import { DownOutlined } from '@ant-design/icons';
+import { CloseOutlined, DownOutlined } from '@ant-design/icons';
 
 const cx = cn.bind(styles);
 
@@ -25,6 +25,11 @@ export default function Select({ text, value, setValue, options }: ISelect) {
 
   useOutsideClick(ref, toggleOpen);
 
+  function handleReset(event: React.MouseEvent<HTMLImageElement>) {
+    event.stopPropagation();
+    setValue('');
+  }
+
   return (
     <div
       ref={isOpen ? ref : null}
@@ -41,10 +46,7 @@ export default function Select({ text, value, setValue, options }: ISelect) {
       <span className={cx('select__title')} onClick={toggleOpen}>
         {value}
       </span>
-      <DownOutlined
-        className={cx('select__arrow')}
-        onClick={toggleOpen}
-      />
+      <DownOutlined className={cx('select__arrow')} onClick={toggleOpen} />
       {isOpen && options && (
         <ul
           className={cx('select__optionContainer', {
@@ -67,6 +69,9 @@ export default function Select({ text, value, setValue, options }: ISelect) {
             ))}
           </SimpleBar>
         </ul>
+      )}
+      {value && (
+        <CloseOutlined className={styles.reset} onClick={handleReset} />
       )}
     </div>
   );

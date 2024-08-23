@@ -9,6 +9,7 @@ export interface StateType {
   error: string | null | unknown;
   position: string,
   department: string,
+  citie: string,
 }
 
 const initialState: StateType = {
@@ -19,6 +20,7 @@ const initialState: StateType = {
   },
   position: '',
   department: '',
+  citie: '',
   isLoading: false,
   error: null,
 };
@@ -41,6 +43,9 @@ const filterSlice = createSlice({
     setDepartment(state, action) {
       state.department = action.payload;
     },
+    setCitie(state, action) {
+      state.citie = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -61,6 +66,6 @@ const filterSlice = createSlice({
   },
 });
 
-export const {setPosition, setDepartment} = filterSlice.actions;
+export const {setPosition, setDepartment, setCitie} = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
 export const selectFilter = (state: RootStore) => state.filter;

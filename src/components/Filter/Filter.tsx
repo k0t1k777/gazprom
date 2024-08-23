@@ -28,7 +28,7 @@ export default function Filter({ droppedCards }: FilterProps) {
     useAppSelector(selectMembers);
   const modalRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
-  const { department, position } = useAppSelector(selectFilter);
+  const { department, position, citie } = useAppSelector(selectFilter);
   const [currentPageFilter, setCurrentPageFilter] = useState(1);
 
   const currentPageRef = useRef(currentPageFilter);
@@ -39,7 +39,7 @@ export default function Filter({ droppedCards }: FilterProps) {
     setCurrentPageFilter(1);
     currentPageRef.current = 1;
     await dispatch(
-      fetchGetMembers({ page: 1, search: value, position, department })
+      fetchGetMembers({ page: 1, search: value, position, department, citie })
     );
   };
 
@@ -58,6 +58,7 @@ export default function Filter({ droppedCards }: FilterProps) {
           search: search ? search : '',
           position,
           department,
+          citie,
         })
       );
     }
@@ -86,9 +87,10 @@ export default function Filter({ droppedCards }: FilterProps) {
         search: search ? search : '',
         position,
         department,
+        citie,
       })
     );
-  }, [dispatch, currentPageFilter, search, position, department]);
+  }, [dispatch, currentPageFilter, search, position, department, citie]);
 
   useEffect(() => {
     if (modalRef.current) {
@@ -140,7 +142,7 @@ export default function Filter({ droppedCards }: FilterProps) {
           />
           <p className={styles.text}>Фильтры</p>
         </div>
-        <FilterList teams='Подразделение' positions='Должность' city='Город' />
+        <FilterList />
         <div className={styles.containerResult}>
           {members &&
             members.map((card, index) => (

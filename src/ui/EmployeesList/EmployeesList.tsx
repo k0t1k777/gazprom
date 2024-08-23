@@ -27,7 +27,7 @@ export default function EmployeesList() {
     dispatch(setSearch(value));
     dispatch(setCurrentPage(1));
     await dispatch(
-      fetchGetMembers({ page: 1, search: value, position, department })
+      fetchGetMembers({ page: 1, search: value, position, department, citie: '' })
     );
   };
 
@@ -39,6 +39,14 @@ export default function EmployeesList() {
     }
     dispatch(setCurrentPage(1));
 };
+
+useEffect(() => {
+  return () => {
+    dispatch(setPosition(''));
+    dispatch(setDepartment(''));
+    dispatch(setCurrentPage(1));
+  };
+}, [location.pathname, dispatch]);
 
   useEffect(() => {
     dispatch(fetchSelects());

@@ -1,20 +1,15 @@
-.containerItem {
-  display: flex;
-  gap: 4px;
-  cursor: pointer;
-}
-
 .list {
   @include mp-null-list;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 8px;
   margin: 16px 0;
 }
 
-.item {
-  @include mp-null;
-  @include use-font(14px, 17px, 400);
+.containerItem {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
 }
-
-

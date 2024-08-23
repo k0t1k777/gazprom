@@ -20,8 +20,7 @@ export default function Employees() {
   const { members, membersAmount, currentPage, search } =
     useAppSelector(selectMembers);
   const { isProfileOpen } = useAppSelector(selectUsers);
-  const { department, position } = useAppSelector(selectFilter);
-
+  const { department, position, citie } = useAppSelector(selectFilter);
   const cx = cn.bind(styles);
   const dispatch = useAppDispatch();
 
@@ -32,7 +31,7 @@ export default function Employees() {
   function nextPage() {
     if (currentPage < maxPages) {
       dispatch(
-        fetchGetMembers({ page: currentPage + 1, search, position, department })
+        fetchGetMembers({ page: currentPage + 1, search, position, department, citie })
       );
       dispatch(setCurrentPage(currentPage + 1));
     }
@@ -41,7 +40,7 @@ export default function Employees() {
   function previousPage() {
     if (currentPage > 1) {
       dispatch(
-        fetchGetMembers({ page: currentPage - 1, search, position, department })
+        fetchGetMembers({ page: currentPage - 1, search, position, department, citie })
       );
       dispatch(setCurrentPage(currentPage - 1));
     }
@@ -49,9 +48,9 @@ export default function Employees() {
 
   useEffect(() => {
     dispatch(
-      fetchGetMembers({ page: currentPage, search, position, department })
+      fetchGetMembers({ page: currentPage, search, position, department, citie })
     );
-  }, [dispatch, currentPage, search, position, department]);
+  }, [dispatch, currentPage, search, position, department, citie]);
 
   return (
     <section

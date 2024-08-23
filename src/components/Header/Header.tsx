@@ -46,6 +46,7 @@ export default function Header({ droppedCards }: HeaderProps) {
         search: value,
         position: '',
         department: '',
+        citie: '',
       })
     );
     navigate('/employees');
@@ -53,7 +54,7 @@ export default function Header({ droppedCards }: HeaderProps) {
 
   useEffect(() => {
     dispatch(setSearch(''));
-  }, [location.pathname]);
+  }, [location.pathname, dispatch]);
 
   return (
     <>
