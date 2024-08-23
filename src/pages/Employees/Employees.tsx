@@ -31,7 +31,13 @@ export default function Employees() {
   function nextPage() {
     if (currentPage < maxPages) {
       dispatch(
-        fetchGetMembers({ page: currentPage + 1, search, position, department, city })
+        fetchGetMembers({
+          page: currentPage + 1,
+          search,
+          position,
+          department,
+          city,
+        })
       );
       dispatch(setCurrentPage(currentPage + 1));
     }
@@ -40,7 +46,13 @@ export default function Employees() {
   function previousPage() {
     if (currentPage > 1) {
       dispatch(
-        fetchGetMembers({ page: currentPage - 1, search, position, department, city })
+        fetchGetMembers({
+          page: currentPage - 1,
+          search,
+          position,
+          department,
+          city,
+        })
       );
       dispatch(setCurrentPage(currentPage - 1));
     }
@@ -93,22 +105,28 @@ export default function Employees() {
           </div>
         </div>
       </div>
-      <div
-        className={cx(styles.cardContainer, {
-          [styles.cardContainer_center]: shortWindow,
-        })}
-      >
-        {members.map((card, index) => (
-          <Card
-            id={card.id}
-            key={card.id}
-            title={card.position}
-            full_name={card.full_name}
-            department={card.department}
-            index={index}
-          />
-        ))}
-      </div>
+      {members.length ? (
+        <div
+          className={cx(styles.cardContainer, {
+            [styles.cardContainer_center]: shortWindow,
+          })}
+        >
+          {members.map((card, index) => (
+            <Card
+              id={card.id}
+              key={card.id}
+              title={card.position}
+              full_name={card.full_name}
+              department={card.department}
+              index={index}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className={styles.noFound}>
+          По вашему запросу ничего не найдено, попробуйте изменить фильтры
+        </p>
+      )}
       {isProfileOpen && <PopupProfile />}
     </section>
   );

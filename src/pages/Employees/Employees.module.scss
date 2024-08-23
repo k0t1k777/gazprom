@@ -87,3 +87,9 @@
 .arrow {
   color: $button-focus;
 }
+
+.noFound {
+  @include mp-null;
+  @include use-font(24px, 28.8px, 500);
+  margin: 200px auto;
+}

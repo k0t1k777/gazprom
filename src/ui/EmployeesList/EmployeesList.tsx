@@ -27,26 +27,35 @@ export default function EmployeesList() {
     dispatch(setSearch(value));
     dispatch(setCurrentPage(1));
     await dispatch(
-      fetchGetMembers({ page: 1, search: value, position, department, city: '' })
+      fetchGetMembers({
+        page: 1,
+        search: value,
+        position,
+        department,
+        city: '',
+      })
     );
   };
 
-  const handleSelectChange = (value: string, type: 'position' | 'department') => {
+  const handleSelectChange = (
+    value: string,
+    type: 'position' | 'department'
+  ) => {
     if (type === 'position') {
-        dispatch(setPosition(value));
+      dispatch(setPosition(value));
     } else {
-        dispatch(setDepartment(value));
+      dispatch(setDepartment(value));
     }
     dispatch(setCurrentPage(1));
-};
-
-useEffect(() => {
-  return () => {
-    dispatch(setPosition(''));
-    dispatch(setDepartment(''));
-    dispatch(setCurrentPage(1));
   };
-}, [location.pathname, dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setPosition(''));
+      dispatch(setDepartment(''));
+      dispatch(setCurrentPage(1));
+    };
+  }, [location.pathname, dispatch]);
 
   useEffect(() => {
     dispatch(fetchSelects());

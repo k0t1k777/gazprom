@@ -36,11 +36,11 @@ export default function Header({ droppedCards }: HeaderProps) {
     dispatch(setIsProfileOpen(false));
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setCurrentPage(1));
+    const { value } = event.target;
     dispatch(setSearch(value));
-    dispatch(
+    await dispatch(
       fetchGetMembers({
         page: currentPage,
         search: value,

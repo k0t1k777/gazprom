@@ -1,6 +1,5 @@
 import styles from 'src/ui/FilterList/FilterList.module.scss';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { setCurrentPage } from 'src/store/features/slice/membersSlice';
 import {
   fetchSelects,
   selectFilter,
@@ -11,7 +10,11 @@ import {
 import { useEffect } from 'react';
 import Select from 'src/ui/Select/Select';
 
-export default function FilterList() {
+interface currentPageFilterProps {
+  setCurrentPageFilter: (type: number) => void;
+}
+
+export default function FilterList({ setCurrentPageFilter}: currentPageFilterProps) {
   const { selects, department, position, city } = useAppSelector(selectFilter);
 
   const dispatch = useAppDispatch();
@@ -27,7 +30,7 @@ export default function FilterList() {
     } else if (type === 'city') {
       dispatch(setCity(value));
     }
-    dispatch(setCurrentPage(1));
+    setCurrentPageFilter(1);
   };
 
   useEffect(() => {
@@ -35,7 +38,8 @@ export default function FilterList() {
       dispatch(setPosition(''));
       dispatch(setDepartment(''));
       dispatch(setCity(''));
-      dispatch(setCurrentPage(1));
+      
+    setCurrentPageFilter(1);
     };
   }, [location.pathname, dispatch]);
 

@@ -46,3 +46,9 @@
 .downContainer {
   height: 100px;
 }
+
+.noFound {
+  @include mp-null;
+  @include use-font;
+  margin: 200px auto;
+}

@@ -49,6 +49,7 @@
 .text {
   @include mp-null;
   @include use-font;
+  @include user-highlighting;
   word-break: normal;
   overflow: hidden;
   display: flex;

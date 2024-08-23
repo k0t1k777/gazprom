@@ -142,27 +142,33 @@ export default function Filter({ droppedCards }: FilterProps) {
           />
           <p className={styles.text}>Фильтры</p>
         </div>
-        <FilterList />
-        <div className={styles.containerResult}>
-          {members &&
-            members.map((card, index) => (
-              <Card
-                id={String(card.id)}
-                key={String(card.id)}
-                title={card.position}
-                full_name={card.full_name}
-                department={card.department}
-                index={index}
-                isFilterOpen={isFilterOpen}
-                onDragStart={(e) => handleDragStart(e, droppedCards)}
-                draggable={
-                  !droppedCards.some(
-                    (droppedCard) => droppedCard.id === String(card.id)
-                  )
-                }
-              />
-            ))}
-        </div>
+        <FilterList setCurrentPageFilter={setCurrentPageFilter} />
+        {members.length ? (
+          <div className={styles.containerResult}>
+            {members &&
+              members.map((card, index) => (
+                <Card
+                  id={String(card.id)}
+                  key={String(card.id)}
+                  title={card.position}
+                  full_name={card.full_name}
+                  department={card.department}
+                  index={index}
+                  isFilterOpen={isFilterOpen}
+                  onDragStart={(e) => handleDragStart(e, droppedCards)}
+                  draggable={
+                    !droppedCards.some(
+                      (droppedCard) => droppedCard.id === String(card.id)
+                    )
+                  }
+                />
+              ))}
+          </div>
+        ) : (
+          <p className={styles.noFound}>
+            По вашему запросу ничего не найдено, попробуйте изменить фильтры
+          </p>
+        )}
         <div className={styles.downContainer}></div>
       </div>
     </div>
