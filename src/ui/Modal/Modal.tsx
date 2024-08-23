@@ -14,12 +14,14 @@ export default function Modal() {
   const { addTeam, nameTeam } = useAppSelector(selectTeams);
 
   const addNewTeam = () => {
+    if (!nameTeam.trim()) {
+      return;
+    }
     const newTeam = {
       id: (addTeam.length + 777).toString(),
       name: nameTeam,
     };
     dispatch(setAddTeam([...addTeam, newTeam]));
-    dispatch(setNameTeam(''));
     navigate('/teams');
   };
 
@@ -37,7 +39,7 @@ export default function Modal() {
           className={styles.input}
           value={nameTeam}
           onChange={(e) => dispatch(setNameTeam(e.target.value))}
-          placeholder='введите текст'
+          placeholder='Введите название команды'
         />
         <Button htmlType='submit' className={styles.button}>
           Отправить

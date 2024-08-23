@@ -5,49 +5,53 @@ import { useEffect } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
   fetchGetMembers,
-  fetchGetMembersAmount,
   selectMembers,
   setCurrentPage,
 } from 'src/store/features/slice/membersSlice';
 import cn from 'classnames/bind';
 import { itemsPerPage } from 'src/services/const';
-import Select from 'src/ui/Select/Select';
-import { Input } from 'antd';
 import PopupProfile from 'src/components/PopupProfile/PopupProfile';
 import { selectUsers } from 'src/store/features/slice/userSlice';
+import { selectFilter } from 'src/store/features/slice/filterSlice';
+import EmployeesList from 'src/ui/EmployeesList/EmployeesList';
 
 export default function Employees() {
   const { shortWindow } = useAppSelector(selectMembers);
+  const { members, membersAmount, currentPage, search } =
+    useAppSelector(selectMembers);
+  const { isProfileOpen } = useAppSelector(selectUsers);
+  const { department, position } = useAppSelector(selectFilter);
+
   const cx = cn.bind(styles);
   const dispatch = useAppDispatch();
-  const { members, membersAmount, currentPage } = useAppSelector(selectMembers);
-  const { isProfileOpen } = useAppSelector(selectUsers);
-  
+
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(startIndex + itemsPerPage - 1, membersAmount);
   const maxPages = Math.ceil(membersAmount / itemsPerPage);
 
   function nextPage() {
     if (currentPage < maxPages) {
-      dispatch(fetchGetMembers(currentPage + 1));
+      dispatch(
+        fetchGetMembers({ page: currentPage + 1, search, position, department })
+      );
       dispatch(setCurrentPage(currentPage + 1));
     }
   }
 
   function previousPage() {
     if (currentPage > 1) {
-      dispatch(fetchGetMembers(currentPage - 1));
+      dispatch(
+        fetchGetMembers({ page: currentPage - 1, search, position, department })
+      );
       dispatch(setCurrentPage(currentPage - 1));
     }
   }
 
   useEffect(() => {
-    dispatch(fetchGetMembersAmount());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchGetMembers(currentPage));
-  }, [dispatch]);
+    dispatch(
+      fetchGetMembers({ page: currentPage, search, position, department })
+    );
+  }, [dispatch, currentPage, search, position, department]);
 
   return (
     <section
@@ -67,17 +71,7 @@ export default function Employees() {
           [styles.marginLeft]: shortWindow,
         })}
       >
-        <ul className={styles.list}>
-          <li className={styles.containerItem}>
-            <Input placeholder='ФИО' className={styles.input} />
-          </li>
-          <li className={styles.containerItem}>
-            <Select text='Должность' />
-          </li>
-          <li className={styles.containerItem}>
-            <Select text='Отдел' />
-          </li>
-        </ul>
+        <EmployeesList />
         <div className={styles.pagesContainer}>
           <p className={styles.pages}>
             {startIndex}-{endIndex} из {membersAmount}

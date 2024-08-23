@@ -9,14 +9,13 @@ import { DownOutlined } from '@ant-design/icons';
 const cx = cn.bind(styles);
 
 export interface ISelect {
-  text?: string;
-  value?: string;
-  setValue?: (value: string) => void;
-  options?: string[];
+  text: string;
+  value: string;
+  setValue: (value: string) => void;
+  options: string[];
 }
 
-export default function Select({ text, 
-   value, options }: ISelect) {
+export default function Select({ text, value, setValue, options }: ISelect) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
 
@@ -32,14 +31,20 @@ export default function Select({ text,
       className={cx('select', {
         'select--open': isOpen,
       })}
-      onClick={toggleOpen}
       aria-hidden='true'
     >
-      {!value && <span className={cx('select__title')}>{text}</span>}
+      {!value && (
+        <span onClick={toggleOpen} className={cx('select__title')}>
+          {text}
+        </span>
+      )}
       <span className={cx('select__title')} onClick={toggleOpen}>
         {value}
       </span>
-      <DownOutlined className={cx('select__arrow')} />
+      <DownOutlined
+        className={cx('select__arrow')}
+        onClick={toggleOpen}
+      />
       {isOpen && options && (
         <ul
           className={cx('select__optionContainer', {
@@ -52,6 +57,10 @@ export default function Select({ text,
                 className={styles.select__option}
                 key={index}
                 aria-hidden='true'
+                onClick={() => {
+                  setValue(option);
+                  setIsOpen(false);
+                }}
               >
                 <p className={cx('select__optionName')}>{option}</p>
               </li>

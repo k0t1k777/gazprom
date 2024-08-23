@@ -8,7 +8,7 @@ export default function ProjectsItem({ name, teams }: ProjectseProps) {
   const handleTeamClick = (teamId: number) => {
     navigate(`/teams/${teamId}`);
   };
-
+  
   return (
     <div className={styles.projectsItem}>
       <p className={styles.title}>{name}</p>

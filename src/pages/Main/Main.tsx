@@ -5,13 +5,12 @@ import { useAppSelector } from 'src/store/hooks';
 import { selectTeams } from 'src/store/features/slice/teamsSlice';
 import Card from 'src/ui/Card/Card';
 import Arrow from 'src/ui/Arrow/Arrow';
-import Preloader from 'src/ui/Preloader/Preloader';
 import { selectUsers } from 'src/store/features/slice/userSlice';
 import PopupProfile from 'src/components/PopupProfile/PopupProfile';
 
 export default function Main() {
   const { team } = useAppSelector(selectTeams);
-  const { loading, isProfileOpen } = useAppSelector(selectUsers);
+  const { isProfileOpen } = useAppSelector(selectUsers);
   const [allCards, setAllCards] = useState<membersProps[]>([]);
   const [updatedCards, setUpdatedCards] = useState<membersProps[]>([]);
   const [teamCard, setTeamCard] = useState<membersProps[]>([]);
@@ -55,7 +54,6 @@ export default function Main() {
     return card;
   };
 
-
   const renderCardsServer = (card: membersProps) => {
     if (!card.cellId || !card.subordinates) {
       return null;
@@ -71,6 +69,7 @@ export default function Main() {
         <Card
           id={card.id}
           title={card.position}
+          image={card.image}
           full_name={card.full_name}
           department={card.department}
           count={card.subordinates.length}
@@ -163,14 +162,8 @@ export default function Main() {
   return (
     <section className={styles.main}>
       <div className={styles.cardContainer}>
-        {loading ? (
-          <Preloader />
-        ) : (
-          <>
-            {teamCard && teamCard.map(renderCardsServer)}
-            {drawArrows}
-          </>
-        )}
+        {teamCard && teamCard.map(renderCardsServer)}
+        {drawArrows}
       </div>
       {isProfileOpen && <PopupProfile />}
     </section>

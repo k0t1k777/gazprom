@@ -73,7 +73,7 @@ export default function App() {
   }, [dispatch, mainRout, loggedIn]);
 
    return (
-    <div>
+    <>
       <Header droppedCards={droppedCards} />
       {loading && <Preloader />}
       {loggedIn ? (
@@ -100,6 +100,6 @@ export default function App() {
       ) : (
         <Registration handleRegister={handleRegister} />
       )}
-    </div>
+    </>
   );
 }

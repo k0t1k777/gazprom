@@ -110,6 +110,7 @@ export default function Teams() {
         <Card
           id={card.id}
           title={card.position}
+          image={card.image}
           full_name={card.full_name}
           department={card.department}
           count={card.subordinates.length}
@@ -219,6 +220,7 @@ export default function Teams() {
 
   return (
     <section className={styles.teams}>
+      <div className={styles.teamsContainer}>
       {loading ? (
         <Preloader />
       ) : id ? (
@@ -246,6 +248,7 @@ export default function Teams() {
           ))}
         </>
       )}
+       </div>
       {isProfileOpen && <PopupProfile />}
     </section>
   );

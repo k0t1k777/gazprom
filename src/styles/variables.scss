@@ -29,6 +29,13 @@
   font-family: $font-family;
 }
 
+// убирает выделение текста
+@mixin user-highlighting {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
 // обрезка слов и добавление '...'
 @mixin cut-word {
   text-overflow: ellipsis;

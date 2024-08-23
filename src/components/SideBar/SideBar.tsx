@@ -4,7 +4,6 @@ import cn from 'classnames/bind';
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
-  CheckOutlined,
   ClusterOutlined,
   DatabaseOutlined,
   DownOutlined,
@@ -175,32 +174,18 @@ export default function SideBar() {
         </Button>
       </div>
 
-      {!shortWindow ? (
-        <Button
-          className={cx(styles.button, {
-            [styles.button_none]: !teamsRout,
-          })}
-          onClick={openFilter}
-        >
+      {!shortWindow && (teamsRout || newTeamRout) ? (
+        <Button className={styles.button} onClick={openFilter}>
           Создать
         </Button>
       ) : (
         <>
-          {teamsRout && (
+          {shortWindow && (teamsRout || newTeamRout) && (
             <PlusOutlined
               onClick={openFilter}
               className={cx(styles.button, {
-                [styles.button_mini]: shortWindow,
-                [styles.button_none]: !teamsRout,
-              })}
-            />
-          )}
-          {newTeamRout && (
-            <CheckOutlined
-              onClick={openFilter}
-              className={cx(styles.button, {
-                [styles.button_mini]: shortWindow,
-                [styles.button_none]: !teamsRout,
+                [styles.button_mini]:
+                  (shortWindow && teamsRout) || (shortWindow && newTeamRout),
               })}
             />
           )}

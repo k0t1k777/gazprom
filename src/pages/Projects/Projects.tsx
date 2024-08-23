@@ -10,7 +10,7 @@ import {
 export default function Projects() {
   const dispatch = useAppDispatch();
   const { projects } = useAppSelector(selectProjects);
-
+  
   useEffect(() => {
     const fetchProjects = async () => {
       await dispatch(fetchGetProjects());

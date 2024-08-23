@@ -3,7 +3,7 @@ export const cellWidth = 312;
 export const cellHeight = 149;
 // Количество ячеек/колонок базово
 export const numCols = 3;
-export const numRows = 10;
+export const numRows = 7;
 // Количество участников на странице
 export const itemsPerPage = 12;
 // номер команды с Main

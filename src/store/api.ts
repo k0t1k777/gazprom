@@ -30,6 +30,10 @@ export const checkResponse = (response: Response) => {
   });
 };
 
+const buildQueryString = (params: Record<string, any>) => {
+  return new URLSearchParams(params).toString();
+};
+
 const request = (endpoint: string, options?: RequestOptionsType) =>
   fetch(`${BASE_URL}${endpoint}`, options).then(checkResponse);
 
@@ -42,6 +46,26 @@ export const registration = async ({ email, password }: RegisterDataProps) => {
   return await request('/api/token/', options);
 };
 
+export const getMembersData = (
+  page: number,
+  search: string,
+  position: string,
+  department: string
+) => {
+  return fetch(
+    `${BASE_URL}/api/v1/members/?${buildQueryString({
+      page,
+      search,
+      position,
+      department,
+    })}`,
+    {
+      method: 'GET',
+      headers: createHeaders(),
+    }
+  ).then(checkResponse);
+};
+
 export const getProfile = async () => {
   const options: RequestOptionsType = {
     method: 'GET',
@@ -51,29 +75,20 @@ export const getProfile = async () => {
   return response;
 };
 
-export const getMembersAmount = async () => {
-  const options: RequestOptionsType = {
-    method: 'GET',
-    headers: createHeaders(),
-  };
-  const response = await request('/api/v1/members/', options);
-  return response;
-};
-
-export const getMembers = async (page: number) => {
-  const options: RequestOptionsType = {
-    method: 'GET',
-    headers: createHeaders(),
-  };
-  return await request(`/api/v1/members/?page=${page}`, options);
-};
-
 export const getTeams = async () => {
   const options: RequestOptionsType = {
     method: 'GET',
     headers: createHeaders(),
   };
   return await request('/api/v1/teams/', options);
+};
+
+export const getSelects = async () => {
+  const options: RequestOptionsType = {
+    method: 'GET',
+    headers: createHeaders(),
+  };
+  return await request('/api/v1/filters/', options);
 };
 
 export const getProjects = async () => {
@@ -99,4 +114,3 @@ export const getMemberId = async (id: number) => {
   };
   return await request(`/api/v1/members/${id}/`, options);
 };
-

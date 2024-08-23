@@ -8,7 +8,7 @@ export interface membersProps {
   cellId?: string;
   parentId?: string;
   parent_id?: string;
-  photo?: string;
+  image?: string;
   count?: number;
   subordinates?: membersProps[];
   hideMembers?: () => void;
@@ -16,6 +16,12 @@ export interface membersProps {
   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
   draggable?: boolean;
   isFilterOpen?: boolean;
+}
+
+export interface SelectsProps {
+  positions: string[];
+  departments: string[];
+  cities: string[];
 }
 
 export interface RegisterDataProps {
