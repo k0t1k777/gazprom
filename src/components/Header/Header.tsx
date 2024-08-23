@@ -46,7 +46,7 @@ export default function Header({ droppedCards }: HeaderProps) {
         search: value,
         position: '',
         department: '',
-        citie: '',
+        city: '',
       })
     );
     navigate('/employees');

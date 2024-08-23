@@ -9,7 +9,7 @@ export interface StateType {
   error: string | null | unknown;
   position: string,
   department: string,
-  citie: string,
+  city: string,
 }
 
 const initialState: StateType = {
@@ -20,7 +20,7 @@ const initialState: StateType = {
   },
   position: '',
   department: '',
-  citie: '',
+  city: '',
   isLoading: false,
   error: null,
 };
@@ -43,8 +43,8 @@ const filterSlice = createSlice({
     setDepartment(state, action) {
       state.department = action.payload;
     },
-    setCitie(state, action) {
-      state.citie = action.payload;
+    setCity(state, action) {
+      state.city = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -66,6 +66,6 @@ const filterSlice = createSlice({
   },
 });
 
-export const {setPosition, setDepartment, setCitie} = filterSlice.actions;
+export const {setPosition, setDepartment, setCity} = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
 export const selectFilter = (state: RootStore) => state.filter;

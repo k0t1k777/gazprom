@@ -28,7 +28,7 @@ export default function Filter({ droppedCards }: FilterProps) {
     useAppSelector(selectMembers);
   const modalRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
-  const { department, position, citie } = useAppSelector(selectFilter);
+  const { department, position, city } = useAppSelector(selectFilter);
   const [currentPageFilter, setCurrentPageFilter] = useState(1);
 
   const currentPageRef = useRef(currentPageFilter);
@@ -39,7 +39,7 @@ export default function Filter({ droppedCards }: FilterProps) {
     setCurrentPageFilter(1);
     currentPageRef.current = 1;
     await dispatch(
-      fetchGetMembers({ page: 1, search: value, position, department, citie })
+      fetchGetMembers({ page: 1, search: value, position, department, city })
     );
   };
 
@@ -58,7 +58,7 @@ export default function Filter({ droppedCards }: FilterProps) {
           search: search ? search : '',
           position,
           department,
-          citie,
+          city,
         })
       );
     }
@@ -87,10 +87,10 @@ export default function Filter({ droppedCards }: FilterProps) {
         search: search ? search : '',
         position,
         department,
-        citie,
+        city,
       })
     );
-  }, [dispatch, currentPageFilter, search, position, department, citie]);
+  }, [dispatch, currentPageFilter, search, position, department, city]);
 
   useEffect(() => {
     if (modalRef.current) {

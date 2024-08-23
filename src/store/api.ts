@@ -51,7 +51,7 @@ export const getMembersData = (
   search: string,
   position: string,
   department: string,
-  citie: string,
+  city: string,
 ) => {
   return fetch(
     `${BASE_URL}/api/v1/members/?${buildQueryString({
@@ -59,7 +59,7 @@ export const getMembersData = (
       search,
       position,
       department,
-      citie,
+      city,
     })}`,
     {
       method: 'GET',

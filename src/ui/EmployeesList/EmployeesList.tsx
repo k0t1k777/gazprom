@@ -27,7 +27,7 @@ export default function EmployeesList() {
     dispatch(setSearch(value));
     dispatch(setCurrentPage(1));
     await dispatch(
-      fetchGetMembers({ page: 1, search: value, position, department, citie: '' })
+      fetchGetMembers({ page: 1, search: value, position, department, city: '' })
     );
   };
 

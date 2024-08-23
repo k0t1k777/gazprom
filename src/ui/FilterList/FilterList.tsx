@@ -4,7 +4,7 @@ import { setCurrentPage } from 'src/store/features/slice/membersSlice';
 import {
   fetchSelects,
   selectFilter,
-  setCitie,
+  setCity,
   setDepartment,
   setPosition,
 } from 'src/store/features/slice/filterSlice';
@@ -12,21 +12,20 @@ import { useEffect } from 'react';
 import Select from 'src/ui/Select/Select';
 
 export default function FilterList() {
-  const { selects, department, position, citie } = useAppSelector(selectFilter);
+  const { selects, department, position, city } = useAppSelector(selectFilter);
 
   const dispatch = useAppDispatch();
 
   const handleSelectChange = (
     value: string,
-    type: 'position' | 'department' | 'citie'
+    type: 'position' | 'department' | 'city'
   ) => {
     if (type === 'position') {
       dispatch(setPosition(value));
     } else if (type === 'department') {
       dispatch(setDepartment(value));
-    } else if (type === 'citie') {
-      console.log(value) 
-      dispatch(setCitie(value));
+    } else if (type === 'city') {
+      dispatch(setCity(value));
     }
     dispatch(setCurrentPage(1));
   };
@@ -35,7 +34,7 @@ export default function FilterList() {
     return () => {
       dispatch(setPosition(''));
       dispatch(setDepartment(''));
-      dispatch(setCitie(''));
+      dispatch(setCity(''));
       dispatch(setCurrentPage(1));
     };
   }, [location.pathname, dispatch]);
@@ -66,8 +65,8 @@ export default function FilterList() {
         <Select
           text='Город'
           options={selects.cities}
-          value={citie}
-          setValue={(value) => handleSelectChange(value, 'citie')}
+          value={city}
+          setValue={(value) => handleSelectChange(value, 'city')}
         />
       </li>
     </ul>
