@@ -18,6 +18,12 @@ export interface membersProps {
   isFilterOpen?: boolean;
 }
 
+export interface SelectsProps {
+  positions: string[];
+  departments: string[];
+  cities: string[];
+}
+
 export interface RegisterDataProps {
   email: string;
   password: string;

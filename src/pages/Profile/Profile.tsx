@@ -25,12 +25,14 @@ export default function Profile() {
     dispatch(fetchGetProfile());
   }, [dispatch]);
 
+  const imageUrl = profile?.image ? `${BASE_URL}${profile.image}` : '';
+
   return (
     <section className={styles.profile}>
       <div className={styles.containerProfile}>
         <div className={styles.photoContainer}>
           <img
-            src={`${BASE_URL}${profile?.image}`}
+            src={imageUrl}
             alt='ваше фото'
             className={styles.photo}
           />
@@ -116,10 +118,9 @@ export default function Profile() {
             </h3>
             <ul className={styles.itemContainerList}>
               {profile?.projects.map((item, index) => (
-                <Link to='/projects' className={styles.link}>
+                <Link key={index} to='/projects' className={styles.link}>
                   <li
                     className={`${styles.itemContainerItem} ${styles.colorBlue}`}
-                    key={index}
                   >
                     {item}
                   </li>

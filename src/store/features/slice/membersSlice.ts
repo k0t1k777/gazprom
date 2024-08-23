@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { membersProps } from 'src/services/types';
-import { getMembers, getMembersAmount } from 'src/store/api';
+import { getMembersData } from 'src/store/api';
 import { RootStore } from 'src/store/store';
 
 export interface StateType {
@@ -13,7 +13,9 @@ export interface StateType {
   shortWindow: boolean;
   membersValue: string;
   cards: membersProps[];
-  currentPageFilter: number;
+  search: string;
+  position: string;
+  department: string;
 }
 
 const initialState: StateType = {
@@ -26,21 +28,25 @@ const initialState: StateType = {
   shortWindow: false,
   membersValue: '',
   cards: [],
-  currentPageFilter: 1,
+  search: '',
+  position: '',
+  department: '',
 };
-
-export const fetchGetMembersAmount = createAsyncThunk(
-  'fetch/members/count',
-  async () => {
-    const response = await getMembersAmount();
-    return response;
-  }
-);
 
 export const fetchGetMembers = createAsyncThunk(
   'fetch/members',
-  async (page: number) => {
-    const response = await getMembers(page);
+  async ({
+    page,
+    search,
+    position,
+    department,
+  }: {
+    page: number;
+    search: string;
+    position: string;
+    department: string;
+  }) => {
+    const response = await getMembersData(page, search, position, department);
     return response;
   }
 );
@@ -61,36 +67,25 @@ const membersSlice = createSlice({
     setCards(state, action) {
       state.cards = action.payload;
     },
-    setCurrentPageFilter(state, action) {
-      state.currentPageFilter += action.payload;
+    setSearch(state, action) {
+      state.search = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchGetMembersAmount.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchGetMembersAmount.fulfilled, (state, action) => {
-        state.membersAmount = action.payload.count;
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(fetchGetMembersAmount.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message;
-      })
       .addCase(fetchGetMembers.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(fetchGetMembers.fulfilled, (state, action) => {
         state.members = action.payload.results;
+        state.membersAmount = action.payload.count;
         state.isLoading = false;
         state.error = null;
       })
       .addCase(fetchGetMembers.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
-      })
+      });
   },
 });
 
@@ -99,7 +94,7 @@ export const {
   setCurrentPage,
   setShortWindow,
   setCards,
-  setCurrentPageFilter,
+  setSearch,
 } = membersSlice.actions;
 export const membersReducer = membersSlice.reducer;
 export const selectMembers = (state: RootStore) => state.members;

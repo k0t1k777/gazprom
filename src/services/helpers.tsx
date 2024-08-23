@@ -4,7 +4,6 @@ import Arrow from 'src/ui/Arrow/Arrow';
 import { membersProps } from 'src/services/types';
 import Card from 'src/ui/Card/Card';
 
-
 // Отрисовка дерева без редактирования
 export const renderCardsServer = (
   card: membersProps,
