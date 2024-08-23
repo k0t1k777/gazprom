@@ -1,0 +1,17 @@
+.list {
+  @include mp-null-list;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border: $border-white;
+  border-radius: $border-radius-s;
+  padding: 4px 16px;
+  max-height: 41px;
+}
+
+.containerItem {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+}

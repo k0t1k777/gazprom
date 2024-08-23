@@ -15,8 +15,7 @@ export interface ISelect {
   options: string[];
 }
 
-export default function Select({ text, 
-   value, setValue, options }: ISelect) {
+export default function Select({ text, value, setValue, options }: ISelect) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const ref = useRef(null);
 
@@ -26,7 +25,6 @@ export default function Select({ text,
 
   useOutsideClick(ref, toggleOpen);
 
-  
   return (
     <div
       ref={isOpen ? ref : null}
@@ -35,11 +33,18 @@ export default function Select({ text,
       })}
       aria-hidden='true'
     >
-      {!value && <span onClick={toggleOpen} className={cx('select__title')}>{text}</span>}
+      {!value && (
+        <span onClick={toggleOpen} className={cx('select__title')}>
+          {text}
+        </span>
+      )}
       <span className={cx('select__title')} onClick={toggleOpen}>
         {value}
       </span>
-      <DownOutlined className={cx('select__arrow')} onClick={toggleOpen}/>
+      <DownOutlined
+        className={cx('select__arrow')}
+        onClick={toggleOpen}
+      />
       {isOpen && options && (
         <ul
           className={cx('select__optionContainer', {
@@ -52,7 +57,10 @@ export default function Select({ text,
                 className={styles.select__option}
                 key={index}
                 aria-hidden='true'
-                onClick={() => setValue(option)}
+                onClick={() => {
+                  setValue(option);
+                  setIsOpen(false);
+                }}
               >
                 <p className={cx('select__optionName')}>{option}</p>
               </li>
