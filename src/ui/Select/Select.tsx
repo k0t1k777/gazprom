@@ -26,6 +26,7 @@ export default function Select({ text,
 
   useOutsideClick(ref, toggleOpen);
 
+  
   return (
     <div
       ref={isOpen ? ref : null}
