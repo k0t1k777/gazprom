@@ -1,5 +1,5 @@
 export const BASE_URL = 'https://gazprom.hopto.org';
-import { RegisterDataProps } from 'src/services/types';
+import { RegisterDataProps, SelectsProps } from 'src/services/types';
 
 const getToken = () => {
   return localStorage.getItem('token');
@@ -85,13 +85,13 @@ export const getTeams = async () => {
   return await request('/api/v1/teams/', options);
 };
 
-export const getSelects = async () => {
-  const options: RequestOptionsType = {
-    method: 'GET',
-    headers: createHeaders(),
-  };
-  return await request('/api/v1/filters/', options);
-};
+// export const getSelects = async () => {
+//   const options: RequestOptionsType = {
+//     method: 'GET',
+//     headers: createHeaders(),
+//   };
+//   return await request('/api/v1/filters/', options);
+// };
 
 export const getProjects = async () => {
   const options: RequestOptionsType = {
@@ -116,3 +116,13 @@ export const getMemberId = async (id: number) => {
   };
   return await request(`/api/v1/members/${id}/`, options);
 };
+
+
+// Моки
+import { mockSearchFields } from 'src/services/mocks/mockSearchFields'
+
+export const getSelects = async () => {
+  const searchFields: SelectsProps = mockSearchFields
+  const res = await Promise.resolve(searchFields)
+  return res
+}
