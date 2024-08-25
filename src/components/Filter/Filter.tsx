@@ -128,7 +128,7 @@ export default function Filter({ droppedCards }: FilterProps) {
 
   return (
     <div ref={modalRef} className={styles.filter}>
-      <div>
+      <div className={styles.filterContainer}>
         <Input
           className={styles.input}
           placeholder='Поиск'

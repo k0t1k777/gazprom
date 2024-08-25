@@ -30,16 +30,23 @@ export default function Select({ text, value, setValue, options }: ISelect) {
     setValue('');
   }
 
+  const newTeamRout = location.pathname === '/new-team'
+  console.log('newTeamRout: ', newTeamRout);
+
   return (
     <div
       ref={isOpen ? ref : null}
       className={cx('select', {
         'select--open': isOpen,
+        'select--mini': newTeamRout,
       })}
       aria-hidden='true'
     >
       {!value && (
-        <span onClick={toggleOpen} className={cx('select__title')}>
+        <span
+          onClick={toggleOpen}
+          className={cx('select__title')}
+        >
           {text}
         </span>
       )}

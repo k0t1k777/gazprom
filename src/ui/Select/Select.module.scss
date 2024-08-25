@@ -12,6 +12,10 @@
   background-color: white;
   cursor: pointer;
 
+  &--mini {
+    width: 100%;
+  }
+
   &__title {
     color: $main-text-black;
     box-sizing: border-box;
