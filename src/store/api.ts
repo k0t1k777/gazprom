@@ -1,5 +1,7 @@
 export const BASE_URL = 'https://gazprom.hopto.org';
 import {
+  membersProps,
+  membersResultProps,
   ProfileProps,
   ProjectseProps,
   RegisterDataProps,
@@ -11,6 +13,7 @@ import { mockProfile } from 'src/services/mocks/mockProfile';
 import { mockTeams } from 'src/services/mocks/mockTeams';
 import { mockProjects } from 'src/services/mocks/mockProjects';
 import { mockTeam } from 'src/services/mocks/mockTeamId';
+import { mockMembers } from 'src/services/mocks/mockMembers';
 
 const getToken = () => {
   return localStorage.getItem('token');
@@ -41,13 +44,6 @@ export const checkResponse = (response: Response) => {
   });
 };
 
-const buildQueryString = (params: Record<string, any>) => {
-  return new URLSearchParams(params).toString();
-};
-
-const request = (endpoint: string, options?: RequestOptionsType) =>
-  fetch(`${BASE_URL}${endpoint}`, options).then(checkResponse);
-
 export const registration = async ({ email, password }: RegisterDataProps) => {
   const options: RequestOptionsType = {
     method: 'POST',
@@ -57,27 +53,34 @@ export const registration = async ({ email, password }: RegisterDataProps) => {
   return await request('/api/token/', options);
 };
 
-export const getMembersData = (
-  page: number,
-  search: string,
-  position: string,
-  department: string,
-  city: string
-) => {
-  return fetch(
-    `${BASE_URL}/api/v1/members/?${buildQueryString({
-      page,
-      search,
-      position,
-      department,
-      city,
-    })}`,
-    {
-      method: 'GET',
-      headers: createHeaders(),
-    }
-  ).then(checkResponse);
-};
+const request = (endpoint: string, options?: RequestOptionsType) =>
+  fetch(`${BASE_URL}${endpoint}`, options).then(checkResponse);
+
+// const buildQueryString = (params: Record<string, any>) => {
+//   return new URLSearchParams(params).toString();
+// };
+
+// export const getMembersData = (
+//   page: number,
+//   search: string,
+//   position: string,
+//   department: string,
+//   city: string
+// ) => {
+//   return fetch(
+//     `${BASE_URL}/api/v1/members/?${buildQueryString({
+//       page,
+//       search,
+//       position,
+//       department,
+//       city,
+//     })}`,
+//     {
+//       method: 'GET',
+//       headers: createHeaders(),
+//     }
+//   ).then(checkResponse);
+// };
 
 // export const getProfile = async () => {
 //   const options: RequestOptionsType = {
@@ -130,19 +133,47 @@ export const getMemberId = async (id: number) => {
 
 // Моки
 
-// import { mockMembers } from 'src/services/mocks/mockMembers';
+const filterMembers = (
+  members: any,
+  search: any,
+  position: any,
+  department: any,
+  city: any,
+) => {
+  return members.filter(member => {
+    const matchesSearch = member.full_name.toLowerCase().includes(search.toLowerCase());
+    const matchesPosition = position ? member.position === position : true;
+    const matchesDepartment = department ? member.department === department : true;
+    const matchesCity = city ? member.city === city : true;
+
+    return matchesSearch && matchesPosition && matchesDepartment && matchesCity;
+  });
+};
+
+export const getMembersData = (
+  page: number = 1,
+  search: string = '',
+  position: string = '',
+  department: string = '',
+  city: string = ''
+) => {
+  const filteredMembers = filterMembers(mockMembers.results, search, position, department, city);
+
+  // Пагинация
+  const startIndex = (page - 1) * 12;
+  const paginatedMembers = filteredMembers.slice(startIndex, startIndex + 12);
+
+  return Promise.resolve({
+    count: filteredMembers.length,
+    results: paginatedMembers,
+  });
+};
 
 export const getSelects = async () => {
   const searchFields: SelectsProps = mockSearchFields;
   const res = await Promise.resolve(searchFields);
   return res;
 };
-
-// export const getMembersData = async () => {
-//   const members: SelectsProps = mockMembers
-//   const res = await Promise.resolve(members)
-//   return res
-// }
 
 export const getProfile = async () => {
   const profile: ProfileProps = mockProfile;

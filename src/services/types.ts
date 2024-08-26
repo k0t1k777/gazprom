@@ -16,6 +16,21 @@ export interface membersProps {
   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
   draggable?: boolean;
   isFilterOpen?: boolean;
+  positions?: string;
+}
+
+export interface membersResultProps {
+  count: number;
+  results: {
+    id: string;
+    title?: string;
+    full_name?: string;
+    department?: string;
+    position?: string;
+    image?: string;
+    positions?: string;
+    city?: string;
+  }[];
 }
 
 export interface SelectsProps {
