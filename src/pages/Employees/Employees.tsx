@@ -23,6 +23,7 @@ export default function Employees() {
   const { department, position, city } = useAppSelector(selectFilter);
   const cx = cn.bind(styles);
   const dispatch = useAppDispatch();
+  console.log('members: ', members);
 
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(startIndex + itemsPerPage - 1, membersAmount);

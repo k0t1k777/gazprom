@@ -52,10 +52,13 @@ export interface ProfileProps {
 export interface ProjectseProps {
   name: string;
   id?: string;
+  description?: string;
   teams?: {
     name?: string;
     id?: string;
   }[];
+  started?: string;
+  ended?: string;
 }
 
 export interface TeamsProps {
@@ -63,6 +66,7 @@ export interface TeamsProps {
   id?: string;
   description?: string;
   employees?: any;
+  owner?: number;
   projects?: {
     name?: string;
     id?: string;

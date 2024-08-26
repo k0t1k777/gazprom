@@ -6,7 +6,7 @@ import { RootStore } from 'src/store/store';
 
 export interface StateType {
   teams: TeamsProps[];
-  team: TeamsProps;
+  team: TeamsProps | undefined;
   isLoading: boolean;
   error: string | null | unknown;
   nameTeam: string;
