@@ -23,7 +23,6 @@ export default function Employees() {
   const { department, position, city } = useAppSelector(selectFilter);
   const cx = cn.bind(styles);
   const dispatch = useAppDispatch();
-  console.log('members: ', members);
 
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(startIndex + itemsPerPage - 1, membersAmount);
@@ -119,6 +118,7 @@ export default function Employees() {
               title={card.position}
               full_name={card.full_name}
               department={card.department}
+              image={card.image}
               index={index}
             />
           ))}

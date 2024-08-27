@@ -37,8 +37,8 @@ export default function App() {
     dispatch(fetchRegisterUser({ email, password }))
       .unwrap()
       .then((data) => {
-        if (data.access) {
-          localStorage.setItem('token', data.access);
+        if (data.token) {
+          localStorage.setItem('token', data.token);
           dispatch(setLoggedIn(true));
           navigate('/');
           fetchTeamsId();

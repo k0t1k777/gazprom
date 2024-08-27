@@ -19,6 +19,20 @@ export interface membersProps {
   positions?: string;
 }
 
+export interface MembersResult {
+  count: number;
+  results: Member[];
+}
+
+export interface Member {
+  full_name: string;
+  position: string;
+  department: string;
+  city: string;
+  id: string;
+  image: string;
+}
+
 export interface membersResultProps {
   count: number;
   results: {
@@ -92,4 +106,11 @@ export interface FiltersProps {
   cities: string[];
   departments: string[];
   positions: string[];
+}
+
+export interface FilterParams {
+  search: string;
+  position?: string;
+  department?: string;
+  city?: string;
 }

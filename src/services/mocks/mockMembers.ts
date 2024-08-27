@@ -1,14 +1,14 @@
-import { membersResultProps } from 'src/services/types';
+import { MembersResult } from 'src/services/types';
 
-export const mockMembers: membersResultProps = {
+export const mockMembers: MembersResult = {
   count: 122,
   results: [
     {
       id: '1',
       full_name: 'Иванов Иван Сергеевич',
       department: 'Генеральный директор',
-      image: 'http://127.0.0.1:8000/media/images/users/fake1_VjBS5RN.png',
-      positions: 'Генеральный директор',
+      image: 'src/assets/images/unsplash_kMJp7620W6U.png',
+      position: 'Генеральный директор',
       city: 'Москва',
     },
     {

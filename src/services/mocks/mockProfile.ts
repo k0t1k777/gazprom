@@ -3,8 +3,7 @@ import { ProfileProps } from 'src/services/types';
 export const mockProfile: ProfileProps = {
   email: 'admin@admin.com',
   full_name: 'Иванов Геннадий Викторович',
-  image:
-    '/media/images/users/generated_image_751bad47f6dc11eeb20086a042c20b35_QImJNJ3.jpeg',
+  image: 'src/assets/images/unsplash_kMJp7620W6U.png',
   profile: {
     phone: '89305557535',
     telegram: '@telegram',

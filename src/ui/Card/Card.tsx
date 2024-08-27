@@ -1,5 +1,4 @@
 import styles from 'src/ui/Card/Card.module.scss';
-import { BASE_URL } from 'src/store/api';
 import { useState } from 'react';
 import cn from 'classnames/bind';
 import { membersProps } from 'src/services/types';
@@ -10,7 +9,6 @@ import {
   selectUsers,
   setIsProfileOpen,
 } from 'src/store/features/slice/userSlice';
-import Avatar from 'src/assets/images/Avatar.png';
 
 const cx = cn.bind(styles);
 
@@ -68,7 +66,7 @@ export default function Card({
         <div className={cx(styles.img, { [styles.disabled]: isFilterOpen })}>
           <img
             className={styles.img}
-            src={image ? `${BASE_URL}${image}` : Avatar}
+            src={image}
             alt='Фото профиля'
           />
         </div>

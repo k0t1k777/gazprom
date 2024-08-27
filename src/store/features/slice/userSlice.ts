@@ -31,8 +31,8 @@ const initialState: StateType = {
   isProfileOpen: false,
   selectedMember: null,
   showMore: true,
-  email: '',
-  password: '',
+  email: 'admin@admin.com',
+  password: 'admin',
 };
 
 export const fetchRegisterUser = createAsyncThunk(
@@ -42,6 +42,7 @@ export const fetchRegisterUser = createAsyncThunk(
     return response;
   }
 );
+
 export const fetchGetProfile = createAsyncThunk('fetch/profile', async () => {
   const response = await getProfile();
   return response;
@@ -85,7 +86,7 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchRegisterUser.fulfilled, (state, action) => {
-        state.access = action.payload.access;
+        state.access = action.payload.token;
         state.error = null;
         state.loggedIn = true;
       })
@@ -109,7 +110,11 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchGetMemberId.fulfilled, (state, action) => {
-        state.selectedMember = action.payload;
+        if (action.payload) {
+          state.selectedMember = action.payload;
+        } else {
+          state.selectedMember = null;
+        }
         state.isProfileOpen = false;
       })
       .addCase(fetchGetMemberId.rejected, (state, action) => {
