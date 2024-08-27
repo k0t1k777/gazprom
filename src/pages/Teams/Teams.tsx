@@ -96,6 +96,7 @@ export default function Teams() {
     }
     return card;
   };
+  
   const renderCardsServer = (card: membersProps) => {
     if (!card.cellId || !card.subordinates) {
       return null;

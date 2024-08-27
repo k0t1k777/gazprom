@@ -68,6 +68,7 @@ export default function Card({
             className={styles.img}
             src={image}
             alt='Фото профиля'
+            onError={() => console.error('Ошибка загрузки изображения:', image)}
           />
         </div>
         <div
