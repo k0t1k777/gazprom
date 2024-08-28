@@ -8,6 +8,7 @@
   gap: 12px;
   margin: 0;
   box-shadow: $items-shadow;
+  cursor: pointer;
 }
 
 .title {
@@ -19,7 +20,6 @@
   @include mp-null;
   @include use-font(14px, 16.8px, 400);
   color: $button;
-  cursor: pointer;
 }
 
 
