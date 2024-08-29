@@ -118,6 +118,7 @@ export default function Employees() {
               title={card.position}
               full_name={card.full_name}
               department={card.department}
+              image={card.image}
               index={index}
             />
           ))}

@@ -16,6 +16,35 @@ export interface membersProps {
   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
   draggable?: boolean;
   isFilterOpen?: boolean;
+  positions?: string;
+}
+
+export interface MembersResult {
+  count: number;
+  results: Member[];
+}
+
+export interface Member {
+  full_name: string;
+  position: string;
+  department: string;
+  city: string;
+  id: string;
+  image: string;
+}
+
+export interface membersResultProps {
+  count: number;
+  results: {
+    id: string;
+    title?: string;
+    full_name?: string;
+    department?: string;
+    position?: string;
+    image?: string;
+    positions?: string;
+    city?: string;
+  }[];
 }
 
 export interface SelectsProps {
@@ -52,10 +81,13 @@ export interface ProfileProps {
 export interface ProjectseProps {
   name: string;
   id?: string;
+  description?: string;
   teams?: {
     name?: string;
     id?: string;
   }[];
+  started?: string;
+  ended?: string;
 }
 
 export interface TeamsProps {
@@ -63,6 +95,7 @@ export interface TeamsProps {
   id?: string;
   description?: string;
   employees?: any;
+  owner?: number;
   projects?: {
     name?: string;
     id?: string;
@@ -73,4 +106,11 @@ export interface FiltersProps {
   cities: string[];
   departments: string[];
   positions: string[];
+}
+
+export interface FilterParams {
+  search: string;
+  position?: string;
+  department?: string;
+  city?: string;
 }

@@ -9,7 +9,6 @@ import {
   selectUsers,
 } from 'src/store/features/slice/userSlice';
 import { useEffect } from 'react';
-import { BASE_URL } from 'src/store/api';
 import DigramOne from 'src/assets/images/diagram1.png';
 import DigramTwo from 'src/assets/images/diagram2.png';
 import DigramThree from 'src/assets/images/diagram3.png';
@@ -25,14 +24,12 @@ export default function Profile() {
     dispatch(fetchGetProfile());
   }, [dispatch]);
 
-  const imageUrl = profile?.image ? `${BASE_URL}${profile.image}` : '';
-
   return (
     <section className={styles.profile}>
       <div className={styles.containerProfile}>
         <div className={styles.photoContainer}>
           <img
-            src={imageUrl}
+            src= {profile?.image}
             alt='ваше фото'
             className={styles.photo}
           />
@@ -105,7 +102,7 @@ export default function Profile() {
                 ))}
               </ul>
               <a
-                className={`${styles.itemContainerItem} ${styles.colorBlue}`}
+                className={`${styles.itemContainerItem} ${styles.colorBlack}`}
                 href='#'
               >
                 {cont.link}
