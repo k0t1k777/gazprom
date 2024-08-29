@@ -22,7 +22,6 @@ import {
   setLoggedIn,
 } from 'src/store/features/slice/userSlice';
 
-
 export default function App() {
   const { loggedIn, loading } = useAppSelector(selectUsers);
   const [droppedCards, setDroppedCards] = useState<membersProps[]>([]);

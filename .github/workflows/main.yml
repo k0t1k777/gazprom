@@ -1,11 +1,6 @@
 name: CI/CD
 
 on:
-  push:
-    branches: [ "main" , "dev" ]
-  pull_request:
-    branches: [ "main" ]
-
 
 jobs:
   build_frontend_and_push_to_docker_hub:
