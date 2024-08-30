@@ -1,4 +1,4 @@
-import { createHashRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import App from 'src/components/App/App';
 import Employees from 'src/pages/Employees/Employees';
 import Main from 'src/pages/Main/Main';
@@ -8,13 +8,13 @@ import Profile from 'src/pages/Profile/Profile';
 import Projects from 'src/pages/Projects/Projects';
 import Teams from 'src/pages/Teams/Teams';
 
-export const router = createHashRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
       {
-        path: '/',
+        path: 'main',
         element: <Main />,
       },
       {
@@ -47,4 +47,4 @@ export const router = createHashRouter([
       },
     ],
   },
-]);
+], { basename: '/gazprom' });

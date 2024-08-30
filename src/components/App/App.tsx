@@ -29,7 +29,6 @@ export default function App() {
   const { members } = useAppSelector(selectMembers);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const mainRout = location.pathname === '/';
 
   function handleRegister({ email, password }: RegisterDataProps) {
     dispatch(setLoading(true));
@@ -39,7 +38,7 @@ export default function App() {
         if (data.token) {
           localStorage.setItem('token', data.token);
           dispatch(setLoggedIn(true));
-          navigate('/');
+          navigate('/main');
           fetchTeamsId();
         }
       })
@@ -66,10 +65,8 @@ export default function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (mainRout && loggedIn) {
       fetchTeamsId();
-    }
-  }, [dispatch, mainRout, loggedIn]);
+  }, [dispatch]);
 
    return (
     <>
