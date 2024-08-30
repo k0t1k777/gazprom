@@ -3,17 +3,17 @@ import Card from 'src/ui/Card/Card';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { useEffect } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import {
-  fetchGetMembers,
-  selectMembers,
-  setCurrentPage,
-} from 'src/store/features/slice/membersSlice';
 import cn from 'classnames/bind';
 import { itemsPerPage } from 'src/services/const';
 import PopupProfile from 'src/components/PopupProfile/PopupProfile';
 import { selectUsers } from 'src/store/features/slice/userSlice';
 import { selectFilter } from 'src/store/features/slice/filterSlice';
 import EmployeesList from 'src/ui/EmployeesList/EmployeesList';
+import {
+  fetchGetMembers,
+  selectMembers,
+  setCurrentPage,
+} from 'src/store/features/slice/membersSlice';
 
 export default function Employees() {
   const { shortWindow } = useAppSelector(selectMembers);
