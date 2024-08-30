@@ -31,7 +31,6 @@ export default function Select({ text, value, setValue, options }: ISelect) {
   }
 
   const newTeamRout = location.pathname === '/new-team'
-  console.log('newTeamRout: ', newTeamRout);
 
   return (
     <div
