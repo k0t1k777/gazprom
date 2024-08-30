@@ -1203,7 +1203,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Иванов Иван Сергеевич',
       department: 'Генеральный директор',
       position: '',
-      image: '/src/assets/images/unsplash_kMJp7620W6U.png',
+      image: '/src/assets/unsplash_kMJp7620W6U.png',
       subordinates: [
         {
           id: 2,

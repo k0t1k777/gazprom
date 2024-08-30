@@ -7,7 +7,7 @@
 - Поддержка и развитие IT-сообщества,
 - Разработка сервиса Соорганизатора
 
-[**Ссылка на сайт**](https://gazprom.hopto.org)
+[**Ссылка на сайт**](https://k0t1k777.github.io/gazprom/)
 
 [**Макет Фигма**](https://www.figma.com/design/ccc8iapZ8bQ32EQyYqytgW/%D0%93%D0%B0%D0%B7%D0%BF%D1%80%D0%BE%D0%BC-ID-%D0%A5%D0%B0%D0%BA%D0%B0%D1%82%D0%BE%D0%BD%2B-%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0-1?node-id=42-2&t=M2QMAj7GoCSYpxNe-0)
 

@@ -7,7 +7,7 @@ export const mockMembers: MembersResult = {
       id: '1',
       full_name: 'Иванов Иван Сергеевич',
       department: 'Генеральный директор',
-      image: 'src/assets/images/unsplash_kMJp7620W6U.png',
+      image: 'src/assets/unsplash_kMJp7620W6U.png',
       position: 'Генеральный директор',
       city: 'Москва',
     },
