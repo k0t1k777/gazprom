@@ -247,7 +247,7 @@ export const mockMembers: MembersResult = {
     {
       id: '19',
       full_name: 'Сапронов Илья Дмитриевич',
-      department: 'Research and Development (R&D)',
+      department: 'Газовый отдел',
       image: `${BASE_URL}/assets/images/Entrepreneur.png`,
       position: 'Техник',
       city: 'Москва',
