@@ -120,7 +120,7 @@ export const getProjects = async () => {
 };
 
 
-// Сервер:
+// При подключении сервера закомитить код сверху и раскомитить этот код:
 
 // export const BASE_URL = 'https://gazprom.hopto.org';
 
