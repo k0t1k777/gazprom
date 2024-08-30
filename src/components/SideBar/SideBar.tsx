@@ -51,7 +51,7 @@ export default function SideBar() {
       >
         <ul className={styles.list}>
           {[
-            { icon: <HomeOutlined />, text: 'Главная', link: '/main' },
+            { icon: <HomeOutlined />, text: 'Главная', link: '/' },
             {
               icon: <UserOutlined />,
               text: 'Личный кабинет',

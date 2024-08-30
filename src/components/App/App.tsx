@@ -38,7 +38,7 @@ export default function App() {
         if (data.token) {
           localStorage.setItem('token', data.token);
           dispatch(setLoggedIn(true));
-          navigate('/main');
+          navigate('/');
           fetchTeamsId();
         }
       })

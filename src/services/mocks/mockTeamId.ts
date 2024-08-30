@@ -1,4 +1,5 @@
 import { TeamsProps } from 'src/services/types';
+const BASE_URL = import.meta.env.VITE_PUBLIC_URL || '';
 
 export const mockTeam: TeamsProps[] = [
   {
@@ -13,7 +14,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Давыдова Виктория Петровна',
       department: 'Technical Writing',
       position: 'Fullstack-разработчик',
-      image: '/src/assets/images/amera.png',
+      image: `${BASE_URL}/assets/images/amera.png`,
       subordinates: [
         {
           id: 34,
@@ -22,7 +23,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Мельников Илья Дмитриевич',
           department: 'Security',
           position: 'Газовый сектор',
-          image: '/src/assets/images/generat6.jpeg',
+          image: `${BASE_URL}/assets/images/generat6.jpeg`,
           subordinates: [
             {
               id: 39,
@@ -31,7 +32,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Романов Константин Евгеньевич',
               department: 'Embedded Systems Development',
               position: 'Инженер по данным',
-              image: '/src/assets/images/generatedc16c58.jpeg',
+              image: `${BASE_URL}/assets/images/generatedc16c58.jpeg`,
               subordinates: [],
             },
           ],
@@ -43,7 +44,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Петров Петр Петрович',
           department: 'Game Development',
           position: 'Аналитик данных',
-          image: '/src/assets/images/c.png',
+          image: `${BASE_URL}/assets/images/c.png`,
           subordinates: [
             {
               id: 33,
@@ -52,7 +53,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Козлов Дмитрий Алексеевич',
               department: 'System Administration',
               position: 'SRE-инженер',
-              image: '/src/assets/images/2photo.png',
+              image: `${BASE_URL}/assets/images/2photo.png`,
               subordinates: [
                 {
                   id: 36,
@@ -61,7 +62,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Орлова Юлия Владимировна',
                   department: 'Project Management',
                   position: 'Отдел продаж и закупок',
-                  image: '/src/assets/images/Front.png',
+                  image: `${BASE_URL}/assets/images/Front.png`,
                   subordinates: [],
                 },
                 {
@@ -71,7 +72,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Макарова Анастасия Михайловна',
                   department: 'Mobile Development',
                   position: 'Отдел продаж и закупок',
-                  image: '/src/assets/images/genera28.jpeg',
+                  image: `${BASE_URL}/assets/images/genera28.jpeg`,
                   subordinates: [],
                 },
                 {
@@ -81,7 +82,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Степанова Светлана Ивановна',
                   department: 'System Administration',
                   position: 'Инженер по безопасности',
-                  image: '/src/assets/images/generatedc1.jpeg',
+                  image: `${BASE_URL}/assets/images/generatedc1.jpeg`,
                   subordinates: [],
                 },
               ],
@@ -95,7 +96,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Кузнецова Мария Петровна',
           department: 'DevOps',
           position: 'Аналитик данных',
-          image: '/src/assets/images/Blonde.png',
+          image: `${BASE_URL}/assets/images/Blonde.png`,
           subordinates: [],
         },
       ],
@@ -107,7 +108,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Матвеева Оксана Викторовна',
           department: 'Blockchain Development',
           position: 'Отдел по работе с персоналом',
-          image: '/src/assets/images/Front.png',
+          image: `${BASE_URL}/assets/images/Front.png`,
           subordinates: [
             {
               id: 35,
@@ -116,7 +117,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Голубева Марина Владимировна',
               department: 'API Development',
               position: 'Fullstack-разработчик',
-              image: '/src/assets/images/generated1d6.jpeg',
+              image: `${BASE_URL}/assets/images/generated1d6.jpeg`,
               subordinates: [
                 {
                   id: 40,
@@ -125,7 +126,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Сидоров Сидор Сидорович',
                   department: 'Localization and Internationalization',
                   position: 'Руководитель разработки',
-                  image: '/src/assets/images/generat6.jpeg',
+                  image: `${BASE_URL}/assets/images/generat6.jpeg`,
                   subordinates: [],
                 },
               ],
@@ -147,7 +148,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Соловьева Екатерина Ивановна',
       department: 'UI/UX Design',
       position: 'Инженер по безопасности',
-      image: '/src/assets/images/generate9644e1857.jpeg',
+      image: `${BASE_URL}/assets/images/generate9644e1857.jpeg`,
       subordinates: [
         {
           id: 105,
@@ -156,7 +157,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Борисов Сергей Викторович',
           department: 'Business Analysis',
           position: 'Отдел продаж и закупок',
-          image: '/src/assets/images/fident.png',
+          image: `${BASE_URL}/assets/images/fident.png`,
           subordinates: [
             {
               id: 111,
@@ -165,7 +166,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Захарова Ольга Сергеевна',
               department: 'Cloud Engineering',
               position: 'Газовый сектор',
-              image: '/src/assets/images/Waie.png',
+              image: `${BASE_URL}/assets/images/Waie.png`,
               subordinates: [
                 {
                   id: 112,
@@ -174,7 +175,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Новикова Юлия Викторовна',
                   department: 'IT Compliance and Governance',
                   position: 'Backend-разработчик',
-                  image: '/src/assets/images/generatedd0506.jpeg',
+                  image: `${BASE_URL}/assets/images/generatedd0506.jpeg`,
                   subordinates: [
                     {
                       id: 103,
@@ -183,7 +184,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Гаврилова Марина Николаевна',
                       department: 'Security',
                       position: 'Газовый сектор',
-                      image: '/src/assets/images/generateded2.jpeg',
+                      image: `${BASE_URL}/assets/images/generateded2.jpeg`,
                       subordinates: [],
                     },
                     {
@@ -193,7 +194,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Егорова Инна Юрьевна',
                       department: 'Quality Assurance (QA)',
                       position: 'Отдел по работе с персоналом',
-                      image: '/src/assets/images/generated942fa.jpeg',
+                      image: `${BASE_URL}/assets/images/generated942fa.jpeg`,
                       subordinates: [],
                     },
                     {
@@ -203,7 +204,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Семенова Ирина Михайловна',
                       department: 'Software Architecture',
                       position: 'Тестировщик',
-                      image: '/src/assets/images/Front.png',
+                      image: `${BASE_URL}/assets/images/Front.png`,
                       subordinates: [],
                     },
                     {
@@ -213,7 +214,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Медведева Татьяна Алексеевна',
                       department: 'Data Science/Analytics',
                       position: 'Ведущий разработчик',
-                      image: '/src/assets/images/Front.png',
+                      image: `${BASE_URL}/assets/images/Front.png`,
                       subordinates: [],
                     },
                   ],
@@ -229,7 +230,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Павлов Олег Андреевич',
           department: 'Frontend',
           position: 'Ведущий разработчик',
-          image: '/src/assets/images/generat6.jpeg',
+          image: `${BASE_URL}/assets/images/generat6.jpeg`,
           subordinates: [
             {
               id: 110,
@@ -238,7 +239,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Королев Иван Андреевич',
               department: 'Frontend',
               position: 'Отдел по работе с персоналом',
-              image: '/src/assets/images/generated120.jpeg',
+              image: `${BASE_URL}/assets/images/generated120.jpeg`,
               subordinates: [],
             },
             {
@@ -248,7 +249,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Романов Константин Евгеньевич',
               department: 'Artificial Intelligence/Machine Learning',
               position: 'Инженер по данным',
-              image: '/src/assets/images/Waistl.png',
+              image: `${BASE_URL}/assets/images/Waistl.png`,
               subordinates: [],
             },
           ],
@@ -260,7 +261,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Кузнецова Мария Петровна',
           department: 'Blockchain Development',
           position: 'Аналитик данных',
-          image: '/src/assets/images/Blonde.png',
+          image: `${BASE_URL}/assets/images/Blonde.png`,
           subordinates: [],
         },
       ],
@@ -279,7 +280,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Михайлова Наталья Павловна',
       department: 'Artificial Intelligence/Machine Learning',
       position: 'DevOps-инженер',
-      image: '/src/assets/images/Portrait.png',
+      image: `${BASE_URL}/assets/images/Portrait.png`,
       subordinates: [
         {
           id: 77,
@@ -288,7 +289,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Николаев Артем Сергеевич',
           department: 'Project Management',
           position: 'Отдел продаж и закупок',
-          image: '/src/assets/images/unsn6deo.png',
+          image: `${BASE_URL}/assets/images/unsn6deo.png`,
           subordinates: [
             {
               id: 73,
@@ -297,7 +298,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Медведева Татьяна Алексеевна',
               department: 'Technical Writing',
               position: 'Ведущий разработчик',
-              image: '/src/assets/images/lose.png',
+              image: `${BASE_URL}/assets/images/lose.png`,
               subordinates: [
                 {
                   id: 75,
@@ -306,7 +307,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Семенова Ирина Михайловна',
                   department: 'System Administration',
                   position: 'Тестировщик',
-                  image: '/src/assets/images/Front.png',
+                  image: `${BASE_URL}/assets/images/Front.png`,
                   subordinates: [
                     {
                       id: 78,
@@ -315,7 +316,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Сидоров Сидор Сидорович',
                       department: 'Technical Support',
                       position: 'Руководитель разработки',
-                      image: '/src/assets/images/generat6.jpeg',
+                      image: `${BASE_URL}/assets/images/generat6.jpeg`,
                       subordinates: [],
                     },
                     {
@@ -325,7 +326,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Антонов Иван Сергеевич',
                       department: 'Artificial Intelligence/Machine Learning',
                       position: 'Системный аналитик',
-                      image: '/src/assets/images/olated.png',
+                      image: `${BASE_URL}/assets/images/olated.png`,
                       subordinates: [],
                     },
                   ],
@@ -341,7 +342,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Тихонов Виталий Александрович',
           department: 'Customer Success',
           position: 'Газовый сектор',
-          image: '/src/assets/images/generated0705.jpeg',
+          image: `${BASE_URL}/assets/images/generated0705.jpeg`,
           subordinates: [
             {
               id: 74,
@@ -350,7 +351,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Дмитриева Елизавета Андреевна',
               department: 'Localization and Internationalization',
               position: 'Отдел продаж и закупок',
-              image: '/src/assets/images/ge3.jpeg',
+              image: `${BASE_URL}/assets/images/ge3.jpeg`,
               subordinates: [
                 {
                   id: 76,
@@ -359,7 +360,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Орлова Юлия Владимировна',
                   department: 'UI/UX Design',
                   position: 'Отдел продаж и закупок',
-                  image: '/src/assets/images/Waie.png',
+                  image: `${BASE_URL}/assets/images/Waie.png`,
                   subordinates: [],
                 },
               ],
@@ -373,7 +374,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Королев Иван Андреевич',
           department: 'Technical Writing',
           position: 'Отдел по работе с персоналом',
-          image: '/src/assets/images/fident.png',
+          image: `${BASE_URL}/assets/images/fident.png`,
           subordinates: [],
         },
       ],
@@ -392,7 +393,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Козлов Дмитрий Алексеевич',
       department: 'Mobile Development',
       position: 'SRE-инженер',
-      image: '/src/assets/images/generatedc16c58.jpeg',
+      image: `${BASE_URL}/assets/images/generatedc16c58.jpeg`,
       subordinates: [
         {
           id: 121,
@@ -401,7 +402,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Матвеева Оксана Викторовна',
           department: 'Business Analysis',
           position: 'Отдел по работе с персоналом',
-          image: '/src/assets/images/amera.png',
+          image: `${BASE_URL}/assets/images/amera.png`,
           subordinates: [
             {
               id: 119,
@@ -410,7 +411,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Павлов Олег Андреевич',
               department: 'Infrastructure/IT Operations',
               position: 'Ведущий разработчик',
-              image: '/src/assets/images/generated3506.jpeg',
+              image: `${BASE_URL}/assets/images/generated3506.jpeg`,
               subordinates: [],
             },
           ],
@@ -422,7 +423,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Федоров Михаил Андреевич',
           department: 'Research and Development (R&D)',
           position: 'Инженер по данным',
-          image: '/src/assets/images/generated3506.jpeg',
+          image: `${BASE_URL}/assets/images/generated3506.jpeg`,
           subordinates: [
             {
               id: 118,
@@ -431,7 +432,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Михайлова Наталья Павловна',
               department: 'UI/UX Design',
               position: 'DevOps-инженер',
-              image: '/src/assets/images/lowers.png',
+              image: `${BASE_URL}/assets/images/lowers.png`,
               subordinates: [
                 {
                   id: 120,
@@ -440,7 +441,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Богданова Оксана Викторовна',
                   department: 'IT Compliance and Governance',
                   position: 'Технический писатель',
-                  image: '/src/assets/images/generated1d6.jpeg',
+                  image: `${BASE_URL}/assets/images/generated1d6.jpeg`,
                   subordinates: [],
                 },
               ],
@@ -454,7 +455,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Карпова Екатерина Александровна',
           department: 'Research and Development (R&D)',
           position: 'Тестировщик',
-          image: '/src/assets/images/Woman6e.png',
+          image: `${BASE_URL}/assets/images/Woman6e.png`,
           subordinates: [],
         },
         {
@@ -464,7 +465,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Орлова Юлия Михайловна',
           department: 'Quality Assurance (QA)',
           position: 'Инженер по обеспечению качества',
-          image: '/src/assets/images/Front.png',
+          image: `${BASE_URL}/assets/images/Front.png`,
           subordinates: [],
         },
       ],
@@ -483,7 +484,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Давыдова Виктория Петровна',
       department: 'IT Compliance and Governance',
       position: 'Fullstack-разработчик',
-      image: '/src/assets/images/amera.png',
+      image: `${BASE_URL}/assets/images/amera.png`,
       subordinates: [
         {
           id: 101,
@@ -492,7 +493,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Мельников Илья Дмитриевич',
           department: 'Product Management',
           position: 'Газовый сектор',
-          image: '/src/assets/images/olated.png',
+          image: `${BASE_URL}/assets/images/olated.png`,
           subordinates: [
             {
               id: 97,
@@ -501,7 +502,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Матвеева Оксана Викторовна',
               department: 'UI/UX Design',
               position: 'Отдел по работе с персоналом',
-              image: '/src/assets/images/Front.png',
+              image: `${BASE_URL}/assets/images/Front.png`,
               subordinates: [
                 {
                   id: 100,
@@ -510,7 +511,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Егоров Андрей Игоревич',
                   department: 'Cloud Engineering',
                   position: 'DevOps-инженер',
-                  image: '/src/assets/images/generated120.jpeg',
+                  image: `${BASE_URL}/assets/images/generated120.jpeg`,
                   subordinates: [],
                 },
               ],
@@ -522,7 +523,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Сидоров Сидор Сидорович',
               department: 'Embedded Systems Development',
               position: 'Руководитель разработки',
-              image: '/src/assets/images/generat6.jpeg',
+              image: `${BASE_URL}/assets/images/generat6.jpeg`,
               subordinates: [
                 {
                   id: 96,
@@ -531,7 +532,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Кузнецова Мария Петровна',
                   department: 'System Administration',
                   position: 'Аналитик данных',
-                  image: '/src/assets/images/Blonde.png',
+                  image: `${BASE_URL}/assets/images/Blonde.png`,
                   subordinates: [
                     {
                       id: 99,
@@ -540,7 +541,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Смирнова Анна Ивановна',
                       department: 'Product Management',
                       position: 'Backend-разработчик',
-                      image: '/src/assets/images/Beautiful.png',
+                      image: `${BASE_URL}/assets/images/Beautiful.png`,
                       subordinates: [],
                     },
                   ],
@@ -554,7 +555,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Козлов Дмитрий Алексеевич',
               department: 'Infrastructure/IT Operations',
               position: 'SRE-инженер',
-              image: '/src/assets/images/generatedc16c58.jpeg',
+              image: `${BASE_URL}/assets/images/generatedc16c58.jpeg`,
               subordinates: [],
             },
           ],
@@ -566,7 +567,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Королев Иван Андреевич',
           department: 'Business Analysis',
           position: 'Отдел по работе с персоналом',
-          image: '/src/assets/images/generatedc16c58.jpeg',
+          image: `${BASE_URL}/assets/images/generatedc16c58.jpeg`,
           subordinates: [],
         },
         {
@@ -576,7 +577,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Петров Петр Петрович',
           department: 'Cloud Engineering',
           position: 'Аналитик данных',
-          image: '/src/assets/images/generat6.jpeg',
+          image: `${BASE_URL}/assets/images/generat6.jpeg`,
           subordinates: [],
         },
       ],
@@ -595,7 +596,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Соловьева Екатерина Ивановна',
       department: 'Frontend',
       position: 'Инженер по безопасности',
-      image: '/src/assets/images/generated506.jpeg',
+      image: `${BASE_URL}/assets/images/generated506.jpeg`,
       subordinates: [
         {
           id: 52,
@@ -604,7 +605,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Смирнова Анна Ивановна',
           department: 'Product Management',
           position: 'Backend-разработчик',
-          image: '/src/assets/images/Beautiful.png',
+          image: `${BASE_URL}/assets/images/Beautiful.png`,
           subordinates: [
             {
               id: 54,
@@ -613,7 +614,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Мельников Илья Дмитриевич',
               department: 'Project Management',
               position: 'Газовый сектор',
-              image: '/src/assets/images/generat6.jpeg',
+              image: `${BASE_URL}/assets/images/generat6.jpeg`,
               subordinates: [
                 {
                   id: 60,
@@ -622,7 +623,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Антонов Иван Сергеевич',
                   department: 'Technical Support',
                   position: 'Системный аналитик',
-                  image: '/src/assets/images/unsplash.png',
+                  image: `${BASE_URL}/assets/images/unsplash.png`,
                   subordinates: [],
                 },
                 {
@@ -632,7 +633,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Григорьев Владимир Николаевич',
                   department: 'Localization and Internationalization',
                   position: 'SRE-инженер',
-                  image: '/src/assets/images/generatedc16c58.jpeg',
+                  image: `${BASE_URL}/assets/images/generatedc16c58.jpeg`,
                   subordinates: [
                     {
                       id: 55,
@@ -641,7 +642,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Петров Петр Петрович',
                       department: 'Infrastructure/IT Operations',
                       position: 'Аналитик данных',
-                      image: '/src/assets/images/c.png',
+                      image: `${BASE_URL}/assets/images/c.png`,
                       subordinates: [
                         {
                           id: 58,
@@ -650,7 +651,7 @@ export const mockTeam: TeamsProps[] = [
                           full_name: 'Иванов Иван Иванович',
                           department: 'Project Management',
                           position: 'UI/UX-дизайнер',
-                          image: '/src/assets/images/generatedb35.jpeg',
+                          image: `${BASE_URL}/assets/images/generatedb35.jpeg`,
                           subordinates: [],
                         },
                         {
@@ -660,7 +661,7 @@ export const mockTeam: TeamsProps[] = [
                           full_name: 'Васильев Алексей Викторович',
                           department: 'Technical Support',
                           position: 'Инженер по данным',
-                          image: '/src/assets/images/gen506.jpeg',
+                          image: `${BASE_URL}/assets/images/gen506.jpeg`,
                           subordinates: [],
                         },
                       ],
@@ -674,7 +675,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Богданова Оксана Викторовна',
                   department: 'Blockchain Development',
                   position: 'Технический писатель',
-                  image: '/src/assets/images/fident.png',
+                  image: `${BASE_URL}/assets/images/fident.png`,
                   subordinates: [],
                 },
               ],
@@ -688,7 +689,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Захарова Елена Александровна',
           department: 'Blockchain Development',
           position: 'Машинное обучение инженер',
-          image: '/src/assets/images/genera28.jpeg',
+          image: `${BASE_URL}/assets/images/genera28.jpeg`,
           subordinates: [],
         },
         {
@@ -698,7 +699,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Белов Роман Владимирович',
           department: 'Project Management',
           position: 'Ведущий разработчик',
-          image: '/src/assets/images/unsplash.png',
+          image: `${BASE_URL}/assets/images/unsplash.png`,
           subordinates: [],
         },
       ],
@@ -717,7 +718,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Петров Петр Петрович',
       department: 'Project Management',
       position: 'Аналитик данных',
-      image: '/src/assets/images/generatedc16c58.jpeg',
+      image: `${BASE_URL}/assets/images/generatedc16c58.jpeg`,
       subordinates: [
         {
           id: 83,
@@ -726,7 +727,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Захарова Ольга Сергеевна',
           department: 'Infrastructure/IT Operations',
           position: 'Газовый сектор',
-          image: '/src/assets/images/Portrait.png',
+          image: `${BASE_URL}/assets/images/Portrait.png`,
           subordinates: [
             {
               id: 87,
@@ -735,7 +736,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Дмитриева Елизавета Андреевна',
               department: 'Frontend',
               position: 'Отдел продаж и закупок',
-              image: '/src/assets/images/ge3.jpeg',
+              image: `${BASE_URL}/assets/images/ge3.jpeg`,
               subordinates: [
                 {
                   id: 91,
@@ -744,7 +745,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Григорьев Владимир Николаевич',
                   department: 'Research and Development (R&D)',
                   position: 'SRE-инженер',
-                  image: '/src/assets/images/Waistl.png',
+                  image: `${BASE_URL}/assets/images/Waistl.png`,
                   subordinates: [
                     {
                       id: 86,
@@ -753,7 +754,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Семенов Дмитрий Иванович',
                       department: 'Game Development',
                       position: 'UI/UX-дизайнер',
-                      image: '/src/assets/images/fident.png',
+                      image: `${BASE_URL}/assets/images/fident.png`,
                       subordinates: [
                         {
                           id: 90,
@@ -762,7 +763,7 @@ export const mockTeam: TeamsProps[] = [
                           full_name: 'Тихонов Виталий Александрович',
                           department: 'Infrastructure/IT Operations',
                           position: 'Газовый сектор',
-                          image: '/src/assets/images/generated120.jpeg',
+                          image: `${BASE_URL}/assets/images/generated120.jpeg`,
                           subordinates: [
                             {
                               id: 82,
@@ -771,7 +772,7 @@ export const mockTeam: TeamsProps[] = [
                               full_name: 'Орлова Юлия Владимировна',
                               department: 'Blockchain Development',
                               position: 'Отдел продаж и закупок',
-                              image: '/src/assets/images/Beautiful.png',
+                              image: `${BASE_URL}/assets/images/Beautiful.png`,
                               subordinates: [],
                             },
                           ],
@@ -783,7 +784,7 @@ export const mockTeam: TeamsProps[] = [
                           full_name: 'Богданова Оксана Викторовна',
                           department: 'Blockchain Development',
                           position: 'Технический писатель',
-                          image: '/src/assets/images/generated1d6.jpeg',
+                          image: `${BASE_URL}/assets/images/generated1d6.jpeg`,
                           subordinates: [
                             {
                               id: 89,
@@ -792,7 +793,7 @@ export const mockTeam: TeamsProps[] = [
                               full_name: 'Степанова Светлана Ивановна',
                               department: 'Technical Support',
                               position: 'Инженер по безопасности',
-                              image: '/src/assets/images/gen7d.jpeg',
+                              image: `${BASE_URL}/assets/images/gen7d.jpeg`,
                               subordinates: [],
                             },
                           ],
@@ -810,7 +811,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Морозов Александр Сергеевич',
               department: 'Software Architecture',
               position: 'Системный аналитик',
-              image: '/src/assets/images/unsplash.png',
+              image: `${BASE_URL}/assets/images/unsplash.png`,
               subordinates: [
                 {
                   id: 88,
@@ -819,7 +820,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Захарова Елена Александровна',
                   department: 'UI/UX Design',
                   position: 'Машинное обучение инженер',
-                  image: '/src/assets/images/Front.png',
+                  image: `${BASE_URL}/assets/images/Front.png`,
                   subordinates: [],
                 },
               ],
@@ -832,7 +833,7 @@ export const mockTeam: TeamsProps[] = [
               department: 'Research and Development (R&D)',
               position: 'Ведущий разработчик',
               image:
-                '/src/assets/images/olated.png',
+                `${BASE_URL}/assets/images/olated.png`,
               subordinates: [],
             },
           ],
@@ -844,7 +845,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Медведева Татьяна Алексеевна',
           department: 'UI/UX Design',
           position: 'Ведущий разработчик',
-          image: '/src/assets/images/generateb8.jpeg',
+          image: `${BASE_URL}/assets/images/generateb8.jpeg`,
           subordinates: [],
         },
       ],
@@ -863,7 +864,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Сидоров Сидор Сидорович',
       department: 'Technical Writing',
       position: 'Руководитель разработки',
-      image: '/src/assets/images/generated120.jpeg',
+      image: `${BASE_URL}/assets/images/generated120.jpeg`,
       subordinates: [
         {
           id: 42,
@@ -872,7 +873,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Егорова Инна Юрьевна',
           department: 'Backend',
           position: 'Отдел по работе с персоналом',
-          image: '/src/assets/images/generated942fa.jpeg',
+          image: `${BASE_URL}/assets/images/generated942fa.jpeg`,
           subordinates: [
             {
               id: 44,
@@ -881,7 +882,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Павлова Ольга Сергеевна',
               department: 'Mobile Development',
               position: 'Тестировщик',
-              image: '/src/assets/images/Studile.png',
+              image: `${BASE_URL}/assets/images/Studile.png`,
               subordinates: [
                 {
                   id: 46,
@@ -890,7 +891,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Тихонов Виталий Александрович',
                   department: 'Network Engineering',
                   position: 'Газовый сектор',
-                  image: '/src/assets/images/generated3506.jpeg',
+                  image: `${BASE_URL}/assets/images/generated3506.jpeg`,
                   subordinates: [
                     {
                       id: 48,
@@ -899,7 +900,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Романов Константин Евгеньевич',
                       department: 'UI/UX Design',
                       position: 'Инженер по данным',
-                      image: '/src/assets/images/Waistl.png',
+                      image: `${BASE_URL}/assets/images/Waistl.png`,
                       subordinates: [],
                     },
                   ],
@@ -915,7 +916,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Петров Петр Петрович',
           department: 'Technical Writing',
           position: 'Аналитик данных',
-          image: '/src/assets/images/Entrepreneur.png',
+          image: `${BASE_URL}/assets/images/Entrepreneur.png`,
           subordinates: [
             {
               id: 45,
@@ -924,7 +925,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Егоров Андрей Игоревич',
               department: 'Infrastructure/IT Operations',
               position: 'DevOps-инженер',
-              image: '/src/assets/images/generated120.jpeg',
+              image: `${BASE_URL}/assets/images/generated120.jpeg`,
               subordinates: [
                 {
                   id: 47,
@@ -933,7 +934,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Семенов Дмитрий Иванович',
                   department: 'Research and Development (R&D)',
                   position: 'UI/UX-дизайнер',
-                  image: '/src/assets/images/fident.png',
+                  image: `${BASE_URL}/assets/images/fident.png`,
                   subordinates: [
                     {
                       id: 49,
@@ -942,7 +943,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Степанова Светлана Ивановна',
                       department: 'Research and Development (R&D)',
                       position: 'Инженер по безопасности',
-                      image: '/src/assets/images/generatedc1.jpeg',
+                      image: `${BASE_URL}/assets/images/generatedc1.jpeg`,
                       subordinates: [],
                     },
                   ],
@@ -967,7 +968,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Новикова Юлия Викторовна',
       department: 'Software Architecture',
       position: 'Backend-разработчик',
-      image: '/src/assets/images/generatedd0506.jpeg',
+      image: `${BASE_URL}/assets/images/generatedd0506.jpeg`,
       subordinates: [
         {
           id: 19,
@@ -976,7 +977,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Мельников Илья Дмитриевич',
           department: 'Research and Development (R&D)',
           position: 'Газовый сектор',
-          image: '/src/assets/images/generated3823d.jpeg',
+          image: `${BASE_URL}/assets/images/generated3823d.jpeg`,
           subordinates: [
             {
               id: 22,
@@ -985,7 +986,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Иванов Иван Иванович',
               department: 'Cloud Engineering',
               position: 'UI/UX-дизайнер',
-              image: '/src/assets/images/fident.png',
+              image: `${BASE_URL}/assets/images/fident.png`,
               subordinates: [
                 {
                   id: 28,
@@ -994,7 +995,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Медведева Татьяна Алексеевна',
                   department: 'Artificial Intelligence/Machine Learning',
                   position: 'Ведущий разработчик',
-                  image: '/src/assets/images/Front.png',
+                  image: `${BASE_URL}/assets/images/Front.png`,
                   subordinates: [],
                 },
               ],
@@ -1006,7 +1007,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Семенова Ирина Михайловна',
               department: 'Software Architecture',
               position: 'Тестировщик',
-              image: '/src/assets/images/Front.png',
+              image: `${BASE_URL}/assets/images/Front.png`,
               subordinates: [
                 {
                   id: 21,
@@ -1015,7 +1016,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Орлова Юлия Владимировна',
                   department: 'Frontend',
                   position: 'Отдел продаж и закупок',
-                  image: '/src/assets/images/generated749.jpeg',
+                  image: `${BASE_URL}/assets/images/generated749.jpeg`,
                   subordinates: [
                     {
                       id: 23,
@@ -1024,7 +1025,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Павлова Ольга Сергеевна',
                       department: 'DevOps',
                       position: 'Тестировщик',
-                      image: '/src/assets/images/Studile.png',
+                      image: `${BASE_URL}/assets/images/Studile.png`,
                       subordinates: [],
                     },
                     {
@@ -1034,7 +1035,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Козлов Дмитрий Алексеевич',
                       department: 'Infrastructure/IT Operations',
                       position: 'SRE-инженер',
-                      image: '/src/assets/images/generat6.jpeg',
+                      image: `${BASE_URL}/assets/images/generat6.jpeg`,
                       subordinates: [],
                     },
                     {
@@ -1044,7 +1045,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Михайлова Наталья Павловна',
                       department: 'Blockchain Development',
                       position: 'DevOps-инженер',
-                      image: '/src/assets/images/Studile.png',
+                      image: `${BASE_URL}/assets/images/Studile.png`,
                       subordinates: [],
                     },
                   ],
@@ -1058,7 +1059,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Антонов Иван Сергеевич',
               department: 'Project Management',
               position: 'Системный аналитик',
-              image: '/src/assets/images/olated.png',
+              image: `${BASE_URL}/assets/images/olated.png`,
               subordinates: [],
             },
           ],
@@ -1070,7 +1071,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Семенов Дмитрий Иванович',
           department: 'Project Management',
           position: 'UI/UX-дизайнер',
-          image: '/src/assets/images/Entrepreneur.png',
+          image: `${BASE_URL}/assets/images/Entrepreneur.png`,
           subordinates: [],
         },
         {
@@ -1080,7 +1081,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Никитин Илья Олегович',
           department: 'Blockchain Development',
           position: 'Frontend-разработчик',
-          image: '/src/assets/images/Smilin.png',
+          image: `${BASE_URL}/assets/images/Smilin.png`,
           subordinates: [],
         },
       ],
@@ -1099,7 +1100,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Киселева Анна Сергеевна',
       department: 'UI/UX Design',
       position: 'Scrum-мастер',
-      image: '/src/assets/images/Woman6e.png',
+      image: `${BASE_URL}/assets/images/Woman6e.png`,
       subordinates: [
         {
           id: 63,
@@ -1108,7 +1109,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Макарова Анастасия Михайловна',
           department: 'Business Analysis',
           position: 'Отдел продаж и закупок',
-          image: '/src/assets/images/Woman6e.png',
+          image: `${BASE_URL}/assets/images/Woman6e.png`,
           subordinates: [
             {
               id: 65,
@@ -1117,7 +1118,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Морозов Александр Сергеевич',
               department: 'Business Analysis',
               position: 'Системный аналитик',
-              image: '/src/assets/images/generated3506.jpeg',
+              image: `${BASE_URL}/assets/images/generated3506.jpeg`,
               subordinates: [
                 {
                   id: 67,
@@ -1126,7 +1127,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Власов Артем Викторович',
                   department: 'Quality Assurance (QA)',
                   position: 'Системный аналитик',
-                  image: '/src/assets/images/unsash.png',
+                  image: `${BASE_URL}/assets/images/unsash.png`,
                   subordinates: [
                     {
                       id: 69,
@@ -1135,7 +1136,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Павлов Олег Андреевич',
                       department: 'Software Architecture',
                       position: 'Ведущий разработчик',
-                      image: '/src/assets/images/generat6.jpeg',
+                      image: `${BASE_URL}/assets/images/generat6.jpeg`,
                       subordinates: [],
                     },
                   ],
@@ -1151,7 +1152,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Федоров Михаил Андреевич',
           department: 'Quality Assurance (QA)',
           position: 'Инженер по данным',
-          image: '/src/assets/images/2photo.png',
+          image: `${BASE_URL}/assets/images/2photo.png`,
           subordinates: [
             {
               id: 64,
@@ -1160,7 +1161,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Матвеева Оксана Викторовна',
               department: 'Infrastructure/IT Operations',
               position: 'Отдел по работе с персоналом',
-              image: '/src/assets/images/Portrait.png',
+              image: `${BASE_URL}/assets/images/Portrait.png`,
               subordinates: [
                 {
                   id: 66,
@@ -1169,7 +1170,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Васильев Алексей Викторович',
                   department: 'Mobile Development',
                   position: 'Инженер по данным',
-                  image: '/src/assets/images/generated120.jpeg',
+                  image: `${BASE_URL}/assets/images/generated120.jpeg`,
                   subordinates: [
                     {
                       id: 68,
@@ -1178,7 +1179,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Иванов Иван Иванович',
                       department: 'IT Compliance and Governance',
                       position: 'UI/UX-дизайнер',
-                      image: '/src/assets/images/fident.png',
+                      image: `${BASE_URL}/assets/images/fident.png`,
                       subordinates: [],
                     },
                   ],
@@ -1203,7 +1204,7 @@ export const mockTeam: TeamsProps[] = [
       full_name: 'Иванов Иван Сергеевич',
       department: 'Генеральный директор',
       position: '',
-      image: '/src/assets/unsplash_kMJp7620W6U.png',
+      image: `${BASE_URL}/assets/images/unsplash_kMJp7620W6U.png`,
       subordinates: [
         {
           id: 2,
@@ -1212,7 +1213,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Смирнова Анна Алексеевна',
           department: 'Главный бухгалтер',
           position: 'Бухгалтерия',
-          image: '/src/assets/images/Beautiful.png',
+          image: `${BASE_URL}/assets/images/Beautiful.png`,
           subordinates: [
             {
               id: 3,
@@ -1221,7 +1222,7 @@ export const mockTeam: TeamsProps[] = [
               full_name: 'Петров Александр Владимирович',
               department: 'Главный бухгалтер регионов',
               position: 'Бухгалтерия',
-              image: '/src/assets/images/unsplash654.png',
+              image: `${BASE_URL}/assets/images/unsplash654.png`,
               subordinates: [
                 {
                   id: 5,
@@ -1230,7 +1231,7 @@ export const mockTeam: TeamsProps[] = [
                   full_name: 'Попова Елена Андреевна',
                   department: 'Главный бухгалтер Южного Федерального округа',
                   position: 'Бухгалтерия',
-                  image: '/src/assets/images/amera.png',
+                  image: `${BASE_URL}/assets/images/amera.png`,
                   subordinates: [],
                 },
                 {
@@ -1241,7 +1242,7 @@ export const mockTeam: TeamsProps[] = [
                   department:
                     'Главный бухгалтер Дальневосточного Федерального округа',
                   position: 'Бухгалтерия',
-                  image: '/src/assets/images/generat.jpeg',
+                  image: `${BASE_URL}/assets/images/generat.jpeg`,
                   subordinates: [
                     {
                       id: 6,
@@ -1250,7 +1251,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Козлова Ольга Николаевна',
                       department: 'Финансовый аналитик',
                       position: 'Бухгалтерия',
-                      image: '/src/assets/images/amera.png',
+                      image: `${BASE_URL}/assets/images/amera.png`,
                       subordinates: [],
                     },
                     {
@@ -1260,7 +1261,7 @@ export const mockTeam: TeamsProps[] = [
                       full_name: 'Новиков Павел Викторович',
                       department: 'Финансовый аналитик',
                       position: 'Бухгалтерия',
-                      image: '/src/assets/images/unspla66.png',
+                      image: `${BASE_URL}/assets/images/unspla66.png`,
                       subordinates: [],
                     },
                   ],
@@ -1276,7 +1277,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Семенова Наталья Олеговна',
           department: 'Главный менеджер по продажам и закупкам',
           position: 'Отдел продаж и закупок',
-          image: '/src/assets/images/generated.jpeg',
+          image: `${BASE_URL}/assets/images/generated.jpeg`,
           subordinates: [],
         },
         {
@@ -1286,7 +1287,7 @@ export const mockTeam: TeamsProps[] = [
           full_name: 'Тихонов Виталий Александрович',
           department: 'Заместитель генерального директора',
           position: 'Газовый сектор',
-          image: '/src/assets/images/generat6.jpeg',
+          image: `${BASE_URL}/assets/images/generat6.jpeg`,
           subordinates: [],
         },
       ],
