@@ -25,8 +25,9 @@ export default function Card({
   restoreMembers,
   onDragStart,
 }: membersProps) {
+
   const [showMembers, setShowMembers] = useState(true);
-  const employesNewTeam = location.pathname === '/new-team';
+  const employesNewTeam = window.location.hash === '#/new-team';
   const dispatch = useAppDispatch();
   const { isProfileOpen } = useAppSelector(selectUsers);
 
