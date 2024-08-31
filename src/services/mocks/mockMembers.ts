@@ -1,5 +1,5 @@
 import { MembersResult } from 'src/services/types';
-const BASE_URL = import.meta.env.VITE_PUBLIC_URL || '';
+const BASE_URL = import.meta.env.VITE_PUBLIC_URL;
 
 export const mockMembers: MembersResult = {
   count: 122,

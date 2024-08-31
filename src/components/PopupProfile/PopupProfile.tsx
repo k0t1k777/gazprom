@@ -4,7 +4,6 @@ import useOutsideClick from 'src/hooks/useOutsideClick';
 import { CloseOutlined } from '@ant-design/icons';
 import { setIsFilterOpen } from 'src/store/features/slice/membersSlice';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import Avatar from 'src/assets/images/Avatar.png';
 import {
   selectUsers,
   setIsProfileOpen,
@@ -61,7 +60,7 @@ export default function PopupProfile() {
         <div className={styles.containerProfile}>
           <div className={styles.photoContainer}>
             <img
-              src={Avatar}
+              src={selectedMember?.image}
               alt='ваше фото'
               className={styles.photo}
             />

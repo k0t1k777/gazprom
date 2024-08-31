@@ -1,5 +1,5 @@
 import { ProfileProps } from 'src/services/types';
-const BASE_URL = import.meta.env.VITE_PUBLIC_URL || '';
+const BASE_URL = import.meta.env.VITE_PUBLIC_URL;
 
 export const mockProfile: ProfileProps = {
   email: 'admin@admin.com',
