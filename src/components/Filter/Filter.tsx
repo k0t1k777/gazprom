@@ -1,4 +1,3 @@
-import styles from 'src/components/Filter/Filter.module.scss';
 import { useEffect, useRef, useState } from 'react';
 import useOutsideClick from 'src/hooks/useOutsideClick';
 import { Input } from 'antd';
@@ -18,6 +17,7 @@ import {
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { itemsPerPage } from 'src/services/const';
 import { selectFilter } from 'src/store/features/slice/filterSlice';
+import { T1 } from 'src/ui/typography';
 
 interface FilterProps {
   droppedCards: membersProps[];
@@ -127,24 +127,27 @@ export default function Filter({ droppedCards }: FilterProps) {
   });
 
   return (
-    <div ref={modalRef} className={styles.filter}>
-      <div className={styles.filterContainer}>
+    <div
+      ref={modalRef}
+      className='absolute top-10 right-10 rounded-bl-lg w-88.5 h-full shadow-lg bg-white-100 py-14 px-12 z-30 overflow-y-auto'
+    >
+      <div className='w-60'>
         <Input
-          className={styles.input}
+          className='border border-white rounded py-1.5 px-6 w-full h-8 shadow'
           placeholder='Поиск'
           onChange={handleChange}
           value={search}
         />
-        <div className={styles.container}>
+        <div className='flex gap-4 py-14 px-4 border-b border-light-gray-100'>
           <CloseOutlined
-            className={styles.img}
+            className='text-summer-sky-100 cursor-pointer'
             onClick={() => dispatch(setIsFilterOpen(false))}
           />
-          <p className={styles.text}>Фильтры</p>
+          <T1>Фильтры</T1>
         </div>
         <FilterList setCurrentPageFilter={setCurrentPageFilter} />
         {members.length ? (
-          <div className={styles.containerResult}>
+          <div className='flex flex-col gap-2'>
             {members &&
               members.map((card, index) => (
                 <Card
@@ -165,11 +168,11 @@ export default function Filter({ droppedCards }: FilterProps) {
               ))}
           </div>
         ) : (
-          <p className={styles.noFound}>
+          <T1 className='mt-40 text-center'>
             По вашему запросу ничего не найдено, попробуйте изменить фильтры
-          </p>
+          </T1>
         )}
-        <div className={styles.downContainer}></div>
+        <div className='h-24'></div>
       </div>
     </div>
   );
