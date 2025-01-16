@@ -19,6 +19,7 @@ import {
   setIsProfileOpen,
 } from 'src/store/features/slice/userSlice';
 import { useEffect } from 'react';
+import clsx from 'clsx';
 const cx = cn.bind(styles);
 
 interface HeaderProps {
@@ -59,13 +60,16 @@ export default function Header({ droppedCards }: HeaderProps) {
   return (
     <>
       <header
-        className={cx(styles.header, { [styles.header_loggedIn]: !loggedIn })}
+        className={clsx(
+          'flex justify-between items-center h-24 py-4 px-16 shadow-lg relative',
+          loggedIn && 'shadow-none'
+        )}
       >
         <Link to='/'>
           <Logo />
         </Link>
         {loggedIn && (
-          <div className={styles.container}>
+          <div className='flex justify-center items-center gap-6'>
             <Input
               placeholder='Поиск'
               onChange={handleChange}

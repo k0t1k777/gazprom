@@ -1,22 +1,22 @@
-.header {
-  @include main-container;
-  height: 96px;
-  padding: 16px 64px;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: $header-box-shadow;
-  position: relative;
-  &_loggedIn {
-    box-shadow: none;
-  }
-}
+// .header {
+//   @include main-container;
+//   height: 96px;
+//   padding: 16px 64px;
+//   display: flex;
+//   justify-content: space-between;
+//   box-shadow: $header-box-shadow;
+//   position: relative;
+//   &_loggedIn {
+//     box-shadow: none;
+//   }
+// }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-}
+// .container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 24px;
+// }
 
 .input {
   border: $border-white;
