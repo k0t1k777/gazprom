@@ -57,6 +57,8 @@ export default function Header({ droppedCards }: HeaderProps) {
     dispatch(setSearch(''));
   }, [location.pathname, dispatch]);
 
+
+  
   return (
     <>
       <header
